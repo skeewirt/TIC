@@ -1,0 +1,68 @@
+# ============================================================
+# FFT: The Ivalice Chronicles — .gitignore
+# ============================================================
+# Only publishable research documents go to GitHub.
+# All binary assets, analysis output, game files, and working
+# scratch stay local.
+# ============================================================
+
+# ── Game assets (copyrighted) ──
+extracts/
+databases/
+Game_Files/
+*.pac
+
+# ── Reverse engineering (local only) ──
+reference/
+tools/
+*.i64
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+
+# ── Legacy root files (now under remaster/) ──
+/FORMULA_CHEATSHEET.md
+/FORMULA_REFERENCE.md
+/ROADMAP.md
+/docs/
+/mods/
+
+# ── Build / tool output ──
+*.exe
+*.dll
+*.pdb
+*.obj
+*.o
+*.sqlite
+
+# ── OS / editor junk ──
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+*.swo
+*~
+
+# ── IDE ──
+.vs/
+.vscode/
+*.suo
+*.user
+
+# ── Python ──
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ── Node ──
+node_modules/
+
+# ── Agent workspace ──
+.agents/
+.gemini/
+
+# ── Discord / chat logs ──
+\#*
