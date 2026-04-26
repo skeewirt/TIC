@@ -1930,7 +1930,7 @@ ZodiacCompatibility();                           // sub_1402FBDDC
 CalcTotalDamage();                               // sub_1402FCBB0 — MA + X
 ApplyFaithScaling();                             // sub_1402FD06C
 if (target_result[0]) {
-    // Caster validation (checks caster, NOT target):
+    // Caster validation (checks caster, not target):
     if ((caster[5] & 4) || caster[436] ||
         (caster[0] + 0x80) > 2 || (caster[3] + 126) <= 2) {
         // Invalid: auto-miss
@@ -2079,7 +2079,7 @@ Address: 0x1402FE870 (same as F30/F94)
 
 ## Special Action Types (Throw / Jump)
 
-**Correction**: Both Throw and Jump **do** go through the formula dispatch table (`qword_14067D128[formula_id]()`). They have special pre-dispatch setup in `SetupSkillDataAndDispatch` (`0x140300610`) but are NOT outside the formula system.
+Both Throw and Jump go through the formula dispatch table (`qword_14067D128[formula_id]()`). They differ from standard abilities only in how `SetupSkillDataAndDispatch` (`0x140300610`) configures the attack parameters before dispatch.
 
 ### Throw (Category 1 — Item Throwing)
 
@@ -2119,7 +2119,7 @@ Jump follows the standard ability path after the action type override. The formu
 
 ### Hooking Note
 
-To modify Throw/Jump damage, hook the formula function they dispatch to (found via item data or ability secondary data), NOT `SetupSkillDataAndDispatch`. The pre-dispatch setup only configures parameters; the actual calculation runs through the same formula table as everything else.
+To modify Throw/Jump damage, hook the formula function they dispatch to (found via item data or ability secondary data), not `SetupSkillDataAndDispatch`. The pre-dispatch setup only configures parameters; the actual damage calculation runs through the same formula table as everything else.
 
 ---
 
