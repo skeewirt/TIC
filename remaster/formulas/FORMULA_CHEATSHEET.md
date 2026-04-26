@@ -1737,7 +1737,7 @@ Decompiled from binary. Ability parameters verified from `AbilitySecondaryData` 
 Hit = (MA + X) × [×5/4 element] × [×4/3 MagicAttackUp]
     × Zodiac(50-150%) × faith_scaling
 On success: apply status via f56 engine
-(ADDITIVE, no Shell/Sleep modifiers)
+(Uses CalcTotalDamage — additive base, same as F10/F11)
 ```
 > Choco Esuna (X=65, ST=100), Guardian Nymph (X=45, ST=35), Shell Nymph (X=45, ST=36)
 <details><summary>Decompiled (sub_1402FFAF0) — 83 bytes</summary>
@@ -1780,27 +1780,27 @@ if (caster != source)
 ```
 Evade check → physical hit check
 Damage = (Y × caster_MaxHP + 99) / 100
-    × [weather] × [element absorb/weak]
-Then: counter check + status
+    → post-damage modifiers (sub_FCD98, sub_FCE2C)
+    → post-processing (sub_FCE88, sub_FD870, sub_FD5A4)
 ```
 > Twister (X=50, Y=34, Elem=Wind), Tri-Breath (X=120, Y=50)
 <details><summary>Decompiled (sub_1402FFB88) — 117 bytes</summary>
 
 ```c
-result = LoadEvadeAndEquipModifiers();           // sub_1402FD9D0
+result = sub_1402FD9D0();                        // evade/equip modifier check
 if (!result) {
     result = sub_1402FDCE8();                    // physical hit check
     if (!result) {
         damage = (ability_Y * caster[50] + 99) / 100; // Y% of caster MaxHP
         result[39] |= 0x80;                     // flags: HP_Damage
         result[6] = damage;
-        ApplyWeather();                          // sub_1402FCD98
-        ApplyElementCheck();                     // sub_1402FCE2C
+        sub_1402FCD98();                         // post-damage modifier
+        sub_1402FCE2C();                         // post-damage modifier
         if (target_result[0]) {
-            PostDamage();                        // sub_1402FCE88
-            result = CounterCheck();             // sub_1402FD870
+            sub_1402FCE88();                     // post-damage processing
+            result = sub_1402FD870();            // counter/reaction check?
             if (!result)
-                SaveAndRestoreResultFlags();     // sub_1402FD5A4 → status
+                sub_1402FD5A4();                 // status application?
         }
     }
 }
@@ -1809,30 +1809,30 @@ if (!result) {
 
 ### F84 — MP Restoration (Magic-Based)
 ```
-Heal MP = MA × X × [×4/3 MagicAttackUp] × Zodiac(50-150%)
-capped at 32767
+Heal MP = MA × Y × [×4/3 MagicAttackUp] × Zodiac(50-150%)
 (No hit check — always succeeds. Heals MP, not HP)
 ```
 > Magick Nymph (X=0, Y=1)
 <details><summary>Decompiled (sub_1402FFC00) — 85 bytes</summary>
 
 ```c
-MA = caster[63];
-Y = ability_secondary[13];                       // X param
+MA = source[63];                                 // qword_141864098 + 63
+WORD1(attack_params) = ability_secondary[14];    // Y param (BYTE14)
+LOWORD(attack_params) = MA;
 ApplyCasterMagicBoost();                         // sub_1402FC914 — ×4/3
 ZodiacCompatibility();                           // sub_1402FBDDC
-CalcFinalDamage();                               // sub_1402FCB6C — MA × Y
+CalcFinalDamage();                               // sub_1402FCB6C — MA × Y (multiplicative)
 result[12] = result[6];                          // move to MP heal slot
 result[6] = 0;                                   // clear HP damage
 result[39] = 16;                                 // flags: MP_Healing
 ```
 </details>
 
-### F85 — Peck (Physical Hit → PA Boost)
+### F85 — Peck (Physical Hit → PA Drain)
 ```
 Evade check → physical hit check
-On success: target PA += Y & 0x7F
-(Stat boost, NOT damage)
+On success: target PA reduced by Y
+(Y & 0x7F = amount without direction bit. Compare F54 Focus which uses Y | 0x80 for increase)
 ```
 > Peck (X=45, Y=2)
 <details><summary>Decompiled (sub_1402FFC58) — 50 bytes</summary>
@@ -1842,18 +1842,18 @@ result = LoadEvadeAndEquipModifiers();           // sub_1402FD9D0
 if (!result) {
     result = sub_1402FDCE8();                    // physical hit check
     if (!result) {
-        result[22] = ability_Y & 0x7F;           // PA boost
+        result[22] = ability_Y & 0x7F;           // PA drain (no 0x80 = decrease)
         result[39] = 1;                          // flags: StatChange
     }
 }
 ```
 </details>
 
-### F86 — Beam (Physical Hit → MA Boost)
+### F86 — Beam (Physical Hit → MA Drain)
 ```
 Evade check → physical hit check
-On success: target MA += Y & 0x7F
-(Stat boost, NOT damage)
+On success: target MA reduced by Y
+(Y & 0x7F = amount without direction bit. Compare F54 Focus which uses Y | 0x80 for increase)
 ```
 > Beam (X=55, Y=2)
 <details><summary>Decompiled (sub_1402FFC8C) — 50 bytes</summary>
@@ -1863,36 +1863,41 @@ result = LoadEvadeAndEquipModifiers();           // sub_1402FD9D0
 if (!result) {
     result = sub_1402FDCE8();                    // physical hit check
     if (!result) {
-        result[23] = ability_Y & 0x7F;           // MA boost
+        result[23] = ability_Y & 0x7F;           // MA drain (no 0x80 = decrease)
         result[39] = 1;                          // flags: StatChange
     }
 }
 ```
 </details>
 
-### F87 — Bequeath Bacon (Self-Sacrifice Transfer)
+### F87 — Bequeath Bacon (Self-Sacrifice)
 ```
-Transfers caster's MaxHP and MaxMP to target as healing
-Then: caster applies status to self (kill effect)
-Level check: if caster level ≥ 99, auto-miss
-(Complex two-target formula with pointer swaps)
+Sets result[6] = caster MaxHP, result[12] = caster MaxMP
+Initial flags: 0x90 (HP_Damage | MP_Healing)
+Then sub_1402FCFDC processes the values
+If caster level < 99: flags OVERWRITTEN to 1 (StatChange)
+    Swaps pointers → applies status (ST=96) to CASTER via f56
+    Then restores pointers
+If caster level ≥ 99: auto-miss
+Note: the 0x90 flag is overwritten before engine reads it,
+so HP/MP fields may only matter for sub_1402FCFDC processing.
 ```
 > Bequeath Bacon (ST=96)
 <details><summary>Decompiled (sub_1402FFCC0) — 146 bytes</summary>
 
 ```c
-result[6] = caster[50];                          // HP heal = caster MaxHP
-result[12] = caster[54];                         // MP heal = caster MaxMP
-result[39] = 0x90;                               // flags: HP_Damage + MP_Healing
-UndeadReverse();                                 // sub_1402FCFDC
+result[6] = caster[50];                          // caster MaxHP → hp_dmg slot
+result[12] = caster[54];                         // caster MaxMP → mp_heal slot
+result[39] = 0x90;                               // flags: HP_Damage(0x80) | MP_Healing(0x10)
+sub_1402FCFDC();                                 // processes result (undead reverse?)
 if (caster[41] < 99) {                           // level check
-    result[39] = 1;                              // flags: StatChange
+    result[39] = 1;                              // OVERWRITES to: StatChange
     result[18] = 128;                            // attack_type
     // Swap pointers: apply status to CASTER (self-kill)
     qword_141864090 = source;
     qword_141864080 = secondary;
     secondary[0] = 1;
-    resultcalculate_f56();                       // apply death status to self
+    resultcalculate_f56();                       // apply status (ST=96) to caster
     // Restore pointers
     qword_141864090 = caster;
     qword_141864080 = result;
@@ -1907,10 +1912,10 @@ if (caster[41] < 99) {                           // level check
 ```
 Hit = (MA + X) × [×5/4 element] × [×4/3 MagicAttackUp]
     × Zodiac(50-150%) × faith_scaling
-On success: validates target species for recruitment
-    Fails if: caster bit 5 set, caster[436] nonzero,
-    or caster unit ID out of range (0x80..0x82),
-    or caster type (byte +3) not in range (0x80..0x82)
+On success: validates CASTER (not target) for recruitment eligibility
+    Fails if: caster[5] bit 2 set, caster[436] nonzero,
+    or (caster[0] + 0x80) > 2, or (caster[3] + 126) <= 2
+    (exact meaning of these fields is unclear)
 On valid: attack_type = 2 (recruit/charm)
 ```
 > Malboro Spores (X=5)
@@ -1925,7 +1930,7 @@ ZodiacCompatibility();                           // sub_1402FBDDC
 CalcTotalDamage();                               // sub_1402FCBB0 — MA + X
 ApplyFaithScaling();                             // sub_1402FD06C
 if (target_result[0]) {
-    // Species/recruitment validation:
+    // Caster validation (checks caster, NOT target):
     if ((caster[5] & 4) || caster[436] ||
         (caster[0] + 0x80) > 2 || (caster[3] + 126) <= 2) {
         // Invalid: auto-miss
