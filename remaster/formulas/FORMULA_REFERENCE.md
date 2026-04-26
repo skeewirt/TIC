@@ -291,38 +291,53 @@ These `sub_1402F*` functions are called by multiple formulas. All thunks resolve
 |--------|------|-------|--------|
 | +0 | 1 | Unit ID / validity | setskillresult |
 | +1 | 1 | Unit slot | setskillresult |
-| +5 | 1 | Flags (bits 4-5 = HP bar type) | setskillresult |
-| +32-38 | 2×4 | Equipment slots (weapon L/R, armor) | sub_140300610 |
+| +3 | 1 | Unit type byte | F88 caster validation |
+| +5 | 1 | Flags (bits 4-5 = HP bar type, bit 2 = F88 gate) | setskillresult, F88 |
+| +6 | 1 | Equipment flags (bit 5 = unarmed?) | sub_1402FD9D0 |
+| +8 | 1 | Unknown — used in F88 caster range check | F88 |
+| +30 | 2 | Weapon L slot (item ID) | sub_1402FD9D0 → ItemGetWeaponData |
+| +34 | 2 | Weapon R slot (item ID) | sub_1402FD9D0 → ItemGetWeaponData |
+| +38 | 2 | Accessory slot (item ID) | sub_1402FD9D0 → accessory evade |
 | +40 | 1 | CT (Charge Time) | setskillresult |
 | +41 | 1 | Level | setskillresult |
-| +42 | 1 | PA (Physical Attack) | formula trait analysis |
-| +43 | 1 | **Faith** | confirmed (formula_42, reaction rolls) |
-| +44 | 1 | MA (Magic Attack) | formula trait analysis |
-| +45 | 1 | **Brave** | setskillresult |
+| +43 | 1 | **Faith** | setskillresult: `sub_140302CE0(result[24], unit+43, 100, ...)` |
+| +45 | 1 | **Brave** | setskillresult: `sub_140302CE0(result[25], unit+45, 100, 0)` |
 | +46 | 1 | SP (Speed) | formula trait analysis |
 | +48 | 2 | **Current HP** | setskillresult |
 | +50 | 2 | **Max HP** | setskillresult |
 | +52 | 2 | Current MP | setskillresult |
 | +54 | 2 | Max MP | setskillresult |
-| +56-57 | 2 | AT (Attack) / ? | setskillresult (sub_140302CE0 calls) |
-| +58 | 7 | Status effect block 1 | setskillresult |
-| +65 | ? | Status effect block 2 | setskillresult |
+| +56 | 1 | **PA (Physical Attack)** | setskillresult: `sub_140302CE0(result[22], unit+56, 99, 1)` |
+| +57 | 1 | **MA (Magic Attack)** | setskillresult: `sub_140302CE0(result[23], unit+57, 99, 1)` |
+| +58 | 7 | Status effect block 1 | setskillresult: `sub_140302CE0(result[20], unit+58, 50, 1)` |
+| +62 | 1 | **Current PA** (runtime, post-buff) | formulas read `caster[62]` as PA |
+| +63 | 1 | **Current MA** (runtime, post-buff) | formulas read `caster[63]` / `source[63]` as MA |
+| +64 | 1 | **Current SP** (runtime, post-buff) | formula trait analysis |
+| +65 | 1+ | Status effect block 2 | setskillresult: `sub_140302CE0(result[21], unit+65, 255, 0)` |
 | +79-81 | 3 | Job data (class, gender, etc.) | sub_140300610 |
-| +87-101 | 15 | **Status flags** (5 bytes active + 16 bytes) | setskillresult |
-| +97-101 | 5 | Status infliction flags | setskillresult |
+| +87-96 | 10 | Status flags (active status bitfield) | setskillresult |
+| +92-96 | 5 | Status immunity/absorption flags | F14 undead check at +92 |
+| +97-101 | 5 | Status infliction flags | setskillresult (reaction trigger source) |
+| +99 | 1 | Status byte: bit 6 = undead, bit 4 = transparent | element_check, undead_reverse |
 | +102-117 | 16 | Status parameters | setskillresult |
+| +122 | 1 | Element affinity flags | sub_1402FC81C — ×5/4 if `(unit[122] & element) != 0` |
 | +148-150 | 3 | Reaction trigger flags | setskillresult |
-| +154 | 1 | Support ability flags | formula_42 |
-| +396 | 1 | Evade counter | setskillresult |
-| +397 | 1 | Death counter? | setskillresult |
+| +151 | 1 | Support ability flags (block 2) | formula checks |
+| +153 | 1 | Support ability flags (block 3) | formula checks |
+| +154 | 1 | Support ability flags (block 4) | formula_42 |
+| +396 | 1 | Evade counter | setskillresult: `++unit[396]` on death |
+| +397 | 1 | Death sentence counter | setskillresult: set to -1 on death trigger |
+| +398 | 1 | **Monster species ID** | F90-F93: 15/16 = Dragon |
 | +416-418 | 3 | Secondary action data (for recursive formulas) | formula_37 |
 | +424 | 2 | Steal item ID | setskillresult |
-| +436 | 1 | Unit flags (bit 7 = ???) | setskillresult |
+| +436 | 1 | Unit control flags (bit 7 = guest/charmed, bits 0-4 = redirect unit ID) | setskillresult, element_check |
 | +443 | 1 | Action result type | setskillresult |
 | +444 | 1 | Unit team/allegiance | setskillresult |
 | +494 | 1 | HP bar display flags | setskillresult |
 | +495-499 | 5 | Status clear block | setskillresult |
 | +501 | 1 | Damage display type | setskillresult |
+
+**Note on PA/MA offsets**: +56/+57 are the **base stat** locations written by `setskillresult` via `sub_140302CE0`. Offsets +62/+63 are **runtime current** values read by formula functions (post-buff/debuff). The engine maintains both.
 
 ---
 
@@ -334,23 +349,28 @@ Talcall labels this `battle_current_action` / `target_CurrentAction`.
 | Offset | Size | Field | Notes |
 |--------|------|-------|-------|
 | +0 | 1 | `hit` — Result valid / hit flag | 0 = miss, nonzero = hit |
-| +2 | 1 | Result type | 7 = miss, 11 = immune |
+| +2 | 1 | Result type | 7 = miss, 5 = absorb, 11 = immune |
 | +6 | 2 | `hp_dmg` — HP damage value | Talcall: `hp_dmg` |
 | +8 | 2 | HP heal value | |
 | +10 | 2 | MP/secondary damage value | Used for drains, stat reduction |
 | +12 | 2 | MP heal value | |
 | +14 | 2 | Gil amount | |
-| +16 | 2 | Ability ID (for display) | |
-| +18 | 2 | `attack_type` — Result/action flags | Talcall: `attack_type` |
-| +20 | 1 | XA — attack parameter A | Talcall: `current_action.XA` |
-| +21 | 1 | Status/CT modifier | |
-| +24 | 1 | Brave/Faith modifier | |
+| +16 | 2 | Ability ID (for display) | 450 = item pickup trigger |
+| +18 | 2 | `attack_type` — Result/action flags | See attack_type table below |
+| +20 | 1 | **Status modifier → unit+58** | `sub_140302CE0(result[20], unit+58, 50, 1)` — status block 1, cap 50 |
+| +21 | 1 | **Status modifier → unit+65** | `sub_140302CE0(result[21], unit+65, 255, 0)` — status block 2, uncapped |
+| +22 | 1 | **PA modifier → unit+56** | `sub_140302CE0(result[22], unit+56, 99, 1)` — cap 99. Bit 7 = increase |
+| +23 | 1 | **MA modifier → unit+57** | `sub_140302CE0(result[23], unit+57, 99, 1)` — cap 99. Bit 7 = increase |
+| +24 | 1 | **Faith modifier → unit+43** | `sub_140302CE0(result[24], unit+43, 100, ...)` — cap 100 |
+| +25 | 1 | **Brave modifier → unit+45** | `sub_140302CE0(result[25], unit+45, 100, 0)` — cap 100 |
 | +29-33 | 5 | **Inflict status bytes** (0x1D-0x21) | EpicBrownie verified |
 | +34-38 | 5 | **Remove status bytes** (0x22-0x26) | EpicBrownie verified |
+| +36 | 1 | Status removal sub-flags | setskillresult sets bits for Brave/Faith thresholds |
 | +39 | 1 | **Damage flags** (0x27) | See table below |
-| +42 | 1 | XP gain amount | |
+| +40 | 2 | Item pickup ID | Only read when ability ID = 450 |
+| +42 | 1 | CT/XP modifier | Bit 7: subtract CT. Bits 0-6: amount |
 | +43 | 1 | JP gain flag | |
-| +44 | 2 | CT modifier | |
+| +44 | 2 | CT modifier (secondary) | |
 
 ### Damage Flags (offset +39 / 0x27)
 
@@ -366,6 +386,45 @@ Talcall labels this `battle_current_action` / `target_CurrentAction`.
 Composite values: `0x50` (80) = HP_Healing + MP_Healing (F52 Chakra).
 
 These flags **must** be set when overriding a formula — the engine's `setskillresult` reads them to determine which result fields to process.
+
+### Stat Modifier Engine (`sub_140302CE0` → `sub_14E847320`)
+
+Result offsets +20 through +25 are processed by `sub_140302CE0(value, stat_ptr, cap, flags)`:
+
+```
+Encoding: bit 7 = direction (1 = increase, 0 = decrease)
+          bits 0-6 = magnitude
+Special:  if cap == 0xFF and magnitude == 0x7F → value becomes 0xFF (set to max)
+```
+
+The engine computes `new_stat = old_stat ± magnitude`, clamps to `[flags_min, cap]`, and writes back. If the stat didn't change, the function returns 0 (no visual update).
+
+### Attack Type Flags (offset +18)
+
+| Bit | Hex | Meaning | Source |
+|-----|-----|---------|--------|
+| 15 | 0x8000 | Negative (Golem barrier damage) | setskillresult |
+| 14 | 0x4000 | Death trigger (check death sentence) | setskillresult |
+| 9 | 0x0200 | Counter/reaction triggered | counter_check |
+| 8 | 0x0100 | Level drain (decrease level) | F89 |
+| 7 | 0x0080 | Level boost (increase level) | setskillresult |
+| 3 | 0x0008 | Steal item (triggers inc_party_item) | setskillresult |
+| 1 | 0x0002 | Full status clear (wipe all statuses) | setskillresult |
+| 0 | 0x0001 | HP bar refresh | setskillresult |
+
+### Verified Shared Subroutines
+
+| Thunk | Target | Role | Evidence |
+|-------|--------|------|----------|
+| `sub_1402FC81C` | `sub_14E5FC0DD` | Element affinity boost: ×5/4 if `unit[122] & element` | Decompiled: checks source[122] against element byte |
+| `sub_1402FCFDC` | `sub_14E6DBBA7` | Undead reverse: if `unit[97] & 0x10` (undead), set HP_Damage; else convert damage→heal | Decompiled: swaps result[6]↔result[8], toggles flags |
+| `sub_1402FD5A4` | `sub_14E715847` | Save/restore result + apply status: saves hit/type/CT, calls f56, then restores | Decompiled: saves result[0],[2],[44], calls f56, restores |
+| `sub_1402FD870` | `sub_14E721080` | Counter/reaction check: compares caster/target MA, sets attack_type bit 9 | Decompiled: reads source[63] vs caster[63] |
+| `sub_1402FCD98` | `sub_14E6C6588` | Weather modifier: adjusts damage based on weather state (×3/4 or ×5/4) | Decompiled: checks global weather, modifies result[6] |
+| `sub_1402FCE2C` | `sub_14E6CB198` | Element absorb/immunity check: if target absorbs element, set miss; then apply element modifiers | Decompiled: checks unit[99] bit 6, unit[436] redirect |
+| `sub_1402FCE88` | `sub_14E6D4548` | Post-damage processing: if result type ≠ 5 (absorb), set HP_Damage or convert to HP_Healing | Decompiled: checks attack_type, swaps damage↔heal |
+| `sub_1402FD9D0` | (194 bytes inline) | Evade/equipment loader: reads weapon/accessory evade from item data, checks transparent status | Decompiled: reads unit[30],[34],[38] item slots |
+| `sub_1402FDCE8` | (90 bytes inline) | Magic hit chain: MA=source[63], X=ability_X → ElementBoost → MagicAttackUp → Shell → Sleep → Zodiac → CalcTotal → FaithScaling | Decompiled: calls FC84C→FC914→FC9FC→FCAC8→FBDDC→FCBB0→FD06C |
 
 ---
 
