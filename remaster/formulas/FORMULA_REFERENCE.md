@@ -449,13 +449,25 @@ Reaction ability IDs triggered from `setskillresult`:
 
 ## Global Variables
 
+### BattleActionContext (`0x14186407C`) — EpicBrownie verified
+
+The core pointers used by formulas and `setskillresult` are fields of a single struct:
+
+| Offset | Address | Size | Field | Notes |
+|--------|---------|------|-------|-------|
+| +0 | `0x14186407C` | 4 | **ActionState** | 0 = ability actually executing, nonzero = preview/AI. Guards all stat writes in `setskillresult` |
+| +4 | `0x141864080` | 8 | **Defender result ptr** | Points to current target's result area (action data) |
+| +12 | `0x141864088` | 8 | **Attacker result ptr** | Points to secondary result area (attacker's action data) |
+| +20 | `0x141864090` | 8 | **Defender BWORK ptr** | Points to target unit's BWORK struct |
+| +28 | `0x141864098` | 8 | **Attacker BWORK ptr** | Points to acting unit's BWORK struct |
+
+**Pointer role swap**: During formula execution, `SetupSkillDataAndDispatch` sets `+20` to the **caster** and `+28` to the caster's **source** copy. During `setskillresult`, the pointers are reassigned per-target so `+20` = **defender** (unit being affected). Formula code reads caster stats from `+28` (`qword_141864098 + 63` = caster MA).
+
+### Other Global Variables
+
 | Address | Name | Purpose |
 |---------|------|---------|
 | `0x14184D890` | BWORK array | 21 unit battle work structs (512 bytes each) |
-| `0x141864080` | Target result ptr | Points to current target's result area |
-| `0x141864088` | Secondary result ptr | Points to secondary result area |
-| `0x141864090` | Caster unit ptr | Points to acting unit's BWORK |
-| `0x141864098` | Caster source ptr | Points to caster's original data |
 | `0x1407A9ED0` | Formula context | Byte 0 = caster ID, Byte 1 = target ID, Byte 15 = job/facing |
 | `0x1407A9EE0` | Attack params | Word 0 = element, Word 4 = ability ID, Byte 12 = dual wield, Byte 13 = weapon element |
 | `0x1407A9F00` | Ability secondary (runtime) | Runtime buffer loaded from GetAbilitySecondaryData, 20 bytes |
@@ -513,7 +525,7 @@ decompiled___Battle_RollForReaction.c      — Individual reaction probability
 1. Find the formula ID your ability uses (from `AbilitySecondaryData[8]`)
 2. Look up the function address in the dispatch table above
 3. Hook that address with your replacement function
-4. Your function receives no arguments — read globals: `qword_141864090` (caster), `qword_141864098` (source), `qword_141864080` (target result)
+4. Your function receives no arguments — read from `BattleActionContext` (`0x14186407C`): `+20` (caster BWORK, but labeled defender in struct), `+28` (source BWORK), `+4` (target result)
 5. Write damage to `target_result[+6]` (HP dmg) or `target_result[+8]` (HP heal)
 
 ### To modify faith-based reactions:
