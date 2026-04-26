@@ -2077,17 +2077,49 @@ Address: 0x1402FE870 (same as F30/F94)
 
 ---
 
-## Abilities Outside the Formula Dispatch
+## Special Action Types (Throw / Jump)
 
-The formula dispatch table (`resultcalculate_fXX` at `qword_14067D128`) handles formulas 1–106. However, two major ability categories bypass this system entirely:
+**Correction**: Both Throw and Jump **do** go through the formula dispatch table (`qword_14067D128[formula_id]()`). They have special pre-dispatch setup in `SetupSkillDataAndDispatch` (`0x140300610`) but are NOT outside the formula system.
 
-### Throw (Ninja — Item Throwing)
-The Throw command does not use a formula ID. Instead, `SetupSkillDataAndDispatch` (`0x140300610`) detects the action type as **category 7** (via `byte_140678FB0` lookup) and routes it through dedicated item-use logic before the formula dispatch is ever reached. Damage is calculated from the thrown item's stats, not from a `resultcalculate_fXX` function.
+### Throw (Category 1 — Item Throwing)
 
-### Jump (Dragoon — Vertical Attack)
-Jump is handled as a **two-phase action**: the launch phase removes the unit from the battlefield, and the landing phase calculates damage through a separate routine that factors in jump height, PA, and weapon power. This occurs outside the standard formula dispatch table.
+`SetupSkillDataAndDispatch` routes Throw through **category 1** (via `byte_140678FB0` lookup). Before the formula dispatch:
 
-Neither Throw nor Jump has a `resultcalculate_fXX` entry. To hook these abilities, you must intercept the parent dispatcher (`SetupSkillDataAndDispatch`) or the specific item-use / jump-landing subroutines.
+```c
+// Category 1 path (SetupSkillDataAndDispatch lines 192-202)
+if (!j_CheckArmorID(thrown_item, 6))     // validate item is throwable
+    goto miss;
+WORD5(attack_params) = thrown_item;       // set weapon = thrown item
+BYTE14(attack_params) = item_index + 16; // attack power modifier
+ItemData = j_ItemGetItemData(thrown_item);
+BYTE13(attack_params) = ItemData[2];     // element from item data
+ability_secondary = 0;                   // clear — no ability params
+formula_id = ItemData[0];               // formula ID from item byte 0
+// Then: qword_14067D128[formula_id]()   // standard formula dispatch
+```
+
+The thrown item's first data byte IS the formula ID. So a thrown weapon with `ItemData[0] = 8` runs **F08** (standard weapon damage). Element comes from `ItemData[2]`.
+
+### Jump (Action Type 19 — Dragoon)
+
+Jump uses action type 19. Before the category lookup:
+
+```c
+// SetupSkillDataAndDispatch line 82-84
+if (action_type == 19) {
+    v5 = v34;    // override weapon/target selection with subcommand param
+}
+// Then: category = byte_140678FB0[19]
+// → standard path: loads AbilitySecondaryData for the jump ability
+// → formula_id = AbilitySecondaryData[8]
+// Then: qword_14067D128[formula_id]()   // standard formula dispatch
+```
+
+Jump follows the standard ability path after the action type override. The formula ID comes from the Jump ability's `AbilitySecondaryData` byte 8, same as any other ability. The "two-phase" aspect (launch/land) is handled by the battle state machine above the formula layer, not by the formula itself.
+
+### Hooking Note
+
+To modify Throw/Jump damage, hook the formula function they dispatch to (found via item data or ability secondary data), NOT `SetupSkillDataAndDispatch`. The pre-dispatch setup only configures parameters; the actual calculation runs through the same formula table as everything else.
 
 ---
 
