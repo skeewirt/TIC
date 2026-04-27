@@ -1420,14 +1420,14 @@
     "wiki_sig": "GT()"
   },
   "0xA6": {
-    "name": "UnknownA6",
+    "name": "BeginCutscene",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
     "gibbed_note": "A6"
   },
   "0xA7": {
-    "name": "UnknownA7",
+    "name": "EndCutscene",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
@@ -1450,7 +1450,7 @@
     "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?"
   },
   "0xAA": {
-    "name": "UnknownAA",
+    "name": "LockBattleState",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
@@ -1717,7 +1717,7 @@
     "wiki_sig": "RosterHasUnit(xPR,xIDEN)"
   },
   "0xC8": {
-    "name": "UnknownC8",
+    "name": "SetUnitTimer",
     "operand_bytes_classic": 8,
     "operand_bytes_enhanced": 8,
     "tic_only": false,
@@ -1725,14 +1725,14 @@
     "gibbed_operands": "Gibbed types: S32, S32"
   },
   "0xC9": {
-    "name": "UnknownC9",
+    "name": "EnableChoiceMenu",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
     "gibbed_note": "C9"
   },
   "0xCA": {
-    "name": "UnknownCA",
+    "name": "SetNarrationMode",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
