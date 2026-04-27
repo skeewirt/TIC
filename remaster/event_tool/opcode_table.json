@@ -1442,7 +1442,7 @@
     "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?"
   },
   "0xA9": {
-    "name": "UnknownA9",
+    "name": "InitSpriteRender",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
     "tic_only": false,
