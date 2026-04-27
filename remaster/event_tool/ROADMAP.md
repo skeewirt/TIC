@@ -43,8 +43,9 @@ No ISO extraction. No hex editing. No command line. No emulator boot cycle.
 
 > [!NOTE]
 > **Completed 2026-04-27**. All deliverables achieved:
-> - Event dispatcher: `event_maincommon` at `0x1402241A0` (thunk) → `0x14C5802D0` (.xtext)
-> - Opcode table: 173/173 opcodes named with parameter counts (`opcode_table.json`)
+> - Event dispatcher: `ProcessEventInstructions` at `0x14022674C` (19KB, fully decompiled)
+> - Opcode table: 243 opcodes in table, 195 named, 4 dead code, 1 NOP, 42 never-used/vestigial (`opcode_table.json`)
+> - **Zero unknown opcodes** remain in any event script — all binary-verified via IDA decompilation
 > - Event data: `enhancedbattleevent.nxd` (2,253 records), `enhancedworldevent.nxd`, `eventid.nxd`
 > - Dialogue: 346 `scenario*.pzd` files, 5,173 dialogue lines with voice references
 > - Key risk mitigated: TIC uses **identical PSX opcodes** widened to u32, not a new system
@@ -80,11 +81,13 @@ The event bytecode may be significantly different from PSX/WotL. TIC was rebuilt
 **Objective**: Build command-line tools that can round-trip event data: binary → human-readable → binary.
 
 > [!NOTE]
-> **Started 2026-04-27**. Current progress:
-> - `tic_event_disasm.py` v0.2: Working disassembler, 38K lines output, 128 unique opcodes recognized
-> - NXD record layout partially decoded (pointer fields identified, instruction boundaries need refinement)
-> - PZD dialogue parser working (5,173 lines extracted)
-> - Remaining: fix parameter alignment, link dialogue to events, build compiler
+> **Progress as of 2026-04-27**:
+> - ✅ `tic_event_disasm.py` v1.1: Full disassembler with `--json` output for round-trip support
+> - ✅ `tic_event_asm.py` v1.0: JSON → binary compiler with `--verify` byte-comparison
+> - ✅ **Round-trip verified: 560/560 event scripts produce byte-identical output**
+> - ✅ PZD dialogue parser working (5,173 lines extracted, `message_map.json`)
+> - ✅ Modloader integration path confirmed: output goes to `FFTIVC/data/enhanced/script/`
+> - Remaining: `diff`, `list`, dialogue linking, modloader packaging helper
 
 #### Deliverables
 

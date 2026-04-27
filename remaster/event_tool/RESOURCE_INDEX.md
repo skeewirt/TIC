@@ -133,6 +133,10 @@
 | Roadmap | `remaster/event_tool/ROADMAP.md` |
 | Starting points | `remaster/event_tool/STARTING_POINTS.md` |
 | Phase 0 recon | `remaster/event_tool/PHASE0_RECON.md` |
+| **Opcode table (JSON)** | `remaster/event_tool/opcode_table.json` |
+| **Disassembler** | `remaster/event_tool/tic_event_disasm.py` |
+| **Assembler** | `remaster/event_tool/tic_event_asm.py` |
+| **Message map builder** | `remaster/event_tool/build_message_map.py` |
 | **TIC decompiled funcs** | `remaster/event_tool/decompiled/*.c` (local, gitignored) |
 | **WotL decompiled funcs** | `remaster/event_tool/decompiled/wotl/*.c` (366 files, local, gitignored) |
 | **WotL symbol reference** | `remaster/event_tool/WOTL_SYMBOLS.md` |
@@ -141,6 +145,9 @@
 | **VM state analysis** | `remaster/event_tool/analysis/vm_state.md` |
 | **Conditionals analysis** | `remaster/event_tool/analysis/event_conditionals.md` |
 | **Message system analysis** | `remaster/event_tool/analysis/message_system.md` |
+| **Event scripts (binary)** | `reference/event_scripts/script/enhanced/*.e` (560 files) |
+| **Message map** | `reference/message_map.json` (5,173 dialogue lines) |
+| **TIC dispatcher decompile** | `reference/ida_output/tic_event_dispatcher.txt` (117KB) |
 | IDA decompile script | `reference/scripts/decompile_event_system.py` |
 | Dicene's names | `reference/Dicenes_Names/audit_report.txt` |
 | Dicene's globals | `reference/Dicenes_Names/fft 1.2.0 global names.txt` |
@@ -149,3 +156,4 @@
 | Ability layout | `remaster/tables/Ability.layout.md` |
 | Decompiled formulas | `reference/decompiled_setskillresult.c` |
 | SetupSkillDispatch | `reference/decompiled_sub_140300610_large_uses_100.c` |
+
