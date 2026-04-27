@@ -1,104 +1,91 @@
-# Phase 0 — Initial Recon Results
+# Phase 0 — Architecture Summary
 
-> **Date**: 2026-04-27  
-> **Source**: Dicene's named globals + WotL symbol cross-reference
-
----
-
-## Critical Event Functions (WotL-Verified Names)
-
-| Address | Function Name | WotL Match | Role |
-|---------|--------------|------------|------|
-| `0x140225744` | **`event_call`** | `event_call` | **THE EVENT DISPATCHER** — calls/executes an event script |
-| `0x14022470C` | `ask_event` | `ask_event` | Queries which event to run (conditional lookup) |
-| `0x1402F1E6C` | `set_event_table` | `set_event_table` | Configures the event opcode dispatch table |
-| `0x1402E578C` | `event_init_memory` | `event_init_memory` | Initializes event VM memory/state |
-| `0x14F112B7D` | `event_init_system` | `event_init_system` | Full event system initialization |
-| `0x14CFDE278` | `event_status_set` | `event_status_set` | Sets event execution state flags |
-| `0x14021F2E0` | `read_eventflag` | `read_eventflag` | Reads persistent event flags (flow control) |
-| `0x14021F360` | `write_eventflag` | `write_eventflag` | Writes persistent event flags |
-| `0x14025DA78` | `get_stop_event` | `get_stop_event` | Checks for event termination |
-| `0x14D8F1344` | `loadEventAnimation` | `loadeventanimation` | Loads animation data for event sequences |
-| `0x14F7496D0` | `reset_status_forevent2` | `reset_status_forevent2` | Resets unit status for event re-entry |
-| `0x14033EDEC` | `wld_event` | `wld_event` | World map event handler |
-
-## Message / Dialogue Functions
-
-| Address | Function Name | Role |
-|---------|--------------|------|
-| `0x14020BDE8` | `drawmessagepolygons` | Renders speech bubble geometry |
-| `0x1402D3138` | `Wdrawmessagepolygons` | World-map variant of message renderer |
-| `0x1402DA28C` | `makemessagepacket` | Constructs dialogue display data |
-| `0x14D0F0640` | `makemessagestructure` | Builds message struct from event data |
-| `0x14CDB69E1` | `serchmessagepointer` | Finds message text pointer (note: "serch" = original typo from PSX era) |
-| `0x14037CDA0` | `InitCamera` | Camera system initialization |
-
-## Critical Global Variables
-
-| Address | Name | Purpose |
-|---------|------|---------|
-| `0x140D34448` | **`gBEventMode`** | Current event execution mode flag |
-| `0x140D36D50` | `eventlinkdata` | Links between events (branching/chaining) |
-| `0x140D37460` | **`eventbuffer`** | **The event bytecode buffer** — where scripts are loaded |
-| `0x140D39C60` | **`eventwork`** | Event VM working memory (registers/stack) |
-| `0x140D3A3BC` | `jumpeventno` | Target event number for jumps/transitions |
-| `0x140D3A430` | `eventot` | Event opcode table (battle events) |
-| `0x140D3A4A8` | `eventshakef` | Screen shake flag during events |
-| `0x140D3A570` | `messagepacket` | Active dialogue packet data |
-| `0x140D43130` | `event_inf` | Event info/metadata structure |
-| `0x140D6A2B0` | `event_buf_maybe` | Secondary event buffer |
-| `0x141843A08` | `weventot` | World event opcode table |
-| `0x1418502D8` | `gEventOrBattle` | Mode flag: event vs battle execution |
-| `0x141850518` | `pEventUnitLookup` | Unit pointer array for event choreography |
-| `0x142FE5F24` | `ProcessingMiniEvent` | Flag for mini-event execution |
-| `0x142FF1C3C` | `QueuedCurrentEvent` | Currently queued event ID |
-| `0x142FF38EC` | `NextEvent` | Next event to execute |
-| `0x1437665D0` | `EventControl` | Master event control structure |
-| `0x143CD39F0` | `pEventControl` | Pointer to EventControl |
-| `0x14380 11B8` | `EventStatus` | Event execution status |
-
-## NXD Tables for Event System
-
-| Global | Address | Purpose |
-|--------|---------|---------|
-| `NEXTable_eventid` | `0x143CD3DF8` | Event ID lookup table |
-| `NEXTable_scenarioid` | `0x143CD3FE0` | Scenario/chapter conditional table |
-| `NEXTable_seadevent` | `0x143CD3F90` | "SEAD" event table (sound/audio events?) |
-| `NEXTable_enhancedbattleevent` | `0x143CD42E8` | **TIC-specific battle events** (not in WotL) |
-| `NEXTable_enhancedworldevent` | `0x143CD4348` | **TIC-specific world events** (not in WotL) |
-| `NEXTable_speaker` | `0x143CD3E98` | Speaker portrait/name data |
-| `NEXTable_spellmessage` | `0x143CD3DD0` | Spell incantation text |
-| `NEXTable_caption` | `0x143CD3E78` | Caption/subtitle display |
-| `NEXTable_scionfiles` | `0x143CD3FD8` | Cutscene script file references |
-| `NEXTable_scionlabels` | `0x143CD3FD0` | Cutscene script label/offset table |
-| `NEXTable_bgmtransition` | `0x143CD3FC0` | BGM transition rules |
-| `NEXTable_map` | `0x143CD39C0` | Map data table |
+> Updated: 2026-04-27  
+> Status: Event routing mapped. Core VM is in encrypted .xtext section.
 
 ---
 
-## Architecture Insights
+## What We Know
 
-### Two Opcode Tables
-- **`eventot`** (`0x140D3A430`) — battle event opcodes
-- **`weventot`** (`0x141843A08`) — world event opcodes
+### Event Execution Flow
 
-This matches the PSX architecture where BATTLE.BIN and WORLD.BIN had separate event handlers. TIC preserves this separation.
+```
+Game loop
+  → ask_event (0x14022470C) — conditional lookup, selects event type
+    → sub_14022473C — central routing (18 event type cases)
+      → j___Run_minievent → thunk to sub_14C580CFA (.xtext, ENCRYPTED)
+        → THE ACTUAL BYTECODE VM (cannot decompile statically)
+      → BeginRunningEvent (0x140222354) — initializes event state
+        → copies palette/display data into eventot
+        → reads eventflags for story state
+```
 
-### TIC-Specific Tables
-`NEXTable_enhancedbattleevent` and `NEXTable_enhancedworldevent` are **not from WotL**. These are TIC additions — likely the new event content (Balthier recruitment, new sidequests, etc.). These tables tell us where TIC-specific event data lives.
+### The .xtext Problem
 
-### Scion System
-`NEXTable_scionfiles` and `NEXTable_scionlabels` reference a "Scion" system. This may be TIC's cutscene scripting format — a higher-level system above the raw event bytecode. "Scion" could be the FF16 engine's native cutscene framework that replaced the PSX event VM.
+The core event VM body lives at `0x14C580CFA` in the `.xtext` segment. This segment is **encrypted at rest** (likely Arxan/Denuvo runtime protection). The bytes are scrambled on disk and only decrypted in-memory when the function is called.
 
-### Event Buffers
-`eventbuffer` (`0x140D37460`) is where event scripts are loaded into memory. This is the buffer we need to intercept to dump live event bytecode.
+**This means**: We cannot decompile the bytecode interpreter from the static binary. We need either:
+1. A **runtime memory dump** with the game running (Cheat Engine, x64dbg attach)
+2. The **unpacked/decrypted binary** (community may have one)
+3. The **WotL/iOS binary** (no encryption, same event VM logic)
+
+### What eventot/weventot Actually Are
+
+Despite the name, these are NOT opcode dispatch tables. They are:
+- `eventot` (0x140D3A430): Event display/state data (zeroed at rest, populated from palette data at 0x14077E490 during BeginRunningEvent)
+- `weventot` (0x141843A08): World event state data (also zeroed at rest)
+
+### Functions We CAN Decompile (in .text/.reloc)
+
+| Function | Size | What it does |
+|----------|------|-------------|
+| `sub_14022473C` (ask_event inner) | 2412 | Routes 18 event types → Run_minievent |
+| `event_call` | 69 | Gate check via eventflags |
+| `event_call_inner` | 58 | Flag 508 + flag 39 range check |
+| `BeginRunningEvent` | 240 | Event state init, palette copy |
+| `j___minievent` | 542 | Mini-event lookup, scenario matching |
+| `read_eventflag` | 124 | Reads persistent story flags |
+| `write_eventflag` | 128 | Writes persistent story flags |
+| `event_init_memory` | 165 | VM memory region setup |
+| `ask_event` (outer) | 793 | Unit/condition checks before routing |
+| `get_stop_event` | 397 | Termination condition check |
+| `wld_event` | 1346 | World map event handler |
+| `set_event_table` | 1227 | Battle targeting setup (misnamed) |
+
+### Functions We CANNOT Decompile (.xtext encrypted)
+
+| Function | Address | What it likely does |
+|----------|---------|-------------------|
+| `__Run_minievent` | 0x14CF2C805 | Event VM executor |
+| `__minievent` | 0x14CF15D60 | Core bytecode interpreter |
+| `ChangeToNextEventState` | 0x14CF38140 | State machine transitions |
+| `event_status_set` | 0x14CFDE278 | Execution state flags |
+| `event_init_system` | 0x14F112B7D | System initialization |
+| `loadEventAnimation` | 0x14D8F1344 | Animation loading |
+| `makemessagestructure` | 0x14D0F0640 | Message struct building |
+| `serchmessagepointer` | 0x14CDB69E1 | Text pointer lookup |
+| `reset_status_forevent2` | 0x14F7496D0 | Status reset |
 
 ---
 
-## Priority Decompilation Targets
+## Next Steps (Priority Order)
 
-1. **`event_call` (`0x140225744`)** — The dispatcher. Decompile this first.
-2. **`set_event_table` (`0x1402F1E6C`)** — Populates the opcode table. This gives us every opcode.
-3. **`ask_event` (`0x14022470C`)** — The conditional lookup. Shows how events are selected.
-4. **`event_init_memory` (`0x1402E578C`)** — Shows the VM state structure.
-5. **`eventot` (`0x140D3A430`)** — Read the opcode table data directly.
+### Option A: Runtime Dump (Recommended)
+1. Launch game in Steam
+2. Attach x64dbg or Cheat Engine
+3. Set breakpoint at `sub_14C580CFA` (the VM entry)
+4. Trigger any story event in-game
+5. Dump the decrypted function from memory
+6. Import into IDA for decompilation
+
+### Option B: WotL Reference
+1. Download the iOS WotL binary (has debug symbols, no encryption)
+2. Find the equivalent `__Run_minievent` function
+3. Decompile it — the logic should be identical to TIC's version
+4. Map TIC's encrypted addresses to WotL's known functions
+
+### Option C: PSX Reference via heretic/libfft
+1. Study adamrt/heretic's event opcode parser
+2. The PSX event VM opcodes are documented
+3. TIC likely uses the same opcode IDs even if the handler code differs
+4. Use PSX opcode knowledge to test hypotheses against runtime behavior
