@@ -1,0 +1,694 @@
+{
+  "0x0A": {
+    "name": "SaveBackground",
+    "params": 0
+  },
+  "0x0B": {
+    "name": "LoadBackground",
+    "params": 0
+  },
+  "0x0C": {
+    "name": "EndEvent",
+    "params": 0
+  },
+  "0x0D": {
+    "name": "TurnUnit",
+    "params": 2
+  },
+  "0x0E": {
+    "name": "ReloadMapState",
+    "params": 1
+  },
+  "0x10": {
+    "name": "DisplayConditionMessage",
+    "params": 4
+  },
+  "0x11": {
+    "name": "WaitConditionMessage",
+    "params": 0
+  },
+  "0x12": {
+    "name": "AddUnit",
+    "params": 6
+  },
+  "0x13": {
+    "name": "DismissUnit",
+    "params": 1
+  },
+  "0x14": {
+    "name": "EntryUnitData",
+    "params": 3
+  },
+  "0x16": {
+    "name": "ChangeMap",
+    "params": 3
+  },
+  "0x17": {
+    "name": "Unknown17",
+    "params": 0
+  },
+  "0x18": {
+    "name": "ChangeWeather",
+    "params": 1
+  },
+  "0x19": {
+    "name": "DisplayMessage",
+    "params": 6
+  },
+  "0x1A": {
+    "name": "WaitMessage",
+    "params": 0
+  },
+  "0x1B": {
+    "name": "UnitSpriteEffect",
+    "params": 3
+  },
+  "0x1C": {
+    "name": "Sound",
+    "params": 2
+  },
+  "0x1D": {
+    "name": "ScreenEffect",
+    "params": 2
+  },
+  "0x1E": {
+    "name": "SpriteFade",
+    "params": 4
+  },
+  "0x1F": {
+    "name": "ChangeDialog",
+    "params": 2
+  },
+  "0x21": {
+    "name": "Camera",
+    "params": 5
+  },
+  "0x22": {
+    "name": "MapDarken",
+    "params": 2
+  },
+  "0x23": {
+    "name": "Unknown23",
+    "params": 0
+  },
+  "0x24": {
+    "name": "Unknown24",
+    "params": 0
+  },
+  "0x25": {
+    "name": "EventSpeed",
+    "params": 1
+  },
+  "0x26": {
+    "name": "WaitActionEnd",
+    "params": 0
+  },
+  "0x27": {
+    "name": "SetUnitFacing",
+    "params": 2
+  },
+  "0x28": {
+    "name": "MoveUnit",
+    "params": 6
+  },
+  "0x29": {
+    "name": "WalkUnit",
+    "params": 6
+  },
+  "0x2A": {
+    "name": "WaitWalk",
+    "params": 1
+  },
+  "0x2B": {
+    "name": "BlockInput",
+    "params": 1
+  },
+  "0x2C": {
+    "name": "UnblockInput",
+    "params": 0
+  },
+  "0x2D": {
+    "name": "RotateUnit",
+    "params": 4
+  },
+  "0x2E": {
+    "name": "FaceUnit",
+    "params": 2
+  },
+  "0x31": {
+    "name": "Unknown31",
+    "params": 1
+  },
+  "0x32": {
+    "name": "WarpUnit",
+    "params": 5
+  },
+  "0x33": {
+    "name": "FadeScreen",
+    "params": 3
+  },
+  "0x37": {
+    "name": "Unknown37",
+    "params": 2
+  },
+  "0x38": {
+    "name": "RemoveUnit",
+    "params": 1
+  },
+  "0x39": {
+    "name": "UnitAction",
+    "params": 4
+  },
+  "0x3A": {
+    "name": "WaitAction",
+    "params": 0
+  },
+  "0x3B": {
+    "name": "Unknown3B",
+    "params": 2
+  },
+  "0x3C": {
+    "name": "PlayMusic",
+    "params": 2
+  },
+  "0x3D": {
+    "name": "FadeMusic",
+    "params": 1
+  },
+  "0x3E": {
+    "name": "PlaySound",
+    "params": 2
+  },
+  "0x3F": {
+    "name": "Unknown3F",
+    "params": 1
+  },
+  "0x40": {
+    "name": "CameraSpeed",
+    "params": 1
+  },
+  "0x41": {
+    "name": "CameraRotate",
+    "params": 2
+  },
+  "0x42": {
+    "name": "Unknown42",
+    "params": 2
+  },
+  "0x43": {
+    "name": "CameraFollow",
+    "params": 1
+  },
+  "0x44": {
+    "name": "WaitRotate",
+    "params": 0
+  },
+  "0x45": {
+    "name": "Unknown45",
+    "params": 1
+  },
+  "0x46": {
+    "name": "Unknown46",
+    "params": 1
+  },
+  "0x47": {
+    "name": "Unknown47",
+    "params": 1
+  },
+  "0x48": {
+    "name": "Unknown48",
+    "params": 1
+  },
+  "0x49": {
+    "name": "WaitAllActions",
+    "params": 0
+  },
+  "0x4A": {
+    "name": "Conditional",
+    "params": 0
+  },
+  "0x4B": {
+    "name": "Unknown4B",
+    "params": 2
+  },
+  "0x4C": {
+    "name": "Unknown4C",
+    "params": 3
+  },
+  "0x4D": {
+    "name": "Unknown4D",
+    "params": 3
+  },
+  "0x4E": {
+    "name": "Unknown4E",
+    "params": 2
+  },
+  "0x4F": {
+    "name": "Unknown4F",
+    "params": 2
+  },
+  "0x50": {
+    "name": "Rumble",
+    "params": 3
+  },
+  "0x51": {
+    "name": "Unknown51",
+    "params": 1
+  },
+  "0x53": {
+    "name": "Unknown53",
+    "params": 1
+  },
+  "0x54": {
+    "name": "Unknown54",
+    "params": 0
+  },
+  "0x55": {
+    "name": "Unknown55",
+    "params": 0
+  },
+  "0x56": {
+    "name": "Unknown56",
+    "params": 1
+  },
+  "0x57": {
+    "name": "Unknown57",
+    "params": 2
+  },
+  "0x58": {
+    "name": "Unknown58",
+    "params": 0
+  },
+  "0x59": {
+    "name": "Unknown59",
+    "params": 2
+  },
+  "0x5A": {
+    "name": "Unknown5A",
+    "params": 2
+  },
+  "0x5B": {
+    "name": "BranchOnFlag",
+    "params": 4
+  },
+  "0x5C": {
+    "name": "Unknown5C",
+    "params": 3
+  },
+  "0x5D": {
+    "name": "Unknown5D",
+    "params": 3
+  },
+  "0x5E": {
+    "name": "Unknown5E",
+    "params": 1
+  },
+  "0x5F": {
+    "name": "Unknown5F",
+    "params": 0
+  },
+  "0x60": {
+    "name": "Unknown60",
+    "params": 1
+  },
+  "0x61": {
+    "name": "Unknown61",
+    "params": 0
+  },
+  "0x62": {
+    "name": "Unknown62",
+    "params": 1
+  },
+  "0x63": {
+    "name": "Unknown63",
+    "params": 1
+  },
+  "0x64": {
+    "name": "WriteFlag",
+    "params": 2
+  },
+  "0x65": {
+    "name": "ReadFlag",
+    "params": 2
+  },
+  "0x66": {
+    "name": "Unknown66",
+    "params": 2
+  },
+  "0x68": {
+    "name": "Jump",
+    "params": 2
+  },
+  "0x69": {
+    "name": "Unknown69",
+    "params": 3
+  },
+  "0x6A": {
+    "name": "Unknown6A",
+    "params": 2
+  },
+  "0x6B": {
+    "name": "Unknown6B",
+    "params": 2
+  },
+  "0x6C": {
+    "name": "Unknown6C",
+    "params": 1
+  },
+  "0x6D": {
+    "name": "Unknown6D",
+    "params": 2
+  },
+  "0x6E": {
+    "name": "Unknown6E",
+    "params": 1
+  },
+  "0x6F": {
+    "name": "Unknown6F",
+    "params": 0
+  },
+  "0x70": {
+    "name": "Unknown70",
+    "params": 1
+  },
+  "0x71": {
+    "name": "Unknown71",
+    "params": 2
+  },
+  "0x72": {
+    "name": "Unknown72",
+    "params": 0
+  },
+  "0x73": {
+    "name": "Unknown73",
+    "params": 3
+  },
+  "0x74": {
+    "name": "Unknown74",
+    "params": 0
+  },
+  "0x75": {
+    "name": "Unknown75",
+    "params": 0
+  },
+  "0x76": {
+    "name": "Unknown76",
+    "params": 1
+  },
+  "0x77": {
+    "name": "Unknown77",
+    "params": 1
+  },
+  "0x78": {
+    "name": "Unknown78",
+    "params": 2
+  },
+  "0x79": {
+    "name": "Unknown79",
+    "params": 1
+  },
+  "0x7A": {
+    "name": "Unknown7A",
+    "params": 0
+  },
+  "0x7B": {
+    "name": "Unknown7B",
+    "params": 2
+  },
+  "0x7C": {
+    "name": "Unknown7C",
+    "params": 2
+  },
+  "0x7D": {
+    "name": "Unknown7D",
+    "params": 1
+  },
+  "0x7E": {
+    "name": "Unknown7E",
+    "params": 0
+  },
+  "0x7F": {
+    "name": "Unknown7F",
+    "params": 2
+  },
+  "0x80": {
+    "name": "Unknown80",
+    "params": 1
+  },
+  "0x81": {
+    "name": "Unknown81",
+    "params": 4
+  },
+  "0x82": {
+    "name": "Unknown82",
+    "params": 0
+  },
+  "0x83": {
+    "name": "Unknown83",
+    "params": 0
+  },
+  "0x84": {
+    "name": "Unknown84",
+    "params": 1
+  },
+  "0x85": {
+    "name": "Unknown85",
+    "params": 1
+  },
+  "0x86": {
+    "name": "Unknown86",
+    "params": 3
+  },
+  "0x87": {
+    "name": "Unknown87",
+    "params": 3
+  },
+  "0x88": {
+    "name": "Unknown88",
+    "params": 0
+  },
+  "0x89": {
+    "name": "Unknown89",
+    "params": 4
+  },
+  "0x8A": {
+    "name": "Unknown8A",
+    "params": 0
+  },
+  "0x8B": {
+    "name": "Unknown8B",
+    "params": 0
+  },
+  "0x8C": {
+    "name": "Unknown8C",
+    "params": 3
+  },
+  "0x8E": {
+    "name": "Unknown8E",
+    "params": 4
+  },
+  "0x8F": {
+    "name": "Unknown8F",
+    "params": 0
+  },
+  "0x90": {
+    "name": "Unknown90",
+    "params": 1
+  },
+  "0x91": {
+    "name": "Unknown91",
+    "params": 1
+  },
+  "0x92": {
+    "name": "Unknown92",
+    "params": 2
+  },
+  "0x93": {
+    "name": "Unknown93",
+    "params": 0
+  },
+  "0x94": {
+    "name": "Unknown94",
+    "params": 2
+  },
+  "0x95": {
+    "name": "Unknown95",
+    "params": 0
+  },
+  "0x96": {
+    "name": "Unknown96",
+    "params": 1
+  },
+  "0x97": {
+    "name": "Unknown97",
+    "params": 3
+  },
+  "0x98": {
+    "name": "Unknown98",
+    "params": 2
+  },
+  "0x99": {
+    "name": "Unknown99",
+    "params": 1
+  },
+  "0xA0": {
+    "name": "UnknownA0",
+    "params": 2
+  },
+  "0xA1": {
+    "name": "UnknownA1",
+    "params": 0
+  },
+  "0xA2": {
+    "name": "UnknownA2",
+    "params": 1
+  },
+  "0xA3": {
+    "name": "UnknownA3",
+    "params": 1
+  },
+  "0xA4": {
+    "name": "UnknownA4",
+    "params": 2
+  },
+  "0xA5": {
+    "name": "UnknownA5",
+    "params": 2
+  },
+  "0xB0": {
+    "name": "UnknownB0",
+    "params": 0
+  },
+  "0xB1": {
+    "name": "UnknownB1",
+    "params": 1
+  },
+  "0xB2": {
+    "name": "UnknownB2",
+    "params": 1
+  },
+  "0xB3": {
+    "name": "UnknownB3",
+    "params": 2
+  },
+  "0xB4": {
+    "name": "UnknownB4",
+    "params": 3
+  },
+  "0xB5": {
+    "name": "UnknownB5",
+    "params": 0
+  },
+  "0xB6": {
+    "name": "UnknownB6",
+    "params": 0
+  },
+  "0xB7": {
+    "name": "UnknownB7",
+    "params": 0
+  },
+  "0xB8": {
+    "name": "UnknownB8",
+    "params": 2
+  },
+  "0xB9": {
+    "name": "UnknownB9",
+    "params": 1
+  },
+  "0xBA": {
+    "name": "UnknownBA",
+    "params": 0
+  },
+  "0xBB": {
+    "name": "UnknownBB",
+    "params": 3
+  },
+  "0xBC": {
+    "name": "UnknownBC",
+    "params": 3
+  },
+  "0xBD": {
+    "name": "UnknownBD",
+    "params": 3
+  },
+  "0xBE": {
+    "name": "UnknownBE",
+    "params": 3
+  },
+  "0xC0": {
+    "name": "UnknownC0",
+    "params": 0
+  },
+  "0xD0": {
+    "name": "UnknownD0",
+    "params": 0
+  },
+  "0xD1": {
+    "name": "UnknownD1",
+    "params": 1
+  },
+  "0xD2": {
+    "name": "UnknownD2",
+    "params": 0
+  },
+  "0xD3": {
+    "name": "UnknownD3",
+    "params": 2
+  },
+  "0xD4": {
+    "name": "UnknownD4",
+    "params": 3
+  },
+  "0xD5": {
+    "name": "UnknownD5",
+    "params": 0
+  },
+  "0xD8": {
+    "name": "UnknownD8",
+    "params": 0
+  },
+  "0xD9": {
+    "name": "UnknownD9",
+    "params": 0
+  },
+  "0xDA": {
+    "name": "UnknownDA",
+    "params": 0
+  },
+  "0xDB": {
+    "name": "UnknownDB",
+    "params": 0
+  },
+  "0xDC": {
+    "name": "UnknownDC",
+    "params": 1
+  },
+  "0xE0": {
+    "name": "UnknownE0",
+    "params": 0
+  },
+  "0xE3": {
+    "name": "UnknownE3",
+    "params": 2
+  },
+  "0xE5": {
+    "name": "UnknownE5",
+    "params": 3
+  },
+  "0xE6": {
+    "name": "UnknownE6",
+    "params": 1
+  },
+  "0xF0": {
+    "name": "EndEvent2",
+    "params": 0
+  },
+  "0xF1": {
+    "name": "UnknownF1",
+    "params": 0
+  },
+  "0xF2": {
+    "name": "UnknownF2",
+    "params": 0
+  }
+}
