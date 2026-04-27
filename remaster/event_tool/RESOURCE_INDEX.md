@@ -136,6 +136,7 @@
 | **Opcode table (JSON)** | `remaster/event_tool/opcode_table.json` |
 | **Disassembler** | `remaster/event_tool/tic_event_disasm.py` |
 | **Assembler** | `remaster/event_tool/tic_event_asm.py` |
+| **Utilities (diff/list/pack)** | `remaster/event_tool/tic_event_tools.py` |
 | **Message map builder** | `remaster/event_tool/build_message_map.py` |
 | **TIC decompiled funcs** | `remaster/event_tool/decompiled/*.c` (local, gitignored) |
 | **WotL decompiled funcs** | `remaster/event_tool/decompiled/wotl/*.c` (366 files, local, gitignored) |

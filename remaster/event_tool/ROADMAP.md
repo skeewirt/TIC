@@ -77,17 +77,17 @@ The event bytecode may be significantly different from PSX/WotL. TIC was rebuilt
 
 ### Phase 1 — CLI Decompiler & Compiler
 
-**Status**: 🔄 IN PROGRESS  
+**Status**: ✅ COMPLETE  
 **Objective**: Build command-line tools that can round-trip event data: binary → human-readable → binary.
 
 > [!NOTE]
-> **Progress as of 2026-04-27**:
-> - ✅ `tic_event_disasm.py` v1.1: Full disassembler with `--json` output for round-trip support
-> - ✅ `tic_event_asm.py` v1.0: JSON → binary compiler with `--verify` byte-comparison
-> - ✅ **Round-trip verified: 560/560 event scripts produce byte-identical output**
-> - ✅ PZD dialogue parser working (5,173 lines extracted, `message_map.json`)
-> - ✅ Modloader integration path confirmed: output goes to `FFTIVC/data/enhanced/script/`
-> - Remaining: `diff`, `list`, dialogue linking, modloader packaging helper
+> **Completed 2026-04-27**. All deliverables achieved:
+> - `tic_event_disasm.py` v1.1: Full disassembler with `--json` and `--messages` dialogue linking
+> - `tic_event_asm.py` v1.0: JSON → binary compiler with `--verify` byte-comparison
+> - `tic_event_tools.py` v1.0: `diff` (instruction-level), `list` (event catalog), `pack` (Reloaded-II packaging)
+> - **Round-trip verified: 560/560 event scripts produce byte-identical output**
+> - Event catalog: 560 events with dialogue counts, feature flags, first-line preview
+> - Modloader integration: `pack` command generates ready-to-install Reloaded-II mod folders
 
 #### Deliverables
 
@@ -133,7 +133,7 @@ This alone unblocks the entire TIC event modding scene. Power users (EpicBrownie
 
 ### Phase 2 — Visual Editor MVP
 
-**Status**: Blocked on Phase 1  
+**Status**: 🟡 READY (Phase 1 complete)  
 **Objective**: Desktop GUI that wraps the CLI tools in a visual interface. Focus on the two highest-value editing tasks: **dialogue** and **unit choreography**.
 
 #### Deliverables
