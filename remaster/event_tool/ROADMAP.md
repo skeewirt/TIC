@@ -249,20 +249,65 @@ This alone unblocks the entire TIC event modding scene. Power users (EpicBrownie
 
 ---
 
-## Open Questions
+## Open Questions (Answered)
 
-1. **Is the TIC event bytecode a direct port of PSX/WotL, or was it rewritten for the FF16 engine?** This determines whether PSX opcode documentation transfers or we start from scratch. Phase 0 answers this.
+1. ~~**Is the TIC event bytecode a direct port of PSX/WotL, or was it rewritten for the FF16 engine?**~~
+   **ANSWERED**: Direct port. Identical PSX opcodes widened to u32 operands. PSX documentation transfers directly. Three opcodes gained extra bytes in Enhanced mode (`DisplayMessage`, `ChangeDialog`, `MessageChain`). 8 TIC-exclusive opcodes added for post-processing, captions, and sprite alpha.
 
-2. **Are event scripts stored contiguously or scattered?** PSX stores all events in a single `TEST.EVT` file. TIC might distribute them across PAC files per-chapter.
+2. ~~**Are event scripts stored contiguously or scattered?**~~
+   **ANSWERED**: Both. Legacy `event_test_evt.bin` (fftpack index 17) contains all events in one blob (7.6MB with dialogue, in `0002.en.pac`). TIC also stores individual `.e` files in `0005.pac` at paths like `script/enhanced/event002.e`. The game loads from the PAC paths, and the modloader overrides via `modded.pac`.
 
-3. **Can events be hot-loaded via the modloader?** If yes, we can offer live-reload during editing. If no, we need a restart-game workflow.
+3. ~~**Can events be hot-loaded via the modloader?**~~
+   **ANSWERED**: No. The modloader builds `modded.pac` at startup and registers it with the game's resource manager. Changing mod files requires a game restart. Workflow: edit → compile → restart game.
 
 4. **Should we support PSX event import?** If the opcodes are compatible, modders could port PSX mod events to TIC. Huge community value if feasible.
+   *Partially answered*: Opcodes are compatible. A PSX→TIC converter would need to widen operands to u32 and expand the 3 enhanced-mode opcodes. Feasible but not yet built.
 
 5. **Who owns the map renderer?** TIC map data parsing is a separate RE challenge. We could ship Phase 2 without it and add Phase 3's preview later, or find someone already working on map data.
 
 ---
 
+## Phase 1.5 — Opcode Semantic Enrichment
+
+**Status**: 🟡 NEXT
+**Objective**: Enrich `opcode_table.json` with parameter names, types, enums, and constraints. This is the data layer the visual editor (Phase 2) builds on.
+
+### Why this matters
+
+The opcode table currently knows *what* each instruction is but not *what its parameters mean*. Example:
+
+```
+Before:  ChangeWeather  operands: [U8, U8]
+After:   ChangeWeather  operands: [weather_type: enum{0=clear, 1=rain, ...}, intensity: U8]
+```
+
+Every downstream tool benefits:
+- **Visual editor**: renders dropdowns instead of raw numbers
+- **Modders**: know what values to use without guesswork
+- **Validation**: catches invalid parameter values before export
+- **PSX import**: maps PSX parameter conventions to TIC values
+
+### Approach
+
+1. **Cross-reference PSX documentation**: FFHacktics wiki has detailed parameter docs for most opcodes. Map these to TIC, verify operand positions match.
+2. **IDA decompilation**: For TIC-exclusive opcodes and ambiguous parameters, trace the binary to see how values are consumed.
+3. **In-game testing**: Now that deployment works, systematically test enum values (weather types, camera modes, screen effects) and document results.
+4. **Enrich opcode_table.json**: Add `param_names`, `param_types`, `enums`, and `constraints` fields per opcode.
+
+### Deliverables
+
+| # | Deliverable | Description |
+|---|-------------|-------------|
+| 1.5.1 | **Parameter names** | Every operand gets a semantic name (e.g., `unit_id`, `x_coord`, `duration_frames`) |
+| 1.5.2 | **Enum maps** | All flag/type parameters get value→name mappings (weather, facing, balloon types, etc.) |
+| 1.5.3 | **Constraints** | Valid ranges, unit ID references, coordinate bounds |
+| 1.5.4 | **High-frequency opcode deep docs** | Detailed documentation for the 20 most-used opcodes (covers ~90% of event content) |
+
+### Estimated Effort
+2–3 weeks.
+
+---
+
 ## Next Step
 
-**Phase 0.1**: Find the event dispatcher in the TIC binary. Start from the `speaker.en.nxd` table consumers and the `ffto_event_balloon.uib` rendering code, trace backward to the function that feeds dialogue text into the display system. That function reads from the event bytecode.
+**Phase 1.5.1**: Start with the 20 highest-frequency opcodes. Cross-reference FFHacktics parameter docs against the TIC binary. Use in-game testing to verify enum values for visual opcodes (ChangeWeather, FadeGradation, Camera, ScreenEffect).
