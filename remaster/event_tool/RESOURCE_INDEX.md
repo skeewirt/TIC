@@ -127,10 +127,16 @@
 
 | What | Path |
 |------|------|
+| **This index** | `remaster/event_tool/RESOURCE_INDEX.md` |
 | Roadmap | `remaster/event_tool/ROADMAP.md` |
 | Starting points | `remaster/event_tool/STARTING_POINTS.md` |
-| This index | `remaster/event_tool/RESOURCE_INDEX.md` |
 | Phase 0 recon | `remaster/event_tool/PHASE0_RECON.md` |
+| **Decompiled event funcs** | `remaster/event_tool/decompiled/*.c` |
+| **Opcode table analysis** | `remaster/event_tool/analysis/opcode_table.md` |
+| **VM state analysis** | `remaster/event_tool/analysis/vm_state.md` |
+| **Conditionals analysis** | `remaster/event_tool/analysis/event_conditionals.md` |
+| **Message system analysis** | `remaster/event_tool/analysis/message_system.md` |
+| IDA decompile script | `reference/scripts/decompile_event_system.py` |
 | Dicene's names | `reference/Dicenes_Names/audit_report.txt` |
 | Dicene's globals | `reference/Dicenes_Names/fft 1.2.0 global names.txt` |
 | Formula reference | `remaster/formulas/FORMULA_REFERENCE.md` |
