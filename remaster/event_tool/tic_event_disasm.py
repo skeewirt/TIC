@@ -160,12 +160,12 @@ OPERAND_SIGS_CLASSIC = {
     0xA3: [],                        # NotEquals
     0xA4: [],                        # LessThan
     0xA5: [],                        # GreaterThan
-    0xA6: ['U32'],                   # UnknownA6 (Gibbed: "A6")
-    0xA7: ['U32'],                   # UnknownA7 (Gibbed: "A7")
-    0xA8: ['U16','U32'],             # UnknownA8 (Gibbed: "A8")
-    0xA9: ['U16','U32'],             # UnknownA9 (Gibbed: "A9")
-    0xAA: ['B8'],                    # UnknownAA (Gibbed: "AA")
-    0xAB: ['U32'],                   # UnknownAB (Gibbed: "AB")
+    0xA6: ['U32'],                   # BeginCutscene (TIC only)
+    0xA7: ['U32'],                   # EndCutscene (TIC only)
+    0xA8: ['U16','U32'],             # SetSpriteRenderParam (TIC only)
+    0xA9: ['U16','U32'],             # InitSpriteRender (TIC only)
+    0xAA: ['B8'],                    # SuspendBattleEngine (TIC only)
+    0xAB: ['U32'],                   # DisplayBattleMessage (TIC only)
     0xAC: ['U32'],                   # LUI
     0xAD: ['U32','S32'],             # ChangePostEffectDepthLUT (TIC only)
     0xAE: ['U32','S32'],             # ChangePostEffectLUT (TIC only)
@@ -193,8 +193,8 @@ OPERAND_SIGS_CLASSIC = {
     0xD3: ['U8'],                    # SeekCodeBackward
     0xD4: ['U8'],                    # Terminate
     0xD5: ['U8'],                    # SeekCodeBackwardTarget
-    0xD8: ['U8'],                    # UnknownD8 (wiki: "Never used")
-    0xD9: ['U8'],                    # UnknownD9 (wiki: "Never used")
+    0xD8: ['U8'],                    # Nop_D8 (handler exists, does nothing)
+    0xD9: ['U8'],                    # DeadCode_D9 (no handler)
     0xDB: [],                        # EventEnd
     0xDC: [],                        # UnknownDC
     0xE3: [],                        # EventEnd2
@@ -355,12 +355,59 @@ def disassemble_file(filepath, mode='enhanced', names=None, sizes=None, sigs=Non
     return instrs, code_end, data
 
 
+def to_json(instrs, code_end, data, mode, sigs, source_file=None):
+    """Convert disassembled instructions to a JSON-serializable dict for round-trip assembly."""
+    json_instrs = []
+    for instr in instrs[:code_end]:
+        entry = {
+            'opcode': instr['opcode'],
+            'name': instr['name'],
+        }
+        
+        sig = sigs.get(instr['opcode'])
+        if sig and instr['operands'] and not instr['error']:
+            entry['operands'] = instr['operands']
+        elif instr['operands'] and not sig:
+            # No type signature — store raw hex for lossless round-trip
+            raw_bytes = instr['raw'][1:]  # skip opcode byte
+            entry['raw_hex'] = raw_bytes.hex()
+        
+        if instr.get('dialogue'):
+            entry['comment'] = instr['dialogue']
+        if instr.get('error'):
+            entry['error'] = instr['error']
+        
+        json_instrs.append(entry)
+    
+    # Capture trailing data (post-EventEnd) for byte-identical round-trip
+    trailing = b''
+    if code_end < len(instrs):
+        # Reconstruct trailing bytes from remaining instructions
+        for instr in instrs[code_end:]:
+            trailing += instr['raw']
+    
+    result = {
+        'version': '1.0',
+        'mode': mode,
+        'instruction_count': len(json_instrs),
+        'instructions': json_instrs,
+    }
+    if source_file:
+        result['source'] = source_file
+    if trailing:
+        result['trailing_data'] = trailing.hex()
+    
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description='TIC Event Script Disassembler')
     parser.add_argument('input', nargs='?', help='Input .e file or directory')
     parser.add_argument('-m', '--mode', choices=['classic', 'enhanced'], default='enhanced')
     parser.add_argument('-o', '--output', help='Output directory for batch mode')
     parser.add_argument('--offset', action='store_true', help='Show byte offsets')
+    parser.add_argument('--json', action='store_true', dest='json_output',
+                        help='Output JSON format (for round-trip with tic_event_asm.py)')
     parser.add_argument('--stats', action='store_true', help='Show statistics only')
     parser.add_argument('--messages', help='Path to message_map.json for dialogue resolution')
     parser.add_argument('--table', default=os.path.join(os.path.dirname(__file__), 'opcode_table.json'))
@@ -386,15 +433,26 @@ def main():
         # Single file mode
         instrs, code_end, data = disassemble_file(args.input, args.mode, names, sizes, sigs, messages)
         fname = os.path.basename(args.input)
-        print(f"; {fname} ({len(data)} bytes, {code_end} instructions)")
-        print(f"; Mode: {args.mode}")
-        print()
-        for instr in instrs[:code_end]:
-            print(format_instruction(instr, args.offset))
-        # Show post-EventEnd data count
-        post = len(instrs) - code_end
-        if post > 0:
-            print(f"\n; ({post} bytes of post-EventEnd padding/data)")
+        
+        if args.json_output:
+            result = to_json(instrs, code_end, data, args.mode, sigs, fname)
+            if args.output:
+                out_path = args.output
+                os.makedirs(os.path.dirname(out_path) or '.', exist_ok=True)
+                with open(out_path, 'w', encoding='utf-8') as f:
+                    json.dump(result, f, indent=2, ensure_ascii=False)
+                print(f"Wrote {out_path} ({result['instruction_count']} instructions)")
+            else:
+                print(json.dumps(result, indent=2, ensure_ascii=False))
+        else:
+            print(f"; {fname} ({len(data)} bytes, {code_end} instructions)")
+            print(f"; Mode: {args.mode}")
+            print()
+            for instr in instrs[:code_end]:
+                print(format_instruction(instr, args.offset))
+            post = len(instrs) - code_end
+            if post > 0:
+                print(f"\n; ({post} bytes of post-EventEnd padding/data)")
     
     elif os.path.isdir(args.input):
         # Batch mode
@@ -416,13 +474,20 @@ def main():
                 opcode_freq[instr['opcode']] = opcode_freq.get(instr['opcode'], 0) + 1
             
             if args.output:
-                out_path = os.path.join(args.output, fname.replace('.e', '.asm'))
-                os.makedirs(args.output, exist_ok=True)
-                with open(out_path, 'w', encoding='utf-8') as f:
-                    f.write(f"; {fname} ({len(data)} bytes, {code_end} instructions)\n")
-                    f.write(f"; Mode: {args.mode}\n\n")
-                    for instr in instrs[:code_end]:
-                        f.write(format_instruction(instr, True) + '\n')
+                if args.json_output:
+                    out_path = os.path.join(args.output, fname.replace('.e', '.json'))
+                    os.makedirs(args.output, exist_ok=True)
+                    result = to_json(instrs, code_end, data, args.mode, sigs, fname)
+                    with open(out_path, 'w', encoding='utf-8') as f:
+                        json.dump(result, f, indent=2, ensure_ascii=False)
+                else:
+                    out_path = os.path.join(args.output, fname.replace('.e', '.asm'))
+                    os.makedirs(args.output, exist_ok=True)
+                    with open(out_path, 'w', encoding='utf-8') as f:
+                        f.write(f"; {fname} ({len(data)} bytes, {code_end} instructions)\n")
+                        f.write(f"; Mode: {args.mode}\n\n")
+                        for instr in instrs[:code_end]:
+                            f.write(format_instruction(instr, True) + '\n')
             
             if not args.stats:
                 print(f"{fname}: {code_end} instructions, {errors} errors")
@@ -440,3 +505,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
