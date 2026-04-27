@@ -1450,7 +1450,7 @@
     "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?"
   },
   "0xAA": {
-    "name": "LockBattleState",
+    "name": "SuspendBattleEngine",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
