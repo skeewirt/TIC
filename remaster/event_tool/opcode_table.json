@@ -1,6 +1,6 @@
 {
   "0x00": {
-    "name": "Unknown00",
+    "name": "Not",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -24,7 +24,7 @@
     "wiki_sig": "ElseIf(xVR)"
   },
   "0x03": {
-    "name": "Unknown03",
+    "name": "Else",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -32,7 +32,7 @@
     "wiki_sig": "Else()"
   },
   "0x04": {
-    "name": "Unknown04",
+    "name": "EndIf",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -40,7 +40,7 @@
     "wiki_sig": "EndIf()"
   },
   "0x05": {
-    "name": "Unknown05",
+    "name": "Switch",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -48,7 +48,7 @@
     "wiki_sig": "Switch(xVR)"
   },
   "0x06": {
-    "name": "Unknown06",
+    "name": "Case",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -80,7 +80,7 @@
     "wiki_sig": "EndSwitch()"
   },
   "0x0A": {
-    "name": "Unknown0A",
+    "name": "DefineSub",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -104,7 +104,7 @@
     "wiki_sig": "CallSub(xID)"
   },
   "0x0D": {
-    "name": "Unknown0D",
+    "name": "GoTo",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -160,7 +160,7 @@
     "wiki_sig": "ChangeMapBeta(MAP,x00)"
   },
   "0x14": {
-    "name": "Unknown14",
+    "name": "PlayTrack",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
@@ -974,7 +974,7 @@
     "wiki_sig": "{73}"
   },
   "0x73": {
-    "name": "Unknown73",
+    "name": "MoveCamera2",
     "operand_bytes_classic": 14,
     "operand_bytes_enhanced": 14,
     "tic_only": false
@@ -1039,7 +1039,7 @@
     "wiki_sig": "DismissUnit(xJB,x00)"
   },
   "0x7B": {
-    "name": "Unknown7B",
+    "name": "TutorialButtonWait",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
@@ -1102,7 +1102,7 @@
     "wiki_sig": "{82}"
   },
   "0x82": {
-    "name": "Unknown82",
+    "name": "WaitLoadAnimation2",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -1217,7 +1217,7 @@
     "wiki_sig": "WaitGraphicPrint()"
   },
   "0x8F": {
-    "name": "Unknown8F",
+    "name": "AllGrayFilter",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
@@ -1312,7 +1312,7 @@
     "wiki_sig": "BlueRemoveUnit(xID,x00)"
   },
   "0x9A": {
-    "name": "Unknown9A",
+    "name": "ResetTextIncrement",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -1357,7 +1357,7 @@
     "wiki_sig": "SetTextVar(xTV,xVR)"
   },
   "0x9F": {
-    "name": "Unknown9F",
+    "name": "ButtonPressGoTo",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -1462,7 +1462,7 @@
     "gibbed_note": "AB"
   },
   "0xAC": {
-    "name": "UnknownAC",
+    "name": "LUI",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
@@ -1487,7 +1487,7 @@
     "wiki_sig": "SET(xVARI,xVALU)"
   },
   "0xAF": {
-    "name": "UnknownAF",
+    "name": "SETVar",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
@@ -1649,7 +1649,7 @@
     "wiki_sig": "{D4}"
   },
   "0xC1": {
-    "name": "UnknownC1",
+    "name": "LoadAddress",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -1658,7 +1658,7 @@
     "wiki_sig": "LoadAddress(xVR,xVALU,xVA,LEN)"
   },
   "0xC2": {
-    "name": "UnknownC2",
+    "name": "UnitAddress",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
@@ -1667,7 +1667,7 @@
     "wiki_sig": "UnitAddress(xID,xVR)"
   },
   "0xC3": {
-    "name": "UnknownC3",
+    "name": "WorldUnitAddress",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
@@ -1676,7 +1676,7 @@
     "wiki_sig": "WorldUnitAddress(xID,xVR)"
   },
   "0xC4": {
-    "name": "UnknownC4",
+    "name": "SaveAddress",
     "operand_bytes_classic": 12,
     "operand_bytes_enhanced": 12,
     "tic_only": false,
@@ -1694,7 +1694,7 @@
     "wiki_sig": "UpdateUnit(xID,xPR)"
   },
   "0xC6": {
-    "name": "UnknownC6",
+    "name": "TransformUnit",
     "operand_bytes_classic": 8,
     "operand_bytes_enhanced": 8,
     "tic_only": false,
@@ -1740,7 +1740,7 @@
     "gibbed_note": "CB"
   },
   "0xCC": {
-    "name": "UnknownCC",
+    "name": "ResetTurnCounter",
     "operand_bytes_classic": 12,
     "operand_bytes_enhanced": 12,
     "tic_only": false,
@@ -1749,7 +1749,7 @@
     "wiki_sig": "ResetTurnCounter(xID)"
   },
   "0xCD": {
-    "name": "UnknownCD",
+    "name": "PostEvent",
     "operand_bytes_classic": 8,
     "operand_bytes_enhanced": 8,
     "tic_only": false,
@@ -1758,7 +1758,7 @@
     "wiki_sig": "PostEvent(xAC,xSCEN)"
   },
   "0xCE": {
-    "name": "UnknownCE",
+    "name": "LoadConditionals",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
@@ -1767,7 +1767,7 @@
     "wiki_sig": "LoadConditionals(xCOND)"
   },
   "0xCF": {
-    "name": "UnknownCF",
+    "name": "Routine",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -1828,7 +1828,7 @@
     "wiki_sig": "BackTarget(xJB)"
   },
   "0xD6": {
-    "name": "UnknownD6",
+    "name": "ConditionalStart",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -1908,7 +1908,7 @@
     "gibbed_note": "DF"
   },
   "0xE0": {
-    "name": "UnknownE0",
+    "name": "GenerateUnit",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
@@ -1974,7 +1974,7 @@
     "wiki_sig": "GetTileUnit(+XXX,+YYY,xEL)"
   },
   "0xE8": {
-    "name": "UnknownE8",
+    "name": "LoadTileData",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
@@ -1983,7 +1983,7 @@
     "wiki_sig": "LoadTileData(xVR,xBO,+XXX,+YYY,xEL)"
   },
   "0xE9": {
-    "name": "UnknownE9",
+    "name": "SaveTileData",
     "operand_bytes_classic": 8,
     "operand_bytes_enhanced": 8,
     "tic_only": false,
@@ -1992,7 +1992,7 @@
     "wiki_sig": "SaveTileData(xVR,xBO,+XXX,+YYY,xEL)"
   },
   "0xEA": {
-    "name": "UnknownEA",
+    "name": "LoadENTD",
     "operand_bytes_classic": 5,
     "operand_bytes_enhanced": 5,
     "tic_only": false,
@@ -2001,7 +2001,7 @@
     "wiki_sig": "LoadENTD(xENTD,xUNIT)"
   },
   "0xEB": {
-    "name": "UnknownEB",
+    "name": "MessageChain",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 10,
     "tic_only": false,
@@ -2010,7 +2010,7 @@
     "wiki_sig": "LoadENTDUnit(xID,xES,xBS,xFL)"
   },
   "0xEC": {
-    "name": "UnknownEC",
+    "name": "ConditionalDefeat",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -2019,7 +2019,7 @@
     "wiki_sig": "ConditionalDefeat(xCD)"
   },
   "0xED": {
-    "name": "UnknownED",
+    "name": "SetCharacterAlpha",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
     "tic_only": true,
@@ -2037,7 +2037,7 @@
     "wiki_sig": "GetTableSize(xVR,xTB)"
   },
   "0xEF": {
-    "name": "UnknownEF",
+    "name": "FetchTableRow",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
@@ -2046,7 +2046,7 @@
     "wiki_sig": "FetchTableRow(xTB,xVR)"
   },
   "0xF0": {
-    "name": "UnknownF0",
+    "name": "PlayMusic2",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,

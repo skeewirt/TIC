@@ -63,7 +63,7 @@ OPERAND_SIGS_CLASSIC = {
     0x31: ['U8','U8','U8','U8','U8'], # ChangeGradation
     0x32: ['U8','U8','U8','U8','U8','U8','U8'], # SetCharacterColor
     0x33: ['U8','U8','U8','U8','U8'], # ChangeMapClut
-    0x37: ['U16'],                   # Unknown37
+    0x37: ['U16'],                   # Unknown37 (retained from Gibbed)
     0x38: ['U16'],                   # FocusSpeed
     0x39: [],                        # WaitCharacterMoveWotL
     0x3A: [],                        # WaitFileRead
@@ -119,20 +119,20 @@ OPERAND_SIGS_CLASSIC = {
     0x70: ['U8','U8','U8','U8'],     # JumpToPanel
     0x71: ['U16'],                   # RaiseAnimationPriority
     0x72: [],                        # ForceStop
-    0x73: ['U16','U16','U16','U16','U16','U16','U16'], # Unknown73
+    0x73: ['U16','U16','U16','U16','U16','U16','U16'], # MoveCamera2
     0x76: ['U8','U8','U8','U8','U8','U8'], # StartWipe
     0x77: [],                        # StopWipe
     0x78: ['U8','U8'],               # DisplayConditions
     0x79: ['U16','U16'],             # WalkToAnim
     0x7A: ['U8','U8'],               # EraseUnit
-    0x7B: ['U16'],                   # Unknown7B
+    0x7B: ['U16'],                   # TutorialButtonWait
     0x7C: [],                        # StopAllEffects
     0x7D: ['U8'],                    # DisplayChapter
     0x7E: ['U16','U16'],             # WaitEventFlag
     0x7F: ['U8','U8','U8','U8'],     # SetEventCharacterClut
     0x80: ['U8','U8','U8'],          # RequestStandardAnimation
     0x81: ['U16','OffOn'],           # SetAnimationSound
-    0x82: [],                        # Unknown82
+    0x82: [],                        # WaitLoadAnimation2
     0x83: ['U8','U8','U8','S16'],    # ChangeStats
     0x84: ['U8'],                    # PlayJingle
     0x85: ['U8'],                    # ChangeTreasureFindDay
@@ -144,11 +144,11 @@ OPERAND_SIGS_CLASSIC = {
     0x8B: [],                        # PlayEffect
     0x8C: ['U16','U8','U16','OffOn'], # SetAnimationFlipDirection
     0x8E: [],                        # WaitDisplayChapter
-    0x8F: ['U8'],                    # Unknown8F
+    0x8F: ['U8'],                    # AllGrayFilter
     0x90: ['U8','U8','U8'],          # WaitActivePanel
     0x91: ['U8','U8','U8'],          # DisplayMapTitle
     0x92: ['U16','U8','U16'],        # InflictStatus
-    0x93: ['U16'],                   # Unknown93
+    0x93: ['U16'],                   # Unknown93 (Gibbed: "93")
     0x94: ['U16'],                   # TeleportOut
     0x96: [],                        # AppendMapState
     0x97: ['U16'],                   # SetAnimationBrightColor
@@ -160,16 +160,16 @@ OPERAND_SIGS_CLASSIC = {
     0xA3: [],                        # NotEquals
     0xA4: [],                        # LessThan
     0xA5: [],                        # GreaterThan
-    0xA6: ['U32'],                   # UnknownA6
-    0xA7: ['U32'],                   # UnknownA7
-    0xA8: ['U16','U32'],             # UnknownA8
-    0xA9: ['U16','U32'],             # UnknownA9
-    0xAA: ['B8'],                    # UnknownAA
-    0xAB: ['U32'],                   # UnknownAB
-    0xAC: ['U32'],                   # UnknownAC
+    0xA6: ['U32'],                   # UnknownA6 (Gibbed: "A6")
+    0xA7: ['U32'],                   # UnknownA7 (Gibbed: "A7")
+    0xA8: ['U16','U32'],             # UnknownA8 (Gibbed: "A8")
+    0xA9: ['U16','U32'],             # UnknownA9 (Gibbed: "A9")
+    0xAA: ['B8'],                    # UnknownAA (Gibbed: "AA")
+    0xAB: ['U32'],                   # UnknownAB (Gibbed: "AB")
+    0xAC: ['U32'],                   # LUI
     0xAD: ['U32','S32'],             # ChangePostEffectDepthLUT (TIC only)
     0xAE: ['U32','S32'],             # ChangePostEffectLUT (TIC only)
-    0xAF: ['U32'],                   # UnknownAF
+    0xAF: ['U32'],                   # SETVar
     0xB0: ['U16','U16'],             # Add
     0xB1: ['U16','U16'],             # AddVar
     0xB2: ['U16','U16'],             # Sub
@@ -193,22 +193,22 @@ OPERAND_SIGS_CLASSIC = {
     0xD3: ['U8'],                    # SeekCodeBackward
     0xD4: ['U8'],                    # Terminate
     0xD5: ['U8'],                    # SeekCodeBackwardTarget
-    0xD8: ['U8'],                    # UnknownD8
-    0xD9: ['U8'],                    # UnknownD9
+    0xD8: ['U8'],                    # UnknownD8 (wiki: "Never used")
+    0xD9: ['U8'],                    # UnknownD9 (wiki: "Never used")
     0xDB: [],                        # EventEnd
     0xDC: [],                        # UnknownDC
     0xE3: [],                        # EventEnd2
     0xE5: ['U16'],                   # WaitForInstruction
     0xE7: ['U32'],                   # DisplayCaption (TIC only)
-    0xE8: ['U8'],                    # UnknownE8
-    0xE9: ['U32','U32'],             # UnknownE9
-    0xEA: ['U32','B8'],              # UnknownEA
-    0xEB: ['U16','U16','U16'],       # UnknownEB (classic)
-    0xEC: [],                        # UnknownEC
-    0xED: ['U32','U16'],             # UnknownED (TIC only)
+    0xE8: ['U8'],                    # LoadTileData
+    0xE9: ['U32','U32'],             # SaveTileData
+    0xEA: ['U32','B8'],              # LoadENTD
+    0xEB: ['U16','U16','U16'],       # MessageChain (classic)
+    0xEC: [],                        # ConditionalDefeat
+    0xED: ['U32','U16'],             # SetCharacterAlpha (TIC only)
     0xEE: ['U32'],                   # UnknownEE
-    0xEF: [],                        # UnknownEF
-    0xF0: [],                        # UnknownF0
+    0xEF: [],                        # FetchTableRow
+    0xF0: [],                        # PlayMusic2 (same handler as 0x22)
     0xF1: ['U16'],                   # Wait
     0xF2: [],                        # Pad
 }
@@ -217,7 +217,7 @@ OPERAND_SIGS_CLASSIC = {
 OPERAND_SIGS_ENHANCED = dict(OPERAND_SIGS_CLASSIC)
 OPERAND_SIGS_ENHANCED[0x10] = ['U8','U8','U32','U8','U8','U8','S16','S16','S16','U8','U8']  # DisplayMessage +3
 OPERAND_SIGS_ENHANCED[0x51] = ['U8','S32','U16']  # ChangeDialog +2
-OPERAND_SIGS_ENHANCED[0xEB] = ['S32','S32','U16']  # UnknownEB +4
+OPERAND_SIGS_ENHANCED[0xEB] = ['S32','S32','U16']  # MessageChain +4
 
 
 # ── Load opcode names ──
