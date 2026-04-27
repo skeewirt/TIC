@@ -111,7 +111,7 @@ python tic_event_tools.py pack event002.json -o MyEventMod/ --mod-name "fftivc.e
 ```
 ```
 ✅ Packaged 1 event(s) into: MyEventMod/
-   Scripts:    MyEventMod/FFTIVC/data/enhanced/script/
+   Scripts:    MyEventMod/FFTIVC/data/enhanced/script/enhanced/
    ModConfig:  MyEventMod/ModConfig.json
 
    To install: drag the 'MyEventMod' folder into Reloaded-II
@@ -218,7 +218,7 @@ These 8 opcodes exist only in TIC (not in PSX/WotL), verified via IDA decompilat
 
 ## Modloader Integration
 
-The [FFTIVC Mod Loader](https://github.com/Nenkai/fftivc.utility.modloader) (Reloaded-II) handles runtime file replacement:
+**Verified working in-game.** The [FFTIVC Mod Loader](https://github.com/Nenkai/fftivc.utility.modloader) (Reloaded-II) handles runtime file replacement via PAC overrides:
 
 ```
 YourMod/
@@ -226,12 +226,15 @@ YourMod/
 │   └── data/
 │       └── enhanced/
 │           └── script/
-│               ├── event002.e    ← compiled event scripts
-│               └── event093.e
+│               └── enhanced/
+│                   ├── event002.e    ← compiled event scripts
+│                   └── event093.e
 └── ModConfig.json
 ```
 
-The `pack` command generates this structure automatically. At runtime, the modloader intercepts file loads and serves modded scripts from the mod folder.
+> **⚠️ Path matters:** The inner `script/enhanced/` must match the PAC path `script/enhanced/eventNNN.e`. Using just `script/` will silently fail — the modloader registers the file but the game won't find it.
+
+The `pack` command generates this structure automatically. At runtime, the modloader builds a `modded.pac` containing your scripts and registers it with the game's resource manager.
 
 For **NXD table changes** (adding new events, editing ENTD unit data), the modloader supports cell-level NXD merging — multiple mods can edit the same table without conflicts.
 
