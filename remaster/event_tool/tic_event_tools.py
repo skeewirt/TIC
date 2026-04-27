@@ -201,7 +201,7 @@ def cmd_pack(args):
 
     # Build mod folder structure
     out_base = args.output or mod_name
-    script_dir = os.path.join(out_base, 'FFTIVC', 'data', 'enhanced', 'script')
+    script_dir = os.path.join(out_base, 'FFTIVC', 'data', 'enhanced', 'script', 'enhanced')
     os.makedirs(script_dir, exist_ok=True)
 
     compiled = 0
