@@ -7,7 +7,8 @@
     "wiki_name": "Not",
     "wiki_sig": "Not()",
     "description": "Boolean NOT \u2014 inverts the result of the following conditional expression",
-    "category": "flow_control"
+    "category": "flow_control",
+    "wiki_page": "World_Map_Script_0x00.txt"
   },
   "0x01": {
     "name": "Unknown01",
@@ -16,7 +17,9 @@
     "tic_only": false,
     "wiki_name": "If",
     "wiki_sig": "If()",
-    "category": "flow_control"
+    "category": "flow_control",
+    "description": "World Map Script 0x01 If Script Data is equal to loaded integer, continue script 80091238 - World Map Scripts",
+    "wiki_page": "World_Map_Script_0x01.txt"
   },
   "0x02": {
     "name": "Unknown02",
@@ -32,7 +35,9 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "World Map Script 0x02 If Script Data is less then loaded integer, continue script This page was last edited on 14 December 2012, at 01:03.",
+    "wiki_page": "World_Map_Script_0x02.txt"
   },
   "0x03": {
     "name": "Else",
@@ -41,7 +46,9 @@
     "tic_only": false,
     "wiki_name": "Else",
     "wiki_sig": "Else()",
-    "category": "flow_control"
+    "category": "flow_control",
+    "description": "World Map Script 0x03 This page was last edited on 14 December 2012, at 01:07.",
+    "wiki_page": "World_Map_Script_0x03.txt"
   },
   "0x04": {
     "name": "EndIf",
@@ -50,7 +57,9 @@
     "tic_only": false,
     "wiki_name": "EndIf",
     "wiki_sig": "EndIf()",
-    "category": "flow_control"
+    "category": "flow_control",
+    "description": "World Map Script 0x04 If Sprite Set Unit is present on the team, continue This page was last edited on 29 June 2020, at 13:21.",
+    "wiki_page": "World_Map_Script_0x04.txt"
   },
   "0x05": {
     "name": "Switch",
@@ -65,7 +74,10 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "World Map Script 0x05 through 0x0B and 0x1B This page was last edited on 3 March 2025, at 21:28.",
+    "wiki_page": "World_Map_Script_0x05_through_0x0B_and_0x1B.txt",
+    "category": "flow_control"
   },
   "0x06": {
     "name": "Case",
@@ -80,7 +92,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Case label in switch block",
+    "category": "flow_control"
   },
   "0x07": {
     "name": "Unknown07",
@@ -88,7 +102,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "Default",
-    "wiki_sig": "Default()"
+    "wiki_sig": "Default()",
+    "description": "Default case in switch block",
+    "category": "flow_control"
   },
   "0x08": {
     "name": "Unknown08",
@@ -96,7 +112,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "Break",
-    "wiki_sig": "Break()"
+    "wiki_sig": "Break()",
+    "description": "Break out of switch/loop",
+    "category": "flow_control"
   },
   "0x09": {
     "name": "Unknown09",
@@ -104,7 +122,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "EndSwitch",
-    "wiki_sig": "EndSwitch()"
+    "wiki_sig": "EndSwitch()",
+    "description": "End switch statement",
+    "category": "flow_control"
   },
   "0x0A": {
     "name": "DefineSub",
@@ -119,7 +139,9 @@
         "type": "U8",
         "description": "Unit ID"
       }
-    ]
+    ],
+    "description": "Define a subroutine block",
+    "category": "flow_control"
   },
   "0x0B": {
     "name": "Unknown0B",
@@ -127,7 +149,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "EndSub",
-    "wiki_sig": "EndSub()"
+    "wiki_sig": "EndSub()",
+    "description": "End subroutine definition",
+    "category": "flow_control"
   },
   "0x0C": {
     "name": "Unknown0C",
@@ -142,7 +166,10 @@
         "type": "U8",
         "description": "Unit ID"
       }
-    ]
+    ],
+    "description": "World Map Script 0x0C This page was last edited on 3 March 2025, at 20:48.",
+    "wiki_page": "World_Map_Script_0x0C.txt",
+    "category": "flow_control"
   },
   "0x0D": {
     "name": "GoTo",
@@ -157,7 +184,10 @@
         "type": "U8",
         "description": "FFHacktics: xTG"
       }
-    ]
+    ],
+    "description": "World Map Script 0x0D This page was last edited on 3 March 2025, at 20:49.",
+    "wiki_page": "World_Map_Script_0x0D.txt",
+    "category": "flow_control"
   },
   "0x0E": {
     "name": "Unknown0E",
@@ -173,13 +203,18 @@
         "type": "U8",
         "description": "FFHacktics: xTG"
       }
-    ]
+    ],
+    "description": "World Map Script 0x0E This page was last edited on 3 March 2025, at 20:50.",
+    "wiki_page": "World_Map_Script_0x0E.txt"
   },
   "0x0F": {
     "name": "ScriptEnd",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
-    "tic_only": false
+    "tic_only": false,
+    "description": "World Map Script 0x0F This page was last edited on 3 March 2025, at 20:52.",
+    "wiki_page": "World_Map_Script_0x0F.txt",
+    "category": "flow_control"
   },
   "0x10": {
     "name": "DisplayMessage",
@@ -247,7 +282,9 @@
       }
     ],
     "description": "Display a dialogue message with speaker portrait and balloon",
-    "category": "dialogue"
+    "category": "dialogue",
+    "wiki_page": "World_Map_Script_0x10.txt",
+    "routine_header": "DisplayMessage"
   },
   "0x11": {
     "name": "AnimationRequest",
@@ -288,7 +325,9 @@
       }
     ],
     "description": "Play a unit animation (walk, attack, cast, idle, etc.)",
-    "category": "unit"
+    "category": "unit",
+    "wiki_page": "World_Map_Script_0x11.txt",
+    "routine_header": "UnitAnim"
   },
   "0x12": {
     "name": "WaitAnimationEnd",
@@ -296,7 +335,10 @@
     "operand_bytes_enhanced": 2,
     "tic_only": false,
     "gibbed_note": "12",
-    "category": "timing"
+    "category": "timing",
+    "description": "World Map Script 0x12 This page was last edited on 3 March 2025, at 22:51.",
+    "wiki_page": "World_Map_Script_0x12.txt",
+    "routine_header": "unknown, something with Misc ID"
   },
   "0x13": {
     "name": "JumpMap",
@@ -318,7 +360,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "World Map Script 0x13 This page was last edited on 3 March 2025, at 22:51.",
+    "wiki_page": "World_Map_Script_0x13.txt",
+    "routine_header": "ChangeMapBeta"
   },
   "0x14": {
     "name": "PlayTrack",
@@ -333,7 +378,10 @@
         "type": "U8",
         "description": "FFHacktics: xSG"
       }
-    ]
+    ],
+    "description": "World Map Script 0x14 and 0x15 This page was last edited on 3 March 2025, at 20:36.",
+    "wiki_page": "World_Map_Script_0x14_and_0x15.txt",
+    "category": "unit"
   },
   "0x15": {
     "name": "Unknown15",
@@ -342,7 +390,8 @@
     "tic_only": false,
     "wiki_name": "ResetUnitCalculations",
     "wiki_sig": "ResetUnitCalculations()",
-    "category": "unit"
+    "category": "unit",
+    "description": "Reset unit's battle calculations"
   },
   "0x16": {
     "name": "WaitTask",
@@ -352,7 +401,10 @@
     "gibbed_note": "16",
     "wiki_name": "Pause",
     "wiki_sig": "Pause()",
-    "category": "timing"
+    "category": "timing",
+    "description": "Pause Event Instruction and other surrounding currently-unknown functions. void BATTLE_pause_event_instruction(void)",
+    "wiki_page": "Pause_Event_Instruction.txt",
+    "routine_header": "Pause"
   },
   "0x17": {
     "name": "Unknown17",
@@ -367,7 +419,9 @@
         "type": "U8",
         "description": "FFHacktics: xTO"
       }
-    ]
+    ],
+    "description": "World Map Script 0x17 This page was last edited on 14 December 2012, at 00:52.",
+    "wiki_page": "World_Map_Script_0x17.txt"
   },
   "0x18": {
     "name": "ChangeEffect",
@@ -404,7 +458,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "World Map Script 0x18 This page was last edited on 14 December 2012, at 00:53.",
+    "wiki_page": "World_Map_Script_0x18.txt",
+    "routine_header": "Effect"
   },
   "0x19": {
     "name": "MoveCamera",
@@ -457,7 +514,9 @@
       }
     ],
     "description": "Move camera to a position with rotation, tilt, and zoom",
-    "category": "camera"
+    "category": "camera",
+    "wiki_page": "World_Map_Script_0x19.txt",
+    "routine_header": "Camera"
   },
   "0x1A": {
     "name": "MoveAmbient",
@@ -494,7 +553,10 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "description": "World Map Script 0x1A This page was last edited on 3 March 2025, at 22:52.",
+    "wiki_page": "World_Map_Script_0x1A.txt",
+    "routine_header": "MapDarkness"
   },
   "0x1B": {
     "name": "MoveLight",
@@ -541,7 +603,9 @@
         "type": "U8",
         "description": "FFHacktics: +TIMER"
       }
-    ]
+    ],
+    "routine_header": "MapLight",
+    "description": "Set map directional lighting parameters"
   },
   "0x1C": {
     "name": "ChangeFrameRate",
@@ -559,7 +623,9 @@
       }
     ],
     "description": "Change the event playback speed (1=normal, 2=fast, etc.)",
-    "category": "timing"
+    "category": "timing",
+    "wiki_page": "World_Map_Script_0x1C.txt",
+    "routine_header": "EventSpeed"
   },
   "0x1D": {
     "name": "_CameraFusionStart",
@@ -570,7 +636,9 @@
     "wiki_name": "CameraFusionStart",
     "wiki_sig": "CameraFusionStart()",
     "description": "Begin a camera blend/fusion transition",
-    "category": "camera"
+    "category": "camera",
+    "wiki_page": "World_Map_Script_0x1D.txt",
+    "routine_header": "CameraFusionStart"
   },
   "0x1E": {
     "name": "_CameraFusionEnd",
@@ -581,7 +649,8 @@
     "wiki_name": "CameraFusionEnd",
     "wiki_sig": "CameraFusionEnd()",
     "description": "End a camera blend/fusion transition",
-    "category": "camera"
+    "category": "camera",
+    "wiki_page": "World_Map_Script_0x1E.txt"
   },
   "0x1F": {
     "name": "_Focus",
@@ -618,14 +687,19 @@
         "type": "U8",
         "description": "FFHacktics: xAR"
       }
-    ]
+    ],
+    "description": "World Map Script 0x1F This page was last edited on 3 March 2025, at 21:34.",
+    "wiki_page": "World_Map_Script_0x1F.txt",
+    "routine_header": "Focus"
   },
   "0x20": {
     "name": "Unknown20",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
     "tic_only": false,
-    "gibbed_note": "20"
+    "gibbed_note": "20",
+    "description": "World Map Script 0x20 This page was last edited on 3 March 2025, at 21:34.",
+    "wiki_page": "World_Map_Script_0x20.txt"
   },
   "0x21": {
     "name": "PlaySound",
@@ -642,7 +716,10 @@
         "type": "U8",
         "description": "FFHacktics: xSDID"
       }
-    ]
+    ],
+    "description": "World Map Script 0x21 This page was last edited on 3 March 2025, at 21:34.",
+    "wiki_page": "World_Map_Script_0x21.txt",
+    "routine_header": "SoundEffect"
   },
   "0x22": {
     "name": "PlayMusic",
@@ -669,7 +746,10 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "description": "World Map Script 0x22 This page was last edited on 3 March 2025, at 21:35.",
+    "wiki_page": "World_Map_Script_0x22.txt",
+    "routine_header": "SwitchTrack"
   },
   "0x23": {
     "name": "Unknown23",
@@ -677,7 +757,9 @@
     "operand_bytes_enhanced": 3,
     "tic_only": false,
     "wiki_name": "Never used",
-    "wiki_sig": "{24} Never used"
+    "wiki_sig": "{24} Never used",
+    "description": "World Map Script 0x23 This page was last edited on 3 March 2025, at 21:35.",
+    "wiki_page": "World_Map_Script_0x23.txt"
   },
   "0x24": {
     "name": "Unknown24",
@@ -685,7 +767,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "Never used",
-    "wiki_sig": "{25} Never used"
+    "wiki_sig": "{25} Never used",
+    "description": "World Map Script 0x24 This page was last edited on 3 March 2025, at 21:35.",
+    "wiki_page": "World_Map_Script_0x24.txt"
   },
   "0x25": {
     "name": "Unknown25",
@@ -693,7 +777,10 @@
     "operand_bytes_enhanced": 4,
     "tic_only": false,
     "wiki_name": "Never used",
-    "wiki_sig": "{26} Never used"
+    "wiki_sig": "{26} Never used",
+    "description": "World Map Script 0x25 This page was last edited on 3 March 2025, at 21:35.",
+    "wiki_page": "World_Map_Script_0x25.txt",
+    "routine_header": "unknown, saves some data to 0x80166072 and 0x80166074"
   },
   "0x26": {
     "name": "Unknown26",
@@ -701,7 +788,10 @@
     "operand_bytes_enhanced": 2,
     "tic_only": false,
     "wiki_name": "Never used",
-    "wiki_sig": "{37} Never used"
+    "wiki_sig": "{37} Never used",
+    "description": "World Map Script 0x26 This page was last edited on 3 March 2025, at 21:36.",
+    "wiki_page": "World_Map_Script_0x26.txt",
+    "routine_header": "unknown, something with offsets around 0x80169C6C"
   },
   "0x27": {
     "name": "RewriteMap",
@@ -710,7 +800,11 @@
     "tic_only": false,
     "gibbed_note": "27",
     "wiki_name": "ReloadMapState",
-    "wiki_sig": "ReloadMapState()"
+    "wiki_sig": "ReloadMapState()",
+    "description": "World Map Script 0x27 This page was last edited on 3 March 2025, at 21:36.",
+    "wiki_page": "World_Map_Script_0x27.txt",
+    "routine_header": "ReloadMapState",
+    "category": "screen"
   },
   "0x28": {
     "name": "MoveToPanel",
@@ -763,7 +857,9 @@
       }
     ],
     "description": "Move a unit to a map tile by walking",
-    "category": "unit"
+    "category": "unit",
+    "wiki_page": "World_Map_Script_0x28.txt",
+    "routine_header": "WalkTo"
   },
   "0x29": {
     "name": "WaitCharacterMove",
@@ -785,7 +881,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "WaitWalk Event Instruction This page was last edited on 14 November 2025, at 20:33.",
+    "wiki_page": "WaitWalk_Event_Instruction.txt",
+    "routine_header": "WaitWalk"
   },
   "0x2A": {
     "name": "_BlockStart",
@@ -794,7 +893,10 @@
     "tic_only": false,
     "gibbed_note": "2A",
     "wiki_name": "BlockStart",
-    "wiki_sig": "BlockStart()"
+    "wiki_sig": "BlockStart()",
+    "routine_header": "BlockStart",
+    "description": "Mark the start of a parallel execution block",
+    "category": "timing"
   },
   "0x2B": {
     "name": "_BlockEnd",
@@ -803,7 +905,9 @@
     "tic_only": false,
     "gibbed_note": "2B",
     "wiki_name": "BlockEnd",
-    "wiki_sig": "BlockEnd()"
+    "wiki_sig": "BlockEnd()",
+    "description": "Mark the end of a parallel execution block",
+    "category": "timing"
   },
   "0x2C": {
     "name": "Direction2_0",
@@ -850,7 +954,9 @@
         "type": "U8",
         "description": "FFHacktics: xDL"
       }
-    ]
+    ],
+    "routine_header": "FaceUnit2",
+    "description": "Make unit face another unit (variant 2)"
   },
   "0x2D": {
     "name": "Direction",
@@ -892,7 +998,10 @@
         "type": "U8",
         "description": "FFHacktics: xDL"
       }
-    ]
+    ],
+    "description": "RotateUnit Event Instruction This page was last edited on 10 May 2025, at 14:33.",
+    "wiki_page": "RotateUnit_Event_Instruction.txt",
+    "routine_header": "RotateUnit"
   },
   "0x2E": {
     "name": "FadeGradation",
@@ -945,7 +1054,8 @@
       }
     ],
     "description": "Fade screen colors with a gradation overlay",
-    "category": "screen"
+    "category": "screen",
+    "routine_header": "Background"
   },
   "0x2F": {
     "name": "Unknown2F",
@@ -970,13 +1080,17 @@
         "type": "U8",
         "description": "FFHacktics: xDEST"
       }
-    ]
+    ],
+    "description": "Loop back to the start of the current block",
+    "category": "timing"
   },
   "0x30": {
     "name": "Unknown30",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
-    "tic_only": false
+    "tic_only": false,
+    "description": "Unknown",
+    "category": "timing"
   },
   "0x31": {
     "name": "ChangeGradation",
@@ -1013,7 +1127,9 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "routine_header": "ColorBGBeta",
+    "description": "Change background color gradation"
   },
   "0x32": {
     "name": "SetCharacterColor",
@@ -1060,7 +1176,10 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "description": "Color Unit Event Instruction #   ROUTINE: ColorUnit event instruction (not async) #           r4 = Parameter struct data",
+    "wiki_page": "Color_Unit_Event_Instruction.txt",
+    "routine_header": "ColorUnit"
   },
   "0x33": {
     "name": "ChangeMapClut",
@@ -1097,27 +1216,33 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "routine_header": "ColorField",
+    "description": "Change map terrain CLUT (color palette)"
   },
   "0x34": {
     "name": "Unknown34",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
-    "tic_only": false
+    "tic_only": false,
+    "description": "Unknown",
+    "category": "screen"
   },
   "0x35": {
     "name": "Unknown35",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
-    "category": "screen"
+    "category": "screen",
+    "description": "Unknown"
   },
   "0x36": {
     "name": "DeadCode36",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
-    "category": "screen"
+    "category": "screen",
+    "description": "Dead code \u2014 never executed"
   },
   "0x37": {
     "name": "Unknown37",
@@ -1125,7 +1250,10 @@
     "operand_bytes_enhanced": 2,
     "tic_only": false,
     "wiki_name": "Never used",
-    "wiki_sig": "{39}"
+    "wiki_sig": "{39}",
+    "description": "Event Instruction 0x37 This page was last edited on 10 May 2025, at 14:34.",
+    "wiki_page": "Event_Instruction_0x37.txt",
+    "routine_header": "unknown"
   },
   "0x38": {
     "name": "_FocusSpeed",
@@ -1142,7 +1270,10 @@
         "type": "U8",
         "description": "FFHacktics: +SPEED"
       }
-    ]
+    ],
+    "description": "Focus Speed Event Instruction #   ROUTINE: FOCUS SPEED EVENT INSTRUCTION #           r4 = (params) Event instruction parameters",
+    "wiki_page": "Focus_Speed_Event_Instruction.txt",
+    "routine_header": "FocusSpeed"
   },
   "0x39": {
     "name": "WaitCharacterMoveWotL",
@@ -1150,7 +1281,10 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "gibbed_note": "39",
-    "category": "unit"
+    "category": "unit",
+    "description": "Event Instruction 0x39 This page was last edited on 10 May 2025, at 14:31.",
+    "wiki_page": "Event_Instruction_0x39.txt",
+    "routine_header": "unknown"
   },
   "0x3A": {
     "name": "WaitFileRead",
@@ -1158,7 +1292,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "gibbed_note": "3A",
-    "category": "timing"
+    "category": "timing",
+    "routine_header": "unknown, runs Check File Still Loading routine and waits for it to finish",
+    "description": "Wait until a file finishes loading"
   },
   "0x3B": {
     "name": "MoveSprite",
@@ -1210,7 +1346,9 @@
         "type": "U8",
         "description": "FFHacktics: +TIMER"
       }
-    ]
+    ],
+    "routine_header": "SpriteMove & {6E} SpriteMoveBeta",
+    "description": "Smoothly move a sprite to a position over time"
   },
   "0x3C": {
     "name": "ChangeWeather",
@@ -1238,7 +1376,8 @@
       }
     ],
     "description": "Change the weather effect (rain, snow, etc.)",
-    "category": "screen"
+    "category": "screen",
+    "routine_header": "Weather"
   },
   "0x3D": {
     "name": "DisappearUnit",
@@ -1260,7 +1399,9 @@
         "type": "U8",
         "description": "FFHacktics: xMD"
       }
-    ]
+    ],
+    "routine_header": "RemoveUnit",
+    "description": "Remove a unit from the map"
   },
   "0x3E": {
     "name": "SetChangePaletteData",
@@ -1312,7 +1453,9 @@
         "type": "U8",
         "description": "FFHacktics: +TIMER"
       }
-    ]
+    ],
+    "routine_header": "ColorScreen",
+    "description": "Apply a color tint to the entire screen"
   },
   "0x3F": {
     "name": "ChangeMapD",
@@ -1321,14 +1464,20 @@
     "tic_only": false,
     "gibbed_note": "3F",
     "wiki_name": "Never used",
-    "wiki_sig": "{40}"
+    "wiki_sig": "{40}",
+    "routine_header": "unknown",
+    "description": "Unknown \u2014 related to tile data",
+    "category": "screen"
   },
   "0x40": {
     "name": "ChangeMapSTP",
     "operand_bytes_classic": 5,
     "operand_bytes_enhanced": 5,
     "tic_only": false,
-    "gibbed_note": "40"
+    "gibbed_note": "40",
+    "routine_header": "unknown, something to do with tile data",
+    "description": "Unknown \u2014 modifies tile data",
+    "category": "screen"
   },
   "0x41": {
     "name": "StartShake",
@@ -1361,7 +1510,8 @@
       }
     ],
     "description": "Start an earthquake/screen shake effect",
-    "category": "screen"
+    "category": "screen",
+    "routine_header": "EarthquakeStart"
   },
   "0x42": {
     "name": "StopShake",
@@ -1370,7 +1520,10 @@
     "tic_only": false,
     "gibbed_note": "42",
     "wiki_name": "EarthquakeEnd",
-    "wiki_sig": "EarthquakeEnd()"
+    "wiki_sig": "EarthquakeEnd()",
+    "routine_header": "EarthquakeEnd",
+    "description": "Stop the earthquake/screen shake effect",
+    "category": "screen"
   },
   "0x43": {
     "name": "_CallFunction",
@@ -1386,7 +1539,10 @@
         "type": "U8",
         "description": "FFHacktics: xFC"
       }
-    ]
+    ],
+    "routine_header": "CallFunction",
+    "description": "Call a built-in engine function by ID",
+    "category": "unit"
   },
   "0x44": {
     "name": "_Draw",
@@ -1407,7 +1563,11 @@
         "type": "U8",
         "description": "FFHacktics: xAS"
       }
-    ]
+    ],
+    "description": "Event Instruction 0x44: Draw This page was last edited on 19 April 2017, at 23:04.",
+    "wiki_page": "Event_Instruction_0x44__Draw.txt",
+    "routine_header": "Draw",
+    "category": "unit"
   },
   "0x45": {
     "name": "LoadAnimation",
@@ -1434,7 +1594,9 @@
         "type": "U8",
         "description": "Drawing/render mode"
       }
-    ]
+    ],
+    "routine_header": "AddUnit",
+    "description": "Add a unit to the battlefield from ENTD data"
   },
   "0x46": {
     "name": "DeactivateAnimation",
@@ -1455,7 +1617,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "Erase",
+    "description": "Erase/remove a unit's visual sprite",
+    "category": "unit"
   },
   "0x47": {
     "name": "ActivateAnimation",
@@ -1514,7 +1679,8 @@
       }
     ],
     "description": "Add a temporary event unit (ghost unit) to the map",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "AddGhostUnit"
   },
   "0x48": {
     "name": "WaitLoadAnimation",
@@ -1525,7 +1691,8 @@
     "wiki_name": "WaitAddUnit",
     "wiki_sig": "WaitAddUnit()",
     "description": "Wait for a ghost unit (AddUnit) to finish loading",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "WaitAddUnit"
   },
   "0x49": {
     "name": "ActivateAnimationStart",
@@ -1536,7 +1703,8 @@
     "wiki_name": "AddUnitStart",
     "wiki_sig": "AddUnitStart()",
     "description": "Signal that a ghost/added unit is ready to appear",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "AddUnitStart"
   },
   "0x4A": {
     "name": "ActivateAnimationEnd",
@@ -1546,7 +1714,9 @@
     "gibbed_note": "4A",
     "wiki_name": "AddUnitEnd",
     "wiki_sig": "AddUnitEnd()",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "AddUnitEnd",
+    "description": "Signal end of unit addition sequence"
   },
   "0x4B": {
     "name": "WaitActivateAnimation",
@@ -1556,7 +1726,9 @@
     "gibbed_note": "4B",
     "wiki_name": "WaitAddUnitEnd",
     "wiki_sig": "WaitAddUnitEnd()",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "WaitAddUnitEnd",
+    "description": "Wait for the AddUnit sequence to complete"
   },
   "0x4C": {
     "name": "JumpMap2",
@@ -1578,7 +1750,9 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "ChangeMap",
+    "description": "Change to a different map"
   },
   "0x4D": {
     "name": "_Reveal",
@@ -1594,7 +1768,10 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "routine_header": "Reveal",
+    "description": "Reveal/show a hidden unit",
+    "category": "unit"
   },
   "0x4E": {
     "name": "SetAnimationShadow",
@@ -1621,7 +1798,9 @@
         "type": "U8",
         "description": "FFHacktics: xSH"
       }
-    ]
+    ],
+    "routine_header": "AddUnit",
+    "description": "Add a unit (variant \u2014 uses different loading path)"
   },
   "0x4F": {
     "name": "SetDaytime",
@@ -1637,7 +1816,10 @@
         "type": "U8",
         "description": "Dialog target ID"
       }
-    ]
+    ],
+    "routine_header": "SetDaytime",
+    "description": "Set the time of day (affects lighting/shadows)",
+    "category": "screen"
   },
   "0x50": {
     "name": "SetFace",
@@ -1654,7 +1836,10 @@
         "type": "U8",
         "description": "FFHacktics: xPC"
       }
-    ]
+    ],
+    "description": "PortraitCol Event Instruction This page was last edited on 10 May 2025, at 00:19.",
+    "wiki_page": "PortraitCol_Event_Instruction.txt",
+    "routine_header": "PortraitCol"
   },
   "0x51": {
     "name": "_ChangeDialog",
@@ -1686,7 +1871,9 @@
         "type": "U8",
         "description": "FFHacktics: xPP"
       }
-    ]
+    ],
+    "routine_header": "ChangeDialog",
+    "description": "Change dialogue balloon type mid-conversation"
   },
   "0x52": {
     "name": "Unknown52",
@@ -1739,7 +1926,9 @@
         "type": "U8",
         "description": "FFHacktics: xDL"
       }
-    ]
+    ],
+    "routine_header": "FaceUnit",
+    "description": "Make a unit face another unit"
   },
   "0x54": {
     "name": "StartModelAnimation",
@@ -1762,7 +1951,8 @@
       }
     ],
     "description": "Start a 3D object/model animation",
-    "category": "model"
+    "category": "model",
+    "routine_header": "Use3DObject"
   },
   "0x55": {
     "name": "StartVRAMAnimation",
@@ -1783,7 +1973,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "UseFieldObject",
+    "description": "Activate a field object animation",
+    "category": "unit"
   },
   "0x56": {
     "name": "WaitModelAnimation",
@@ -1793,7 +1986,9 @@
     "gibbed_note": "56",
     "wiki_name": "Wait3DObject",
     "wiki_sig": "Wait3DObject()",
-    "category": "timing"
+    "category": "timing",
+    "routine_header": "Wait3DObject",
+    "description": "Wait for a 3D object animation to complete"
   },
   "0x57": {
     "name": "WaitVRAMAnimation",
@@ -1803,7 +1998,9 @@
     "gibbed_note": "57",
     "wiki_name": "WaitFieldObject",
     "wiki_sig": "WaitFieldObject()",
-    "category": "timing"
+    "category": "timing",
+    "routine_header": "WaitFieldObject",
+    "description": "Wait for a field object animation to complete"
   },
   "0x58": {
     "name": "LoadEventCharacter",
@@ -1829,7 +2026,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "LoadEVTCHR",
+    "description": "Load an EVTCHR (event character sprite sheet)",
+    "category": "unit"
   },
   "0x59": {
     "name": "ActivateEventCharacter",
@@ -1845,7 +2045,10 @@
         "type": "U8",
         "description": "Block/slot ID"
       }
-    ]
+    ],
+    "routine_header": "SaveEVTCHR",
+    "description": "Save current EVTCHR data to memory",
+    "category": "unit"
   },
   "0x5A": {
     "name": "DeactivateEventCharacter",
@@ -1867,7 +2070,9 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "SaveEVTCHRClear",
+    "description": "Clear and save EVTCHR data"
   },
   "0x5B": {
     "name": "DisposeEventCharacter",
@@ -1888,7 +2093,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "LoadEVTCHRClear",
+    "description": "Load and clear EVTCHR data",
+    "category": "unit"
   },
   "0x5C": {
     "name": "ActivateCompressedAnimation",
@@ -1897,7 +2105,10 @@
     "tic_only": false,
     "gibbed_note": "5C",
     "wiki_name": "Never used",
-    "wiki_sig": "{5D} Never used"
+    "wiki_sig": "{5D} Never used",
+    "routine_header": "unknown",
+    "description": "Unknown \u2014 activates compressed animation data",
+    "category": "unit"
   },
   "0x5D": {
     "name": "DeactivateCompressedAnimation",
@@ -1906,7 +2117,10 @@
     "tic_only": false,
     "gibbed_note": "5D",
     "wiki_name": "Never used",
-    "wiki_sig": "{61} Never used"
+    "wiki_sig": "{61} Never used",
+    "routine_header": "unknown, saves Parameter 1 value to 0x80173F48",
+    "description": "Unknown \u2014 deactivates compressed animation, saves param to 0x80173F48",
+    "category": "unit"
   },
   "0x5E": {
     "name": "DisposeMusic",
@@ -1923,7 +2137,9 @@
         "type": "U8",
         "description": "FFHacktics: x??"
       }
-    ]
+    ],
+    "routine_header": "EndTrack",
+    "description": "End/stop the current music track"
   },
   "0x5F": {
     "name": "SetAnimationPosition",
@@ -1965,7 +2181,9 @@
         "type": "U8",
         "description": "Direction facing (0=S,1=W,2=N,3=E)"
       }
-    ]
+    ],
+    "routine_header": "WarpUnit",
+    "description": "Instantly warp a unit to a new position"
   },
   "0x60": {
     "name": "FadeMusic",
@@ -1987,7 +2205,9 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "routine_header": "FadeSound",
+    "description": "Fade the current sound/music volume"
   },
   "0x61": {
     "name": "Unknown61",
@@ -1996,7 +2216,9 @@
     "tic_only": false,
     "gibbed_note": "61",
     "wiki_name": "Never used",
-    "wiki_sig": "{62} Never used"
+    "wiki_sig": "{62} Never used",
+    "description": "No operation (placeholder)",
+    "category": "unit"
   },
   "0x62": {
     "name": "Unknown62",
@@ -2005,7 +2227,10 @@
     "tic_only": false,
     "gibbed_note": "62",
     "wiki_name": "Never used",
-    "wiki_sig": "{66}"
+    "wiki_sig": "{66}",
+    "routine_header": "unknown, saves some values to the unit's X, Y, and elevation/facing",
+    "description": "Unknown \u2014 modifies unit X, Y, and elevation/facing",
+    "category": "unit"
   },
   "0x63": {
     "name": "SetMoveCameraFlags",
@@ -2023,7 +2248,8 @@
         "type": "U8",
         "description": "Speed curve type"
       }
-    ]
+    ],
+    "routine_header": "CameraSpeedCurve"
   },
   "0x64": {
     "name": "WaitDirection",
@@ -2046,7 +2272,8 @@
       }
     ],
     "description": "Wait for a unit to finish turning/rotating",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "WaitRotateUnit"
   },
   "0x65": {
     "name": "WaitDirectionAll",
@@ -2056,21 +2283,29 @@
     "gibbed_note": "65",
     "wiki_name": "WaitRotateAll",
     "wiki_sig": "WaitRotateAll()",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "WaitRotateAll",
+    "description": "Wait for ALL units to finish rotating"
   },
   "0x66": {
     "name": "SetPresentClutDataAsDefault",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "66 - choose better name"
+    "gibbed_note": "66 - choose better name",
+    "description": "Event Instruction 0x66 These values are consistent when this routine is called by both Event Instruction Main Routine and 000f6f18 - 000f929c. # if r6 =/= 1 (never runs?)",
+    "wiki_page": "Event_Instruction_0x66.txt",
+    "routine_header": "unknown",
+    "category": "unit"
   },
   "0x67": {
     "name": "DeadCode67",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
-    "notes": "All 10 uses are after EventEnd. Gibbed: Invalid (no handler). Vestigial/unreachable."
+    "notes": "All 10 uses are after EventEnd. Gibbed: Invalid (no handler). Vestigial/unreachable.",
+    "description": "OPEN.BIN Button Input Related 1 (0x67d84) #       // Perform reset sequence? This page was last edited on 23 May 2025, at 22:24.",
+    "wiki_page": "OPEN.BIN_Button_Input_Related_1_(0x67d84).txt"
   },
   "0x68": {
     "name": "SetAnimationHorizontalFlip",
@@ -2097,7 +2332,10 @@
         "type": "U8",
         "description": "FFHacktics: xMI"
       }
-    ]
+    ],
+    "description": "OPEN.BIN Button Input Related 2 (0x68268) #   ROUTINE:\u00a0? 0x68268 #       Checks for button input?",
+    "wiki_page": "OPEN.BIN_Button_Input_Related_2_(0x68268).txt",
+    "routine_header": "MirrorSprite"
   },
   "0x69": {
     "name": "Direction4",
@@ -2149,7 +2387,10 @@
         "type": "U8",
         "description": "FFHacktics: xDL"
       }
-    ]
+    ],
+    "description": "OPEN.BIN Birthday Menu Related (0x6920c) #   ROUTINE:\u00a0? 0x6920c (Birthday menu related?) #       Mostly for menu graphics?",
+    "wiki_page": "OPEN.BIN_Birthday_Menu_Related_(0x6920c).txt",
+    "routine_header": "FaceTile"
   },
   "0x6A": {
     "name": "FadeSoundEffect",
@@ -2186,7 +2427,10 @@
         "type": "U8",
         "description": "FFHacktics: xWT"
       }
-    ]
+    ],
+    "description": "#   ROUTINE:\u00a0? 0x6aed0 #           r4 = (p1) Struct data #               First 8 entries are 4-byte values, and final 3 are 1-byte values.",
+    "wiki_page": "0x6aed0.txt",
+    "routine_header": "EditBGSound"
   },
   "0x6B": {
     "name": "PlaySoundEffect",
@@ -2224,7 +2468,8 @@
       }
     ],
     "description": "Play a background sound effect with echo, volume, and timing control",
-    "category": "audio"
+    "category": "audio",
+    "routine_header": "BGSound"
   },
   "0x6C": {
     "name": "SetAnimationColorChangeOff",
@@ -2234,7 +2479,10 @@
     "gibbed_note": "6C",
     "wiki_name": "Never used",
     "wiki_sig": "{6D}",
-    "category": "screen"
+    "category": "screen",
+    "description": "Event Instruction 0x6C and 0x6D This page was last edited on 10 May 2025, at 14:33.",
+    "wiki_page": "Event_Instruction_0x6C_and_0x6D.txt",
+    "routine_header": "unknown"
   },
   "0x6D": {
     "name": "SetAnimationColorChangeOn",
@@ -2242,7 +2490,9 @@
     "operand_bytes_enhanced": 2,
     "tic_only": false,
     "gibbed_note": "6D",
-    "category": "screen"
+    "category": "screen",
+    "routine_header": "unknown",
+    "description": "Unknown \u2014 paired with 0x6C, related to animation color"
   },
   "0x6E": {
     "name": "MoveSprite2",
@@ -2294,7 +2544,8 @@
         "type": "U8",
         "description": "FFHacktics: +SPEED"
       }
-    ]
+    ],
+    "description": "Move sprite (beta/alternate version of SpriteMove)"
   },
   "0x6F": {
     "name": "WaitMoveSprite",
@@ -2316,7 +2567,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "WaitSpriteMove Event Instruction This page was last edited on 10 May 2025, at 14:31.",
+    "wiki_page": "WaitSpriteMove_Event_Instruction.txt",
+    "routine_header": "WaitSpriteMove"
   },
   "0x70": {
     "name": "JumpToPanel",
@@ -2348,14 +2602,19 @@
         "type": "U8",
         "description": "Drawing/render mode"
       }
-    ]
+    ],
+    "routine_header": "Jump",
+    "description": "Make a unit perform a jump animation to a tile"
   },
   "0x71": {
     "name": "RaiseAnimationPriority",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
-    "gibbed_note": "71"
+    "gibbed_note": "71",
+    "routine_header": "unknown, something with misc ID",
+    "description": "Unknown \u2014 related to Misc ID processing",
+    "category": "unit"
   },
   "0x72": {
     "name": "ForceStop",
@@ -2364,7 +2623,10 @@
     "tic_only": false,
     "gibbed_note": "72 - unused?",
     "wiki_name": "Never used",
-    "wiki_sig": "{73}"
+    "wiki_sig": "{73}",
+    "description": "Event Instruction 0x72 This page was last edited on 24 November 2025, at 10:12.",
+    "wiki_page": "Event_Instruction_0x72.txt",
+    "routine_header": "unknown"
   },
   "0x73": {
     "name": "MoveCamera2",
@@ -2372,7 +2634,9 @@
     "operand_bytes_enhanced": 14,
     "tic_only": false,
     "description": "Alternate camera movement (similar to MoveCamera)",
-    "category": "camera"
+    "category": "camera",
+    "wiki_page": "Event_Instruction_0x73.txt",
+    "routine_header": "unknown, uses a jal shared by CameraFusion"
   },
   "0x74": {
     "name": "Unknown74",
@@ -2380,13 +2644,17 @@
     "operand_bytes_enhanced": 6,
     "tic_only": false,
     "wiki_name": "Never used",
-    "wiki_sig": "{75}"
+    "wiki_sig": "{75}",
+    "description": "No operation (but with extra initialization steps)",
+    "category": "unit"
   },
   "0x75": {
     "name": "InitScript",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
-    "tic_only": false
+    "tic_only": false,
+    "description": "No operation (placeholder)",
+    "category": "unit"
   },
   "0x76": {
     "name": "StartWipe",
@@ -2428,7 +2696,10 @@
         "type": "U8",
         "description": "FFHacktics: SES"
       }
-    ]
+    ],
+    "description": "This page was last edited on 7 January 2017, at 05:53.",
+    "wiki_page": "Event_Instruction_0x76__DarkScreen.txt",
+    "routine_header": "DarkScreen"
   },
   "0x77": {
     "name": "StopWipe",
@@ -2438,7 +2709,9 @@
     "gibbed_note": "77",
     "wiki_name": "RemoveDarkScreen",
     "wiki_sig": "RemoveDarkScreen()",
-    "category": "unit"
+    "category": "unit",
+    "routine_header": "RemoveDarkScreen",
+    "description": "Remove the dark screen overlay"
   },
   "0x78": {
     "name": "_DisplayConditions",
@@ -2459,7 +2732,10 @@
         "type": "U8",
         "description": "FFHacktics: DST"
       }
-    ]
+    ],
+    "description": "Event Instruction 0x78: DisplayConditions #   {78} DisplayConditions #   if ((threadID == 4)",
+    "wiki_page": "Event_Instruction_0x78__DisplayConditions.txt",
+    "routine_header": "DisplayConditions"
   },
   "0x79": {
     "name": "_WalkToAnim",
@@ -2486,7 +2762,9 @@
         "type": "U16",
         "description": "Animation index"
       }
-    ]
+    ],
+    "routine_header": "WalkToAnim",
+    "description": "Walk to a tile with a custom animation"
   },
   "0x7A": {
     "name": "EraseUnit",
@@ -2508,7 +2786,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "Dismiss Unit Event Instruction #   ROUTINE: DismissUnit Event Instruction #           r4 = (baseClass) Unit base class to dismiss",
+    "wiki_page": "Dismiss_Unit_Event_Instruction.txt",
+    "routine_header": "DismissUnit"
   },
   "0x7B": {
     "name": "TutorialButtonWait",
@@ -2525,7 +2806,9 @@
         "type": "U8",
         "description": "Button mask"
       }
-    ]
+    ],
+    "routine_header": "(TutorialButtonWait) Waits for the specified button press (Tutorials/Records only)",
+    "description": "Wait for a specific button press (tutorial/records only)"
   },
   "0x7C": {
     "name": "StopAllEffects",
@@ -2535,7 +2818,9 @@
     "gibbed_note": "7C",
     "wiki_name": "EndSound",
     "wiki_sig": "EndSound()",
-    "category": "audio"
+    "category": "audio",
+    "routine_header": "(EndSound) Stops all SoundEffects and BGSounds",
+    "description": "Stop all currently playing sound effects and background sounds"
   },
   "0x7D": {
     "name": "DisplayChapter",
@@ -2551,7 +2836,10 @@
         "type": "U8",
         "description": "FFHacktics: xGR"
       }
-    ]
+    ],
+    "routine_header": "ShowGraphic",
+    "description": "Display a 2D graphic overlay on screen",
+    "category": "screen"
   },
   "0x7E": {
     "name": "WaitEventFlag",
@@ -2573,7 +2861,10 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Wait Value Event Instruction #   ROUTINE: WaitValue event instruction #           r4 = (params) Event instruction parameters",
+    "wiki_page": "Wait_Value_Event_Instruction.txt",
+    "routine_header": "WaitValue"
   },
   "0x7F": {
     "name": "SetEventCharacterClut",
@@ -2604,7 +2895,10 @@
         "type": "U8",
         "description": "FFHacktics: xPL"
       }
-    ]
+    ],
+    "routine_header": "EVTCHRPalette",
+    "description": "Change EVTCHR sprite palette",
+    "category": "unit"
   },
   "0x80": {
     "name": "RequestStandardAnimation",
@@ -2630,7 +2924,11 @@
         "type": "U8",
         "description": "Short duration"
       }
-    ]
+    ],
+    "description": "This page was last edited on 12 June 2025, at 02:00.",
+    "wiki_page": "Set_r2_=_0x801C9E84.txt",
+    "routine_header": "March",
+    "category": "unit"
   },
   "0x81": {
     "name": "SetAnimationSound",
@@ -2640,7 +2938,9 @@
     "gibbed_note": "81",
     "wiki_name": "Never used",
     "wiki_sig": "{82}",
-    "category": "audio"
+    "category": "audio",
+    "routine_header": "unknown",
+    "description": "Unknown \u2014 related to march animation"
   },
   "0x82": {
     "name": "WaitLoadAnimation2",
@@ -2648,7 +2948,10 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "gibbed_note": "82",
-    "category": "timing"
+    "category": "timing",
+    "description": "Event Instruction 0x82 < BATTLE.BIN Routines # WORLD.BIN: 000f2134 - 000f2188",
+    "wiki_page": "Event_Instruction_0x82.txt",
+    "routine_header": "unknown"
   },
   "0x83": {
     "name": "_ChangeStats",
@@ -2679,7 +2982,11 @@
         "type": "U8",
         "description": "FFHacktics: +VALUE"
       }
-    ]
+    ],
+    "description": "ChangeStats Event Instruction Parameters: r4 = Event parameters pointer Offsets: 0x00 Affected Units",
+    "wiki_page": "ChangeStats_Event_Instruction.txt",
+    "routine_header": "ChangeStats",
+    "category": "status"
   },
   "0x84": {
     "name": "PlayJingle",
@@ -2695,7 +3002,10 @@
         "type": "U8",
         "description": "FFHacktics: xSG"
       }
-    ]
+    ],
+    "routine_header": "PlayTune",
+    "description": "Play a music tune/jingle",
+    "category": "audio"
   },
   "0x85": {
     "name": "ChangeTreasureFindDay",
@@ -2711,7 +3021,11 @@
         "type": "U8",
         "description": "FFHacktics: xTL"
       }
-    ]
+    ],
+    "description": "UnlockDate Event Instruction This page was last edited on 10 May 2025, at 14:36.",
+    "wiki_page": "UnlockDate_Event_Instruction.txt",
+    "routine_header": "UnlockDate",
+    "category": "status"
   },
   "0x86": {
     "name": "EquipWeapon",
@@ -2737,7 +3051,10 @@
         "type": "U8",
         "description": "FFHacktics: xIT"
       }
-    ]
+    ],
+    "routine_header": "TempWeapon",
+    "description": "Temporarily equip a weapon on a unit (visual only)",
+    "category": "unit"
   },
   "0x87": {
     "name": "UseGun",
@@ -2768,7 +3085,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "Arrow",
+    "description": "Display an arrow indicator on the map",
+    "category": "unit"
   },
   "0x88": {
     "name": "RestartMapPaletteAnimation",
@@ -2777,7 +3097,10 @@
     "tic_only": false,
     "gibbed_note": "88",
     "wiki_name": "MapUnfreeze",
-    "wiki_sig": "MapUnfreeze()"
+    "wiki_sig": "MapUnfreeze()",
+    "routine_header": "MapUnfreeze",
+    "description": "Unfreeze the map (resume map animations)",
+    "category": "status"
   },
   "0x89": {
     "name": "StopMapPaletteAnimation",
@@ -2786,7 +3109,10 @@
     "tic_only": false,
     "gibbed_note": "89",
     "wiki_name": "MapFreeze",
-    "wiki_sig": "MapFreeze()"
+    "wiki_sig": "MapFreeze()",
+    "routine_header": "MapFreeze",
+    "description": "Freeze the map (pause map animations)",
+    "category": "status"
   },
   "0x8A": {
     "name": "WaitEffectLoad",
@@ -2796,7 +3122,9 @@
     "gibbed_note": "8A",
     "wiki_name": "EffectStart",
     "wiki_sig": "EffectStart()",
-    "category": "screen"
+    "category": "screen",
+    "routine_header": "EffectStart",
+    "description": "Start playing a visual effect"
   },
   "0x8B": {
     "name": "PlayEffect",
@@ -2806,7 +3134,10 @@
     "gibbed_note": "8B",
     "wiki_name": "EffectEnd",
     "wiki_sig": "EffectEnd()",
-    "category": "screen"
+    "category": "screen",
+    "description": "Get Facing Short from Misc Data (Redirected from 0x8bf1c) Get Current Facing Short from Misc Data",
+    "wiki_page": "0x8bf1c.txt",
+    "routine_header": "EffectEnd"
   },
   "0x8C": {
     "name": "SetAnimationFlipDirection",
@@ -2843,7 +3174,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "UnitAnimRotate Event Instruction This page was last edited on 10 May 2025, at 14:33.",
+    "wiki_page": "UnitAnimRotate_Event_Instruction.txt",
+    "routine_header": "UnitAnimRotate"
   },
   "0x8D": {
     "name": "Unknown8D",
@@ -2879,7 +3213,9 @@
     "gibbed_note": "8E",
     "wiki_name": "WaitGraphicPrint",
     "wiki_sig": "WaitGraphicPrint()",
-    "category": "timing"
+    "category": "timing",
+    "routine_header": "WaitGraphicPrint",
+    "description": "Wait for a graphic print/display to complete"
   },
   "0x8F": {
     "name": "AllGrayFilter",
@@ -2895,7 +3231,8 @@
       }
     ],
     "description": "Apply/remove a grayscale filter over the screen",
-    "category": "screen"
+    "category": "screen",
+    "routine_header": "(LockMenuInput)"
   },
   "0x90": {
     "name": "WaitActivePanel",
@@ -2922,7 +3259,9 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "(TutorialCoordinateConfirm)",
+    "description": "Wait for Circle to be pressed at the specified coordinates."
   },
   "0x91": {
     "name": "DisplayMapTitle",
@@ -2948,7 +3287,10 @@
         "type": "S8",
         "description": "Speed (signed)"
       }
-    ]
+    ],
+    "description": "Event Instruction 0x91: ShowMapTitle #   {91} ShowMapTitle This page was last edited on 24 January 2017, at 22:59.",
+    "wiki_page": "Event_Instruction_0x91__ShowMapTitle.txt",
+    "routine_header": "ShowMapTitle"
   },
   "0x92": {
     "name": "_InflictStatus",
@@ -2981,14 +3323,19 @@
       }
     ],
     "description": "Inflict a status effect on a unit",
-    "category": "unit"
+    "category": "unit",
+    "wiki_page": "Inflict_Status_Event_Command.txt",
+    "routine_header": "InflictStatus"
   },
   "0x93": {
     "name": "WriteEventFlag",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
-    "gibbed_note": "93"
+    "gibbed_note": "93",
+    "routine_header": "- advances the date upon returning to the world map",
+    "description": "Advance the in-game date upon returning to world map",
+    "category": "status"
   },
   "0x94": {
     "name": "TeleportOut",
@@ -3009,7 +3356,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "TeleportOut Event Instruction This page was last edited on 10 May 2025, at 14:32.",
+    "wiki_page": "TeleportOut_Event_Instruction.txt",
+    "routine_header": "TeleportOut"
   },
   "0x95": {
     "name": "Unknown95",
@@ -3018,7 +3368,10 @@
     "tic_only": false,
     "gibbed_note": "95",
     "wiki_name": "Never used",
-    "wiki_sig": "{C0} Never used"
+    "wiki_sig": "{C0} Never used",
+    "routine_header": "| GOTO (past the) END",
+    "description": "00143bd8 - 001449f8: Event Instruction Main Routine 1 | 001449fc - 00145750: Event Instruction Main Routine 2",
+    "category": "status"
   },
   "0x96": {
     "name": "_AppendMapState",
@@ -3027,7 +3380,10 @@
     "tic_only": false,
     "gibbed_note": "96",
     "wiki_name": "AppendMapState",
-    "wiki_sig": "AppendMapState()"
+    "wiki_sig": "AppendMapState()",
+    "routine_header": "AppendMapState",
+    "description": "Append additional state to the current map",
+    "category": "screen"
   },
   "0x97": {
     "name": "SetAnimationBrightColor",
@@ -3049,7 +3405,9 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "routine_header": "ResetPalette",
+    "description": "Reset a unit's sprite palette to default"
   },
   "0x98": {
     "name": "TeleportIn",
@@ -3070,7 +3428,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "TeleportIn Event Instruction This page was last edited on 10 May 2025, at 14:32.",
+    "wiki_page": "TeleportIn_Event_Instruction.txt",
+    "routine_header": "TeleportIn"
   },
   "0x99": {
     "name": "_BlueRemoveUnit",
@@ -3092,7 +3453,10 @@
         "type": "U8",
         "description": "Always 0"
       }
-    ]
+    ],
+    "description": "BlueRemoveUnit Event Instruction (Redirected from Event Instruction 0x99: BlueRemoveUnit) This page was last edited on 18 October 2025, at 19:10.",
+    "wiki_page": "Event_Instruction_0x99__BlueRemoveUnit.txt",
+    "routine_header": "BlueRemoveUnit"
   },
   "0x9A": {
     "name": "ResetTextIncrement",
@@ -3207,7 +3571,9 @@
     "tic_only": false,
     "gibbed_note": "A0",
     "wiki_name": "LTE",
-    "wiki_sig": "LTE()"
+    "wiki_sig": "LTE()",
+    "description": "Conditional: compare script variable (==)",
+    "category": "script_variable"
   },
   "0xA1": {
     "name": "GreaterThanEquals",
@@ -3216,7 +3582,9 @@
     "tic_only": false,
     "gibbed_note": "A1",
     "wiki_name": "GTE",
-    "wiki_sig": "GTE()"
+    "wiki_sig": "GTE()",
+    "description": "Conditional: compare script variable (!=)",
+    "category": "script_variable"
   },
   "0xA2": {
     "name": "Equals",
@@ -3225,7 +3593,9 @@
     "tic_only": false,
     "gibbed_note": "A2",
     "wiki_name": "EQ",
-    "wiki_sig": "EQ()"
+    "wiki_sig": "EQ()",
+    "description": "Conditional: compare script variable (>)",
+    "category": "script_variable"
   },
   "0xA3": {
     "name": "NotEquals",
@@ -3235,7 +3605,8 @@
     "gibbed_note": "A3",
     "wiki_name": "NEQ",
     "wiki_sig": "NEQ()",
-    "category": "flow_control"
+    "category": "flow_control",
+    "description": "Conditional: compare script variable (>=)"
   },
   "0xA4": {
     "name": "LessThan",
@@ -3244,7 +3615,9 @@
     "tic_only": false,
     "gibbed_note": "A4",
     "wiki_name": "LT",
-    "wiki_sig": "LT()"
+    "wiki_sig": "LT()",
+    "description": "Conditional: compare script variable (<)",
+    "category": "script_variable"
   },
   "0xA5": {
     "name": "GreaterThan",
@@ -3253,7 +3626,9 @@
     "tic_only": false,
     "gibbed_note": "A5",
     "wiki_name": "GT",
-    "wiki_sig": "GT()"
+    "wiki_sig": "GT()",
+    "description": "Conditional: compare script variable (<=)",
+    "category": "script_variable"
   },
   "0xA6": {
     "name": "BeginCutscene",
@@ -3276,7 +3651,8 @@
     "tic_only": true,
     "gibbed_note": "A8",
     "gibbed_operands": "U16=entity_id, U32=render_param. Writes U32 to anim_struct[343] via TIC render pipeline.",
-    "category": "unit"
+    "category": "unit",
+    "description": "Set sprite render parameter (TIC exclusive)"
   },
   "0xA9": {
     "name": "InitSpriteRender",
@@ -3301,7 +3677,8 @@
     "operand_bytes_enhanced": 4,
     "tic_only": true,
     "gibbed_note": "AB",
-    "category": "dialogue"
+    "category": "dialogue",
+    "description": "Display battle message UI (TIC exclusive, enhanced mode)"
   },
   "0xAC": {
     "name": "LUI",
@@ -3330,7 +3707,8 @@
     "operand_bytes_enhanced": 8,
     "tic_only": true,
     "gibbed_note": "AD",
-    "category": "screen"
+    "category": "screen",
+    "description": "Change depth-based post-processing LUT (TIC exclusive)"
   },
   "0xAE": {
     "name": "ChangePostEffectLUT",
@@ -3352,7 +3730,8 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Change post-processing color LUT (TIC exclusive)"
   },
   "0xAF": {
     "name": "SETVar",
@@ -3394,7 +3773,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Script variable assignment (=)",
+    "category": "script_variable"
   },
   "0xB1": {
     "name": "AddVar",
@@ -3415,7 +3796,9 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Script variable addition (+=)",
+    "category": "script_variable"
   },
   "0xB2": {
     "name": "Sub",
@@ -3436,7 +3819,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Script variable subtraction (-=)",
+    "category": "script_variable"
   },
   "0xB3": {
     "name": "SubVar",
@@ -3457,7 +3842,9 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Script variable multiplication (*=)",
+    "category": "script_variable"
   },
   "0xB4": {
     "name": "Mul",
@@ -3478,7 +3865,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Script variable division (/=)",
+    "category": "script_variable"
   },
   "0xB5": {
     "name": "MulVar",
@@ -3499,7 +3888,9 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Script variable modulo (%=)",
+    "category": "script_variable"
   },
   "0xB6": {
     "name": "Div",
@@ -3520,7 +3911,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Script variable bitwise AND (&=)",
+    "category": "script_variable"
   },
   "0xB7": {
     "name": "DivVar",
@@ -3541,7 +3934,9 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Script variable bitwise OR (|=)",
+    "category": "script_variable"
   },
   "0xB8": {
     "name": "Mod",
@@ -3562,7 +3957,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Script variable left shift (<<=)",
+    "category": "script_variable"
   },
   "0xB9": {
     "name": "ModVar",
@@ -3583,7 +3980,9 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Script variable right shift (>>=)",
+    "category": "script_variable"
   },
   "0xBA": {
     "name": "And",
@@ -3604,7 +4003,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Script variable increment (++)",
+    "category": "script_variable"
   },
   "0xBB": {
     "name": "AndVar",
@@ -3625,7 +4026,9 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Script variable decrement (--)",
+    "category": "script_variable"
   },
   "0xBC": {
     "name": "Or",
@@ -3646,7 +4049,9 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Script variable bitwise NOT (~)",
+    "category": "script_variable"
   },
   "0xBD": {
     "name": "OrVar",
@@ -3667,7 +4072,9 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Script variable compare (==)",
+    "category": "script_variable"
   },
   "0xBE": {
     "name": "Zero",
@@ -3683,7 +4090,9 @@
         "type": "U8",
         "description": "FFHacktics: xVARI"
       }
-    ]
+    ],
+    "description": "Script variable compare not equal (!=)",
+    "category": "script_variable"
   },
   "0xBF": {
     "name": "UnknownBF",
@@ -3713,7 +4122,9 @@
     "tic_only": false,
     "gibbed_note": "C0",
     "wiki_name": "Never used",
-    "wiki_sig": "{D4}"
+    "wiki_sig": "{D4}",
+    "description": "No operation",
+    "category": "flow_control"
   },
   "0xC1": {
     "name": "LoadAddress",
@@ -3843,7 +4254,8 @@
         "type": "U8",
         "description": "Portrait index"
       }
-    ]
+    ],
+    "description": "Change depth of field parameters (TIC exclusive)"
   },
   "0xC6": {
     "name": "TransformUnit",
@@ -3924,7 +4336,8 @@
     "operand_bytes_enhanced": 8,
     "tic_only": true,
     "gibbed_note": "CB",
-    "category": "screen"
+    "category": "screen",
+    "description": "Change glare/bloom post-processing (TIC exclusive)"
   },
   "0xCC": {
     "name": "ResetTurnCounter",
@@ -4014,7 +4427,9 @@
         "type": "U8",
         "description": "Forward jump distance"
       }
-    ]
+    ],
+    "routine_header": "JumpForwardIfZero",
+    "description": "(B) Block Start"
   },
   "0xD1": {
     "name": "SeekCodeForward",
@@ -4032,7 +4447,8 @@
       }
     ],
     "description": "Jump forward by N instruction blocks. Used for if/else branching.",
-    "category": "flow_control"
+    "category": "flow_control",
+    "routine_header": "JumpForward"
   },
   "0xD2": {
     "name": "SeekCodeForwardTarget",
@@ -4068,7 +4484,8 @@
       }
     ],
     "description": "Jump backward by N instruction blocks. Used for loops.",
-    "category": "flow_control"
+    "category": "flow_control",
+    "routine_header": "JumpBack"
   },
   "0xD4": {
     "name": "Terminate",
@@ -4084,7 +4501,8 @@
       }
     ],
     "description": "Terminate the current event script execution",
-    "category": "flow_control"
+    "category": "flow_control",
+    "routine_header": "| GOTO (past the) END"
   },
   "0xD5": {
     "name": "SeekCodeBackwardTarget",
@@ -4101,7 +4519,8 @@
         "type": "U8",
         "description": "Backward jump distance"
       }
-    ]
+    ],
+    "description": "Mark a backward jump target label"
   },
   "0xD6": {
     "name": "ConditionalStart",
@@ -4117,7 +4536,9 @@
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "D7"
+    "gibbed_note": "D7",
+    "description": "Unknown \u2014 flow control related",
+    "category": "flow_control"
   },
   "0xD8": {
     "name": "Nop_D8",
@@ -4126,7 +4547,9 @@
     "tic_only": false,
     "gibbed_note": "D8",
     "wiki_name": "Never used",
-    "wiki_sig": "{D9} Never used"
+    "wiki_sig": "{D9} Never used",
+    "description": "No operation (flow control placeholder)",
+    "category": "flow_control"
   },
   "0xD9": {
     "name": "DeadCode_D9",
@@ -4135,7 +4558,8 @@
     "tic_only": false,
     "gibbed_note": "D9",
     "wiki_name": "Never used",
-    "wiki_sig": "{DA} Never used"
+    "wiki_sig": "{DA} Never used",
+    "description": "No operation (flow control placeholder)"
   },
   "0xDA": {
     "name": "UnknownDA",
@@ -4144,7 +4568,9 @@
     "tic_only": false,
     "gibbed_note": "DA",
     "wiki_name": "Never used",
-    "wiki_sig": "{DC} Never used"
+    "wiki_sig": "{DC} Never used",
+    "description": "No operation (flow control placeholder)",
+    "category": "flow_control"
   },
   "0xDB": {
     "name": "_EventEnd",
@@ -4153,7 +4579,10 @@
     "tic_only": false,
     "gibbed_note": "DB - same handler as E3",
     "wiki_name": "EventEnd",
-    "wiki_sig": "EventEnd()"
+    "wiki_sig": "EventEnd()",
+    "routine_header": "EventEnd & {E3} EventEnd2",
+    "description": "End the current event and process scenario conditionals",
+    "category": "flow_control"
   },
   "0xDC": {
     "name": "UnknownDC",
@@ -4162,7 +4591,10 @@
     "tic_only": false,
     "gibbed_note": "DC - errorf = 13; unused?",
     "wiki_name": "Never used",
-    "wiki_sig": "{F0}"
+    "wiki_sig": "{F0}",
+    "routine_header": "unknown (Store 0x000D to 0x80165FB0)",
+    "description": "Unknown \u2014 stores 0x000D to a memory address",
+    "category": "flow_control"
   },
   "0xDD": {
     "name": "UnknownDD",
@@ -4250,7 +4682,8 @@
         "type": "U8",
         "description": "FFHacktics: xFL"
       }
-    ]
+    ],
+    "description": "No operation (placeholder)"
   },
   "0xE1": {
     "name": "UnknownE1",
@@ -4273,7 +4706,9 @@
     "tic_only": false,
     "gibbed_note": "E3 - same handler as DB",
     "wiki_name": "EventEnd2",
-    "wiki_sig": "EventEnd2()"
+    "wiki_sig": "EventEnd2()",
+    "description": "End event (variant 2 \u2014 same as EventEnd)",
+    "category": "flow_control"
   },
   "0xE4": {
     "name": "UnknownE4",
@@ -4303,7 +4738,9 @@
       }
     ],
     "description": "Wait until a previously started async instruction completes",
-    "category": "timing"
+    "category": "timing",
+    "wiki_page": "Event_Instruction_0xe5__WaitForInstruction.txt",
+    "routine_header": "WaitForInstruction"
   },
   "0xE6": {
     "name": "UnknownE6",
@@ -4351,7 +4788,8 @@
         "type": "U8",
         "description": "Height/elevation"
       }
-    ]
+    ],
+    "description": "Display on-screen caption text (TIC exclusive)"
   },
   "0xE8": {
     "name": "LoadTileData",
@@ -4477,7 +4915,9 @@
         "type": "U8",
         "description": "FFHacktics: xFL"
       }
-    ]
+    ],
+    "description": "Menu Scroll Related (0xebdcc) #       if (*p2 == 0) { #       if (p1.0x1e == *p2) {",
+    "wiki_page": "Menu_Scroll_Related_(0xebdcc).txt"
   },
   "0xEC": {
     "name": "ConditionalDefeat",
@@ -4515,7 +4955,8 @@
         "type": "U8",
         "description": "FFHacktics: LEN"
       }
-    ]
+    ],
+    "description": "Set unit transparency/alpha (TIC exclusive)"
   },
   "0xEE": {
     "name": "UnknownEE",
@@ -4557,7 +4998,9 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "(Redirected from Load File (0xef82c)) # BATTLE.BIN: Load File (0x13bc14) This page was last edited on 29 November 2025, at 19:43.",
+    "wiki_page": "Load_File_(0xef82c).txt"
   },
   "0xF0": {
     "name": "PlayMusic2",
@@ -4565,7 +5008,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "gibbed_note": "F0 - same handler as 22",
-    "category": "audio"
+    "category": "audio",
+    "routine_header": "unknown",
+    "description": "Unknown \u2014 pre-wait setup"
   },
   "0xF1": {
     "name": "_Wait",
@@ -4583,13 +5028,17 @@
       }
     ],
     "description": "Pause event execution for N frames (60fps). Wait(1)=16ms, Wait(60)=1sec",
-    "category": "timing"
+    "category": "timing",
+    "wiki_page": "Event_Instruction_0xf1__Wait.txt",
+    "routine_header": "Wait"
   },
   "0xF2": {
     "name": "_Pad",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "F2"
+    "gibbed_note": "F2",
+    "description": "{B0-BE} Script Variable Math Commands",
+    "category": "flow_control"
   }
 }
