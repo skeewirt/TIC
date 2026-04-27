@@ -120,7 +120,7 @@
     "wiki_sig": "GoToTarget(xTG)"
   },
   "0x0F": {
-    "name": "Unknown0F",
+    "name": "ScriptEnd",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false
@@ -988,7 +988,7 @@
     "wiki_sig": "{75}"
   },
   "0x75": {
-    "name": "Unknown75",
+    "name": "InitScript",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
     "tic_only": false
@@ -1251,7 +1251,7 @@
     "wiki_sig": "InflictStatus(xID,x00,xSS,x0C,x00)"
   },
   "0x93": {
-    "name": "Unknown93",
+    "name": "WriteEventFlag",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
@@ -1438,14 +1438,16 @@
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
     "tic_only": false,
-    "gibbed_note": "A8"
+    "gibbed_note": "A8",
+    "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?"
   },
   "0xA9": {
     "name": "UnknownA9",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
     "tic_only": false,
-    "gibbed_note": "A9"
+    "gibbed_note": "A9",
+    "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?"
   },
   "0xAA": {
     "name": "UnknownAA",
@@ -1664,7 +1666,8 @@
     "tic_only": false,
     "gibbed_note": "C2",
     "wiki_name": "UnitAddress",
-    "wiki_sig": "UnitAddress(xID,xVR)"
+    "wiki_sig": "UnitAddress(xID,xVR)",
+    "gibbed_operands": "Gibbed types: S32 (not U32)"
   },
   "0xC3": {
     "name": "WorldUnitAddress",
@@ -1682,7 +1685,8 @@
     "tic_only": false,
     "gibbed_note": "C4",
     "wiki_name": "SaveAddress",
-    "wiki_sig": "SaveAddress(xVR,xVALU,xVA,LEN)"
+    "wiki_sig": "SaveAddress(xVR,xVALU,xVA,LEN)",
+    "gibbed_operands": "Gibbed types: U32, U32, U32"
   },
   "0xC5": {
     "name": "ChangeDepthOfField",
@@ -1700,7 +1704,8 @@
     "tic_only": false,
     "gibbed_note": "C6",
     "wiki_name": "TransformUnit",
-    "wiki_sig": "TransformUnit(xAV,xPA,xJB)"
+    "wiki_sig": "TransformUnit(xAV,xPA,xJB)",
+    "gibbed_operands": "Gibbed types: S32, S32"
   },
   "0xC7": {
     "name": "UnknownC7",
@@ -1716,7 +1721,8 @@
     "operand_bytes_classic": 8,
     "operand_bytes_enhanced": 8,
     "tic_only": false,
-    "gibbed_note": "C8"
+    "gibbed_note": "C8",
+    "gibbed_operands": "Gibbed types: S32, S32"
   },
   "0xC9": {
     "name": "UnknownC9",
@@ -1746,7 +1752,8 @@
     "tic_only": false,
     "gibbed_note": "CC",
     "wiki_name": "ResetTurnCounter",
-    "wiki_sig": "ResetTurnCounter(xID)"
+    "wiki_sig": "ResetTurnCounter(xID)",
+    "gibbed_operands": "Gibbed types: S32, S32, S32"
   },
   "0xCD": {
     "name": "PostEvent",
@@ -1755,7 +1762,8 @@
     "tic_only": false,
     "gibbed_note": "CD",
     "wiki_name": "PostEvent",
-    "wiki_sig": "PostEvent(xAC,xSCEN)"
+    "wiki_sig": "PostEvent(xAC,xSCEN)",
+    "gibbed_operands": "Gibbed types: S32, U32"
   },
   "0xCE": {
     "name": "LoadConditionals",
@@ -1764,7 +1772,8 @@
     "tic_only": false,
     "gibbed_note": "CE",
     "wiki_name": "LoadConditionals",
-    "wiki_sig": "LoadConditionals(xCOND)"
+    "wiki_sig": "LoadConditionals(xCOND)",
+    "gibbed_operands": "Gibbed types: B8"
   },
   "0xCF": {
     "name": "Routine",
@@ -1835,7 +1844,7 @@
     "gibbed_note": "D6"
   },
   "0xD7": {
-    "name": "UnknownD7",
+    "name": "CleanupEnd",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
