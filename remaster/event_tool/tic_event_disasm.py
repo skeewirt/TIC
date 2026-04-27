@@ -1,8 +1,9 @@
 """
-TIC Event Script Disassembler v1.0
+TIC Event Script Disassembler v1.1
 Based on Gibbed.IvaliceChronicles.ScriptFormats (MIT license)
 
 Supports Classic and Enhanced modes with typed operand decoding.
+Optional dialogue text resolution from PZD scenario files.
 """
 import struct, json, sys, os, argparse
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -266,6 +267,7 @@ def disassemble(data, mode='enhanced', names=None, sizes=None, sigs=None, messag
         
         # Decode typed operands if signature is available
         operands = []
+        dialogue_comment = None
         sig = sigs.get(opbyte)
         if sig is not None and len(sig) > 0:
             op_off = 0
@@ -273,20 +275,40 @@ def disassemble(data, mode='enhanced', names=None, sizes=None, sigs=None, messag
                 if op_off >= len(operand_data):
                     break
                 val_str, consumed = read_operand(operand_data, op_off, type_key)
-                # Special: message index resolution
+                # Special: message index resolution (classic MsgIdx)
                 if type_key == 'MsgIdx' and messages:
                     idx = struct.unpack_from('<H', operand_data, op_off)[0]
-                    if idx < len(messages):
-                        val_str = f'msg[{idx}]="{messages[idx][:60]}"'
+                    if str(idx) in messages:
+                        val_str = f'msg[{idx}]'
+                        dialogue_comment = messages[str(idx)][:80]
                 operands.append(val_str)
                 op_off += consumed
+            
+            # Resolve dialogue for enhanced opcodes with U32/S32 message IDs
+            if messages:
+                if opbyte == 0x10 and len(operand_data) >= 7:  # DisplayMessage (enhanced)
+                    msg_id = struct.unpack_from('<I', operand_data, 2)[0]
+                    if str(msg_id) in messages:
+                        dialogue_comment = messages[str(msg_id)][:80]
+                elif opbyte == 0x51 and len(operand_data) >= 5:  # ChangeDialog (enhanced)
+                    msg_id = struct.unpack_from('<i', operand_data, 1)[0]
+                    if msg_id >= 0 and str(msg_id) in messages:
+                        dialogue_comment = messages[str(msg_id)][:80]
+                elif opbyte == 0xEB and len(operand_data) >= 8:  # UnknownEB (enhanced) = MessageChain
+                    msg_id1 = struct.unpack_from('<i', operand_data, 0)[0]
+                    msg_id2 = struct.unpack_from('<i', operand_data, 4)[0]
+                    t1 = messages.get(str(msg_id1), '') if msg_id1 >= 0 else ''
+                    t2 = messages.get(str(msg_id2), '') if msg_id2 >= 0 else 'END'
+                    if t1 or t2:
+                        dialogue_comment = f'{t1[:40]}' + (' -> ...' if t2 and t2 != 'END' else ' -> END' if t2 == 'END' else '')
         elif size > 0:
             # Fallback: raw hex
             operands = [' '.join(f'{b:02X}' for b in operand_data)]
         
         instructions.append({
             'offset': off, 'opcode': opbyte, 'name': name,
-            'operands': operands, 'raw': raw, 'error': None
+            'operands': operands, 'raw': raw, 'error': None,
+            'dialogue': dialogue_comment
         })
         off += 1 + size
     
@@ -307,7 +329,13 @@ def format_instruction(instr, show_offset=True):
     else:
         parts.append(name)
     
-    return '  '.join(parts)
+    line = '  '.join(parts)
+    
+    # Append dialogue text as comment
+    if instr.get('dialogue'):
+        line += f'  ; "{instr["dialogue"]}"'
+    
+    return line
 
 
 def disassemble_file(filepath, mode='enhanced', names=None, sizes=None, sigs=None, messages=None):
@@ -334,8 +362,15 @@ def main():
     parser.add_argument('-o', '--output', help='Output directory for batch mode')
     parser.add_argument('--offset', action='store_true', help='Show byte offsets')
     parser.add_argument('--stats', action='store_true', help='Show statistics only')
+    parser.add_argument('--messages', help='Path to message_map.json for dialogue resolution')
     parser.add_argument('--table', default=os.path.join(os.path.dirname(__file__), 'opcode_table.json'))
     args = parser.parse_args()
+    
+    # Load message map if provided
+    messages = None
+    if args.messages and os.path.exists(args.messages):
+        with open(args.messages, encoding='utf-8') as f:
+            messages = json.load(f)
     
     # Defaults
     if not args.input:
@@ -349,7 +384,7 @@ def main():
     
     if os.path.isfile(args.input):
         # Single file mode
-        instrs, code_end, data = disassemble_file(args.input, args.mode, names, sizes, sigs)
+        instrs, code_end, data = disassemble_file(args.input, args.mode, names, sizes, sigs, messages)
         fname = os.path.basename(args.input)
         print(f"; {fname} ({len(data)} bytes, {code_end} instructions)")
         print(f"; Mode: {args.mode}")
@@ -371,7 +406,7 @@ def main():
         
         for fname in files:
             fpath = os.path.join(args.input, fname)
-            instrs, code_end, data = disassemble_file(fpath, args.mode, names, sizes, sigs)
+            instrs, code_end, data = disassemble_file(fpath, args.mode, names, sizes, sigs, messages)
             errors = sum(1 for i in instrs[:code_end] if i['error'])
             total_instrs += code_end
             total_errors += errors
