@@ -1,91 +1,147 @@
-# Phase 0 — Architecture Summary
+# Phase 0 — Event System Recon (Complete)
 
-> Updated: 2026-04-27  
-> Status: Event routing mapped. Core VM is in encrypted .xtext section.
-
----
-
-## What We Know
-
-### Event Execution Flow
-
-```
-Game loop
-  → ask_event (0x14022470C) — conditional lookup, selects event type
-    → sub_14022473C — central routing (18 event type cases)
-      → j___Run_minievent → thunk to sub_14C580CFA (.xtext, ENCRYPTED)
-        → THE ACTUAL BYTECODE VM (cannot decompile statically)
-      → BeginRunningEvent (0x140222354) — initializes event state
-        → copies palette/display data into eventot
-        → reads eventflags for story state
-```
-
-### The .xtext Problem
-
-The core event VM body lives at `0x14C580CFA` in the `.xtext` segment. This segment is **encrypted at rest** (likely Arxan/Denuvo runtime protection). The bytes are scrambled on disk and only decrypted in-memory when the function is called.
-
-**This means**: We cannot decompile the bytecode interpreter from the static binary. We need either:
-1. A **runtime memory dump** with the game running (Cheat Engine, x64dbg attach)
-2. The **unpacked/decrypted binary** (community may have one)
-3. The **WotL/iOS binary** (no encryption, same event VM logic)
-
-### What eventot/weventot Actually Are
-
-Despite the name, these are NOT opcode dispatch tables. They are:
-- `eventot` (0x140D3A430): Event display/state data (zeroed at rest, populated from palette data at 0x14077E490 during BeginRunningEvent)
-- `weventot` (0x141843A08): World event state data (also zeroed at rest)
-
-### Functions We CAN Decompile (in .text/.reloc)
-
-| Function | Size | What it does |
-|----------|------|-------------|
-| `sub_14022473C` (ask_event inner) | 2412 | Routes 18 event types → Run_minievent |
-| `event_call` | 69 | Gate check via eventflags |
-| `event_call_inner` | 58 | Flag 508 + flag 39 range check |
-| `BeginRunningEvent` | 240 | Event state init, palette copy |
-| `j___minievent` | 542 | Mini-event lookup, scenario matching |
-| `read_eventflag` | 124 | Reads persistent story flags |
-| `write_eventflag` | 128 | Writes persistent story flags |
-| `event_init_memory` | 165 | VM memory region setup |
-| `ask_event` (outer) | 793 | Unit/condition checks before routing |
-| `get_stop_event` | 397 | Termination condition check |
-| `wld_event` | 1346 | World map event handler |
-| `set_event_table` | 1227 | Battle targeting setup (misnamed) |
-
-### Functions We CANNOT Decompile (.xtext encrypted)
-
-| Function | Address | What it likely does |
-|----------|---------|-------------------|
-| `__Run_minievent` | 0x14CF2C805 | Event VM executor |
-| `__minievent` | 0x14CF15D60 | Core bytecode interpreter |
-| `ChangeToNextEventState` | 0x14CF38140 | State machine transitions |
-| `event_status_set` | 0x14CFDE278 | Execution state flags |
-| `event_init_system` | 0x14F112B7D | System initialization |
-| `loadEventAnimation` | 0x14D8F1344 | Animation loading |
-| `makemessagestructure` | 0x14D0F0640 | Message struct building |
-| `serchmessagepointer` | 0x14CDB69E1 | Text pointer lookup |
-| `reset_status_forevent2` | 0x14F7496D0 | Status reset |
+> Completed: 2026-04-27  
+> Status: ✅ Architecture fully mapped. Ready for Phase 1.
 
 ---
 
-## Next Steps (Priority Order)
+## Approach
 
-### Option A: Runtime Dump (Recommended)
-1. Launch game in Steam
-2. Attach x64dbg or Cheat Engine
-3. Set breakpoint at `sub_14C580CFA` (the VM entry)
-4. Trigger any story event in-game
-5. Dump the decrypted function from memory
-6. Import into IDA for decompilation
+TIC's event system code is split across two PE sections:
+- **`.reloc`** (addresses `0x1401xxxxx`–`0x1403xxxxx`): Clean, decompilable. Contains the event routing layer.
+- **`.xtext`** (addresses `0x14Cxxxxxx`+): **Arxan-obfuscated**. Contains the core VM, opcode handlers, and message system internals.
 
-### Option B: WotL Reference
-1. Download the iOS WotL binary (has debug symbols, no encryption)
-2. Find the equivalent `__Run_minievent` function
-3. Decompile it — the logic should be identical to TIC's version
-4. Map TIC's encrypted addresses to WotL's known functions
+The `.xtext` code is NOT encrypted — it's readable machine code — but it's protected by Arxan anti-tamper (opaque predicates, control flow flattening, interlocked exchanges). Hex-Rays produces garbage for these functions.
 
-### Option C: PSX Reference via heretic/libfft
-1. Study adamrt/heretic's event opcode parser
-2. The PSX event VM opcodes are documented
-3. TIC likely uses the same opcode IDs even if the handler code differs
-4. Use PSX opcode knowledge to test hypotheses against runtime behavior
+**Solution**: We downloaded the **WotL iOS binary** from debugging.games. Same codebase, full debug symbols, zero protection. All 366 event-related functions decompiled cleanly.
+
+---
+
+## Deliverables
+
+### Decompiled Code (local, gitignored)
+
+| Directory | Files | Lines | Source |
+|-----------|-------|-------|--------|
+| `decompiled/` | ~30 | ~1,900 | TIC binary (clean `.reloc` functions) |
+| `decompiled/wotl/` | **366** | **22,286** | WotL iOS binary (complete event system) |
+
+### Key Files in `decompiled/wotl/`
+
+| File | Lines | What It Is |
+|------|-------|-----------|
+| `__ZL16event_maincommonv.c` | **2,508** | The complete bytecode VM / opcode interpreter |
+| `__Z10event_callPmm.c` | 605 | Main event loop (input, maps, weather, music, animations) |
+| `__ZL13ask_eventmainiiiP7SVECTORiP3ACT.c` | 504 | Event routing hub — 17 event type cases |
+| `__ZL9minieventv.c` | 50 | Mini-event launcher (reads phaserec table) |
+| `__ZL16check_eventstartv.c` | ~150 | Event start condition checks |
+| `__Z15request_commandi.c` | ~80 | Opcode command request handler |
+| `__Z16event_status_settt.c` | ~50 | Event status flag management |
+| `__Z14read_eventflagi.c` | ~20 | Story progress flag reader |
+| `__Z15write_eventflagii.c` | ~15 | Story progress flag writer |
+
+### Documents (on GitHub)
+
+| File | Purpose |
+|------|---------|
+| `RESOURCE_INDEX.md` | All TIC addresses, globals, NXD tables |
+| `WOTL_SYMBOLS.md` | 53 demangled WotL symbol reference |
+| `PHASE0_RECON.md` | This file — architecture summary |
+| `ROADMAP.md` | 4-phase strategic plan |
+| `analysis/opcode_table.md` | Two-level dispatch architecture |
+
+---
+
+## Architecture
+
+### Event Execution Pipeline
+
+```
+Game Loop
+  → event_call()               # Main event tick (605 lines)
+    ├─ pad input, map flags, weather, music, animations
+    ├─ overlay management (job menu, equip, card save)
+    └─ task scheduling via asmTaskEntry()
+
+Battle Start
+  → ask_event(type, sub, unit, svector, flag)
+    → ask_eventmain()           # Routes 17 event types to phase IDs
+      → drive_minievent(phase)  # Creates task with minievent()
+        → minievent()           # Reads phaserec[phase], creates handler task
+          → event_maincommon()  # THE VM: 2,508 lines, processes bytecodes
+```
+
+### Event Types (from ask_eventmain)
+
+| Case | Phase IDs | Named Purpose |
+|------|----------|---------------|
+| 1 | 7, 41, 6, 20, 21, 28, 49 | PHASE_MENUEND (post-menu actions) |
+| 2 | 0, 15, 16, 48 | Unit setup |
+| 3 | 1, 8 | Post-battle |
+| 4 | 11, 12, 13, 45, 46, 47 | Battle outcome (win/lose/draw) |
+| 5 | — | Spell event (task_create with hook_spel) |
+| 6 | 8 | Direct mini-event |
+| 7 | 10, 44 | World/sound event |
+| 8 | — | Story progression (flag 39 gated) |
+| 9 | 22, 23, 26, 27, 32 | Battle end variants |
+| 10 | 29 | PHASE_STTSMES (status message) |
+| 11 | 30 | Map load |
+| 12 | 31 | (unnamed) |
+| 13 | 33 | (unnamed) |
+| 14 | 51+ | Dynamic from sub-type |
+| 15 | 38, 39 | Item acquisition/poaching |
+| 16 | 40 | (unnamed) |
+| 17 | 50 | Enhanced world events |
+
+### Key Data Structures
+
+| Name | Type | Purpose |
+|------|------|---------|
+| `phaserec` | Array of 10-word records | Maps phase IDs → handler functions + parameters |
+| `combase` / `comtest` | Struct | Unit command record base |
+| `eventot` | Runtime buffer | Event output/state (NOT an opcode table) |
+| `eventbuffer` | Byte array | Live event script bytecode |
+| `eventwork` | Struct | VM working memory |
+| `eventlinkdata` | Array | Event chaining/branching data |
+
+### Event Flags (Story Progress)
+
+| Flag | Purpose |
+|------|---------|
+| 39 | Main story progress (0=none, 400=game over, 401-403=end states, 410-425=chapters) |
+| 42 | Tutorial pad write |
+| 44 | Item accumulator |
+| 50 | Sub-progress |
+| 51 | Map/GNS state |
+| 81 | Card access state |
+| 508 | Event active flag |
+| 509 | Special state (net error, brave story) |
+| 510 | Alt-path variant |
+
+---
+
+## Next Steps (Phase 1)
+
+1. **Parse `event_maincommon`** (2,508 lines) — extract every opcode: the switch/case on instruction bytes, parameter formats, handler logic
+2. **Cross-reference with PSX documentation** — FFHacktics has the original opcode IDs; confirm they match WotL/TIC
+3. **Locate event script data** — find the bytecode blobs in TIC's file format that load into `eventbuffer`
+4. **Build a bytecode parser** — read blobs, disassemble to human-readable instructions
+5. **Prototype event editor UI** — display parsed events, allow editing, repack
+
+---
+
+## Reproduction Notes
+
+### IDA Lock Files
+Every `idat.exe` run creates `.id0`/`.id1`/`.id2`/`.nam`/`.til` alongside the `.i64`. Delete these before the next run or IDA refuses to open the database.
+
+### WotL Binary
+Downloaded from `debugging.games`. FAT Mach-O with two ARM slices. We use slice 1 (ARMv7, sub=9, offset `0x473000`, 4.6MB). Extracted to `reference/wotl_ios/FFT_iPhone_armv7.bin`. IDB at `.bin.i64`.
+
+### Decompile Scripts
+All in `reference/scripts/`:
+- `decompile_event_system.py` — TIC batch 1 (18 functions)
+- `decompile_event_batch2.py` — TIC batch 2 
+- `decompile_xtext_functions.py` — TIC .xtext force-create
+- `decompile_wotl_events.py` — WotL batch 1 (53 functions)
+- `decompile_wotl_batch2.py` — WotL batch 2 (313 functions)

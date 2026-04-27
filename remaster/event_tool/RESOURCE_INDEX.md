@@ -21,29 +21,29 @@
 
 | Address | Name | Status | Purpose |
 |---------|------|--------|---------|
-| `0x140225744` | `event_call` | 🔴 TODO | **Primary dispatcher** — executes event bytecode |
-| `0x1402F1E6C` | `set_event_table` | 🔴 TODO | Populates opcode dispatch table → gives us every instruction |
-| `0x14022470C` | `ask_event` | 🔴 TODO | Conditional lookup — selects which event to run |
-| `0x1402E578C` | `event_init_memory` | 🔴 TODO | Initializes VM state (registers, stack, buffers) |
-| `0x14F112B7D` | `event_init_system` | 🔴 TODO | Full event system boot |
-| `0x14CFDE278` | `event_status_set` | 🔴 TODO | Sets event execution state flags |
-| `0x14021F2E0` | `read_eventflag` | 🔴 TODO | Reads persistent event flags (story progress) |
-| `0x14021F360` | `write_eventflag` | 🔴 TODO | Writes persistent event flags |
-| `0x14025DA78` | `get_stop_event` | 🔴 TODO | Checks for event termination condition |
-| `0x14D8F1344` | `loadEventAnimation` | 🔴 TODO | Loads animation data for event choreography |
-| `0x14F7496D0` | `reset_status_forevent2` | 🔴 TODO | Resets unit status for event re-entry |
-| `0x14033EDEC` | `wld_event` | 🔴 TODO | World-map event handler |
+| `0x140225744` | `event_call` | ✅ TIC+WotL | **Main event loop** — pad, maps, weather, music, anims (605 lines) |
+| `0x1402F1E6C` | `set_event_table` | ✅ TIC+WotL | Battle targeting setup (NOT an opcode table despite the name) |
+| `0x14022470C` | `ask_event` | ✅ TIC+WotL | Conditional lookup — selects which event to run |
+| `0x1402E578C` | `event_init_memory` | ✅ TIC+WotL | Initializes VM state (registers, stack, buffers) |
+| `0x14F112B7D` | `event_init_system` | ⚠️ TIC obfuscated, ✅ WotL | Full event system boot |
+| `0x14CFDE278` | `event_status_set` | ⚠️ TIC obfuscated, ✅ WotL | Sets event execution state flags |
+| `0x14021F2E0` | `read_eventflag` | ✅ TIC+WotL | Reads persistent event flags (story progress) |
+| `0x14021F360` | `write_eventflag` | ✅ TIC+WotL | Writes persistent event flags |
+| `0x14025DA78` | `get_stop_event` | ✅ TIC+WotL | Checks for event termination condition |
+| `0x14D8F1344` | `loadEventAnimation` | ⚠️ TIC obfuscated, ✅ WotL | Loads animation data for event choreography |
+| `0x14F7496D0` | `reset_status_forevent2` | ⚠️ TIC obfuscated, ✅ WotL | Resets unit status for event re-entry |
+| `0x14033EDEC` | `wld_event` | ✅ TIC+WotL | World-map event handler |
 
 ## Message / Dialogue Functions
 
 | Address | Name | Status | Purpose |
 |---------|------|--------|---------|
-| `0x14020BDE8` | `drawmessagepolygons` | 🔴 TODO | Renders speech bubble geometry |
-| `0x1402D3138` | `Wdrawmessagepolygons` | 🔴 TODO | World-map message renderer |
-| `0x1402DA28C` | `makemessagepacket` | 🔴 TODO | Constructs dialogue display data packet |
-| `0x14D0F0640` | `makemessagestructure` | 🔴 TODO | Builds message struct from event bytecode |
-| `0x14CDB69E1` | `serchmessagepointer` | 🔴 TODO | Finds message text pointer (PSX-era typo) |
-| `0x14037CDA0` | `InitCamera` | 🔴 TODO | Camera system initialization |
+| `0x14020BDE8` | `drawmessagepolygons` | ✅ TIC+WotL | Renders speech bubble geometry |
+| `0x1402D3138` | `Wdrawmessagepolygons` | ✅ TIC+WotL | World-map message renderer |
+| `0x1402DA28C` | `makemessagepacket` | ✅ TIC+WotL | Constructs dialogue display data packet |
+| `0x14D0F0640` | `makemessagestructure` | ⚠️ TIC obfuscated, ✅ WotL | Builds message struct from event bytecode |
+| `0x14CDB69E1` | `serchmessagepointer` | ⚠️ TIC obfuscated, ✅ WotL | Finds message text pointer (PSX-era typo) |
+| `0x14037CDA0` | `InitCamera` | ✅ TIC+WotL | Camera system initialization |
 
 ---
 
@@ -58,7 +58,7 @@
 | `0x140D37460` | **`eventbuffer`** | byte[] | **Live event bytecode buffer** |
 | `0x140D39C60` | **`eventwork`** | struct | **VM working memory** (registers/stack) |
 | `0x140D3A3BC` | `jumpeventno` | int | Target event number for jumps |
-| `0x140D3A430` | **`eventot`** | func_ptr[] | **Battle event opcode table** |
+| `0x140D3A430` | **`eventot`** | runtime buf | **Event output/state data** (NOT an opcode table — zeroed at rest, populated from palette data during BeginRunningEvent) |
 | `0x140D3A4A8` | `eventshakef` | bool | Screen shake flag |
 | `0x140D3A570` | `messagepacket` | struct | Active dialogue packet |
 | `0x140D43130` | `event_inf` | struct | Event metadata |
@@ -68,7 +68,7 @@
 
 | Address | Name | Type | Purpose |
 |---------|------|------|---------|
-| `0x141843A08` | **`weventot`** | func_ptr[] | **World event opcode table** |
+| `0x141843A08` | **`weventot`** | runtime buf | **World event state data** (zeroed at rest) |
 | `0x1418502D8` | `gEventOrBattle` | int | Mode flag: event vs battle |
 | `0x141850518` | `pEventUnitLookup` | ptr[] | Unit pointers for event choreography |
 | `0x142FE5F24` | `ProcessingMiniEvent` | bool | Mini-event flag |
@@ -117,11 +117,13 @@
 
 ## Architecture Notes
 
-- **Two opcode tables**: `eventot` (battle) and `weventot` (world) — mirrors PSX BATTLE.BIN/WORLD.BIN split
+- **`eventot`/`weventot` are NOT opcode tables** — they are runtime state buffers (palette/display data), zeroed at rest
+- **The actual opcode VM** is `event_maincommon()` — a 2,508-line function (17KB) that processes event bytecode. Fully decompiled from WotL.
+- **Opcodes dispatch via `phaserec`** — an array of 10-word records mapping phase IDs to handler functions
 - **"Scion" system**: `scionfiles`/`scionlabels` may be FF16 engine's cutscene format layered above raw bytecode
 - **TIC additions**: `enhancedbattleevent` and `enhancedworldevent` are remaster-only content
 - **Event bytecode loads into `eventbuffer`** at `0x140D37460` — intercept this to dump scripts
-- **`set_event_table`** populates `eventot`/`weventot` — decompiling this reveals every opcode handler
+- **`set_event_table`** sets up battle targeting per unit, NOT opcode registration
 
 ## File Locations
 
@@ -131,7 +133,10 @@
 | Roadmap | `remaster/event_tool/ROADMAP.md` |
 | Starting points | `remaster/event_tool/STARTING_POINTS.md` |
 | Phase 0 recon | `remaster/event_tool/PHASE0_RECON.md` |
-| **Decompiled event funcs** | `remaster/event_tool/decompiled/*.c` |
+| **TIC decompiled funcs** | `remaster/event_tool/decompiled/*.c` (local, gitignored) |
+| **WotL decompiled funcs** | `remaster/event_tool/decompiled/wotl/*.c` (366 files, local, gitignored) |
+| **WotL symbol reference** | `remaster/event_tool/WOTL_SYMBOLS.md` |
+| **WotL iOS binary** | `reference/wotl_ios/FFT_iPhone_armv7.bin` + `.i64` |
 | **Opcode table analysis** | `remaster/event_tool/analysis/opcode_table.md` |
 | **VM state analysis** | `remaster/event_tool/analysis/vm_state.md` |
 | **Conditionals analysis** | `remaster/event_tool/analysis/event_conditionals.md` |
