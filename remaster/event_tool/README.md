@@ -39,6 +39,17 @@ python tic_event_disasm.py path/to/script/enhanced/ --stats
 python tic_event_disasm.py path/to/script/enhanced/ -o disassembled/
 ```
 
+**With dialogue text:**
+```
+python tic_event_disasm.py path/to/event002.e --offset --messages message_map.json
+```
+
+This annotates `DisplayMessage` and `ChangeDialog` instructions with the actual dialogue text:
+```
+@0163  DisplayMessage  16, 9, 300000, ...  ; "<center>O Father, abandon not Your wayward children..."
+@0200  DisplayMessage  16, 18, 300001, ...  ; "Lady Ovelia, it is time."
+```
+
 ### Options
 
 | Flag | Description |
@@ -47,6 +58,7 @@ python tic_event_disasm.py path/to/script/enhanced/ -o disassembled/
 | `-o DIR` | Write `.asm` files to DIR |
 | `--offset` | Show byte offsets in output |
 | `--stats` | Show batch statistics and opcode frequency |
+| `--messages FILE` | Load a JSON message map for dialogue resolution |
 
 ## File Format
 
