@@ -6,10 +6,11 @@ Built on [Gibbed's](https://github.com/gibbed/Gibbed.IvaliceChronicles) opcode r
 
 ## Quick Start
 
-### 1. Extract event scripts from the game
+### 1. Extract game data
 
-You need [FF16Tools](https://github.com/Nenkai/FF16Tools) to extract `.e` script files from the game's PAC archives.
+You need [FF16Tools](https://github.com/Nenkai/FF16Tools) to extract files from the game's PAC archives.
 
+**Event scripts** (`.e` files):
 ```
 FF16Tools.CLI.exe unpack-all ^
   -i "<game_dir>\data\enhanced\0005.pac" ^
@@ -18,15 +19,37 @@ FF16Tools.CLI.exe unpack-all ^
   --filter "script/enhanced"
 ```
 
-This extracts ~560 enhanced event scripts to `event_scripts/script/enhanced/`.
-
-> **Classic scripts** are also in the same PAC under `script/classic/`. Use `--filter "script/classic"` to extract those. Classic = PSX/WotL format, Enhanced = TIC (adds bytes to 3 opcodes).
-
-### 2. Disassemble
-
-**Single file:**
+**Text data** (`.pzd` files for dialogue):
 ```
-python tic_event_disasm.py path/to/event010.e --offset
+FF16Tools.CLI.exe nxd-convert-all ^
+  -i "<game_dir>\data\enhanced\0001.pac" ^
+  -g fft ^
+  -o nxd_text ^
+  --filter "text/"
+```
+
+> **Classic scripts** are also in `0005.pac` under `script/classic/`. Classic = PSX/WotL format, Enhanced = TIC (adds bytes to 3 opcodes).
+
+### 2. Build the message map
+
+```
+python build_message_map.py path/to/nxd_text -o message_map.json
+```
+
+This parses all PZD scenario/battle/unit text files and produces a JSON mapping of ~14,000 message IDs to dialogue strings. The disassembler uses this for inline text annotations.
+
+### 3. Disassemble
+
+**Single file with dialogue:**
+```
+python tic_event_disasm.py path/to/event002.e --offset --messages message_map.json
+```
+
+Output:
+```
+@0163  DisplayMessage  16, 9, 300000, ...  ; "<center>O Father, abandon not Your wayward children..."
+@0200  DisplayMessage  16, 18, 300001, ...  ; "Lady Ovelia, it is time."
+@049D  DisplayMessage  16, 145, 300007, ...  ; "Mayhap bowed heads would less offend."
 ```
 
 **Batch (all scripts + stats):**
@@ -36,21 +59,12 @@ python tic_event_disasm.py path/to/script/enhanced/ --stats
 
 **Batch with .asm output:**
 ```
-python tic_event_disasm.py path/to/script/enhanced/ -o disassembled/
-```
-
-**With dialogue text:**
-```
-python tic_event_disasm.py path/to/event002.e --offset --messages message_map.json
-```
-
-This annotates `DisplayMessage` and `ChangeDialog` instructions with the actual dialogue text:
-```
-@0163  DisplayMessage  16, 9, 300000, ...  ; "<center>O Father, abandon not Your wayward children..."
-@0200  DisplayMessage  16, 18, 300001, ...  ; "Lady Ovelia, it is time."
+python tic_event_disasm.py path/to/script/enhanced/ -o disassembled/ --messages message_map.json
 ```
 
 ### Options
+
+#### tic_event_disasm.py
 
 | Flag | Description |
 |------|-------------|
@@ -59,6 +73,13 @@ This annotates `DisplayMessage` and `ChangeDialog` instructions with the actual 
 | `--offset` | Show byte offsets in output |
 | `--stats` | Show batch statistics and opcode frequency |
 | `--messages FILE` | Load a JSON message map for dialogue resolution |
+
+#### build_message_map.py
+
+| Flag | Description |
+|------|-------------|
+| `input` | PZD directory tree (searches recursively) |
+| `-o FILE` | Output JSON path (default: `message_map.json`) |
 
 ## File Format
 
