@@ -6,9 +6,10 @@
     "tic_only": false,
     "wiki_name": "Not",
     "wiki_sig": "Not()",
-    "description": "Boolean NOT \u2014 inverts the result of the following conditional expression",
+    "description": "Or in other words, a TRUE becomes a FALSE, and a FALSE becomes a TRUE. Note: If placed inside an If block, may yank passing command runs into the If block at that point in time even when they should be skipping over it. Tested by putting a SoundEffect/Pause combo immediately before and after the Not...",
     "category": "flow_control",
-    "wiki_page": "World_Map_Script_0x00.txt"
+    "wiki_page": "Event_Instruction_00.txt",
+    "canonical_sig": "Not()"
   },
   "0x01": {
     "name": "Unknown01",
@@ -19,7 +20,8 @@
     "wiki_sig": "If()",
     "category": "flow_control",
     "description": "World Map Script 0x01 If Script Data is equal to loaded integer, continue script 80091238 - World Map Scripts",
-    "wiki_page": "World_Map_Script_0x01.txt"
+    "wiki_page": "Event_Instruction_01.txt",
+    "canonical_sig": "If()"
   },
   "0x02": {
     "name": "Unknown02",
@@ -36,8 +38,9 @@
         "description": "FFHacktics: xVR"
       }
     ],
-    "description": "World Map Script 0x02 If Script Data is less then loaded integer, continue script This page was last edited on 14 December 2012, at 01:03.",
-    "wiki_page": "World_Map_Script_0x02.txt"
+    "description": "Once encountered, it jumps to returns false, then it checks the given Variable's value for > 0 and proceeds in the same fashion. Variable ID containing the value to perform an If comparison on.",
+    "wiki_page": "Event_Instruction_02.txt",
+    "canonical_sig": "ElseIf(xVR)"
   },
   "0x03": {
     "name": "Else",
@@ -47,8 +50,9 @@
     "wiki_name": "Else",
     "wiki_sig": "Else()",
     "category": "flow_control",
-    "description": "World Map Script 0x03 This page was last edited on 14 December 2012, at 01:07.",
-    "wiki_page": "World_Map_Script_0x03.txt"
+    "description": "Once encountered, it jumps to If it parses it as a result of previous instructions returning false, then it executes the instructions below itself.",
+    "wiki_page": "Event_Instruction_03.txt",
+    "canonical_sig": "Else()"
   },
   "0x04": {
     "name": "EndIf",
@@ -59,7 +63,8 @@
     "wiki_sig": "EndIf()",
     "category": "flow_control",
     "description": "World Map Script 0x04 If Sprite Set Unit is present on the team, continue This page was last edited on 29 June 2020, at 13:21.",
-    "wiki_page": "World_Map_Script_0x04.txt"
+    "wiki_page": "Event_Instruction_04.txt",
+    "canonical_sig": "EndIf()"
   },
   "0x05": {
     "name": "Switch",
@@ -75,9 +80,10 @@
         "description": "FFHacktics: xVR"
       }
     ],
-    "description": "World Map Script 0x05 through 0x0B and 0x1B This page was last edited on 3 March 2025, at 21:28.",
-    "wiki_page": "World_Map_Script_0x05_through_0x0B_and_0x1B.txt",
-    "category": "flow_control"
+    "description": "Executes a Switch statement based off the value in the corresponding variable. Variable ID containing the value to be verified by the",
+    "wiki_page": "Event_Instruction_05.txt",
+    "category": "flow_control",
+    "canonical_sig": "Switch(xVR)"
   },
   "0x06": {
     "name": "Case",
@@ -93,8 +99,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Case label in switch block",
-    "category": "flow_control"
+    "description": "If the assigned Value matches the value of the variable specified in the previous instruction, then it executes the code below until it encounters a Otherwise, it will attempt the",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_06.txt",
+    "canonical_sig": "Case(xVALU)"
   },
   "0x07": {
     "name": "Unknown07",
@@ -103,8 +111,10 @@
     "tic_only": false,
     "wiki_name": "Default",
     "wiki_sig": "Default()",
-    "description": "Default case in switch block",
-    "category": "flow_control"
+    "description": "Executes the instructions below itself if previous",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_07.txt",
+    "canonical_sig": "Default()"
   },
   "0x08": {
     "name": "Unknown08",
@@ -113,8 +123,10 @@
     "tic_only": false,
     "wiki_name": "Break",
     "wiki_sig": "Break()",
-    "description": "Break out of switch/loop",
-    "category": "flow_control"
+    "description": "Once encountered, immediately jumps to the next",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_08.txt",
+    "canonical_sig": "Break()"
   },
   "0x09": {
     "name": "Unknown09",
@@ -123,8 +135,10 @@
     "tic_only": false,
     "wiki_name": "EndSwitch",
     "wiki_sig": "EndSwitch()",
-    "description": "End switch statement",
-    "category": "flow_control"
+    "description": "Does absolutely nothing. Acts as a jumping target for",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_09.txt",
+    "canonical_sig": "EndSwitch()"
   },
   "0x0A": {
     "name": "DefineSub",
@@ -140,8 +154,10 @@
         "description": "Unit ID"
       }
     ],
-    "description": "Define a subroutine block",
-    "category": "flow_control"
+    "description": "Does absolutely nothing on its own. Acts as a destination for ID with which to call the sub using",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_0A.txt",
+    "canonical_sig": "DefineSub(xID)"
   },
   "0x0B": {
     "name": "Unknown0B",
@@ -150,8 +166,10 @@
     "tic_only": false,
     "wiki_name": "EndSub",
     "wiki_sig": "EndSub()",
-    "description": "End subroutine definition",
-    "category": "flow_control"
+    "description": "Returns to the event position following the last",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_0B.txt",
+    "canonical_sig": "EndSub()"
   },
   "0x0C": {
     "name": "Unknown0C",
@@ -167,9 +185,10 @@
         "description": "Unit ID"
       }
     ],
-    "description": "World Map Script 0x0C This page was last edited on 3 March 2025, at 20:48.",
-    "wiki_page": "World_Map_Script_0x0C.txt",
-    "category": "flow_control"
+    "description": "Scans the entire event from the beginning to find a with a matching ID, then executes the code from there. Stores the event position of the event instruction that follows itself (CallSub) as a return address, which will be used once the event will encounter",
+    "wiki_page": "Event_Instruction_0C.txt",
+    "category": "flow_control",
+    "canonical_sig": "CallSub(xID)"
   },
   "0x0D": {
     "name": "GoTo",
@@ -185,9 +204,10 @@
         "description": "FFHacktics: xTG"
       }
     ],
-    "description": "World Map Script 0x0D This page was last edited on 3 March 2025, at 20:49.",
-    "wiki_page": "World_Map_Script_0x0D.txt",
-    "category": "flow_control"
+    "description": "Scans the entire event from the beginning to find a GoToTarget with an identical Target parameter, and executes the code from there. Identifier that must match the value specified in",
+    "wiki_page": "Event_Instruction_0D.txt",
+    "category": "flow_control",
+    "canonical_sig": "GoTo(xTG)"
   },
   "0x0E": {
     "name": "Unknown0E",
@@ -205,7 +225,8 @@
       }
     ],
     "description": "World Map Script 0x0E This page was last edited on 3 March 2025, at 20:50.",
-    "wiki_page": "World_Map_Script_0x0E.txt"
+    "wiki_page": "Event_Instruction_0E.txt",
+    "canonical_sig": "GoToTarget(xTG)"
   },
   "0x0F": {
     "name": "ScriptEnd",
@@ -283,8 +304,9 @@
     ],
     "description": "Display a dialogue message with speaker portrait and balloon",
     "category": "dialogue",
-    "wiki_page": "World_Map_Script_0x10.txt",
-    "routine_header": "DisplayMessage"
+    "wiki_page": "Event_Instruction_10.txt",
+    "routine_header": "DisplayMessage",
+    "canonical_sig": "DisplayMessage(x10,xDT,xMSG#,xID,x00,xPR,+XXXXX,+YYYYY,+ARPOS,xOT)"
   },
   "0x11": {
     "name": "AnimationRequest",
@@ -324,10 +346,11 @@
         "description": "Always 0"
       }
     ],
-    "description": "Play a unit animation (walk, attack, cast, idle, etc.)",
+    "description": "This instruction is used load a humanoid shaped sprite off EVTCHR.BIN on a sprite using the original unit's palette. Unit ID: ID of the unit specified in the ENTD. Load an animation sequence from the corresponding SEQ file for a unit, or an EVTCHR Animation. See lower for EVTCHR Animations.",
     "category": "unit",
-    "wiki_page": "World_Map_Script_0x11.txt",
-    "routine_header": "UnitAnim"
+    "wiki_page": "Event_Instruction_11.txt",
+    "routine_header": "UnitAnim",
+    "canonical_sig": "UnitAnim(xAU,xMT,xANIM,x00)"
   },
   "0x12": {
     "name": "WaitAnimationEnd",
@@ -361,9 +384,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "World Map Script 0x13 This page was last edited on 3 March 2025, at 22:51.",
-    "wiki_page": "World_Map_Script_0x13.txt",
-    "routine_header": "ChangeMapBeta"
+    "description": "Changes the map the event is currently played in. Not recommended for use. If you wish to change the map in a way that you have considerably more control, see At Main Gate of Igros Castle",
+    "wiki_page": "Event_Instruction_13.txt",
+    "routine_header": "ChangeMapBeta",
+    "canonical_sig": "ChangeMapBeta(MAP,x00)"
   },
   "0x14": {
     "name": "PlayTrack",
@@ -380,8 +404,9 @@
       }
     ],
     "description": "World Map Script 0x14 and 0x15 This page was last edited on 3 March 2025, at 20:36.",
-    "wiki_page": "World_Map_Script_0x14_and_0x15.txt",
-    "category": "unit"
+    "wiki_page": "Event_Instruction_14.txt",
+    "category": "unit",
+    "canonical_sig": "PlayTrack(xSG)"
   },
   "0x15": {
     "name": "Unknown15",
@@ -391,7 +416,9 @@
     "wiki_name": "ResetUnitCalculations",
     "wiki_sig": "ResetUnitCalculations()",
     "category": "unit",
-    "description": "Reset unit's battle calculations"
+    "description": "Wipes the damage, status and other temporary calculations on all units on the field, allowing Effects to never display any damage/healing numbers when called with Note: Currently bugged. Resets a ton of other stats as well, including non-temporary ones. It's more reliable to zero out the Battle Stat...",
+    "wiki_page": "Event_Instruction_15.txt",
+    "canonical_sig": "ResetUnitCalculations()"
   },
   "0x16": {
     "name": "WaitTask",
@@ -403,8 +430,9 @@
     "wiki_sig": "Pause()",
     "category": "timing",
     "description": "Pause Event Instruction and other surrounding currently-unknown functions. void BATTLE_pause_event_instruction(void)",
-    "wiki_page": "Pause_Event_Instruction.txt",
-    "routine_header": "Pause"
+    "wiki_page": "Event_Instruction_16.txt",
+    "routine_header": "Pause",
+    "canonical_sig": "Pause()"
   },
   "0x17": {
     "name": "Unknown17",
@@ -421,7 +449,8 @@
       }
     ],
     "description": "World Map Script 0x17 This page was last edited on 14 December 2012, at 00:52.",
-    "wiki_page": "World_Map_Script_0x17.txt"
+    "wiki_page": "Event_Instruction_17.txt",
+    "canonical_sig": "GraphicTimeout(xTO)"
   },
   "0x18": {
     "name": "ChangeEffect",
@@ -459,9 +488,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "World Map Script 0x18 This page was last edited on 14 December 2012, at 00:53.",
-    "wiki_page": "World_Map_Script_0x18.txt",
-    "routine_header": "Effect"
+    "description": "Uses an ability or effect on target Unit.  Only one Effect can play at a time or the game will freeze. Preview videos for each Effect can be found here: http://ffhacktics.com/smf/index.php?topic=4830.0",
+    "wiki_page": "Event_Instruction_18.txt",
+    "routine_header": "Effect",
+    "canonical_sig": "Effect(xEFID,xID,XXX,YYY,x00)"
   },
   "0x19": {
     "name": "MoveCamera",
@@ -515,8 +545,9 @@
     ],
     "description": "Move camera to a position with rotation, tilt, and zoom",
     "category": "camera",
-    "wiki_page": "World_Map_Script_0x19.txt",
-    "routine_header": "Camera"
+    "wiki_page": "Event_Instruction_19.txt",
+    "routine_header": "Camera",
+    "canonical_sig": "Camera(+XXXXX,+ZZZZZ,+YYYYY,+ANGLE,+MAPRT,+CAMRT,+ZOOM%,+TIMER)"
   },
   "0x1A": {
     "name": "MoveAmbient",
@@ -554,9 +585,10 @@
         "description": "Short duration"
       }
     ],
-    "description": "World Map Script 0x1A This page was last edited on 3 March 2025, at 22:52.",
-    "wiki_page": "World_Map_Script_0x1A.txt",
-    "routine_header": "MapDarkness"
+    "description": "Modifies the color of the map's lighting. You must use at least one one of the following; x00 will not work: After the first glow, it resets previously set blends and turns negative colors into positive colors (ex: -80,0,0 becomes +80,0,0)",
+    "wiki_page": "Event_Instruction_1A.txt",
+    "routine_header": "MapDarkness",
+    "canonical_sig": "MapDarkness(xBM,+RED,+GRN,+BLU,TIM)"
   },
   "0x1B": {
     "name": "MoveLight",
@@ -605,7 +637,9 @@
       }
     ],
     "routine_header": "MapLight",
-    "description": "Set map directional lighting parameters"
+    "description": "Set map directional lighting parameters",
+    "wiki_page": "Event_Instruction_1B.txt",
+    "canonical_sig": "MapLight(+00000,+00000,+?????,+RRRED,+GREEN,+BBLUE,+TIMER)"
   },
   "0x1C": {
     "name": "ChangeFrameRate",
@@ -622,10 +656,11 @@
         "description": "Playback speed multiplier (1=normal)"
       }
     ],
-    "description": "Change the event playback speed (1=normal, 2=fast, etc.)",
+    "description": "This instruction determines the speed the event will play. It is only used alongside Lucavi transformation and death Effects to slow them down. Some effects (such as Quake) run too quickly, even after using this command. There doesn't seem to be a way to make them match the same speed they run at wh...",
     "category": "timing",
-    "wiki_page": "World_Map_Script_0x1C.txt",
-    "routine_header": "EventSpeed"
+    "wiki_page": "Event_Instruction_1C.txt",
+    "routine_header": "EventSpeed",
+    "canonical_sig": "EventSpeed(xSP)"
   },
   "0x1D": {
     "name": "_CameraFusionStart",
@@ -635,10 +670,11 @@
     "gibbed_note": "1D",
     "wiki_name": "CameraFusionStart",
     "wiki_sig": "CameraFusionStart()",
-    "description": "Begin a camera blend/fusion transition",
+    "description": "Place many camera instructions in this block make them transition smoothly.",
     "category": "camera",
-    "wiki_page": "World_Map_Script_0x1D.txt",
-    "routine_header": "CameraFusionStart"
+    "wiki_page": "Event_Instruction_1D.txt",
+    "routine_header": "CameraFusionStart",
+    "canonical_sig": "CameraFusionStart()"
   },
   "0x1E": {
     "name": "_CameraFusionEnd",
@@ -648,9 +684,10 @@
     "gibbed_note": "1E",
     "wiki_name": "CameraFusionEnd",
     "wiki_sig": "CameraFusionEnd()",
-    "description": "End a camera blend/fusion transition",
+    "description": "Place many camera instructions in this block make them transition smoothly.",
     "category": "camera",
-    "wiki_page": "World_Map_Script_0x1E.txt"
+    "wiki_page": "Event_Instruction_1E.txt",
+    "canonical_sig": "CameraFusionEnd()"
   },
   "0x1F": {
     "name": "_Focus",
@@ -688,9 +725,10 @@
         "description": "FFHacktics: xAR"
       }
     ],
-    "description": "World Map Script 0x1F This page was last edited on 3 March 2025, at 21:34.",
-    "wiki_page": "World_Map_Script_0x1F.txt",
-    "routine_header": "Focus"
+    "description": "The next Camera instruction will automatically center between Unit 1 and Unit 2. If the two are the same unit, it focuses on that single unit. placed after this instruction (or after You can set the Travel Speed of the Camera instruction using",
+    "wiki_page": "Event_Instruction_1F.txt",
+    "routine_header": "Focus",
+    "canonical_sig": "Focus(xID,x00,xID,x00,xAR)"
   },
   "0x20": {
     "name": "Unknown20",
@@ -717,9 +755,10 @@
         "description": "FFHacktics: xSDID"
       }
     ],
-    "description": "World Map Script 0x21 This page was last edited on 3 March 2025, at 21:34.",
-    "wiki_page": "World_Map_Script_0x21.txt",
-    "routine_header": "SoundEffect"
+    "description": "Terminate currently playing sound created by this instruction & plays the indexed sound once. Remove Item or Ability Anti-Clockwise Rotation*",
+    "wiki_page": "Event_Instruction_21.txt",
+    "routine_header": "SoundEffect",
+    "canonical_sig": "SoundEffect(xSDID)"
   },
   "0x22": {
     "name": "PlayMusic",
@@ -747,9 +786,10 @@
         "description": "Short duration"
       }
     ],
-    "description": "World Map Script 0x22 This page was last edited on 3 March 2025, at 21:35.",
-    "wiki_page": "World_Map_Script_0x22.txt",
-    "routine_header": "SwitchTrack"
+    "description": "Toggle between the first and second song assigned in ATTACK.OUT for the scenario. Volume based on original level of the song. +000\u00a0: 0% volume",
+    "wiki_page": "Event_Instruction_22.txt",
+    "routine_header": "SwitchTrack",
+    "canonical_sig": "SwitchTrack(x01,+VOL,TIM)"
   },
   "0x23": {
     "name": "Unknown23",
@@ -801,10 +841,11 @@
     "gibbed_note": "27",
     "wiki_name": "ReloadMapState",
     "wiki_sig": "ReloadMapState()",
-    "description": "World Map Script 0x27 This page was last edited on 3 March 2025, at 21:36.",
-    "wiki_page": "World_Map_Script_0x27.txt",
+    "description": "Reloads the map with new, currently stored settings such as map arrangement (Variable x0030), weather and daytime. Map arrangements and daytime can be viewed using map2gl. Notable uses of map arrangements: Removing/adding chairs/benches/tables",
+    "wiki_page": "Event_Instruction_27.txt",
     "routine_header": "ReloadMapState",
-    "category": "screen"
+    "category": "screen",
+    "canonical_sig": "ReloadMapState()"
   },
   "0x28": {
     "name": "MoveToPanel",
@@ -856,10 +897,11 @@
         "description": "Movement mode (1=normal)"
       }
     ],
-    "description": "Move a unit to a map tile by walking",
+    "description": "Makes a unit attempt to walk to a given tile. If the unit cannot reach destination, it will only enter walking state and not move at all. Units in events have 3 Jump regardless of equipped or innate abilities using this instruction, but",
     "category": "unit",
-    "wiki_page": "World_Map_Script_0x28.txt",
-    "routine_header": "WalkTo"
+    "wiki_page": "Event_Instruction_28.txt",
+    "routine_header": "WalkTo",
+    "canonical_sig": "WalkTo(xID,x00,XXX,YYY,xEL,x00,+SPD,x01)"
   },
   "0x29": {
     "name": "WaitCharacterMove",
@@ -882,9 +924,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "WaitWalk Event Instruction This page was last edited on 14 November 2025, at 20:33.",
-    "wiki_page": "WaitWalk_Event_Instruction.txt",
-    "routine_header": "WaitWalk"
+    "description": "Resumes instructions when the given unit arrives at destination. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_29.txt",
+    "routine_header": "WaitWalk",
+    "canonical_sig": "WaitWalk(xID,x00)"
   },
   "0x2A": {
     "name": "_BlockStart",
@@ -895,8 +938,10 @@
     "wiki_name": "BlockStart",
     "wiki_sig": "BlockStart()",
     "routine_header": "BlockStart",
-    "description": "Mark the start of a parallel execution block",
-    "category": "timing"
+    "description": "A block is a portion of the event played in a separate process. When the game finds a block, it will start executing it and will also resume the event whatever there is after the block at the same time. Only a few select instructions work in Blocks:",
+    "category": "timing",
+    "wiki_page": "Event_Instruction_2A.txt",
+    "canonical_sig": "BlockStart()"
   },
   "0x2B": {
     "name": "_BlockEnd",
@@ -906,8 +951,10 @@
     "gibbed_note": "2B",
     "wiki_name": "BlockEnd",
     "wiki_sig": "BlockEnd()",
-    "description": "Mark the end of a parallel execution block",
-    "category": "timing"
+    "description": "A block is a portion of the event played in a separate process. When the game finds a block, it will start executing it and will also resume the event whatever there is after the block at the same time. Only a few select instructions work in Blocks:",
+    "category": "timing",
+    "wiki_page": "Event_Instruction_2B.txt",
+    "canonical_sig": "BlockEnd()"
   },
   "0x2C": {
     "name": "Direction2_0",
@@ -956,7 +1003,9 @@
       }
     ],
     "routine_header": "FaceUnit2",
-    "description": "Make unit face another unit (variant 2)"
+    "description": "A copy of {53} FaceUnit with one a certain value set to 0 instead of 1. Visually, there doesn't seem to be any difference with the other. Makes unit(s) rotate to face a specified unit. The rotation direction is the shortest one (Clockwise as default). ID of the unit specified in the ENTD that will b...",
+    "wiki_page": "Event_Instruction_2C.txt",
+    "canonical_sig": "FaceUnit2(xFU,x00,xAU,xMT,xCL,xRS,xDL)"
   },
   "0x2D": {
     "name": "Direction",
@@ -999,9 +1048,10 @@
         "description": "FFHacktics: xDL"
       }
     ],
-    "description": "RotateUnit Event Instruction This page was last edited on 10 May 2025, at 14:33.",
-    "wiki_page": "RotateUnit_Event_Instruction.txt",
-    "routine_header": "RotateUnit"
+    "description": "The unit will rotate to a given direction. Unit ID: ID of the unit specified in the ENTD. Check the Map section to know what direction to use.",
+    "wiki_page": "Event_Instruction_2D.txt",
+    "routine_header": "RotateUnit",
+    "canonical_sig": "RotateUnit(xAU,xMT,xDR,xCL,xRS,xDL)"
   },
   "0x2E": {
     "name": "FadeGradation",
@@ -1053,9 +1103,11 @@
         "description": "Gradation flags"
       }
     ],
-    "description": "Fade screen colors with a gradation overlay",
+    "description": "Creates a gradient background gradually by ignoring its current state using RGB. Battle and Effect safe. Red value of the RGB color. Green value of the RGB color.",
     "category": "screen",
-    "routine_header": "Background"
+    "routine_header": "Background",
+    "wiki_page": "Event_Instruction_2E.txt",
+    "canonical_sig": "Background(RDT,GRT,BLT,RDB,GRB,BLB,TIM,xBS)"
   },
   "0x2F": {
     "name": "Unknown2F",
@@ -1081,8 +1133,10 @@
         "description": "FFHacktics: xDEST"
       }
     ],
-    "description": "Loop back to the start of the current block",
-    "category": "timing"
+    "description": "This instruction allows looping a block until the defined variable reaches, or is set to 0. It has to be placed inside a block in order to work. A block left running will prevent the event from ending! 000: Loops indefinitely (the variable has to be manually set to 0 to end the loop)",
+    "category": "timing",
+    "wiki_page": "Event_Instruction_2F.txt",
+    "canonical_sig": "BlockLoop(LPA,xVR,xDEST)"
   },
   "0x30": {
     "name": "Unknown30",
@@ -1129,7 +1183,9 @@
       }
     ],
     "routine_header": "ColorBGBeta",
-    "description": "Change background color gradation"
+    "description": "Colors Background to new value based on the current coloration, allowing better blending but ineffective on pure-black backgrounds. You can mix the RGB color with any of the preset colors: Red value of the RGB color.",
+    "wiki_page": "Event_Instruction_31.txt",
+    "canonical_sig": "ColorBGBeta(xPR,+RED,+GRN,+BLU,TIM)"
   },
   "0x32": {
     "name": "SetCharacterColor",
@@ -1177,9 +1233,10 @@
         "description": "Short duration"
       }
     ],
-    "description": "Color Unit Event Instruction #   ROUTINE: ColorUnit event instruction (not async) #           r4 = Parameter struct data",
-    "wiki_page": "Color_Unit_Event_Instruction.txt",
-    "routine_header": "ColorUnit"
+    "description": "Colors a unit gradually depending on its current state. (+127,-128,-128) is red and (+127,+127,+127) is white while (+000,+000,+000) returns the unit to its original color. Unit ID: ID of the unit specified in the ENTD.",
+    "wiki_page": "Event_Instruction_32.txt",
+    "routine_header": "ColorUnit",
+    "canonical_sig": "ColorUnit(xAU,xMT,xPR,+RED,+GRN,+BLU,TIM)"
   },
   "0x33": {
     "name": "ChangeMapClut",
@@ -1218,7 +1275,9 @@
       }
     ],
     "routine_header": "ColorField",
-    "description": "Change map terrain CLUT (color palette)"
+    "description": "Colors entire map specified colors. (-128,-128,-128) is black and (+127,+127,+127) is white while (+000,+000,+000) returns the map to its original color. Instead of setting RGB values, you can pick any of the preset colors:",
+    "wiki_page": "Event_Instruction_33.txt",
+    "canonical_sig": "ColorField(xPR,+RED,+GRN,+BLU,TIM)"
   },
   "0x34": {
     "name": "Unknown34",
@@ -1251,7 +1310,7 @@
     "tic_only": false,
     "wiki_name": "Never used",
     "wiki_sig": "{39}",
-    "description": "Event Instruction 0x37 This page was last edited on 10 May 2025, at 14:34.",
+    "description": "Final Fantasy Hacktics Wiki Event Instruction 0x37 This page was last edited on 10 May 2025, at 14:34.",
     "wiki_page": "Event_Instruction_0x37.txt",
     "routine_header": "unknown"
   },
@@ -1272,8 +1331,9 @@
       }
     ],
     "description": "Focus Speed Event Instruction #   ROUTINE: FOCUS SPEED EVENT INSTRUCTION #           r4 = (params) Event instruction parameters",
-    "wiki_page": "Focus_Speed_Event_Instruction.txt",
-    "routine_header": "FocusSpeed"
+    "wiki_page": "Event_Instruction_38.txt",
+    "routine_header": "FocusSpeed",
+    "canonical_sig": "FocusSpeed(+SPEED)"
   },
   "0x39": {
     "name": "WaitCharacterMoveWotL",
@@ -1282,7 +1342,7 @@
     "tic_only": false,
     "gibbed_note": "39",
     "category": "unit",
-    "description": "Event Instruction 0x39 This page was last edited on 10 May 2025, at 14:31.",
+    "description": "Final Fantasy Hacktics Wiki Event Instruction 0x39 This page was last edited on 10 May 2025, at 14:31.",
     "wiki_page": "Event_Instruction_0x39.txt",
     "routine_header": "unknown"
   },
@@ -1348,7 +1408,9 @@
       }
     ],
     "routine_header": "SpriteMove & {6E} SpriteMoveBeta",
-    "description": "Smoothly move a sprite to a position over time"
+    "description": "Smoothly move a sprite to a position over time",
+    "wiki_page": "Event_Instruction_3B.txt",
+    "canonical_sig": "SpriteMove(xID,x00,+XXXXX,+ZZZZZ,+YYYYY,xMV,x??,+TIMER)"
   },
   "0x3C": {
     "name": "ChangeWeather",
@@ -1377,7 +1439,9 @@
     ],
     "description": "Change the weather effect (rain, snow, etc.)",
     "category": "screen",
-    "routine_header": "Weather"
+    "routine_header": "Weather",
+    "wiki_page": "Event_Instruction_3C.txt",
+    "canonical_sig": "Weather(xWP,x01)"
   },
   "0x3D": {
     "name": "DisappearUnit",
@@ -1401,7 +1465,9 @@
       }
     ],
     "routine_header": "RemoveUnit",
-    "description": "Remove a unit from the map"
+    "description": "Removes a unit from the field and memory entirely. This differs from BlueRemoveUnit in that it works immediately, allowing you to Add another unit/sprite right away, and that a Removed unit doesn't award its War Trophy. ID of the unit specified in the ENTD.",
+    "wiki_page": "Event_Instruction_3D.txt",
+    "canonical_sig": "RemoveUnit(xID,xMD)"
   },
   "0x3E": {
     "name": "SetChangePaletteData",
@@ -1455,7 +1521,9 @@
       }
     ],
     "routine_header": "ColorScreen",
-    "description": "Apply a color tint to the entire screen"
+    "description": "+TIMER Colors the whole screen, in different possible ways. The Initial Color is applied immediately, while the Target Color gradually changes with a given amount of time assigned. To achieve black or any darker color, you need to set the",
+    "wiki_page": "Event_Instruction_3E.txt",
+    "canonical_sig": "ColorScreen(xBM,IRD,IGR,IBL,TRD,TGR,TBL,+TIMER)"
   },
   "0x3F": {
     "name": "ChangeMapD",
@@ -1509,9 +1577,11 @@
         "description": "Secondary shake speed"
       }
     ],
-    "description": "Start an earthquake/screen shake effect",
+    "description": "Cause a seism with given parameters, but it does not control any sound related to it. Strength of the seism. Any higher value would look too weird as there are only two main frames.",
     "category": "screen",
-    "routine_header": "EarthquakeStart"
+    "routine_header": "EarthquakeStart",
+    "wiki_page": "Event_Instruction_41.txt",
+    "canonical_sig": "EarthquakeStart(MAG,MER,SMG,SSD)"
   },
   "0x42": {
     "name": "StopShake",
@@ -1523,7 +1593,9 @@
     "wiki_sig": "EarthquakeEnd()",
     "routine_header": "EarthquakeEnd",
     "description": "Stop the earthquake/screen shake effect",
-    "category": "screen"
+    "category": "screen",
+    "wiki_page": "Event_Instruction_42.txt",
+    "canonical_sig": "EarthquakeEnd()"
   },
   "0x43": {
     "name": "_CallFunction",
@@ -1541,8 +1613,10 @@
       }
     ],
     "routine_header": "CallFunction",
-    "description": "Call a built-in engine function by ID",
-    "category": "unit"
+    "description": "Can call various different functions to alter many different things in the game. https://ffhacktics.com/smf/index.php?topic=10124.msg193711#msg193711 )  NOTE: Skipped if Var 0x1FC (Brave Story Event?) is flagged. NOTE 2: Behaves differently if this is Event ID 0x12C (vanilla's final event)",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_43.txt",
+    "canonical_sig": "CallFunction(xFC)"
   },
   "0x44": {
     "name": "_Draw",
@@ -1564,10 +1638,11 @@
         "description": "FFHacktics: xAS"
       }
     ],
-    "description": "Event Instruction 0x44: Draw This page was last edited on 19 April 2017, at 23:04.",
+    "description": "Draws a loaded unit that is currently not being displayed. In vanilla, if this command is used during the event ID reserved for the Zalera pre-battle event, the unit it's used on will immediately have its status animations applied to it. ID of the unit specified in the ENTD.",
     "wiki_page": "Event_Instruction_0x44__Draw.txt",
     "routine_header": "Draw",
-    "category": "unit"
+    "category": "unit",
+    "canonical_sig": "Draw(xID,xAS)"
   },
   "0x45": {
     "name": "LoadAnimation",
@@ -1596,7 +1671,9 @@
       }
     ],
     "routine_header": "AddUnit",
-    "description": "Add a unit to the battlefield from ENTD data"
+    "description": "Adds a unit to the event that is not currently loaded. This instruction can be either placed inside a block, or have it followed by",
+    "wiki_page": "Event_Instruction_45.txt",
+    "canonical_sig": "AddUnit(xID,x00,xDR)"
   },
   "0x46": {
     "name": "DeactivateAnimation",
@@ -1619,8 +1696,10 @@
       }
     ],
     "routine_header": "Erase",
-    "description": "Erase/remove a unit's visual sprite",
-    "category": "unit"
+    "description": "Erase a unit whose sprite is currently being displayed. Unit can be re-drawn later. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_46.txt",
+    "canonical_sig": "Erase(xID,x00)"
   },
   "0x47": {
     "name": "ActivateAnimation",
@@ -1678,9 +1757,11 @@
         "description": "Rendering mode"
       }
     ],
-    "description": "Add a temporary event unit (ghost unit) to the map",
+    "description": "Adds a fake unit on the map which can be mostly controlled like a regular unit, with some exceptions. In battle, the unit cannot take action or be targeted, and units will be able to walk through it. You can use any spritesheet you want, but be warned: Adding a new spritesheet will leave you with th...",
     "category": "unit",
-    "routine_header": "AddGhostUnit"
+    "routine_header": "AddGhostUnit",
+    "wiki_page": "Event_Instruction_47.txt",
+    "canonical_sig": "AddGhostUnit(xSP,x00,xID,XXX,YYY,xEL,xFD,xDR)"
   },
   "0x48": {
     "name": "WaitLoadAnimation",
@@ -1690,9 +1771,11 @@
     "gibbed_note": "48",
     "wiki_name": "WaitAddUnit",
     "wiki_sig": "WaitAddUnit()",
-    "description": "Wait for a ghost unit (AddUnit) to finish loading",
+    "description": "Waits until a normal or ghost unit is loaded into the event before resuming.",
     "category": "unit",
-    "routine_header": "WaitAddUnit"
+    "routine_header": "WaitAddUnit",
+    "wiki_page": "Event_Instruction_48.txt",
+    "canonical_sig": "WaitAddUnit()"
   },
   "0x49": {
     "name": "ActivateAnimationStart",
@@ -1702,9 +1785,11 @@
     "gibbed_note": "49",
     "wiki_name": "AddUnitStart",
     "wiki_sig": "AddUnitStart()",
-    "description": "Signal that a ghost/added unit is ready to appear",
+    "description": "Creates an independently running block inside the event to load one or many units in the game. Does not slow down the event in any way, but make sure to use {4B} WaitAddUnitEnd before using instructions on the new units. There is no need to use {48} WaitAddUnit after each unit inside this block.",
     "category": "unit",
-    "routine_header": "AddUnitStart"
+    "routine_header": "AddUnitStart",
+    "wiki_page": "Event_Instruction_49.txt",
+    "canonical_sig": "AddUnitStart()"
   },
   "0x4A": {
     "name": "ActivateAnimationEnd",
@@ -1716,7 +1801,9 @@
     "wiki_sig": "AddUnitEnd()",
     "category": "unit",
     "routine_header": "AddUnitEnd",
-    "description": "Signal end of unit addition sequence"
+    "description": "Creates an independently running block inside the event to load one or many units in the game. Does not slow down the event in any way, but make sure to use {4B} WaitAddUnitEnd before using instructions on the new units. There is no need to use {48} WaitAddUnit after each unit inside this block.",
+    "wiki_page": "Event_Instruction_4A.txt",
+    "canonical_sig": "AddUnitEnd()"
   },
   "0x4B": {
     "name": "WaitActivateAnimation",
@@ -1728,7 +1815,9 @@
     "wiki_sig": "WaitAddUnitEnd()",
     "category": "unit",
     "routine_header": "WaitAddUnitEnd",
-    "description": "Wait for the AddUnit sequence to complete"
+    "description": "Waits until a currently running {49}\u00a0AddUnitStart/{4A} AddUnitEnd block has completed before resuming.",
+    "wiki_page": "Event_Instruction_4B.txt",
+    "canonical_sig": "WaitAddUnitEnd()"
   },
   "0x4C": {
     "name": "JumpMap2",
@@ -1752,7 +1841,9 @@
       }
     ],
     "routine_header": "ChangeMap",
-    "description": "Change to a different map"
+    "description": "Fades to black, then changes the map, reloading all the settings such as Weather or State. Just like as with a fresh event, reveal the map using This instruction will mess up with the dialogue when recruiting units, and it can prevent dialog boxes from properly displaying if",
+    "wiki_page": "Event_Instruction_4C.txt",
+    "canonical_sig": "ChangeMap(MAP,x00)"
   },
   "0x4D": {
     "name": "_Reveal",
@@ -1770,8 +1861,10 @@
       }
     ],
     "routine_header": "Reveal",
-    "description": "Reveal/show a hidden unit",
-    "category": "unit"
+    "description": "Progressively reveals the screen to unveil the scene. Required to start a new scenario. WARNING: Ending an event before a Reveal command has finished will automatically kick the player out to the World Map, even if another event is supposed to play. Also, doing a second Reveal before one Reveal ends...",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_4D.txt",
+    "canonical_sig": "Reveal(TIM)"
   },
   "0x4E": {
     "name": "SetAnimationShadow",
@@ -1800,7 +1893,9 @@
       }
     ],
     "routine_header": "AddUnit",
-    "description": "Add a unit (variant \u2014 uses different loading path)"
+    "description": "Remove or add back the shadow of a unit. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_4E.txt",
+    "canonical_sig": "UnitShadow(xID,x00,xSH)"
   },
   "0x4F": {
     "name": "SetDaytime",
@@ -1818,8 +1913,10 @@
       }
     ],
     "routine_header": "SetDaytime",
-    "description": "Set the time of day (affects lighting/shadows)",
-    "category": "screen"
+    "description": "Stores day or night for the next time you will load/reload a map.",
+    "category": "screen",
+    "wiki_page": "Event_Instruction_4F.txt",
+    "canonical_sig": "SetDaytime(xDT)"
   },
   "0x50": {
     "name": "SetFace",
@@ -1837,9 +1934,10 @@
         "description": "FFHacktics: xPC"
       }
     ],
-    "description": "PortraitCol Event Instruction This page was last edited on 10 May 2025, at 00:19.",
-    "wiki_page": "PortraitCol_Event_Instruction.txt",
-    "routine_header": "PortraitCol"
+    "description": "Sets the column that will be used to load a custom portrait from EVTFACE.BIN for the following Dialog Boxes. Use this instruction before with the given Portrait Column and type the Portrait Row in the",
+    "wiki_page": "Event_Instruction_50.txt",
+    "routine_header": "PortraitCol",
+    "canonical_sig": "PortraitCol(xPC)"
   },
   "0x51": {
     "name": "_ChangeDialog",
@@ -1873,13 +1971,16 @@
       }
     ],
     "routine_header": "ChangeDialog",
-    "description": "Change dialogue balloon type mid-conversation"
+    "description": "Changes the content of a Dialog Box or closes it. Only seems to work with Dialog Types x8X through xEX. For more information, see the Dialog Type section of",
+    "wiki_page": "Event_Instruction_51.txt",
+    "canonical_sig": "ChangeDialog(xDB,xMSG#,xPR,xPP)"
   },
   "0x52": {
     "name": "Unknown52",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
-    "tic_only": false
+    "tic_only": false,
+    "description": "Unknown \u2014 possibly unused placeholder"
   },
   "0x53": {
     "name": "Direction2_1",
@@ -1928,7 +2029,9 @@
       }
     ],
     "routine_header": "FaceUnit",
-    "description": "Make a unit face another unit"
+    "description": "Makes unit(s) rotate to face a specified unit. The rotation direction is the shortest one (Clockwise as default). ID of the unit specified in the ENTD that will be faced from the This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_53.txt",
+    "canonical_sig": "FaceUnit(xFU,x00,xAU,xMT,xCL,xRS,xDL)"
   },
   "0x54": {
     "name": "StartModelAnimation",
@@ -1950,9 +2053,11 @@
         "description": "Animation state to set"
       }
     ],
-    "description": "Start a 3D object/model animation",
+    "description": "Use an object that has a 3D animation. 002 Back Gate of Lesalia 036 Church Outside of Town",
     "category": "model",
-    "routine_header": "Use3DObject"
+    "routine_header": "Use3DObject",
+    "wiki_page": "Event_Instruction_54.txt",
+    "canonical_sig": "Use3DObject(xID,xST)"
   },
   "0x55": {
     "name": "StartVRAMAnimation",
@@ -1975,8 +2080,10 @@
       }
     ],
     "routine_header": "UseFieldObject",
-    "description": "Activate a field object animation",
-    "category": "unit"
+    "description": "Changes the state of an object on the map. Most maps do not have objects that have many states, and there is no easy way to know which are. In some cases (perhaps all cases, as this is untested thoroughly), the ID references a Textured Animation ID as defined in a",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_55.txt",
+    "canonical_sig": "UseFieldObject(xID,x00)"
   },
   "0x56": {
     "name": "WaitModelAnimation",
@@ -1988,7 +2095,9 @@
     "wiki_sig": "Wait3DObject()",
     "category": "timing",
     "routine_header": "Wait3DObject",
-    "description": "Wait for a 3D object animation to complete"
+    "description": "Waits until all activated 3D objects are done animating before resuming.",
+    "wiki_page": "Event_Instruction_56.txt",
+    "canonical_sig": "Wait3DObject()"
   },
   "0x57": {
     "name": "WaitVRAMAnimation",
@@ -2000,7 +2109,9 @@
     "wiki_sig": "WaitFieldObject()",
     "category": "timing",
     "routine_header": "WaitFieldObject",
-    "description": "Wait for a field object animation to complete"
+    "description": "Waits for an object being used to complete its cycle before resuming.",
+    "wiki_page": "Event_Instruction_57.txt",
+    "canonical_sig": "WaitFieldObject()"
   },
   "0x58": {
     "name": "LoadEventCharacter",
@@ -2028,8 +2139,10 @@
       }
     ],
     "routine_header": "LoadEVTCHR",
-    "description": "Load an EVTCHR (event character sprite sheet)",
-    "category": "unit"
+    "description": "Loads an EVTCHR slot from the CD to temporary memory. This instruction takes time, and it's recommended to use afterwards. You'll then also need to use",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_58.txt",
+    "canonical_sig": "LoadEVTCHR(xBL,xEV,x00)"
   },
   "0x59": {
     "name": "ActivateEventCharacter",
@@ -2047,8 +2160,10 @@
       }
     ],
     "routine_header": "SaveEVTCHR",
-    "description": "Save current EVTCHR data to memory",
-    "category": "unit"
+    "description": "Saves the loaded EVTCHR Slot to a specific block in order to use its frames and animations. Must use the same Memory Block as the previous Note: If both blocks are in use, normal unit animations past x003B may no longer work.",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_59.txt",
+    "canonical_sig": "SaveEVTCHR(xBL)"
   },
   "0x5A": {
     "name": "DeactivateEventCharacter",
@@ -2072,7 +2187,9 @@
       }
     ],
     "routine_header": "SaveEVTCHRClear",
-    "description": "Clear and save EVTCHR data"
+    "description": "Allows to save an EVTCHR slot once more in the given memory block. To replace an EVTCHR, this must be used before If you are just trying to Clear out an EVTCHR for any reason, such as issues with UnitAnim in a event, on attack frames. You can simply put",
+    "wiki_page": "Event_Instruction_5A.txt",
+    "canonical_sig": "SaveEVTCHRClear(xBL,x00)"
   },
   "0x5B": {
     "name": "DisposeEventCharacter",
@@ -2095,8 +2212,10 @@
       }
     ],
     "routine_header": "LoadEVTCHRClear",
-    "description": "Load and clear EVTCHR data",
-    "category": "unit"
+    "description": "Allows to load an EVTCHR slot once more in the given memory block. To replace an EVTCHR, this must be used before If you are just trying to Clear out an EVTCHR for any reason, such as issues with UnitAnim in a event, on attack frames. You can simply put",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_5B.txt",
+    "canonical_sig": "LoadEVTCHRClear(xBL,x00)"
   },
   "0x5C": {
     "name": "ActivateCompressedAnimation",
@@ -2139,7 +2258,9 @@
       }
     ],
     "routine_header": "EndTrack",
-    "description": "End/stop the current music track"
+    "description": "Terminates the currently playing song immediately. This instruction is never used, and it is hard to tell the function of this value, if it has any. It IS saved to 0x80165FCA, for what that's worth.",
+    "wiki_page": "Event_Instruction_5E.txt",
+    "canonical_sig": "EndTrack(x??)"
   },
   "0x5F": {
     "name": "SetAnimationPosition",
@@ -2183,7 +2304,9 @@
       }
     ],
     "routine_header": "WarpUnit",
-    "description": "Instantly warp a unit to a new position"
+    "description": "Warps a unit to a new location instantly. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_5F.txt",
+    "canonical_sig": "WarpUnit(xID,x00,XXX,YYY,xEL,xFD)"
   },
   "0x60": {
     "name": "FadeMusic",
@@ -2207,7 +2330,9 @@
       }
     ],
     "routine_header": "FadeSound",
-    "description": "Fade the current sound/music volume"
+    "description": "Progressively fade sounds and music until they stop playing completely. Warning: This does NOT work on sounds generated by Never used, always x00.",
+    "wiki_page": "Event_Instruction_60.txt",
+    "canonical_sig": "FadeSound(x00,TIM)"
   },
   "0x61": {
     "name": "Unknown61",
@@ -2240,7 +2365,7 @@
     "gibbed_note": "63",
     "wiki_name": "CameraSpeedCurve",
     "wiki_sig": "CameraSpeedCurve(xPA)",
-    "description": "Set camera interpolation curve (linear, ease-in, etc.)",
+    "description": "Affects the speed curve of Camera and Focus instructions. We likely do not fully understand the full scope of the effects of its parameters yet. Previous notes by Nyzer",
     "category": "camera",
     "params": [
       {
@@ -2249,7 +2374,9 @@
         "description": "Speed curve type"
       }
     ],
-    "routine_header": "CameraSpeedCurve"
+    "routine_header": "CameraSpeedCurve",
+    "wiki_page": "Event_Instruction_63.txt",
+    "canonical_sig": "CameraSpeedCurve(xPA)"
   },
   "0x64": {
     "name": "WaitDirection",
@@ -2271,9 +2398,11 @@
         "description": "Always 0"
       }
     ],
-    "description": "Wait for a unit to finish turning/rotating",
+    "description": "Waits for a unit to finish rotating/facing another unit before resuming. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
     "category": "unit",
-    "routine_header": "WaitRotateUnit"
+    "routine_header": "WaitRotateUnit",
+    "wiki_page": "Event_Instruction_64.txt",
+    "canonical_sig": "WaitRotateUnit(xID,x00)"
   },
   "0x65": {
     "name": "WaitDirectionAll",
@@ -2285,7 +2414,9 @@
     "wiki_sig": "WaitRotateAll()",
     "category": "unit",
     "routine_header": "WaitRotateAll",
-    "description": "Wait for ALL units to finish rotating"
+    "description": "Waits for every unit to finish rotating/facing another unit before resuming.",
+    "wiki_page": "Event_Instruction_65.txt",
+    "canonical_sig": "WaitRotateAll()"
   },
   "0x66": {
     "name": "SetPresentClutDataAsDefault",
@@ -2333,9 +2464,10 @@
         "description": "FFHacktics: xMI"
       }
     ],
-    "description": "OPEN.BIN Button Input Related 2 (0x68268) #   ROUTINE:\u00a0? 0x68268 #       Checks for button input?",
-    "wiki_page": "OPEN.BIN_Button_Input_Related_2_(0x68268).txt",
-    "routine_header": "MirrorSprite"
+    "description": "Mirrors a sprite and all its animations/ETVCHR as if they were facing left instead of right, and vice versa. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_68.txt",
+    "routine_header": "MirrorSprite",
+    "canonical_sig": "MirrorSprite(xID,x00,xMI)"
   },
   "0x69": {
     "name": "Direction4",
@@ -2388,9 +2520,10 @@
         "description": "FFHacktics: xDL"
       }
     ],
-    "description": "OPEN.BIN Birthday Menu Related (0x6920c) #   ROUTINE:\u00a0? 0x6920c (Birthday menu related?) #       Mostly for menu graphics?",
-    "wiki_page": "OPEN.BIN_Birthday_Menu_Related_(0x6920c).txt",
-    "routine_header": "FaceTile"
+    "description": "Makes unit(s) rotate to face a specified tile. The rotation direction is the shortest one (Clockwise as default). Unit ID: ID of the unit specified in the ENTD. X Coordinate of the target tile.",
+    "wiki_page": "Event_Instruction_69.txt",
+    "routine_header": "FaceTile",
+    "canonical_sig": "FaceTile(xAU,xMT,XXX,YYY,x00,xCL,xRS,xDL)"
   },
   "0x6A": {
     "name": "FadeSoundEffect",
@@ -2429,8 +2562,9 @@
       }
     ],
     "description": "#   ROUTINE:\u00a0? 0x6aed0 #           r4 = (p1) Struct data #               First 8 entries are 4-byte values, and final 3 are 1-byte values.",
-    "wiki_page": "0x6aed0.txt",
-    "routine_header": "EditBGSound"
+    "wiki_page": "Event_Instruction_6A.txt",
+    "routine_header": "EditBGSound",
+    "canonical_sig": "EditBGSound(xSD,+ECH,+VOL,x00,xWT)"
   },
   "0x6B": {
     "name": "PlaySoundEffect",
@@ -2467,9 +2601,11 @@
         "description": "Delay before playback (frames)"
       }
     ],
-    "description": "Play a background sound effect with echo, volume, and timing control",
+    "description": "Final Fantasy Hacktics Wiki Toggle {6B} BGSound subsection Plays the indexed background sound effect.",
     "category": "audio",
-    "routine_header": "BGSound"
+    "routine_header": "BGSound",
+    "wiki_page": "Event_Instruction_6B.txt",
+    "canonical_sig": "BGSound(xSD,+ECH,+VOL,xST,TIM)"
   },
   "0x6C": {
     "name": "SetAnimationColorChangeOff",
@@ -2480,7 +2616,7 @@
     "wiki_name": "Never used",
     "wiki_sig": "{6D}",
     "category": "screen",
-    "description": "Event Instruction 0x6C and 0x6D This page was last edited on 10 May 2025, at 14:33.",
+    "description": "Final Fantasy Hacktics Wiki Event Instruction 0x6C and 0x6D This page was last edited on 10 May 2025, at 14:33.",
     "wiki_page": "Event_Instruction_0x6C_and_0x6D.txt",
     "routine_header": "unknown"
   },
@@ -2545,7 +2681,9 @@
         "description": "FFHacktics: +SPEED"
       }
     ],
-    "description": "Move sprite (beta/alternate version of SpriteMove)"
+    "description": "Move sprite (beta/alternate version of SpriteMove)",
+    "wiki_page": "Event_Instruction_6E.txt",
+    "canonical_sig": "SpriteMoveBeta(xID,x00,+XXXXX,+ZZZZZ,+YYYYY,xMV,x??,+SPEED)"
   },
   "0x6F": {
     "name": "WaitMoveSprite",
@@ -2568,9 +2706,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "WaitSpriteMove Event Instruction This page was last edited on 10 May 2025, at 14:31.",
-    "wiki_page": "WaitSpriteMove_Event_Instruction.txt",
-    "routine_header": "WaitSpriteMove"
+    "description": "Wait for a unit to complete its custom movement before resuming. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_6F.txt",
+    "routine_header": "WaitSpriteMove",
+    "canonical_sig": "WaitSpriteMove(xID,x00)"
   },
   "0x70": {
     "name": "JumpToPanel",
@@ -2604,7 +2743,9 @@
       }
     ],
     "routine_header": "Jump",
-    "description": "Make a unit perform a jump animation to a tile"
+    "description": "The given unit will jump up or down 1-4 tiles distance. It works perfectly for jumping down, but might look weird when trying to jump to tiles too height. Does not have an elevation parameter. If the height difference is very minimal, the unit will just walk instead. If the target tile is off the ma...",
+    "wiki_page": "Event_Instruction_70.txt",
+    "canonical_sig": "Jump(xID,x00,DST,xDR)"
   },
   "0x71": {
     "name": "RaiseAnimationPriority",
@@ -2624,7 +2765,7 @@
     "gibbed_note": "72 - unused?",
     "wiki_name": "Never used",
     "wiki_sig": "{73}",
-    "description": "Event Instruction 0x72 This page was last edited on 24 November 2025, at 10:12.",
+    "description": "Final Fantasy Hacktics Wiki Event Instruction 0x72 This page was last edited on 24 November 2025, at 10:12.",
     "wiki_page": "Event_Instruction_0x72.txt",
     "routine_header": "unknown"
   },
@@ -2633,7 +2774,7 @@
     "operand_bytes_classic": 14,
     "operand_bytes_enhanced": 14,
     "tic_only": false,
-    "description": "Alternate camera movement (similar to MoveCamera)",
+    "description": "Seems to control parameters in the cameras. Used in the random battle camera to pan out at the end.",
     "category": "camera",
     "wiki_page": "Event_Instruction_0x73.txt",
     "routine_header": "unknown, uses a jal shared by CameraFusion"
@@ -2697,9 +2838,10 @@
         "description": "FFHacktics: SES"
       }
     ],
-    "description": "This page was last edited on 7 January 2017, at 05:53.",
+    "description": "Create a dark screen that allows units to join your party, display winning conditions and save your party back to formation. This value is always set to x00 in the original game; it probably doesn't have a function. Controls the starting point where the expansion of the dark screen starts and also i...",
     "wiki_page": "Event_Instruction_0x76__DarkScreen.txt",
-    "routine_header": "DarkScreen"
+    "routine_header": "DarkScreen",
+    "canonical_sig": "DarkScreen(x00,xSH,ESP,RTS,x00,SES)"
   },
   "0x77": {
     "name": "StopWipe",
@@ -2711,7 +2853,9 @@
     "wiki_sig": "RemoveDarkScreen()",
     "category": "unit",
     "routine_header": "RemoveDarkScreen",
-    "description": "Remove the dark screen overlay"
+    "description": "Removes the dark screen with the same parameters it was called with.",
+    "wiki_page": "Event_Instruction_77.txt",
+    "canonical_sig": "RemoveDarkScreen()"
   },
   "0x78": {
     "name": "_DisplayConditions",
@@ -2733,9 +2877,10 @@
         "description": "FFHacktics: DST"
       }
     ],
-    "description": "Event Instruction 0x78: DisplayConditions #   {78} DisplayConditions #   if ((threadID == 4)",
+    "description": "Display a Winning condition, Congratulations, War Trophies or Bonus Money received after the battle. Also saves JP/XP/etc. from deployed units to the roster * Condition 0x02 shows \"THIS GAME IS COMPLETE!\" if Var x27 matches the event ID of the Altima battle before the DarkScreen command is run (0x14...",
     "wiki_page": "Event_Instruction_0x78__DisplayConditions.txt",
-    "routine_header": "DisplayConditions"
+    "routine_header": "DisplayConditions",
+    "canonical_sig": "DisplayConditions(xMG,DST)"
   },
   "0x79": {
     "name": "_WalkToAnim",
@@ -2764,7 +2909,9 @@
       }
     ],
     "routine_header": "WalkToAnim",
-    "description": "Walk to a tile with a custom animation"
+    "description": "Applies a normal or an EVTCHR animation to a given unit when it arrives at destination. ID of the unit specified in the ENTD. The EVTCHR sprite will be pasted directly over the unit. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_79.txt",
+    "canonical_sig": "WalkToAnim(xID,x00,xANIM)"
   },
   "0x7A": {
     "name": "EraseUnit",
@@ -2787,9 +2934,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "Dismiss Unit Event Instruction #   ROUTINE: DismissUnit Event Instruction #           r4 = (baseClass) Unit base class to dismiss",
-    "wiki_page": "Dismiss_Unit_Event_Instruction.txt",
-    "routine_header": "DismissUnit"
+    "description": "Removes the first unit which matches the given Special Job ID from the player's roster. Cannot remove the unit in the first roster slot (i.e. Ramza); it starts checking from Slot 2 instead of slot 1. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_7A.txt",
+    "routine_header": "DismissUnit",
+    "canonical_sig": "DismissUnit(xJB,x00)"
   },
   "0x7B": {
     "name": "TutorialButtonWait",
@@ -2808,7 +2956,9 @@
       }
     ],
     "routine_header": "(TutorialButtonWait) Waits for the specified button press (Tutorials/Records only)",
-    "description": "Wait for a specific button press (tutorial/records only)"
+    "description": "Waits for the specified button to be pressed before continuing. Only intended for Tutorial or Brave Story \"Records\" events due to the button press value requiring Variable 0x01FC to be flagged in order to be saved to the checked location. While the game will register L3/R3 and even the analog stick ...",
+    "wiki_page": "Event_Instruction_7B.txt",
+    "canonical_sig": "TutorialButtonWait(xBUTT)"
   },
   "0x7C": {
     "name": "StopAllEffects",
@@ -2820,7 +2970,9 @@
     "wiki_sig": "EndSound()",
     "category": "audio",
     "routine_header": "(EndSound) Stops all SoundEffects and BGSounds",
-    "description": "Stop all currently playing sound effects and background sounds"
+    "description": "Final Fantasy Hacktics Wiki Terminates the currently playing SoundEffect and BGSound immediately. See also: {21} SoundEffect \u2015 {6A} EditBGSound \u2015 {6B} BGSound",
+    "wiki_page": "Event_Instruction_7C.txt",
+    "canonical_sig": "EndSound()"
   },
   "0x7D": {
     "name": "DisplayChapter",
@@ -2838,8 +2990,10 @@
       }
     ],
     "routine_header": "ShowGraphic",
-    "description": "Display a 2D graphic overlay on screen",
-    "category": "screen"
+    "description": "Gradually prints a graphic on the screen, and erases it the same way. Graphics displayed by this instruction must have faded away by the time the event ends! Use Use GraphicTimeout to set a timeout of make a graphic fade out immediately.",
+    "category": "screen",
+    "wiki_page": "Event_Instruction_7D.txt",
+    "canonical_sig": "ShowGraphic(xGR)"
   },
   "0x7E": {
     "name": "WaitEventFlag",
@@ -2862,9 +3016,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Wait Value Event Instruction #   ROUTINE: WaitValue event instruction #           r4 = (params) Event instruction parameters",
-    "wiki_page": "Wait_Value_Event_Instruction.txt",
-    "routine_header": "WaitValue"
+    "description": "Waits until a given value has reached at least a certain amount before resuming. Only ever used in the original game to resume after a certain amount of characters with Click here for the list of Variables",
+    "wiki_page": "Event_Instruction_7E.txt",
+    "routine_header": "WaitValue",
+    "canonical_sig": "WaitValue(xADDR,xVALU)"
   },
   "0x7F": {
     "name": "SetEventCharacterClut",
@@ -2897,8 +3052,10 @@
       }
     ],
     "routine_header": "EVTCHRPalette",
-    "description": "Change EVTCHR sprite palette",
-    "category": "unit"
+    "description": "Changes the palette of a character by loading one from an EVTCHR Block. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_7F.txt",
+    "canonical_sig": "EVTCHRPalette(xID,x00,xBL,xPL)"
   },
   "0x80": {
     "name": "RequestStandardAnimation",
@@ -2925,10 +3082,11 @@
         "description": "Short duration"
       }
     ],
-    "description": "This page was last edited on 12 June 2025, at 02:00.",
-    "wiki_page": "Set_r2_=_0x801C9E84.txt",
+    "description": "Make units start their walking animation, ready to fight. Even if not called, this instruction is automatically executed when a battle starts with 0 frames between units. Unit ID: ID of the unit specified in the ENTD. Time assigned in frames to complete the instruction. One frame is the equivalent o...",
+    "wiki_page": "Event_Instruction_80.txt",
     "routine_header": "March",
-    "category": "unit"
+    "category": "unit",
+    "canonical_sig": "March(xAU,xMT,TIM)"
   },
   "0x81": {
     "name": "SetAnimationSound",
@@ -2949,7 +3107,7 @@
     "tic_only": false,
     "gibbed_note": "82",
     "category": "timing",
-    "description": "Event Instruction 0x82 < BATTLE.BIN Routines # WORLD.BIN: 000f2134 - 000f2188",
+    "description": "Unknown. Only ever used inside {49} AddUnitStart + {4A} AddUnitEnd blocks. Outside of those blocks, seems to simulate a brief Wait period. High tendency to break the game when {43} CallFunction(x06) is used afterwards. Even though the original game achieves this without crashing, the procedure is un...",
     "wiki_page": "Event_Instruction_0x82.txt",
     "routine_header": "unknown"
   },
@@ -2984,9 +3142,10 @@
       }
     ],
     "description": "ChangeStats Event Instruction Parameters: r4 = Event parameters pointer Offsets: 0x00 Affected Units",
-    "wiki_page": "ChangeStats_Event_Instruction.txt",
+    "wiki_page": "Event_Instruction_83.txt",
     "routine_header": "ChangeStats",
-    "category": "status"
+    "category": "status",
+    "canonical_sig": "ChangeStats(xAU,xMT,xST,+VALUE)"
   },
   "0x84": {
     "name": "PlayJingle",
@@ -3004,8 +3163,10 @@
       }
     ],
     "routine_header": "PlayTune",
-    "description": "Play a music tune/jingle",
-    "category": "audio"
+    "description": "Plays a song file. Don't get excited, the list is very short and mostly useless. Any other value will freeze the game.",
+    "category": "audio",
+    "wiki_page": "Event_Instruction_84.txt",
+    "canonical_sig": "PlayTune(xSG)"
   },
   "0x85": {
     "name": "ChangeTreasureFindDay",
@@ -3022,10 +3183,11 @@
         "description": "FFHacktics: xTL"
       }
     ],
-    "description": "UnlockDate Event Instruction This page was last edited on 10 May 2025, at 14:36.",
-    "wiki_page": "UnlockDate_Event_Instruction.txt",
+    "description": "Sets the unlocking date of a treasure/land to the current day. To Unlock the Treasures/Lands themselves, use 1D\u00a0: Longibunne Spear",
+    "wiki_page": "Event_Instruction_85.txt",
     "routine_header": "UnlockDate",
-    "category": "status"
+    "category": "status",
+    "canonical_sig": "UnlockDate(xTL)"
   },
   "0x86": {
     "name": "EquipWeapon",
@@ -3053,8 +3215,10 @@
       }
     ],
     "routine_header": "TempWeapon",
-    "description": "Temporarily equip a weapon on a unit (visual only)",
-    "category": "unit"
+    "description": "Gives unit a temporary weapon to swing. Does not affect equipped items. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_86.txt",
+    "canonical_sig": "TempWeapon(xID,x00,xIT)"
   },
   "0x87": {
     "name": "UseGun",
@@ -3087,8 +3251,10 @@
       }
     ],
     "routine_header": "Arrow",
-    "description": "Display an arrow indicator on the map",
-    "category": "unit"
+    "description": "Adds an arrow or bolt the next time a unit that has a bow (arrow) or a crossbow (bolt) shoots with a SEQ animation of x53, x54 or x55. ID of the target specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "category": "unit",
+    "wiki_page": "Event_Instruction_87.txt",
+    "canonical_sig": "Arrow(xTG,x00,xSH,x00)"
   },
   "0x88": {
     "name": "RestartMapPaletteAnimation",
@@ -3100,7 +3266,9 @@
     "wiki_sig": "MapUnfreeze()",
     "routine_header": "MapUnfreeze",
     "description": "Unfreeze the map (resume map animations)",
-    "category": "status"
+    "category": "status",
+    "wiki_page": "Event_Instruction_88.txt",
+    "canonical_sig": "MapUnfreeze()"
   },
   "0x89": {
     "name": "StopMapPaletteAnimation",
@@ -3112,7 +3280,9 @@
     "wiki_sig": "MapFreeze()",
     "routine_header": "MapFreeze",
     "description": "Freeze the map (pause map animations)",
-    "category": "status"
+    "category": "status",
+    "wiki_page": "Event_Instruction_89.txt",
+    "canonical_sig": "MapFreeze()"
   },
   "0x8A": {
     "name": "WaitEffectLoad",
@@ -3124,7 +3294,9 @@
     "wiki_sig": "EffectStart()",
     "category": "screen",
     "routine_header": "EffectStart",
-    "description": "Start playing a visual effect"
+    "description": "Must be used in a block to activate the animation of a previously set Effect file.",
+    "wiki_page": "Event_Instruction_8A.txt",
+    "canonical_sig": "EffectStart()"
   },
   "0x8B": {
     "name": "PlayEffect",
@@ -3136,8 +3308,9 @@
     "wiki_sig": "EffectEnd()",
     "category": "screen",
     "description": "Get Facing Short from Misc Data (Redirected from 0x8bf1c) Get Current Facing Short from Misc Data",
-    "wiki_page": "0x8bf1c.txt",
-    "routine_header": "EffectEnd"
+    "wiki_page": "Event_Instruction_8B.txt",
+    "routine_header": "EffectEnd",
+    "canonical_sig": "EffectEnd()"
   },
   "0x8C": {
     "name": "SetAnimationFlipDirection",
@@ -3175,9 +3348,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "UnitAnimRotate Event Instruction This page was last edited on 10 May 2025, at 14:33.",
-    "wiki_page": "UnitAnimRotate_Event_Instruction.txt",
-    "routine_header": "UnitAnimRotate"
+    "description": "Makes the unit immediately rotate to a certain direction and execute an animation. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_8C.txt",
+    "routine_header": "UnitAnimRotate",
+    "canonical_sig": "UnitAnimRotate(xID,x00,xDR,xANIM,x00)"
   },
   "0x8D": {
     "name": "Unknown8D",
@@ -3203,7 +3377,10 @@
         "type": "U8",
         "description": "FFHacktics: xVA"
       }
-    ]
+    ],
+    "description": "Allows performing comparisons on item quantities, as well as adding/subtracting item quantities in various ways. This takes into account the number of equipped items to make sure the regular inventory never exceeds 99 items even if you use Parameter x10 instead of x20. For the Fur Shop, the assumed ...",
+    "wiki_page": "Event_Instruction_8D.txt",
+    "canonical_sig": "Inventory(xPA,xID,xVA)"
   },
   "0x8E": {
     "name": "WaitDisplayChapter",
@@ -3215,7 +3392,9 @@
     "wiki_sig": "WaitGraphicPrint()",
     "category": "timing",
     "routine_header": "WaitGraphicPrint",
-    "description": "Wait for a graphic print/display to complete"
+    "description": "Waits until a graphic generated by {7D} ShowGraphic is done animating, fully showing on the screen, before resuming.",
+    "wiki_page": "Event_Instruction_8E.txt",
+    "canonical_sig": "WaitGraphicPrint()"
   },
   "0x8F": {
     "name": "AllGrayFilter",
@@ -3261,7 +3440,9 @@
       }
     ],
     "routine_header": "(TutorialCoordinateConfirm)",
-    "description": "Wait for Circle to be pressed at the specified coordinates."
+    "description": "TutorialCoordinateConfirm( Wait for Circle to be pressed while the cursor is at the specified coordinates. Only intended for Tutorial or Brave Story \"Records\" events due to the button press value requiring Variable 0x01FC to be flagged in order to be saved to the checked location.",
+    "wiki_page": "Event_Instruction_90.txt",
+    "canonical_sig": "TutorialCoordinateConfirm(XXX,YYY,x00)"
   },
   "0x91": {
     "name": "DisplayMapTitle",
@@ -3288,9 +3469,10 @@
         "description": "Speed (signed)"
       }
     ],
-    "description": "Event Instruction 0x91: ShowMapTitle #   {91} ShowMapTitle This page was last edited on 24 January 2017, at 22:59.",
+    "description": "Displays a 256x20 4bit image (EVENT\\MAPTITLE.BIN) of the current map's title on the screen. Only Map 1 to 120 have a graphic assigned to them. Trying to display the title of other maps will result in rubbish. By default the graphic is printed horizontally centered, and right above the middle line ve...",
     "wiki_page": "Event_Instruction_0x91__ShowMapTitle.txt",
-    "routine_header": "ShowMapTitle"
+    "routine_header": "ShowMapTitle",
+    "canonical_sig": "ShowMapTitle(+XXX,+YYY,+SPD)"
   },
   "0x92": {
     "name": "_InflictStatus",
@@ -3322,10 +3504,11 @@
         "description": "Always 0"
       }
     ],
-    "description": "Inflict a status effect on a unit",
+    "description": "Inflict a status on a given unit. The changes are visible even outside of battle. Statuses can be stacked, but sometimes need to be applied in the correct order; for example, Chicken needs to be applied before Float. Warning: Any event with an InflictStatus command will instantly apply it at the sta...",
     "category": "unit",
-    "wiki_page": "Inflict_Status_Event_Command.txt",
-    "routine_header": "InflictStatus"
+    "wiki_page": "Event_Instruction_92.txt",
+    "routine_header": "InflictStatus",
+    "canonical_sig": "InflictStatus(xID,x00,xSS,x0C,x00)"
   },
   "0x93": {
     "name": "WriteEventFlag",
@@ -3357,9 +3540,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "TeleportOut Event Instruction This page was last edited on 10 May 2025, at 14:32.",
-    "wiki_page": "TeleportOut_Event_Instruction.txt",
-    "routine_header": "TeleportOut"
+    "description": "Unit will teleport out of the field. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_94.txt",
+    "routine_header": "TeleportOut",
+    "canonical_sig": "TeleportOut(xID,x00)"
   },
   "0x95": {
     "name": "Unknown95",
@@ -3382,8 +3566,10 @@
     "wiki_name": "AppendMapState",
     "wiki_sig": "AppendMapState()",
     "routine_header": "AppendMapState",
-    "description": "Append additional state to the current map",
-    "category": "screen"
+    "description": "Append map changes to be loaded during a {43} CallFunction event with an effect.",
+    "category": "screen",
+    "wiki_page": "Event_Instruction_96.txt",
+    "canonical_sig": "AppendMapState()"
   },
   "0x97": {
     "name": "SetAnimationBrightColor",
@@ -3407,7 +3593,9 @@
       }
     ],
     "routine_header": "ResetPalette",
-    "description": "Reset a unit's sprite palette to default"
+    "description": "Resets the palette color of a unit to its original state. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_97.txt",
+    "canonical_sig": "ResetPalette(xID,x00)"
   },
   "0x98": {
     "name": "TeleportIn",
@@ -3429,9 +3617,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "TeleportIn Event Instruction This page was last edited on 10 May 2025, at 14:32.",
-    "wiki_page": "TeleportIn_Event_Instruction.txt",
-    "routine_header": "TeleportIn"
+    "description": "Unit will teleport onto the field. ID of the unit specified in the ENTD. This value is always set to x00 in the original game; it probably doesn't have a function.",
+    "wiki_page": "Event_Instruction_98.txt",
+    "routine_header": "TeleportIn",
+    "canonical_sig": "TeleportIn(xID,x00)"
   },
   "0x99": {
     "name": "_BlueRemoveUnit",
@@ -3454,9 +3643,10 @@
         "description": "Always 0"
       }
     ],
-    "description": "BlueRemoveUnit Event Instruction (Redirected from Event Instruction 0x99: BlueRemoveUnit) This page was last edited on 18 October 2025, at 19:10.",
+    "description": "Remove a non-Charmed enemy team unit from the map with a blue hueing. This differs from RemoveUnit in that it takes longer, so you can't Add another unit/sprite in immediately afterwards, and that a BlueRemoved unit will still award their War Trophies at the end. ID of the unit specified in the ENTD...",
     "wiki_page": "Event_Instruction_0x99__BlueRemoveUnit.txt",
-    "routine_header": "BlueRemoveUnit"
+    "routine_header": "BlueRemoveUnit",
+    "canonical_sig": "BlueRemoveUnit(xID,x00)"
   },
   "0x9A": {
     "name": "ResetTextIncrement",
@@ -3465,7 +3655,10 @@
     "tic_only": false,
     "gibbed_note": "9A",
     "wiki_name": "ResetTextIncrement",
-    "wiki_sig": "ResetTextIncrement()"
+    "wiki_sig": "ResetTextIncrement()",
+    "description": "Resets the \"push\" increment variable used to append text variable values. for more information on text variables.",
+    "wiki_page": "Event_Instruction_9A.txt",
+    "canonical_sig": "ResetTextIncrement()"
   },
   "0x9B": {
     "name": "Unknown9B",
@@ -3481,7 +3674,10 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Pushes a value to the next text variable, starting from 0x00. Increases Push increment by 1. for more information on text variables.",
+    "wiki_page": "Event_Instruction_9B.txt",
+    "canonical_sig": "PushTextVal(xVALU)"
   },
   "0x9C": {
     "name": "Unknown9C",
@@ -3497,7 +3693,10 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "Pushes a variable's value to the next text variable, starting from 0x00. Increases Push increment by 1. for more information on text variables.",
+    "wiki_page": "Event_Instruction_9C.txt",
+    "canonical_sig": "PushTextVar(xVR)"
   },
   "0x9D": {
     "name": "Unknown9D",
@@ -3518,7 +3717,10 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Pushes a value to the specified Text Variable. for more information on Text Variables. Note: this command may be bugged if the value of a byte goes too high. See the",
+    "wiki_page": "Event_Instruction_9D.txt",
+    "canonical_sig": "SetTextVal(xTV,xVALU)"
   },
   "0x9E": {
     "name": "Unknown9E",
@@ -3539,7 +3741,10 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "Pushes a Variable's value to the specified Text Variable. for more information on Text Variables. Click here for a list of the Text Variables",
+    "wiki_page": "Event_Instruction_9E.txt",
+    "canonical_sig": "SetTextVar(xTV,xVR)"
   },
   "0x9F": {
     "name": "ButtonPressGoTo",
@@ -3549,7 +3754,7 @@
     "gibbed_note": "9F",
     "wiki_name": "ButtonPressGoTo",
     "wiki_sig": "ButtonPressGoTo(xBUTT,xGT)",
-    "description": "Wait for a specific button press, then jump to a target",
+    "description": "If all specified buttons are being pressed at the same time when executing this instruction, the event jumps to the specified GoToTarget. While the game will register L3/R3 and even the analog stick coordinates in some emulators, the original console is unable to, and thus those buttons should be av...",
     "category": "flow_control",
     "params": [
       {
@@ -3562,7 +3767,9 @@
         "type": "U8",
         "description": "Goto target"
       }
-    ]
+    ],
+    "wiki_page": "Event_Instruction_9F.txt",
+    "canonical_sig": "ButtonPressGoTo(xBUTT,xGT)"
   },
   "0xA0": {
     "name": "LessThanEquals",
@@ -3572,8 +3779,10 @@
     "gibbed_note": "A0",
     "wiki_name": "LTE",
     "wiki_sig": "LTE()",
-    "description": "Conditional: compare script variable (==)",
-    "category": "script_variable"
+    "description": "Less Than or Equal | Variable 0x0000 = If ( Variable 0x0000 <= Variable 0x0001 ) Compares Variables x0000 & x0001. If x0000's value is less than or equal to x0001's, x0000 is set to a value of 0001.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_A0.txt",
+    "canonical_sig": "LTE()"
   },
   "0xA1": {
     "name": "GreaterThanEquals",
@@ -3583,8 +3792,10 @@
     "gibbed_note": "A1",
     "wiki_name": "GTE",
     "wiki_sig": "GTE()",
-    "description": "Conditional: compare script variable (!=)",
-    "category": "script_variable"
+    "description": "Greater Than or Equal | Variable 0x0000 = If ( Variable 0x0000 >= Variable 0x0001 ) Compares Variables x0000 & x0001. If x0000's value is greater than or equal to x0001's, x0000 is set to a value of 0001.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_A1.txt",
+    "canonical_sig": "GTE()"
   },
   "0xA2": {
     "name": "Equals",
@@ -3594,8 +3805,10 @@
     "gibbed_note": "A2",
     "wiki_name": "EQ",
     "wiki_sig": "EQ()",
-    "description": "Conditional: compare script variable (>)",
-    "category": "script_variable"
+    "description": "Compares Variables x0000 & x0001. If x0000's value is equal to x0001's, x0000 is set to a value of 0001. If not, x0000 is set to a value of 0000.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_A2.txt",
+    "canonical_sig": "EQ()"
   },
   "0xA3": {
     "name": "NotEquals",
@@ -3606,7 +3819,9 @@
     "wiki_name": "NEQ",
     "wiki_sig": "NEQ()",
     "category": "flow_control",
-    "description": "Conditional: compare script variable (>=)"
+    "description": "Compares Variables x0000 & x0001. If x0000's value is not equal to x0001's, x0000 is set to a value of 0001. If they are equal, x0000 is set to a value of 0000.",
+    "wiki_page": "Event_Instruction_A3.txt",
+    "canonical_sig": "NEQ()"
   },
   "0xA4": {
     "name": "LessThan",
@@ -3616,8 +3831,10 @@
     "gibbed_note": "A4",
     "wiki_name": "LT",
     "wiki_sig": "LT()",
-    "description": "Conditional: compare script variable (<)",
-    "category": "script_variable"
+    "description": "Compares Variables x0000 & x0001. If x0000's value is less than (and equal to) x0001's, x0000 is set to a value of 0001.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_A4.txt",
+    "canonical_sig": "LT()"
   },
   "0xA5": {
     "name": "GreaterThan",
@@ -3627,22 +3844,28 @@
     "gibbed_note": "A5",
     "wiki_name": "GT",
     "wiki_sig": "GT()",
-    "description": "Conditional: compare script variable (<=)",
-    "category": "script_variable"
+    "description": "Compares Variables x0000 & x0001. If x0000's value is greater than (and equal to) x0001's, x0000 is set to a value of 0001.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_A5.txt",
+    "canonical_sig": "GT()"
   },
   "0xA6": {
     "name": "BeginCutscene",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
-    "gibbed_note": "A6"
+    "gibbed_note": "A6",
+    "description": "Begin a cutscene sequence (TIC exclusive)",
+    "category": "tic_exclusive"
   },
   "0xA7": {
     "name": "EndCutscene",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": false,
-    "gibbed_note": "A7"
+    "gibbed_note": "A7",
+    "description": "End a cutscene sequence (TIC exclusive)",
+    "category": "tic_exclusive"
   },
   "0xA8": {
     "name": "SetSpriteRenderParam",
@@ -3661,7 +3884,8 @@
     "tic_only": false,
     "gibbed_note": "A9",
     "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?",
-    "category": "unit"
+    "category": "unit",
+    "description": "Initialize sprite render parameters (TIC exclusive)"
   },
   "0xAA": {
     "name": "SuspendBattleEngine",
@@ -3669,7 +3893,8 @@
     "operand_bytes_enhanced": 1,
     "tic_only": false,
     "gibbed_note": "AA",
-    "category": "battle"
+    "category": "battle",
+    "description": "Suspend the battle engine during events (TIC exclusive)"
   },
   "0xAB": {
     "name": "DisplayBattleMessage",
@@ -3699,7 +3924,10 @@
         "type": "U8",
         "description": "FFHacktics: xVALU"
       }
-    ]
+    ],
+    "description": "Load Upper Immediate | Variable = Immediate Value << 16 Click here for the list of Variables Value that will be use along with the operand to change the address' value.",
+    "wiki_page": "Event_Instruction_AC.txt",
+    "canonical_sig": "LUI(xVARI,xVALU)"
   },
   "0xAD": {
     "name": "ChangePostEffectDepthLUT",
@@ -3731,7 +3959,9 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Change post-processing color LUT (TIC exclusive)"
+    "description": "Set | Variable = Immediate Value Click here for the list of Variables Value that will be use along with the operand to change the address' value.",
+    "wiki_page": "Event_Instruction_AE.txt",
+    "canonical_sig": "SET(xVARI,xVALU)"
   },
   "0xAF": {
     "name": "SETVar",
@@ -3752,7 +3982,10 @@
         "type": "U8",
         "description": "FFHacktics: xVAR2"
       }
-    ]
+    ],
+    "description": "Click here for the list of Variables Click here for the list of Variables",
+    "wiki_page": "Event_Instruction_AF.txt",
+    "canonical_sig": "SETVar(xVAR1,xVAR2)"
   },
   "0xB0": {
     "name": "Add",
@@ -3774,8 +4007,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Script variable assignment (=)",
-    "category": "script_variable"
+    "description": "Click here for the list of Variables Value that will be use along with the operand to change the address' value.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B0.txt",
+    "canonical_sig": "ADD(xVARI,xVALU)"
   },
   "0xB1": {
     "name": "AddVar",
@@ -3797,8 +4032,10 @@
         "description": "FFHacktics: xVAR2"
       }
     ],
-    "description": "Script variable addition (+=)",
-    "category": "script_variable"
+    "description": "Click here for the list of Variables Click here for the list of Variables",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B1.txt",
+    "canonical_sig": "ADDVar(xVAR1,xVAR2)"
   },
   "0xB2": {
     "name": "Sub",
@@ -3820,8 +4057,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Script variable subtraction (-=)",
-    "category": "script_variable"
+    "description": "Click here for the list of Variables Value that will be use along with the operand to change the address' value.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B2.txt",
+    "canonical_sig": "SUB(xVARI,xVALU)"
   },
   "0xB3": {
     "name": "SubVar",
@@ -3843,8 +4082,10 @@
         "description": "FFHacktics: xVAR2"
       }
     ],
-    "description": "Script variable multiplication (*=)",
-    "category": "script_variable"
+    "description": "Click here for the list of Variables Click here for the list of Variables",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B3.txt",
+    "canonical_sig": "SUBVar(xVAR1,xVAR2)"
   },
   "0xB4": {
     "name": "Mul",
@@ -3866,8 +4107,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Script variable division (/=)",
-    "category": "script_variable"
+    "description": "Use this instruction for general multiplication. Click here for the list of Variables Value that will be use along with the operand to change the address' value.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B4.txt",
+    "canonical_sig": "MULT(xVARI,xVALU)"
   },
   "0xB5": {
     "name": "MulVar",
@@ -3889,8 +4132,10 @@
         "description": "FFHacktics: xVAR2"
       }
     ],
-    "description": "Script variable modulo (%=)",
-    "category": "script_variable"
+    "description": "Use this instruction for general multiplication. Click here for the list of Variables Click here for the list of Variables",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B5.txt",
+    "canonical_sig": "MULTVar(xVAR1,xVAR2)"
   },
   "0xB6": {
     "name": "Div",
@@ -3912,8 +4157,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Script variable bitwise AND (&=)",
-    "category": "script_variable"
+    "description": "Use this instruction for general division. Click here for the list of Variables Value that will be use along with the operand to change the address' value.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B6.txt",
+    "canonical_sig": "DIV(xVARI,xVALU)"
   },
   "0xB7": {
     "name": "DivVar",
@@ -3935,8 +4182,10 @@
         "description": "FFHacktics: xVAR2"
       }
     ],
-    "description": "Script variable bitwise OR (|=)",
-    "category": "script_variable"
+    "description": "Use this instruction for general division. Click here for the list of Variables Click here for the list of Variables",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B7.txt",
+    "canonical_sig": "DIVVar(xVAR1,xVAR2)"
   },
   "0xB8": {
     "name": "Mod",
@@ -3958,8 +4207,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Script variable left shift (<<=)",
-    "category": "script_variable"
+    "description": "Divides the selected Variable Value by the Immediate Value and gives the So if the Variable Value was 0018 and the Immediate Value was 0006, the result would be 0000. If the Variable Value was 0019 and the Immediate Value was 0006, the result would be 0001.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B8.txt",
+    "canonical_sig": "MOD(xVARI,xVALU)"
   },
   "0xB9": {
     "name": "ModVar",
@@ -3981,8 +4232,10 @@
         "description": "FFHacktics: xVAR2"
       }
     ],
-    "description": "Script variable right shift (>>=)",
-    "category": "script_variable"
+    "description": "Divides Variable 1's Value by Variable 2's Value and gives the So if VAR1's Value was 0018 and VAR2's Value was 0006, the result (saved to VAR1) would be 0000. If VAR1's Value was 0019 and VAR2's Value was 0006, the result (saved to VAR1) would be 0001.",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_B9.txt",
+    "canonical_sig": "MODVar(xVAR1,xVAR2)"
   },
   "0xBA": {
     "name": "And",
@@ -4004,8 +4257,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Script variable increment (++)",
-    "category": "script_variable"
+    "description": "AND bitwise operand | Variable = Variable AND ImmediateValue This command compares the individual bits of the value within a Variable and a specific ImmediateValue, and produces a single binary output.  This makes this a good way to disable a specific bit within a byte without changing the rest of t...",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_BA.txt",
+    "canonical_sig": "AND(xVARI,xVALU)"
   },
   "0xBB": {
     "name": "AndVar",
@@ -4027,8 +4282,10 @@
         "description": "FFHacktics: xVAR2"
       }
     ],
-    "description": "Script variable decrement (--)",
-    "category": "script_variable"
+    "description": "AND Variable bitwise operand | Variable1 = Variable1 AND Variable2 This command compares the individual bits of the value between two Variables, and produces a single binary output. With AND, the resulting bit outputs are set to 1 (TRUE) only if both values' bit inputs are 1. This makes this a good ...",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_BB.txt",
+    "canonical_sig": "ANDVar(xVAR1,xVAR2)"
   },
   "0xBC": {
     "name": "Or",
@@ -4050,8 +4307,10 @@
         "description": "FFHacktics: xVALU"
       }
     ],
-    "description": "Script variable bitwise NOT (~)",
-    "category": "script_variable"
+    "description": "OR bitwise operand | Variable = Variable OR ImmediateValue This command compares the individual bits of the value between a Variable and a specific ImmediateValue, and produces a single binary output. With OR, the resulting bit outputs are set to 1 (TRUE) if either value's bit input is 1. This makes...",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_BC.txt",
+    "canonical_sig": "OR(xVARI,xVALU)"
   },
   "0xBD": {
     "name": "OrVar",
@@ -4073,8 +4332,10 @@
         "description": "FFHacktics: xVAR2"
       }
     ],
-    "description": "Script variable compare (==)",
-    "category": "script_variable"
+    "description": "OR Variable bitwise operand | Variable1 = Variable1 OR Variable2 This command compares the individual bits of the value between a Variable and a specific ImmediateValue, and produces a single binary output. With OR, the resulting bit outputs are set to 1 (TRUE) if either value's bit input is 1. This...",
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_BD.txt",
+    "canonical_sig": "ORVar(xVAR1,xVAR2)"
   },
   "0xBE": {
     "name": "Zero",
@@ -4092,7 +4353,9 @@
       }
     ],
     "description": "Script variable compare not equal (!=)",
-    "category": "script_variable"
+    "category": "script_variable",
+    "wiki_page": "Event_Instruction_BE.txt",
+    "canonical_sig": "ZERO(xVARI)"
   },
   "0xBF": {
     "name": "UnknownBF",
@@ -4113,7 +4376,10 @@
         "type": "U8",
         "description": "FFHacktics: MODUL"
       }
-    ]
+    ],
+    "description": "This page is about the . For ASM random, see idk fill this in later",
+    "wiki_page": "Event_Instruction_BF.txt",
+    "canonical_sig": "Random(xVR,MODUL)"
   },
   "0xC0": {
     "name": "UnknownC0",
@@ -4155,7 +4421,10 @@
         "type": "U8",
         "description": "FFHacktics: LEN"
       }
-    ]
+    ],
+    "description": "Loads a value to a given variable. Works essentially the same as lbu/lhu/lw, but using variables. ID of the Variable which will be written to. Click here for the list of Variables",
+    "wiki_page": "Event_Instruction_C1.txt",
+    "canonical_sig": "LoadAddress(xVR,xVALU,xVA,LEN)"
   },
   "0xC2": {
     "name": "UnitAddress",
@@ -4178,7 +4447,10 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "Searches for the given Unit ID or Character Identity and returns the address to alter its stats. Returns 0 if no unit matched. to see what you can edit. ID of the unit specified in the ENTD.",
+    "wiki_page": "Event_Instruction_C2.txt",
+    "canonical_sig": "UnitAddress(xID,xVR)"
   },
   "0xC3": {
     "name": "WorldUnitAddress",
@@ -4200,7 +4472,10 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "Searches for the given Unit ID and returns the address to alter its world (non-battle) stats. Returns 0 if no unit matched. to see what you can edit. ID of the special unit or ID of the special dialogue assigned to that unit.",
+    "wiki_page": "Event_Instruction_C3.txt",
+    "canonical_sig": "WorldUnitAddress(xID,xVR)"
   },
   "0xC4": {
     "name": "SaveAddress",
@@ -4232,7 +4507,10 @@
         "type": "U8",
         "description": "FFHacktics: LEN"
       }
-    ]
+    ],
+    "description": "Saves a variable to a given address. Works essentially the same as sb/sh/sw, but using variables. ID of the Variable which will be stored. Click here for the list of Variables",
+    "wiki_page": "Event_Instruction_C4.txt",
+    "canonical_sig": "SaveAddress(xVR,xVALU,xVA,LEN)"
   },
   "0xC5": {
     "name": "ChangeDepthOfField",
@@ -4255,7 +4533,9 @@
         "description": "Portrait index"
       }
     ],
-    "description": "Change depth of field parameters (TIC exclusive)"
+    "description": "Updates a unit's characteristics in special ways that cannot be easily achieved manually. Can currently only update statuses on a unit. Note: Can also affect whether a unit is controllable or not (Battle Stats variable x01BA). It's possible this works on many kinds of data in the Temporary Battle Of...",
+    "wiki_page": "Event_Instruction_C5.txt",
+    "canonical_sig": "UpdateUnit(xID,xPR)"
   },
   "0xC6": {
     "name": "TransformUnit",
@@ -4283,7 +4563,10 @@
         "type": "U8",
         "description": "Backward jump distance"
       }
-    ]
+    ],
+    "description": "Levels down a character and levels them back up to the same level as a new one, changing their Main ID, Job ID and Gender accordingly. Accurately preserves stats as much as possible (within the 3 byte raw stat length). There might be some loss of stats changing back and forth if one of the two jobs ...",
+    "wiki_page": "Event_Instruction_C6.txt",
+    "canonical_sig": "TransformUnit(xAV,xPA,xJB)"
   },
   "0xC7": {
     "name": "UnknownC7",
@@ -4305,7 +4588,10 @@
         "type": "U8",
         "description": "FFHacktics: xIDEN"
       }
-    ]
+    ],
+    "description": "Variable 0x0000 = 1 if a unit is found, 0 otherwise If you do not specify the Main Roster or Bench as flags, then this instruction will always return 0! The Main ID or Name ID to search for.",
+    "wiki_page": "Event_Instruction_C7.txt",
+    "canonical_sig": "RosterHasUnit(xPR,xIDEN)"
   },
   "0xC8": {
     "name": "SetUnitTimer",
@@ -4314,21 +4600,26 @@
     "tic_only": false,
     "gibbed_note": "C8",
     "gibbed_operands": "Gibbed types: S32, S32",
-    "category": "unit"
+    "category": "unit",
+    "description": "Set a timer on a specific unit (TIC exclusive)"
   },
   "0xC9": {
     "name": "EnableChoiceMenu",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "C9"
+    "gibbed_note": "C9",
+    "description": "Enable the player choice menu overlay (TIC exclusive)",
+    "category": "tic_exclusive"
   },
   "0xCA": {
     "name": "SetNarrationMode",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "CA"
+    "gibbed_note": "CA",
+    "description": "Set narration mode for dialogue display (TIC exclusive)",
+    "category": "tic_exclusive"
   },
   "0xCB": {
     "name": "ChangePostEffectGlare",
@@ -4354,7 +4645,10 @@
         "type": "U8",
         "description": "Unit ID"
       }
-    ]
+    ],
+    "description": "Resets the turn counter of a specific unit or all units to use with the UnitTurns() Event Conditional.",
+    "wiki_page": "Event_Instruction_CC.txt",
+    "canonical_sig": "ResetTurnCounter(xID)"
   },
   "0xCD": {
     "name": "PostEvent",
@@ -4376,7 +4670,10 @@
         "type": "U8",
         "description": "FFHacktics: xSCEN"
       }
-    ]
+    ],
+    "description": "Sets the action to take after an event has completed and no other event conditionals can successfully trigger. The Scenario List ID to load, as defined in ATTACK.OUT Editor Special Awesome. Leave as x0000 if not using \"0x81: Load Next Scenario\"",
+    "wiki_page": "Event_Instruction_CD.txt",
+    "canonical_sig": "PostEvent(xAC,xSCEN)"
   },
   "0xCE": {
     "name": "LoadConditionals",
@@ -4394,7 +4691,10 @@
         "type": "U8",
         "description": "FFHacktics: xCOND"
       }
-    ]
+    ],
+    "description": "Temporarily loads a sector from CONDITIONALS.EVT (patched through the Event Conditionals v2+ spreadsheet) then overwrites the active conditionals of the event for up to 16 different conditional sets and 512 bytes of conditional data. This temporarily pauses the game for 0-1 frames while the sector i...",
+    "wiki_page": "Event_Instruction_CE.txt",
+    "canonical_sig": "LoadConditionals(xCOND)"
   },
   "0xCF": {
     "name": "Routine",
@@ -4410,7 +4710,10 @@
         "type": "U8",
         "description": "FFHacktics: rROUTINEA"
       }
-    ]
+    ],
+    "description": "Runs/executes a routine at any address. r1 to r16 are automatically already freed and at your disposal. Routine Address\u00a0: Word Address of the routine in raw hex to run/execute.",
+    "wiki_page": "Event_Instruction_CF.txt",
+    "canonical_sig": "Routine(rROUTINEA)"
   },
   "0xD0": {
     "name": "SeekCodeForwardIfZero",
@@ -4429,7 +4732,9 @@
       }
     ],
     "routine_header": "JumpForwardIfZero",
-    "description": "(B) Block Start"
+    "description": "Jumps to {D2} ForwardTarget if Variable 0x0000 is equal to 0. Otherwise simply keeps advancing. Must be placed before {D2} ForwardTarget! Assigned ID from x00 to xFF so you have related instructions work only with this value to not create conflict.",
+    "wiki_page": "Event_Instruction_D0.txt",
+    "canonical_sig": "JumpForwardIfZero(xJF)"
   },
   "0xD1": {
     "name": "SeekCodeForward",
@@ -4446,9 +4751,11 @@
         "description": "Number of forward blocks to skip"
       }
     ],
-    "description": "Jump forward by N instruction blocks. Used for if/else branching.",
+    "description": "Jumps to {D2} ForwardTarget. Must be placed before {D2} ForwardTarget! Assigned ID from x00 to xFF so you have related instructions work only with this value to not create conflict.",
     "category": "flow_control",
-    "routine_header": "JumpForward"
+    "routine_header": "JumpForward",
+    "wiki_page": "Event_Instruction_D1.txt",
+    "canonical_sig": "JumpForward(xJF)"
   },
   "0xD2": {
     "name": "SeekCodeForwardTarget",
@@ -4465,8 +4772,10 @@
         "description": "Forward target label ID (matches JumpForward)"
       }
     ],
-    "description": "Mark a forward jump target label. Paired with SeekCodeForward (0xD1).",
-    "category": "flow_control"
+    "description": "Target Destination of {D0} JumpForwardIfZero/{D1} JumpForward. Must be placed after {D0} JumpForwardIfZero/{D1} JumpForward! Assigned ID from x00 to xFF so you have related instructions work only with this value to not create conflict.",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_D2.txt",
+    "canonical_sig": "ForwardTarget(xJF)"
   },
   "0xD3": {
     "name": "SeekCodeBackward",
@@ -4483,9 +4792,11 @@
         "description": "Number of backward blocks to jump"
       }
     ],
-    "description": "Jump backward by N instruction blocks. Used for loops.",
+    "description": "Jumps back to {D5} BackTarget. Must be placed after {D5} BackTarget! Assigned ID from x00 to xFF so you have related instructions work only with this value to not create conflict.",
     "category": "flow_control",
-    "routine_header": "JumpBack"
+    "routine_header": "JumpBack",
+    "wiki_page": "Event_Instruction_D3.txt",
+    "canonical_sig": "JumpBack(xJB)"
   },
   "0xD4": {
     "name": "Terminate",
@@ -4520,7 +4831,9 @@
         "description": "Backward jump distance"
       }
     ],
-    "description": "Mark a backward jump target label"
+    "description": "Target Destination of {D3} JumpBack. Must be placed before {D3} JumpBack! Assigned ID from x00 to xFF so you have related instructions work only with this value to not create conflict.",
+    "wiki_page": "Event_Instruction_D5.txt",
+    "canonical_sig": "BackTarget(xJB)"
   },
   "0xD6": {
     "name": "ConditionalStart",
@@ -4582,7 +4895,9 @@
     "wiki_sig": "EventEnd()",
     "routine_header": "EventEnd & {E3} EventEnd2",
     "description": "End the current event and process scenario conditionals",
-    "category": "flow_control"
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_DB.txt",
+    "canonical_sig": "EventEnd()"
   },
   "0xDC": {
     "name": "UnknownDC",
@@ -4601,21 +4916,24 @@
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "DD"
+    "gibbed_note": "DD",
+    "description": "Unknown \u2014 possibly unused"
   },
   "0xDE": {
     "name": "UnknownDE",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "DE"
+    "gibbed_note": "DE",
+    "description": "Unknown \u2014 possibly unused"
   },
   "0xDF": {
     "name": "UnknownDF",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "DF"
+    "gibbed_note": "DF",
+    "description": "Unknown \u2014 possibly unused"
   },
   "0xE0": {
     "name": "GenerateUnit",
@@ -4683,21 +5001,25 @@
         "description": "FFHacktics: xFL"
       }
     ],
-    "description": "No operation (placeholder)"
+    "description": "Generate a new unit using a simulated ENTD unit slot, overwriting an existing slot in the . Can generate a completely fresh unit, an \"imposter\" based on a unit in your roster, just a unit from your roster, or even just spit out a unit according to whatever preset data you've set up through . (The si...",
+    "wiki_page": "Event_Instruction_E0.txt",
+    "canonical_sig": "GenerateUnit(xUNIT,xID,xBS,xSJ,xJL,xLV,xSS,XXX,YYY,xFD,xFL)"
   },
   "0xE1": {
     "name": "UnknownE1",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "E1"
+    "gibbed_note": "E1",
+    "description": "Unknown \u2014 possibly unused"
   },
   "0xE2": {
     "name": "DeadCode_E2",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "E2"
+    "gibbed_note": "E2",
+    "description": "Dead code \u2014 never executed"
   },
   "0xE3": {
     "name": "_EventEnd2",
@@ -4707,15 +5029,18 @@
     "gibbed_note": "E3 - same handler as DB",
     "wiki_name": "EventEnd2",
     "wiki_sig": "EventEnd2()",
-    "description": "End event (variant 2 \u2014 same as EventEnd)",
-    "category": "flow_control"
+    "description": "A perfect copy of the other EventEnd. Marks the end of the event.",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_E3.txt",
+    "canonical_sig": "EventEnd2()"
   },
   "0xE4": {
     "name": "UnknownE4",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "E4"
+    "gibbed_note": "E4",
+    "description": "Unknown \u2014 possibly related to event state"
   },
   "0xE5": {
     "name": "_WaitForInstruction",
@@ -4737,10 +5062,11 @@
         "description": "Always 0"
       }
     ],
-    "description": "Wait until a previously started async instruction completes",
+    "description": "Wait for any given instruction type instance to complete before resuming. This value is always set to x00 in the original game; it probably doesn't have a function.",
     "category": "timing",
     "wiki_page": "Event_Instruction_0xe5__WaitForInstruction.txt",
-    "routine_header": "WaitForInstruction"
+    "routine_header": "WaitForInstruction",
+    "canonical_sig": "WaitForInstruction(xIN,x00)"
   },
   "0xE6": {
     "name": "UnknownE6",
@@ -4761,7 +5087,10 @@
         "type": "U8",
         "description": "FFHacktics: xVR"
       }
-    ]
+    ],
+    "description": "Dynamically alters a specified parameter of the next event instruction with a defined Variable's value. Does not affect AlterParameter instructions. If an AlterParameter instruction is encountered, the alteration will be passed on to the next instruction. This allows to stack multiple edits to the s...",
+    "wiki_page": "Event_Instruction_E6.txt",
+    "canonical_sig": "AlterParameter(xPR,xVR)"
   },
   "0xE7": {
     "name": "DisplayCaption",
@@ -4789,7 +5118,9 @@
         "description": "Height/elevation"
       }
     ],
-    "description": "Display on-screen caption text (TIC exclusive)"
+    "description": "Stores the Unit Address of the Unit present at the specified map coordinates into Variable 0. Returns 0 on fail. You can use this instruction to verify that a tile is unoccupied before performing mid-battle coordinate specific instructions. X Coordinate of the tile.",
+    "wiki_page": "Event_Instruction_E7.txt",
+    "canonical_sig": "GetTileUnit(+XXX,+YYY,xEL)"
   },
   "0xE8": {
     "name": "LoadTileData",
@@ -4825,7 +5156,10 @@
         "type": "U8",
         "description": "Height/elevation"
       }
-    ]
+    ],
+    "description": "Loads the tile data of a specified tile on the currently loaded map. ID of the Variable which will be written to. Click here for the list of Variables",
+    "wiki_page": "Event_Instruction_E8.txt",
+    "canonical_sig": "LoadTileData(xVR,xBO,+XXX,+YYY,xEL)"
   },
   "0xE9": {
     "name": "SaveTileData",
@@ -4861,7 +5195,10 @@
         "type": "U8",
         "description": "Height/elevation"
       }
-    ]
+    ],
+    "description": "Saves the tile data of a specified tile on the currently loaded map. ID of the Variable which holds the value. Click here for the list of Variables",
+    "wiki_page": "Event_Instruction_E9.txt",
+    "canonical_sig": "SaveTileData(xVR,xBO,+XXX,+YYY,xEL)"
   },
   "0xEA": {
     "name": "LoadENTD",
@@ -4883,7 +5220,10 @@
         "type": "U8",
         "description": "FFHacktics: xUNIT"
       }
-    ]
+    ],
+    "description": "Temporarily loads the raw ENTD data of a specified ENTD slot into from 0x801DF000 to 0x801DFFFF. Because of the volatile nature of this RAM section, it will be overwritten by an instruction, or any in-battle Effect. Optionally overwrites part of, or all units currently occupying the first 16 Battle ...",
+    "wiki_page": "Event_Instruction_EA.txt",
+    "canonical_sig": "LoadENTD(xENTD,xUNIT)"
   },
   "0xEB": {
     "name": "MessageChain",
@@ -4916,8 +5256,9 @@
         "description": "FFHacktics: xFL"
       }
     ],
-    "description": "Menu Scroll Related (0xebdcc) #       if (*p2 == 0) { #       if (p1.0x1e == *p2) {",
-    "wiki_page": "Menu_Scroll_Related_(0xebdcc).txt"
+    "description": "Loads an ENTD into into the current Event. Requires to be called beforehand in order to use. This instruction can be used to reroll units, or load completely new ones into the current event. If the unit is set to Party Level, you can even freely change what level they generate at mid-event by alteri...",
+    "wiki_page": "Event_Instruction_EB.txt",
+    "canonical_sig": "LoadENTDUnit(xID,xES,xBS,xFL)"
   },
   "0xEC": {
     "name": "ConditionalDefeat",
@@ -4934,7 +5275,10 @@
         "type": "U8",
         "description": "FFHacktics: xCD"
       }
-    ]
+    ],
+    "description": "Allows preventing automatic Game Overs on the Player team's defeat in order to create your own 'Player Defeated' events, or even make the Player's defeat part of the mod's storyline. Use the Defeat() Event Conditional to trigger the desired events. Without it, a battle will keep playing until anothe...",
+    "wiki_page": "Event_Instruction_EC.txt",
+    "canonical_sig": "ConditionalDefeat(xCD)"
   },
   "0xED": {
     "name": "SetCharacterAlpha",
@@ -4956,7 +5300,9 @@
         "description": "FFHacktics: LEN"
       }
     ],
-    "description": "Set unit transparency/alpha (TIC exclusive)"
+    "description": "Loads a database from the CD which was created by the Event Databases spreadsheet and subsequently patched with FFTOrgASM. , it allows to quickly load multiple variables with desired values with minimal event space use. Sector Offset of the desired Database as identified in the Event Databases sprea...",
+    "wiki_page": "Event_Instruction_ED.txt",
+    "canonical_sig": "LoadDatabase(OFF,LEN)"
   },
   "0xEE": {
     "name": "UnknownEE",
@@ -4977,7 +5323,10 @@
         "type": "U8",
         "description": "FFHacktics: xTB"
       }
-    ]
+    ],
+    "description": "Gets the size, or number of rows, of a table in the currently loaded database, so you can easily loop through all rows. Variable to store the number of rows the Table holds. Table ID as defined in the \"Table Index\" sheet of the Event Databases spreadsheet for the currently loaded Database.",
+    "wiki_page": "Event_Instruction_EE.txt",
+    "canonical_sig": "GetTableSize(xVR,xTB)"
   },
   "0xEF": {
     "name": "FetchTableRow",
@@ -4999,8 +5348,9 @@
         "description": "FFHacktics: xVR"
       }
     ],
-    "description": "(Redirected from Load File (0xef82c)) # BATTLE.BIN: Load File (0x13bc14) This page was last edited on 29 November 2025, at 19:43.",
-    "wiki_page": "Load_File_(0xef82c).txt"
+    "description": "Fetches a row of data of a previously loaded Database into the variables defined inside the database. , it allows to quickly load multiple variables with desired values with minimal event space use. Table ID as defined in the \"Table Index\" sheet of the Event Databases spreadsheet for the currently l...",
+    "wiki_page": "Event_Instruction_EF.txt",
+    "canonical_sig": "FetchTableRow(xTB,xVR)"
   },
   "0xF0": {
     "name": "PlayMusic2",
@@ -5027,10 +5377,11 @@
         "description": "Duration in frames (60fps)"
       }
     ],
-    "description": "Pause event execution for N frames (60fps). Wait(1)=16ms, Wait(60)=1sec",
+    "description": "Final Fantasy Hacktics Wiki Event Instruction 0xf1: Wait This page was last edited on 25 April 2018, at 14:31.",
     "category": "timing",
     "wiki_page": "Event_Instruction_0xf1__Wait.txt",
-    "routine_header": "Wait"
+    "routine_header": "Wait",
+    "canonical_sig": "Wait(TIMER)"
   },
   "0xF2": {
     "name": "_Pad",
@@ -5038,7 +5389,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "gibbed_note": "F2",
-    "description": "{B0-BE} Script Variable Math Commands",
-    "category": "flow_control"
+    "description": "Doesn't do anything. Ideal for hex editing parts of the event out without any risk.",
+    "category": "flow_control",
+    "wiki_page": "Event_Instruction_F2.txt",
+    "canonical_sig": "Pad()"
   }
 }
