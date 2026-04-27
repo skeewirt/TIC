@@ -873,10 +873,11 @@
     "gibbed_note": "66 - choose better name"
   },
   "0x67": {
-    "name": "Unknown67",
+    "name": "DeadCode67",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
-    "tic_only": false
+    "tic_only": false,
+    "notes": "All 10 uses are after EventEnd. Gibbed: Invalid (no handler). Vestigial/unreachable."
   },
   "0x68": {
     "name": "SetAnimationHorizontalFlip",
