@@ -447,7 +447,7 @@
     "tic_only": false
   },
   "0x36": {
-    "name": "Unknown36",
+    "name": "DeadCode36",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false
@@ -1435,12 +1435,12 @@
     "gibbed_note": "A7"
   },
   "0xA8": {
-    "name": "UnknownA8",
+    "name": "SetSpriteRenderParam",
     "operand_bytes_classic": 6,
     "operand_bytes_enhanced": 6,
-    "tic_only": false,
+    "tic_only": true,
     "gibbed_note": "A8",
-    "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?"
+    "gibbed_operands": "U16=entity_id, U32=render_param. Writes U32 to anim_struct[343] via TIC render pipeline."
   },
   "0xA9": {
     "name": "InitSpriteRender",
@@ -1448,7 +1448,7 @@
     "operand_bytes_enhanced": 6,
     "tic_only": false,
     "gibbed_note": "A9",
-    "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?"
+    "gibbed_operands": "Gibbed types: U16, U32 — U16 unused?"
   },
   "0xAA": {
     "name": "SuspendBattleEngine",
@@ -1458,10 +1458,10 @@
     "gibbed_note": "AA"
   },
   "0xAB": {
-    "name": "UnknownAB",
+    "name": "DisplayBattleMessage",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
-    "tic_only": false,
+    "tic_only": true,
     "gibbed_note": "AB"
   },
   "0xAC": {
@@ -1852,7 +1852,7 @@
     "gibbed_note": "D7"
   },
   "0xD8": {
-    "name": "UnknownD8",
+    "name": "Nop_D8",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
@@ -1861,7 +1861,7 @@
     "wiki_sig": "{D9} Never used"
   },
   "0xD9": {
-    "name": "UnknownD9",
+    "name": "DeadCode_D9",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
@@ -1934,7 +1934,7 @@
     "gibbed_note": "E1"
   },
   "0xE2": {
-    "name": "UnknownE2",
+    "name": "DeadCode_E2",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
