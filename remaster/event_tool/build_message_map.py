@@ -12,6 +12,13 @@ Usage:
 
 The default PZD directory is the extracted nxd/text tree from the game data.
 Output is a JSON file mapping message ID strings to dialogue text strings.
+
+Known issues (to address later):
+  - The disassembler misparses script preamble bytes at offset 0x0048 as a
+    DisplayMessage with msg_id 0x00430010 (161 scripts). This is a disassembler
+    issue, not a message map issue — the preamble is header data, not code.
+  - 0xFFFFFFFF appears as a DisplayMessage msg_id in 8 scripts (120 refs).
+    This is a null sentinel meaning "clear/dismiss message", not a text reference.
 """
 import struct, sys, os, json, argparse
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -57,25 +64,32 @@ def parse_pzd(path):
         if val < 60000 or val > 500000:
             continue
 
-        # Next field should be a relative text pointer
-        text_ptr_off = off + 4
-        text_ptr_val = struct.unpack_from('<I', data, text_ptr_off)[0]
-        text_abs = text_ptr_off + text_ptr_val
+        # The text pointer can be at various positions relative to the
+        # message ID due to the rotating 7-column layout. Check nearby
+        # fields in both directions.
+        text = None
+        for delta in [4, -8, 8, -4, 12, -12, 16, -16, 20, -20, 24]:
+            ptr_off = off + delta
+            if ptr_off < 0 or ptr_off + 4 > len(data):
+                continue
+            ptr_val = struct.unpack_from('<I', data, ptr_off)[0]
+            ptr_abs = ptr_off + ptr_val
 
-        # Validate: pointer should land within the file
-        if text_abs <= 0 or text_abs >= len(data):
-            continue
+            if ptr_abs <= 0 or ptr_abs >= len(data):
+                continue
 
-        text = get_full_text(data, text_abs)
-        if not text or len(text) == 0:
-            continue
+            candidate = get_full_text(data, ptr_abs)
+            if not candidate or len(candidate) == 0:
+                continue
 
-        # Skip voice/sound paths
-        if text.startswith('sound/') or text.startswith('scenario/'):
-            continue
+            # Skip voice/sound paths
+            if candidate.startswith('sound/') or candidate.startswith('scenario/'):
+                continue
 
-        # Accept this message
-        if val not in messages:
+            text = candidate
+            break
+
+        if text and val not in messages:
             messages[val] = text
 
     return messages
