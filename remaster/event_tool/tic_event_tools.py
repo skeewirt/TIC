@@ -228,13 +228,17 @@ def cmd_pack(args):
         config = {
             "ModId": mod_name,
             "ModName": args.mod_name or "My Event Mod",
+            "ModAuthor": "TIC Event Tools",
             "ModVersion": "1.0.0",
             "ModDescription": f"Custom event scripts ({compiled} events)",
             "ModDll": "",
             "ModIcon": "",
+            "IsLibrary": False,
+            "IsUniversalMod": False,
             "ModDependencies": ["fftivc.utility.modloader"],
-            "SupportedAppId": ["1004640"],
-            "Tags": ["Event", "Script"]
+            "OptionalDependencies": [],
+            "SupportedAppId": ["fft_enhanced.exe"],
+            "ProjectUrl": ""
         }
         with open(config_path, 'w', encoding='utf-8') as f:
             json.dump(config, f, indent=2)
