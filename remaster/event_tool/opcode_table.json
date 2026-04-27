@@ -1,694 +1,175 @@
 {
-  "0x0A": {
-    "name": "SaveBackground",
-    "params": 0
-  },
-  "0x0B": {
-    "name": "LoadBackground",
-    "params": 0
-  },
-  "0x0C": {
-    "name": "EndEvent",
-    "params": 0
-  },
-  "0x0D": {
-    "name": "TurnUnit",
-    "params": 2
-  },
-  "0x0E": {
-    "name": "ReloadMapState",
-    "params": 1
-  },
-  "0x10": {
-    "name": "DisplayConditionMessage",
-    "params": 4
-  },
-  "0x11": {
-    "name": "WaitConditionMessage",
-    "params": 0
-  },
-  "0x12": {
-    "name": "AddUnit",
-    "params": 6
-  },
-  "0x13": {
-    "name": "DismissUnit",
-    "params": 1
-  },
-  "0x14": {
-    "name": "EntryUnitData",
-    "params": 3
-  },
-  "0x16": {
-    "name": "ChangeMap",
-    "params": 3
-  },
-  "0x17": {
-    "name": "Unknown17",
-    "params": 0
-  },
-  "0x18": {
-    "name": "ChangeWeather",
-    "params": 1
-  },
-  "0x19": {
-    "name": "DisplayMessage",
-    "params": 6
-  },
-  "0x1A": {
-    "name": "WaitMessage",
-    "params": 0
-  },
-  "0x1B": {
-    "name": "UnitSpriteEffect",
-    "params": 3
-  },
-  "0x1C": {
-    "name": "Sound",
-    "params": 2
-  },
-  "0x1D": {
-    "name": "ScreenEffect",
-    "params": 2
-  },
-  "0x1E": {
-    "name": "SpriteFade",
-    "params": 4
-  },
-  "0x1F": {
-    "name": "ChangeDialog",
-    "params": 2
-  },
-  "0x21": {
-    "name": "Camera",
-    "params": 5
-  },
-  "0x22": {
-    "name": "MapDarken",
-    "params": 2
-  },
-  "0x23": {
-    "name": "Unknown23",
-    "params": 0
-  },
-  "0x24": {
-    "name": "Unknown24",
-    "params": 0
-  },
-  "0x25": {
-    "name": "EventSpeed",
-    "params": 1
-  },
-  "0x26": {
-    "name": "WaitActionEnd",
-    "params": 0
-  },
-  "0x27": {
-    "name": "SetUnitFacing",
-    "params": 2
-  },
-  "0x28": {
-    "name": "MoveUnit",
-    "params": 6
-  },
-  "0x29": {
-    "name": "WalkUnit",
-    "params": 6
-  },
-  "0x2A": {
-    "name": "WaitWalk",
-    "params": 1
-  },
-  "0x2B": {
-    "name": "BlockInput",
-    "params": 1
-  },
-  "0x2C": {
-    "name": "UnblockInput",
-    "params": 0
-  },
-  "0x2D": {
-    "name": "RotateUnit",
-    "params": 4
-  },
-  "0x2E": {
-    "name": "FaceUnit",
-    "params": 2
-  },
-  "0x31": {
-    "name": "Unknown31",
-    "params": 1
-  },
-  "0x32": {
-    "name": "WarpUnit",
-    "params": 5
-  },
-  "0x33": {
-    "name": "FadeScreen",
-    "params": 3
-  },
-  "0x37": {
-    "name": "Unknown37",
-    "params": 2
-  },
-  "0x38": {
-    "name": "RemoveUnit",
-    "params": 1
-  },
-  "0x39": {
-    "name": "UnitAction",
-    "params": 4
-  },
-  "0x3A": {
-    "name": "WaitAction",
-    "params": 0
-  },
-  "0x3B": {
-    "name": "Unknown3B",
-    "params": 2
-  },
-  "0x3C": {
-    "name": "PlayMusic",
-    "params": 2
-  },
-  "0x3D": {
-    "name": "FadeMusic",
-    "params": 1
-  },
-  "0x3E": {
-    "name": "PlaySound",
-    "params": 2
-  },
-  "0x3F": {
-    "name": "Unknown3F",
-    "params": 1
-  },
-  "0x40": {
-    "name": "CameraSpeed",
-    "params": 1
-  },
-  "0x41": {
-    "name": "CameraRotate",
-    "params": 2
-  },
-  "0x42": {
-    "name": "Unknown42",
-    "params": 2
-  },
-  "0x43": {
-    "name": "CameraFollow",
-    "params": 1
-  },
-  "0x44": {
-    "name": "WaitRotate",
-    "params": 0
-  },
-  "0x45": {
-    "name": "Unknown45",
-    "params": 1
-  },
-  "0x46": {
-    "name": "Unknown46",
-    "params": 1
-  },
-  "0x47": {
-    "name": "Unknown47",
-    "params": 1
-  },
-  "0x48": {
-    "name": "Unknown48",
-    "params": 1
-  },
-  "0x49": {
-    "name": "WaitAllActions",
-    "params": 0
-  },
-  "0x4A": {
-    "name": "Conditional",
-    "params": 0
-  },
-  "0x4B": {
-    "name": "Unknown4B",
-    "params": 2
-  },
-  "0x4C": {
-    "name": "Unknown4C",
-    "params": 3
-  },
-  "0x4D": {
-    "name": "Unknown4D",
-    "params": 3
-  },
-  "0x4E": {
-    "name": "Unknown4E",
-    "params": 2
-  },
-  "0x4F": {
-    "name": "Unknown4F",
-    "params": 2
-  },
-  "0x50": {
-    "name": "Rumble",
-    "params": 3
-  },
-  "0x51": {
-    "name": "Unknown51",
-    "params": 1
-  },
-  "0x53": {
-    "name": "Unknown53",
-    "params": 1
-  },
-  "0x54": {
-    "name": "Unknown54",
-    "params": 0
-  },
-  "0x55": {
-    "name": "Unknown55",
-    "params": 0
-  },
-  "0x56": {
-    "name": "Unknown56",
-    "params": 1
-  },
-  "0x57": {
-    "name": "Unknown57",
-    "params": 2
-  },
-  "0x58": {
-    "name": "Unknown58",
-    "params": 0
-  },
-  "0x59": {
-    "name": "Unknown59",
-    "params": 2
-  },
-  "0x5A": {
-    "name": "Unknown5A",
-    "params": 2
-  },
-  "0x5B": {
-    "name": "BranchOnFlag",
-    "params": 4
-  },
-  "0x5C": {
-    "name": "Unknown5C",
-    "params": 3
-  },
-  "0x5D": {
-    "name": "Unknown5D",
-    "params": 3
-  },
-  "0x5E": {
-    "name": "Unknown5E",
-    "params": 1
-  },
-  "0x5F": {
-    "name": "Unknown5F",
-    "params": 0
-  },
-  "0x60": {
-    "name": "Unknown60",
-    "params": 1
-  },
-  "0x61": {
-    "name": "Unknown61",
-    "params": 0
-  },
-  "0x62": {
-    "name": "Unknown62",
-    "params": 1
-  },
-  "0x63": {
-    "name": "Unknown63",
-    "params": 1
-  },
-  "0x64": {
-    "name": "WriteFlag",
-    "params": 2
-  },
-  "0x65": {
-    "name": "ReadFlag",
-    "params": 2
-  },
-  "0x66": {
-    "name": "Unknown66",
-    "params": 2
-  },
-  "0x68": {
-    "name": "Jump",
-    "params": 2
-  },
-  "0x69": {
-    "name": "Unknown69",
-    "params": 3
-  },
-  "0x6A": {
-    "name": "Unknown6A",
-    "params": 2
-  },
-  "0x6B": {
-    "name": "Unknown6B",
-    "params": 2
-  },
-  "0x6C": {
-    "name": "Unknown6C",
-    "params": 1
-  },
-  "0x6D": {
-    "name": "Unknown6D",
-    "params": 2
-  },
-  "0x6E": {
-    "name": "Unknown6E",
-    "params": 1
-  },
-  "0x6F": {
-    "name": "Unknown6F",
-    "params": 0
-  },
-  "0x70": {
-    "name": "Unknown70",
-    "params": 1
-  },
-  "0x71": {
-    "name": "Unknown71",
-    "params": 2
-  },
-  "0x72": {
-    "name": "Unknown72",
-    "params": 0
-  },
-  "0x73": {
-    "name": "Unknown73",
-    "params": 3
-  },
-  "0x74": {
-    "name": "Unknown74",
-    "params": 0
-  },
-  "0x75": {
-    "name": "Unknown75",
-    "params": 0
-  },
-  "0x76": {
-    "name": "Unknown76",
-    "params": 1
-  },
-  "0x77": {
-    "name": "Unknown77",
-    "params": 1
-  },
-  "0x78": {
-    "name": "Unknown78",
-    "params": 2
-  },
-  "0x79": {
-    "name": "Unknown79",
-    "params": 1
-  },
-  "0x7A": {
-    "name": "Unknown7A",
-    "params": 0
-  },
-  "0x7B": {
-    "name": "Unknown7B",
-    "params": 2
-  },
-  "0x7C": {
-    "name": "Unknown7C",
-    "params": 2
-  },
-  "0x7D": {
-    "name": "Unknown7D",
-    "params": 1
-  },
-  "0x7E": {
-    "name": "Unknown7E",
-    "params": 0
-  },
-  "0x7F": {
-    "name": "Unknown7F",
-    "params": 2
-  },
-  "0x80": {
-    "name": "Unknown80",
-    "params": 1
-  },
-  "0x81": {
-    "name": "Unknown81",
-    "params": 4
-  },
-  "0x82": {
-    "name": "Unknown82",
-    "params": 0
-  },
-  "0x83": {
-    "name": "Unknown83",
-    "params": 0
-  },
-  "0x84": {
-    "name": "Unknown84",
-    "params": 1
-  },
-  "0x85": {
-    "name": "Unknown85",
-    "params": 1
-  },
-  "0x86": {
-    "name": "Unknown86",
-    "params": 3
-  },
-  "0x87": {
-    "name": "Unknown87",
-    "params": 3
-  },
-  "0x88": {
-    "name": "Unknown88",
-    "params": 0
-  },
-  "0x89": {
-    "name": "Unknown89",
-    "params": 4
-  },
-  "0x8A": {
-    "name": "Unknown8A",
-    "params": 0
-  },
-  "0x8B": {
-    "name": "Unknown8B",
-    "params": 0
-  },
-  "0x8C": {
-    "name": "Unknown8C",
-    "params": 3
-  },
-  "0x8E": {
-    "name": "Unknown8E",
-    "params": 4
-  },
-  "0x8F": {
-    "name": "Unknown8F",
-    "params": 0
-  },
-  "0x90": {
-    "name": "Unknown90",
-    "params": 1
-  },
-  "0x91": {
-    "name": "Unknown91",
-    "params": 1
-  },
-  "0x92": {
-    "name": "Unknown92",
-    "params": 2
-  },
-  "0x93": {
-    "name": "Unknown93",
-    "params": 0
-  },
-  "0x94": {
-    "name": "Unknown94",
-    "params": 2
-  },
-  "0x95": {
-    "name": "Unknown95",
-    "params": 0
-  },
-  "0x96": {
-    "name": "Unknown96",
-    "params": 1
-  },
-  "0x97": {
-    "name": "Unknown97",
-    "params": 3
-  },
-  "0x98": {
-    "name": "Unknown98",
-    "params": 2
-  },
-  "0x99": {
-    "name": "Unknown99",
-    "params": 1
-  },
-  "0xA0": {
-    "name": "UnknownA0",
-    "params": 2
-  },
-  "0xA1": {
-    "name": "UnknownA1",
-    "params": 0
-  },
-  "0xA2": {
-    "name": "UnknownA2",
-    "params": 1
-  },
-  "0xA3": {
-    "name": "UnknownA3",
-    "params": 1
-  },
-  "0xA4": {
-    "name": "UnknownA4",
-    "params": 2
-  },
-  "0xA5": {
-    "name": "UnknownA5",
-    "params": 2
-  },
-  "0xB0": {
-    "name": "UnknownB0",
-    "params": 0
-  },
-  "0xB1": {
-    "name": "UnknownB1",
-    "params": 1
-  },
-  "0xB2": {
-    "name": "UnknownB2",
-    "params": 1
-  },
-  "0xB3": {
-    "name": "UnknownB3",
-    "params": 2
-  },
-  "0xB4": {
-    "name": "UnknownB4",
-    "params": 3
-  },
-  "0xB5": {
-    "name": "UnknownB5",
-    "params": 0
-  },
-  "0xB6": {
-    "name": "UnknownB6",
-    "params": 0
-  },
-  "0xB7": {
-    "name": "UnknownB7",
-    "params": 0
-  },
-  "0xB8": {
-    "name": "UnknownB8",
-    "params": 2
-  },
-  "0xB9": {
-    "name": "UnknownB9",
-    "params": 1
-  },
-  "0xBA": {
-    "name": "UnknownBA",
-    "params": 0
-  },
-  "0xBB": {
-    "name": "UnknownBB",
-    "params": 3
-  },
-  "0xBC": {
-    "name": "UnknownBC",
-    "params": 3
-  },
-  "0xBD": {
-    "name": "UnknownBD",
-    "params": 3
-  },
-  "0xBE": {
-    "name": "UnknownBE",
-    "params": 3
-  },
-  "0xC0": {
-    "name": "UnknownC0",
-    "params": 0
-  },
-  "0xD0": {
-    "name": "UnknownD0",
-    "params": 0
-  },
-  "0xD1": {
-    "name": "UnknownD1",
-    "params": 1
-  },
-  "0xD2": {
-    "name": "UnknownD2",
-    "params": 0
-  },
-  "0xD3": {
-    "name": "UnknownD3",
-    "params": 2
-  },
-  "0xD4": {
-    "name": "UnknownD4",
-    "params": 3
-  },
-  "0xD5": {
-    "name": "UnknownD5",
-    "params": 0
-  },
-  "0xD8": {
-    "name": "UnknownD8",
-    "params": 0
-  },
-  "0xD9": {
-    "name": "UnknownD9",
-    "params": 0
-  },
-  "0xDA": {
-    "name": "UnknownDA",
-    "params": 0
-  },
-  "0xDB": {
-    "name": "UnknownDB",
-    "params": 0
-  },
-  "0xDC": {
-    "name": "UnknownDC",
-    "params": 1
-  },
-  "0xE0": {
-    "name": "UnknownE0",
-    "params": 0
-  },
-  "0xE3": {
-    "name": "UnknownE3",
-    "params": 2
-  },
-  "0xE5": {
-    "name": "UnknownE5",
-    "params": 3
-  },
-  "0xE6": {
-    "name": "UnknownE6",
-    "params": 1
-  },
-  "0xF0": {
-    "name": "EndEvent2",
-    "params": 0
-  },
-  "0xF1": {
-    "name": "UnknownF1",
-    "params": 0
-  },
-  "0xF2": {
-    "name": "UnknownF2",
-    "params": 0
-  }
+  "0x0A": {"name": "SaveBackground", "params": 0, "source": "saveBackground (not in switch)"},
+  "0x0B": {"name": "LoadBackground", "params": 0, "source": "loadBackground (not in switch)"},
+  "0x0C": {"name": "EndEvent", "params": 0, "source": "endEvent (not in switch)"},
+  "0x0D": {"name": "TurnUnit", "params": 2, "source": "turnUnit (not in switch)"},
+  "0x0E": {"name": "ReloadMapState", "params": 1, "source": "reloadMapState (not in switch)"},
+  "0x10": {"name": "DisplayConditionMessage", "params": 4, "source": "mesputmain - create message display task, sets text pointers"},
+  "0x11": {"name": "PlayUnitAnimation", "params": 0, "source": "eventanmreq(v15)"},
+  "0x12": {"name": "WaitUnitAnimation", "params": 6, "source": "cnvglobaltolocalid -> wait_anmend"},
+  "0x13": {"name": "ChangeMapTerrain", "params": 1, "source": "mapf = v17; task_wait(2); event_init_light()"},
+  "0x14": {"name": "EntryUnitData", "params": 3, "source": "calcformula(SHIDWORD(v241), v17, v25, 0)"},
+  "0x16": {"name": "WaitButtonPress", "params": 3, "source": "wait for asmtaskframe[19]==3 || touchTap || pad"},
+  "0x17": {"name": "CalcFormula", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x18": {"name": "PlayEffect", "params": 1, "source": "effectf = v17; effectcaster; effectpanel; write_eventflag(31,0)"},
+  "0x19": {"name": "MoveCamera", "params": 6, "source": "task_create(v241, move_camera)"},
+  "0x1A": {"name": "MoveAmbientLight", "params": 0, "source": "task_create(v241, move_ambient)"},
+  "0x1B": {"name": "MoveLight", "params": 3, "source": "task_create(v241, move_light)"},
+  "0x1C": {"name": "ChangeFlame", "params": 2, "source": "changeflame(v241)"},
+  "0x1D": {"name": "DriveConnectCamera", "params": 2, "source": "task_create(v241, drive_connect_camera)"},
+  "0x1E": {"name": "CalcFormula2", "params": 4, "source": "goto LABEL_733 -> calcformula"},
+  "0x1F": {"name": "FillChrPosition", "params": 2, "source": "setsimang; fillchrposition(v15)"},
+  "0x21": {"name": "PlaySound", "params": 5, "source": "soundf = v17 (sets sound flag)"},
+  "0x22": {"name": "PlayMusic", "params": 2, "source": "evtmusicf = v241; evtmusicpara = v236"},
+  "0x23": {"name": "CalcFormula3", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x24": {"name": "CalcFormula4", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x25": {"name": "SetSpeakingUnit", "params": 1, "source": "speakingchr1 = v17; speakingchr2"},
+  "0x26": {"name": "ChangeMessageTarget", "params": 0, "source": "iterate asmtaskframe, set state=1 for matching message"},
+  "0x27": {"name": "WaitMapChange", "params": 2, "source": "mapwf=1; while(mapwf) asmTaskEntry()"},
+  "0x28": {"name": "MoveUnitToPanel", "params": 6, "source": "asmfunction = movetopanelsub; asm_function(1, v15, ...)"},
+  "0x29": {"name": "WaitPanelMove", "params": 6, "source": "waitpanelmove(v17) - ScriptCut check first"},
+  "0x2A": {"name": "DriveConnectChrMove", "params": 1, "source": "task_create -> drive_connect_chrmove; seekcodeplusmini(43)"},
+  "0x2B": {"name": "CalcFormula5", "params": 1, "source": "goto LABEL_733 -> calcformula"},
+  "0x2C": {"name": "SetUnitFacing", "params": 0, "source": "direc2(v15, 0)"},
+  "0x2D": {"name": "SetUnitDirection", "params": 4, "source": "direc1(v15)"},
+  "0x2E": {"name": "SetColorGradient", "params": 2, "source": "requestDestinationGradationAsDefault/fadeGradation"},
+  "0x31": {"name": "ChangeGradation", "params": 1, "source": "changeGradation(v15[0..4])"},
+  "0x32": {"name": "SetUnitColor", "params": 5, "source": "eventsetchrcol(v15)"},
+  "0x33": {"name": "SetMapColor", "params": 3, "source": "changeMapClut(cmd, speed, R, G, B)"},
+  "0x37": {"name": "ToggleMessageVisibility", "params": 2, "source": "toggle mespkt[7] bit for matching message ID"},
+  "0x38": {"name": "SetTime", "params": 1, "source": "filltime(v15, evtworkptr+26, evtworkptr+29)"},
+  "0x39": {"name": "WaitAllUnitStop", "params": 4, "source": "while(waituntilchrstop(-1)) asmTaskEntry()"},
+  "0x3A": {"name": "WaitFileRead", "params": 0, "source": "while(fileReadCheck()) asmTaskEntry()"},
+  "0x3B": {"name": "ShiftUnit", "params": 2, "source": "task_create -> shiftchr (slide unit)"},
+  "0x3C": {"name": "ChangeWeather", "params": 2, "source": "weatherf = v17; task_wait(2); wait_clutload()"},
+  "0x3D": {"name": "RemoveUnit", "params": 1, "source": "disposeAnimation; disappare_unit_f"},
+  "0x3E": {"name": "FadeScreen", "params": 2, "source": "task_create(v241, fade)"},
+  "0x3F": {"name": "ChangeMapMesh", "params": 1, "source": "change_md(11, v15[0..3])"},
+  "0x40": {"name": "SetMapTileProperties", "params": 1, "source": "get_mapstp -> modify tile surface type and flags"},
+  "0x41": {"name": "ScreenShake", "params": 2, "source": "task_create(v241, shake)"},
+  "0x42": {"name": "StopScreenShake", "params": 2, "source": "task_wait(1); task_stop(checktaskkind(13))"},
+  "0x43": {"name": "EventCommand", "params": 1, "source": "Complex sub-switch: save, battle setup, camera reset, etc."},
+  "0x44": {"name": "ActivateUnit", "params": 0, "source": "activateAnimation; requestStatusResult"},
+  "0x45": {"name": "RequestEntryAnimation", "params": 1, "source": "search_controlID -> requestEntryAnimation or activateAnimation"},
+  "0x46": {"name": "InactivateUnit", "params": 1, "source": "inactivateAnimation(cnvglobaltolocalid(v17))"},
+  "0x47": {"name": "CreateNewAnimation", "params": 1, "source": "requestNewAnimation(sprite, pos, ...)"},
+  "0x48": {"name": "WaitAnimationLoad", "params": 1, "source": "while(anmloadf) asmTaskEntry()"},
+  "0x49": {"name": "DriveConnectChrRead", "params": 0, "source": "task_create -> drive_connect_chrread; seekcodeplusmini(74)"},
+  "0x4A": {"name": "CalcFormula6", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x4B": {"name": "WaitTaskComplete", "params": 2, "source": "while(checktaskkind(14)) asmTaskEntry()"},
+  "0x4C": {"name": "ChangeMap2", "params": 3, "source": "mapf2 = v17; directioninit; init_rsvstatus; serchtofunc"},
+  "0x4D": {"name": "MapFade", "params": 3, "source": "mapfadef = v241; framerate adjusted; ScriptCut check"},
+  "0x4E": {"name": "SetUnitShadow", "params": 2, "source": "setAnimationShadowOff/On(cnvglobaltolocalid(v17))"},
+  "0x4F": {"name": "ChangeDaytime", "params": 2, "source": "daytimef = v241; task_wait(2); wait_clutload()"},
+  "0x50": {"name": "LoadPortraitSprite", "params": 3, "source": "fileReadRequestOffset(0x12, 4*v241, 0x2000) -> PSX_LoadImage"},
+  "0x51": {"name": "UpdateMessageDisplay", "params": 1, "source": "search mespkt for matching task, update text pointer"},
+  "0x53": {"name": "SetUnitFacing2", "params": 1, "source": "direc2(v15, 1)"},
+  "0x54": {"name": "PlayModelAnimation", "params": 0, "source": "modelanmf=1; modelanmno=v241"},
+  "0x55": {"name": "PlayVRAMAnimation", "params": 0, "source": "vramanmf=1; vramanmno=v241"},
+  "0x56": {"name": "WaitModelAnimation", "params": 1, "source": "while(modelanmcheckf) asmTaskEntry()"},
+  "0x57": {"name": "WaitVRAMAnimation", "params": 2, "source": "while(vramanmcheckf) asmTaskEntry()"},
+  "0x58": {"name": "SeekEventUnit", "params": 0, "source": "task_create -> seekeventchr"},
+  "0x59": {"name": "LoadVRAM", "params": 2, "source": "evtvramloadf = v241"},
+  "0x5A": {"name": "FreeVRAM", "params": 2, "source": "evtvramfreef = v241"},
+  "0x5B": {"name": "FreeEventMemory", "params": 4, "source": "evtmemfreef = v241"},
+  "0x5C": {"name": "SetUnitNormalMap", "params": 3, "source": "evtnormon_f = v16 | (cnvglobaltolocalid(v17)<<8)"},
+  "0x5D": {"name": "ClearUnitNormalMap", "params": 3, "source": "evtnormoff_f = v241"},
+  "0x5E": {"name": "DisposeMusic", "params": 1, "source": "evtmusicdispose = v241"},
+  "0x5F": {"name": "SetEventPosition", "params": 0, "source": "eventposset(v15)"},
+  "0x60": {"name": "FadeMusic", "params": 1, "source": "fademusicf = (v236<<16) + v241"},
+  "0x61": {"name": "CalcFormula7", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x62": {"name": "SetUnitCoordinates", "params": 1, "source": "set bwp[79/80/81] = position X/Z/Y+facing"},
+  "0x63": {"name": "SetCameraOperate", "params": 1, "source": "cameraoperateflg = v241"},
+  "0x64": {"name": "WaitUnitDirection", "params": 2, "source": "wait_direc(v17)"},
+  "0x65": {"name": "WaitAllDirection", "params": 2, "source": "wait_direc(-1)"},
+  "0x66": {"name": "SaveClutData", "params": 2, "source": "setPresentClutDataAsDefault(0,0,1)"},
+  "0x68": {"name": "FlipAnimation", "params": 2, "source": "anmflipsub(v15)"},
+  "0x69": {"name": "SetUnitDirection2", "params": 3, "source": "direc4(v15)"},
+  "0x6A": {"name": "EnvVolumeControl", "params": 2, "source": "task_create -> envvolcontrol"},
+  "0x6B": {"name": "EnvSoundEffect", "params": 2, "source": "task_create -> eventenvse"},
+  "0x6C": {"name": "ColorTransitionStart", "params": 1, "source": "eventcoltr(v17, 0)"},
+  "0x6D": {"name": "ColorTransitionEnd", "params": 2, "source": "eventcoltr(v17, 1)"},
+  "0x6E": {"name": "ShiftUnitSpecial", "params": 1, "source": "task_create -> shiftchrsp"},
+  "0x6F": {"name": "WaitShiftUnit", "params": 0, "source": "waitshiftchr(v17)"},
+  "0x70": {"name": "JumpToPanel", "params": 1, "source": "jumptopanelsub(v15)"},
+  "0x71": {"name": "RaiseAnimationPriority", "params": 2, "source": "raiseAnimationPriority(cnvglobaltolocalid(v17))"},
+  "0x72": {"name": "ForceStopAll", "params": 0, "source": "forecedstopsub()"},
+  "0x73": {"name": "FillRelativePosition", "params": 3, "source": "fillrelative(v15, evtworkptr+26)"},
+  "0x74": {"name": "CalcFormula8", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x75": {"name": "CalcFormula9", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x76": {"name": "ScreenWipe", "params": 1, "source": "task_create -> hook_wipe"},
+  "0x77": {"name": "StopWipe", "params": 1, "source": "checktaskkind(55) -> set state=54"},
+  "0x78": {"name": "RequestHook", "params": 2, "source": "task_create -> hook_req"},
+  "0x79": {"name": "SetMoveStopAnimation", "params": 1, "source": "movestopanm[localid] = cnvtobinshort"},
+  "0x7A": {"name": "ErasePartyUnit", "params": 0, "source": "return equipment to PartyItem, erase_unit"},
+  "0x7B": {"name": "WaitKeyPress", "params": 2, "source": "wait for specific pad input (tutorial-aware)"},
+  "0x7C": {"name": "StopAllEffects", "params": 2, "source": "stopAllEffect()"},
+  "0x7D": {"name": "ChapterDisplay", "params": 1, "source": "task_create -> hook_chapter"},
+  "0x7E": {"name": "WaitFlag", "params": 0, "source": "flag_wait(v15)"},
+  "0x7F": {"name": "SetEventClut", "params": 2, "source": "setEventClut(localid, v16, v237)"},
+  "0x80": {"name": "LoadCharacterMask", "params": 1, "source": "loadchrmask -> makechrmask -> requestStanderdAnimation"},
+  "0x81": {"name": "SetAnimationSound", "params": 4, "source": "loadchrmask -> setAnimationSoundOff/On"},
+  "0x82": {"name": "PrepareAttack", "params": 0, "source": "beforemakeattack()"},
+  "0x83": {"name": "ModifyUnitStats", "params": 0, "source": "Modify HP/Brave/Faith/CT based on param type"},
+  "0x84": {"name": "CallZingle", "params": 1, "source": "callZingle(v241)"},
+  "0x85": {"name": "WriteTreasureFlags", "params": 1, "source": "Bsnplflg_write(tresure_findday, ...)"},
+  "0x86": {"name": "EventWeaponEquip", "params": 3, "source": "eventWeaponEquip(v16, localid)"},
+  "0x87": {"name": "CheckEventGunResult", "params": 3, "source": "CheckEventGunResult between two units"},
+  "0x88": {"name": "RestartMapPalette", "params": 0, "source": "restertMapPaletteAnimation()"},
+  "0x89": {"name": "StopMapPalette", "params": 4, "source": "stopMapPaletteAnimation()"},
+  "0x8A": {"name": "WaitEffect", "params": 0, "source": "while(asm_function(eventEffectWait)) asmTaskEntry()"},
+  "0x8B": {"name": "ExecuteEffect", "params": 0, "source": "task_create -> effectexecute"},
+  "0x8C": {"name": "DirectDirection", "params": 3, "source": "direc_direct(v15) - instant unit direction set"},
+  "0x8E": {"name": "WaitEffectTask", "params": 4, "source": "wait for checktaskkind(61) task to set data[3]"},
+  "0x8F": {"name": "SetGrayOut", "params": 0, "source": "allgrayf = v241"},
+  "0x90": {"name": "WaitPanelSelect", "params": 1, "source": "wait until gActivePanelX/Z match, tutorial-aware"},
+  "0x91": {"name": "DisplayMapTitle", "params": 1, "source": "readmaptitle -> task_create(disp_maptitle)"},
+  "0x92": {"name": "EventObjectFunction", "params": 2, "source": "task_create -> eventofunc"},
+  "0x93": {"name": "WriteCounterFlag", "params": 0, "source": "write_eventflag(84, v17)"},
+  "0x94": {"name": "WarpEffectRemove", "params": 2, "source": "eventWarpEffect -> eventTerminateAnimation -> disappare_unit_f"},
+  "0x95": {"name": "CalcFormula10", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0x96": {"name": "WaitMapChange2", "params": 1, "source": "while(mapwf2) asmTaskEntry()"},
+  "0x97": {"name": "SunLightEffect", "params": 3, "source": "sunsub(v15)"},
+  "0x98": {"name": "WarpEffect", "params": 2, "source": "eventWarpEffect(v232)"},
+  "0x99": {"name": "TerminateGuestUnits", "params": 1, "source": "terminate animations for guest units matching ID"},
+  "0xA0": {"name": "CompareLE", "params": 2, "source": "*evtworkptr = (*evtworkptr <= evtworkptr[1])"},
+  "0xA1": {"name": "CompareGE", "params": 0, "source": "*evtworkptr = (*evtworkptr >= evtworkptr[1])"},
+  "0xA2": {"name": "CompareEQ", "params": 1, "source": "*evtworkptr = (*evtworkptr == evtworkptr[1])"},
+  "0xA3": {"name": "CompareNE", "params": 1, "source": "*evtworkptr = (*evtworkptr != evtworkptr[1])"},
+  "0xA4": {"name": "CompareLT", "params": 2, "source": "*evtworkptr = (*evtworkptr < evtworkptr[1])"},
+  "0xA5": {"name": "CompareGT", "params": 2, "source": "*evtworkptr = (*evtworkptr > evtworkptr[1])"},
+  "0xB0": {"name": "FormulaVariable00", "params": 0, "source": "calcformula dispatch via LABEL_149"},
+  "0xB1": {"name": "FormulaVariable01", "params": 1, "source": "calcformula dispatch via LABEL_149"},
+  "0xB2": {"name": "FormulaVariable02", "params": 1, "source": "calcformula dispatch via LABEL_149"},
+  "0xB3": {"name": "FormulaVariable03", "params": 2, "source": "calcformula dispatch via LABEL_149"},
+  "0xB4": {"name": "FormulaVariable04", "params": 3, "source": "calcformula dispatch via LABEL_149"},
+  "0xB5": {"name": "FormulaVariable05", "params": 0, "source": "calcformula dispatch via LABEL_149"},
+  "0xB6": {"name": "FormulaVariable06", "params": 0, "source": "calcformula dispatch via LABEL_149"},
+  "0xB7": {"name": "FormulaVariable07", "params": 0, "source": "calcformula dispatch via LABEL_149"},
+  "0xB8": {"name": "FormulaVariable08", "params": 2, "source": "calcformula dispatch via LABEL_149"},
+  "0xB9": {"name": "FormulaVariable09", "params": 1, "source": "calcformula dispatch via LABEL_149"},
+  "0xBA": {"name": "FormulaVariable0A", "params": 0, "source": "calcformula dispatch via LABEL_149"},
+  "0xBB": {"name": "FormulaVariable0B", "params": 3, "source": "calcformula dispatch via LABEL_149"},
+  "0xBC": {"name": "FormulaVariable0C", "params": 3, "source": "calcformula dispatch via LABEL_149"},
+  "0xBD": {"name": "FormulaVariable0D", "params": 3, "source": "calcformula dispatch via LABEL_149"},
+  "0xBE": {"name": "FormulaVariable0E", "params": 3, "source": "calcformula dispatch via LABEL_149"},
+  "0xC0": {"name": "CalcFormulaC0", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0xD0": {"name": "ConditionalJump", "params": 0, "source": "if(*evtworkptr) skip; seekcodeplus(evtix+2, 210, 212, v241)"},
+  "0xD1": {"name": "JumpForward", "params": 1, "source": "seekcodeplus(evtix+2, 210, -1, v241)"},
+  "0xD2": {"name": "CalcFormulaD2", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0xD3": {"name": "JumpToLabel", "params": 2, "source": "seekcodeplus(evtix, 213, -1, v241)"},
+  "0xD4": {"name": "ReturnTrue", "params": 3, "source": "v23 = 1; goto LABEL_737 (advance PC)"},
+  "0xD5": {"name": "CalcFormulaD5", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0xD8": {"name": "CalcFormulaD8", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0xD9": {"name": "CalcFormulaD9", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0xDA": {"name": "CalcFormulaDA", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0xDB": {"name": "EndEventBlock", "params": 0, "source": "goto LABEL_272 -> event cleanup, gBraveMovieFlg=0"},
+  "0xDC": {"name": "SetError", "params": 1, "source": "errorf = 13"},
+  "0xE0": {"name": "CalcFormulaE0", "params": 0, "source": "goto LABEL_733 -> calcformula"},
+  "0xE3": {"name": "EndEventBlock2", "params": 2, "source": "goto LABEL_272 -> event cleanup"},
+  "0xE5": {"name": "WaitTaskByID", "params": 3, "source": "wait for specific task (v236<<8)+v241 to finish"},
+  "0xE6": {"name": "iOSTutorialCommand", "params": 1, "source": "sub-switch: trace, setV2Icon, wait icon tap, mask"},
+  "0xF0": {"name": "Yield", "params": 0, "source": "asmTaskEntry() - yield one frame"},
+  "0xF1": {"name": "WaitFrames", "params": 0, "source": "task_wait(v17) with framerate/speedup adjustment"},
+  "0xF2": {"name": "CalcFormulaF2", "params": 0, "source": "goto LABEL_733 -> calcformula"}
 }
