@@ -5,7 +5,9 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "Not",
-    "wiki_sig": "Not()"
+    "wiki_sig": "Not()",
+    "description": "Boolean NOT \u2014 inverts the result of the following conditional expression",
+    "category": "flow_control"
   },
   "0x01": {
     "name": "Unknown01",
@@ -13,7 +15,8 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "If",
-    "wiki_sig": "If()"
+    "wiki_sig": "If()",
+    "category": "flow_control"
   },
   "0x02": {
     "name": "Unknown02",
@@ -21,7 +24,15 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "ElseIf",
-    "wiki_sig": "ElseIf(xVR)"
+    "wiki_sig": "ElseIf(xVR)",
+    "category": "flow_control",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0x03": {
     "name": "Else",
@@ -29,7 +40,8 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "Else",
-    "wiki_sig": "Else()"
+    "wiki_sig": "Else()",
+    "category": "flow_control"
   },
   "0x04": {
     "name": "EndIf",
@@ -37,7 +49,8 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "EndIf",
-    "wiki_sig": "EndIf()"
+    "wiki_sig": "EndIf()",
+    "category": "flow_control"
   },
   "0x05": {
     "name": "Switch",
@@ -45,7 +58,14 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "Switch",
-    "wiki_sig": "Switch(xVR)"
+    "wiki_sig": "Switch(xVR)",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0x06": {
     "name": "Case",
@@ -53,7 +73,14 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "Case",
-    "wiki_sig": "Case(xVALU)"
+    "wiki_sig": "Case(xVALU)",
+    "params": [
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0x07": {
     "name": "Unknown07",
@@ -85,7 +112,14 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "DefineSub",
-    "wiki_sig": "DefineSub(xID)"
+    "wiki_sig": "DefineSub(xID)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      }
+    ]
   },
   "0x0B": {
     "name": "Unknown0B",
@@ -101,7 +135,14 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "CallSub",
-    "wiki_sig": "CallSub(xID)"
+    "wiki_sig": "CallSub(xID)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      }
+    ]
   },
   "0x0D": {
     "name": "GoTo",
@@ -109,7 +150,14 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "GoTo",
-    "wiki_sig": "GoTo(xTG)"
+    "wiki_sig": "GoTo(xTG)",
+    "params": [
+      {
+        "name": "tg",
+        "type": "U8",
+        "description": "FFHacktics: xTG"
+      }
+    ]
   },
   "0x0E": {
     "name": "Unknown0E",
@@ -117,7 +165,15 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "GoToTarget",
-    "wiki_sig": "GoToTarget(xTG)"
+    "wiki_sig": "GoToTarget(xTG)",
+    "category": "flow_control",
+    "params": [
+      {
+        "name": "tg",
+        "type": "U8",
+        "description": "FFHacktics: xTG"
+      }
+    ]
   },
   "0x0F": {
     "name": "ScriptEnd",
@@ -132,7 +188,66 @@
     "tic_only": false,
     "gibbed_note": "10",
     "wiki_name": "DisplayMessage",
-    "wiki_sig": "DisplayMessage(x10,xDT,xMSG#,xID,x00,xPR,+XXXXX,+YYYYY,+ARPOS,xOT)"
+    "wiki_sig": "DisplayMessage(x10,xDT,xMSG#,xID,x00,xPR,+XXXXX,+YYYYY,+ARPOS,xOT)",
+    "params": [
+      {
+        "name": "balloon_type",
+        "type": "U8",
+        "description": "Dialogue box style",
+        "enum": {
+          "0": "normal",
+          "1": "thought",
+          "2": "narration"
+        }
+      },
+      {
+        "name": "speaker_id",
+        "type": "U8",
+        "description": "Speaker unit/character ID"
+      },
+      {
+        "name": "message_id",
+        "type": "U32",
+        "description": "Text message ID from scenario PZD"
+      },
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Character portrait index"
+      },
+      {
+        "name": "x_offset",
+        "type": "S8",
+        "description": "Balloon X position offset"
+      },
+      {
+        "name": "y_offset",
+        "type": "S8",
+        "description": "Balloon Y position offset"
+      },
+      {
+        "name": "z_offset",
+        "type": "S8",
+        "description": "Balloon Z position offset"
+      },
+      {
+        "name": "arrow_dir",
+        "type": "S8",
+        "description": "Arrow/tail direction"
+      },
+      {
+        "name": "duration",
+        "type": "U8",
+        "description": "Auto-advance delay (0=wait for input)"
+      },
+      {
+        "name": "flags",
+        "type": "U8",
+        "description": "Display flags"
+      }
+    ],
+    "description": "Display a dialogue message with speaker portrait and balloon",
+    "category": "dialogue"
   },
   "0x11": {
     "name": "AnimationRequest",
@@ -141,14 +256,47 @@
     "tic_only": false,
     "gibbed_note": "11",
     "wiki_name": "UnitAnim",
-    "wiki_sig": "UnitAnim(xAU,xMT,xANIM,x00)"
+    "wiki_sig": "UnitAnim(xAU,xMT,xANIM,x00)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit performing the animation"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type/category",
+        "enum": {
+          "0": "idle",
+          "1": "walk",
+          "2": "attack",
+          "3": "hit",
+          "4": "dead",
+          "5": "cast"
+        }
+      },
+      {
+        "name": "anim_id",
+        "type": "U16",
+        "description": "Specific animation index"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ],
+    "description": "Play a unit animation (walk, attack, cast, idle, etc.)",
+    "category": "unit"
   },
   "0x12": {
     "name": "WaitAnimationEnd",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
-    "gibbed_note": "12"
+    "gibbed_note": "12",
+    "category": "timing"
   },
   "0x13": {
     "name": "JumpMap",
@@ -157,7 +305,20 @@
     "tic_only": false,
     "gibbed_note": "13 - same handler as 4C",
     "wiki_name": "ChangeMapBeta",
-    "wiki_sig": "ChangeMapBeta(MAP,x00)"
+    "wiki_sig": "ChangeMapBeta(MAP,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "map",
+        "type": "U8",
+        "description": "FFHacktics: MAP"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x14": {
     "name": "PlayTrack",
@@ -165,7 +326,14 @@
     "operand_bytes_enhanced": 2,
     "tic_only": false,
     "wiki_name": "PlayTrack",
-    "wiki_sig": "PlayTrack(xSG)"
+    "wiki_sig": "PlayTrack(xSG)",
+    "params": [
+      {
+        "name": "sg",
+        "type": "U8",
+        "description": "FFHacktics: xSG"
+      }
+    ]
   },
   "0x15": {
     "name": "Unknown15",
@@ -173,7 +341,8 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "ResetUnitCalculations",
-    "wiki_sig": "ResetUnitCalculations()"
+    "wiki_sig": "ResetUnitCalculations()",
+    "category": "unit"
   },
   "0x16": {
     "name": "WaitTask",
@@ -182,7 +351,8 @@
     "tic_only": false,
     "gibbed_note": "16",
     "wiki_name": "Pause",
-    "wiki_sig": "Pause()"
+    "wiki_sig": "Pause()",
+    "category": "timing"
   },
   "0x17": {
     "name": "Unknown17",
@@ -190,7 +360,14 @@
     "operand_bytes_enhanced": 5,
     "tic_only": false,
     "wiki_name": "GraphicTimeout",
-    "wiki_sig": "GraphicTimeout(xTO)"
+    "wiki_sig": "GraphicTimeout(xTO)",
+    "params": [
+      {
+        "name": "to",
+        "type": "U8",
+        "description": "FFHacktics: xTO"
+      }
+    ]
   },
   "0x18": {
     "name": "ChangeEffect",
@@ -199,7 +376,35 @@
     "tic_only": false,
     "gibbed_note": "18",
     "wiki_name": "Effect",
-    "wiki_sig": "Effect(xEFID,xID,XXX,YYY,x00)"
+    "wiki_sig": "Effect(xEFID,xID,XXX,YYY,x00)",
+    "category": "screen",
+    "params": [
+      {
+        "name": "efid",
+        "type": "U8",
+        "description": "FFHacktics: xEFID"
+      },
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "x_coord",
+        "type": "U8",
+        "description": "Map X coordinate"
+      },
+      {
+        "name": "y_coord",
+        "type": "U8",
+        "description": "Map Y coordinate"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x19": {
     "name": "MoveCamera",
@@ -208,7 +413,51 @@
     "tic_only": false,
     "gibbed_note": "19",
     "wiki_name": "Camera",
-    "wiki_sig": "Camera(+XXXXX,+ZZZZZ,+YYYYY,+ANGLE,+MAPRT,+CAMRT,+ZOOM%,+TIMER)"
+    "wiki_sig": "Camera(+XXXXX,+ZZZZZ,+YYYYY,+ANGLE,+MAPRT,+CAMRT,+ZOOM%,+TIMER)",
+    "params": [
+      {
+        "name": "camera_x",
+        "type": "U16",
+        "description": "Camera target X position"
+      },
+      {
+        "name": "camera_y",
+        "type": "S16",
+        "description": "Camera target Y (height, signed)"
+      },
+      {
+        "name": "camera_z",
+        "type": "U16",
+        "description": "Camera target Z position"
+      },
+      {
+        "name": "angle",
+        "type": "U16",
+        "description": "Horizontal rotation (0-4095, 4096=360 deg)"
+      },
+      {
+        "name": "tilt",
+        "type": "U16",
+        "description": "Vertical tilt angle"
+      },
+      {
+        "name": "padding",
+        "type": "U16",
+        "description": "Unused (always 0)"
+      },
+      {
+        "name": "zoom",
+        "type": "U16",
+        "description": "Camera zoom/distance"
+      },
+      {
+        "name": "speed",
+        "type": "U16",
+        "description": "Transition speed (0=instant, higher=slower)"
+      }
+    ],
+    "description": "Move camera to a position with rotation, tilt, and zoom",
+    "category": "camera"
   },
   "0x1A": {
     "name": "MoveAmbient",
@@ -217,7 +466,35 @@
     "tic_only": false,
     "gibbed_note": "1A",
     "wiki_name": "MapDarkness",
-    "wiki_sig": "MapDarkness(xBM,+RED,+GRN,+BLU,TIM)"
+    "wiki_sig": "MapDarkness(xBM,+RED,+GRN,+BLU,TIM)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "bm",
+        "type": "U8",
+        "description": "FFHacktics: xBM"
+      },
+      {
+        "name": "red",
+        "type": "U8",
+        "description": "FFHacktics: +RED"
+      },
+      {
+        "name": "grn",
+        "type": "U8",
+        "description": "FFHacktics: +GRN"
+      },
+      {
+        "name": "blu",
+        "type": "U8",
+        "description": "FFHacktics: +BLU"
+      },
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x1B": {
     "name": "MoveLight",
@@ -226,7 +503,45 @@
     "tic_only": false,
     "gibbed_note": "1B",
     "wiki_name": "MapLight",
-    "wiki_sig": "MapLight(+00000,+00000,+?????,+RRRED,+GREEN,+BBLUE,+TIMER)"
+    "wiki_sig": "MapLight(+00000,+00000,+?????,+RRRED,+GREEN,+BBLUE,+TIMER)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "00000",
+        "type": "U8",
+        "description": "FFHacktics: +00000"
+      },
+      {
+        "name": "00000",
+        "type": "U8",
+        "description": "FFHacktics: +00000"
+      },
+      {
+        "name": "?????",
+        "type": "U8",
+        "description": "FFHacktics: +?????"
+      },
+      {
+        "name": "rrred",
+        "type": "U8",
+        "description": "FFHacktics: +RRRED"
+      },
+      {
+        "name": "green",
+        "type": "U8",
+        "description": "FFHacktics: +GREEN"
+      },
+      {
+        "name": "bblue",
+        "type": "U8",
+        "description": "FFHacktics: +BBLUE"
+      },
+      {
+        "name": "timer",
+        "type": "U8",
+        "description": "FFHacktics: +TIMER"
+      }
+    ]
   },
   "0x1C": {
     "name": "ChangeFrameRate",
@@ -235,7 +550,16 @@
     "tic_only": false,
     "gibbed_note": "1C",
     "wiki_name": "EventSpeed",
-    "wiki_sig": "EventSpeed(xSP)"
+    "wiki_sig": "EventSpeed(xSP)",
+    "params": [
+      {
+        "name": "speed",
+        "type": "U8",
+        "description": "Playback speed multiplier (1=normal)"
+      }
+    ],
+    "description": "Change the event playback speed (1=normal, 2=fast, etc.)",
+    "category": "timing"
   },
   "0x1D": {
     "name": "_CameraFusionStart",
@@ -244,7 +568,9 @@
     "tic_only": false,
     "gibbed_note": "1D",
     "wiki_name": "CameraFusionStart",
-    "wiki_sig": "CameraFusionStart()"
+    "wiki_sig": "CameraFusionStart()",
+    "description": "Begin a camera blend/fusion transition",
+    "category": "camera"
   },
   "0x1E": {
     "name": "_CameraFusionEnd",
@@ -253,7 +579,9 @@
     "tic_only": false,
     "gibbed_note": "1E",
     "wiki_name": "CameraFusionEnd",
-    "wiki_sig": "CameraFusionEnd()"
+    "wiki_sig": "CameraFusionEnd()",
+    "description": "End a camera blend/fusion transition",
+    "category": "camera"
   },
   "0x1F": {
     "name": "_Focus",
@@ -262,7 +590,35 @@
     "tic_only": false,
     "gibbed_note": "1F",
     "wiki_name": "Focus",
-    "wiki_sig": "Focus(xID,x00,xID,x00,xAR)"
+    "wiki_sig": "Focus(xID,x00,xID,x00,xAR)",
+    "category": "camera",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "ar",
+        "type": "U8",
+        "description": "FFHacktics: xAR"
+      }
+    ]
   },
   "0x20": {
     "name": "Unknown20",
@@ -278,7 +634,15 @@
     "tic_only": false,
     "gibbed_note": "21",
     "wiki_name": "SoundEffect",
-    "wiki_sig": "SoundEffect(xSDID)"
+    "wiki_sig": "SoundEffect(xSDID)",
+    "category": "audio",
+    "params": [
+      {
+        "name": "sdid",
+        "type": "U8",
+        "description": "FFHacktics: xSDID"
+      }
+    ]
   },
   "0x22": {
     "name": "PlayMusic",
@@ -287,7 +651,25 @@
     "tic_only": false,
     "gibbed_note": "22 - same handler as F0",
     "wiki_name": "SwitchTrack",
-    "wiki_sig": "SwitchTrack(x01,+VOL,TIM)"
+    "wiki_sig": "SwitchTrack(x01,+VOL,TIM)",
+    "category": "audio",
+    "params": [
+      {
+        "name": "mode",
+        "type": "U8",
+        "description": "Mode flag (usually 1)"
+      },
+      {
+        "name": "volume",
+        "type": "S8",
+        "description": "Volume adjustment"
+      },
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x23": {
     "name": "Unknown23",
@@ -337,7 +719,51 @@
     "tic_only": false,
     "gibbed_note": "28",
     "wiki_name": "WalkTo",
-    "wiki_sig": "WalkTo(xID,x00,XXX,YYY,xEL,x00,+SPD,x01)"
+    "wiki_sig": "WalkTo(xID,x00,XXX,YYY,xEL,x00,+SPD,x01)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit to move"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "x",
+        "type": "U8",
+        "description": "Destination X coordinate"
+      },
+      {
+        "name": "y",
+        "type": "U8",
+        "description": "Destination Y coordinate"
+      },
+      {
+        "name": "elevation",
+        "type": "U8",
+        "description": "Destination elevation"
+      },
+      {
+        "name": "padding2",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "speed",
+        "type": "S8",
+        "description": "Movement speed (signed)"
+      },
+      {
+        "name": "mode",
+        "type": "U8",
+        "description": "Movement mode (1=normal)"
+      }
+    ],
+    "description": "Move a unit to a map tile by walking",
+    "category": "unit"
   },
   "0x29": {
     "name": "WaitCharacterMove",
@@ -346,7 +772,20 @@
     "tic_only": false,
     "gibbed_note": "29",
     "wiki_name": "WaitWalk",
-    "wiki_sig": "WaitWalk(xID,x00)"
+    "wiki_sig": "WaitWalk(xID,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x2A": {
     "name": "_BlockStart",
@@ -373,7 +812,45 @@
     "tic_only": false,
     "gibbed_note": "2C",
     "wiki_name": "FaceUnit2",
-    "wiki_sig": "FaceUnit2(xFU,x00,xAU,xMT,xCL,xRS,xDL)"
+    "wiki_sig": "FaceUnit2(xFU,x00,xAU,xMT,xCL,xRS,xDL)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "fu",
+        "type": "U8",
+        "description": "FFHacktics: xFU"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "anim_unit",
+        "type": "U8",
+        "description": "Animation unit ID"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type"
+      },
+      {
+        "name": "cl",
+        "type": "U8",
+        "description": "FFHacktics: xCL"
+      },
+      {
+        "name": "rs",
+        "type": "U8",
+        "description": "FFHacktics: xRS"
+      },
+      {
+        "name": "dl",
+        "type": "U8",
+        "description": "FFHacktics: xDL"
+      }
+    ]
   },
   "0x2D": {
     "name": "Direction",
@@ -382,7 +859,40 @@
     "tic_only": false,
     "gibbed_note": "2D",
     "wiki_name": "RotateUnit",
-    "wiki_sig": "RotateUnit(xAU,xMT,xDR,xCL,xRS,xDL)"
+    "wiki_sig": "RotateUnit(xAU,xMT,xDR,xCL,xRS,xDL)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "anim_unit",
+        "type": "U8",
+        "description": "Animation unit ID"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type"
+      },
+      {
+        "name": "draw_mode",
+        "type": "U8",
+        "description": "Drawing/render mode"
+      },
+      {
+        "name": "cl",
+        "type": "U8",
+        "description": "FFHacktics: xCL"
+      },
+      {
+        "name": "rs",
+        "type": "U8",
+        "description": "FFHacktics: xRS"
+      },
+      {
+        "name": "dl",
+        "type": "U8",
+        "description": "FFHacktics: xDL"
+      }
+    ]
   },
   "0x2E": {
     "name": "FadeGradation",
@@ -391,7 +901,51 @@
     "tic_only": false,
     "gibbed_note": "2E",
     "wiki_name": "Background",
-    "wiki_sig": "Background(RDT,GRT,BLT,RDB,GRB,BLB,TIM,xBS)"
+    "wiki_sig": "Background(RDT,GRT,BLT,RDB,GRB,BLB,TIM,xBS)",
+    "params": [
+      {
+        "name": "r_target",
+        "type": "U8",
+        "description": "Target red value (0-255)"
+      },
+      {
+        "name": "g_target",
+        "type": "U8",
+        "description": "Target green value (0-255)"
+      },
+      {
+        "name": "b_target",
+        "type": "U8",
+        "description": "Target blue value (0-255)"
+      },
+      {
+        "name": "r_source",
+        "type": "U8",
+        "description": "Source red value (0-255)"
+      },
+      {
+        "name": "g_source",
+        "type": "U8",
+        "description": "Source green value (0-255)"
+      },
+      {
+        "name": "b_source",
+        "type": "U8",
+        "description": "Source blue value (0-255)"
+      },
+      {
+        "name": "speed",
+        "type": "U8",
+        "description": "Transition speed (0=instant)"
+      },
+      {
+        "name": "flags",
+        "type": "U8",
+        "description": "Gradation flags"
+      }
+    ],
+    "description": "Fade screen colors with a gradation overlay",
+    "category": "screen"
   },
   "0x2F": {
     "name": "Unknown2F",
@@ -399,7 +953,24 @@
     "operand_bytes_enhanced": 0,
     "tic_only": false,
     "wiki_name": "BlockLoop",
-    "wiki_sig": "BlockLoop(LPA,xVR,xDEST)"
+    "wiki_sig": "BlockLoop(LPA,xVR,xDEST)",
+    "params": [
+      {
+        "name": "lpa",
+        "type": "U8",
+        "description": "FFHacktics: LPA"
+      },
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      },
+      {
+        "name": "dest",
+        "type": "U8",
+        "description": "FFHacktics: xDEST"
+      }
+    ]
   },
   "0x30": {
     "name": "Unknown30",
@@ -414,7 +985,35 @@
     "tic_only": false,
     "gibbed_note": "31",
     "wiki_name": "ColorBGBeta",
-    "wiki_sig": "ColorBGBeta(xPR,+RED,+GRN,+BLU,TIM)"
+    "wiki_sig": "ColorBGBeta(xPR,+RED,+GRN,+BLU,TIM)",
+    "category": "screen",
+    "params": [
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Portrait index"
+      },
+      {
+        "name": "red",
+        "type": "U8",
+        "description": "FFHacktics: +RED"
+      },
+      {
+        "name": "grn",
+        "type": "U8",
+        "description": "FFHacktics: +GRN"
+      },
+      {
+        "name": "blu",
+        "type": "U8",
+        "description": "FFHacktics: +BLU"
+      },
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x32": {
     "name": "SetCharacterColor",
@@ -423,7 +1022,45 @@
     "tic_only": false,
     "gibbed_note": "32",
     "wiki_name": "ColorUnit",
-    "wiki_sig": "ColorUnit(xAU,xMT,xPR,+RED,+GRN,+BLU,TIM)"
+    "wiki_sig": "ColorUnit(xAU,xMT,xPR,+RED,+GRN,+BLU,TIM)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "anim_unit",
+        "type": "U8",
+        "description": "Animation unit ID"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type"
+      },
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Portrait index"
+      },
+      {
+        "name": "red",
+        "type": "U8",
+        "description": "FFHacktics: +RED"
+      },
+      {
+        "name": "grn",
+        "type": "U8",
+        "description": "FFHacktics: +GRN"
+      },
+      {
+        "name": "blu",
+        "type": "U8",
+        "description": "FFHacktics: +BLU"
+      },
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x33": {
     "name": "ChangeMapClut",
@@ -432,7 +1069,35 @@
     "tic_only": false,
     "gibbed_note": "33",
     "wiki_name": "ColorField",
-    "wiki_sig": "ColorField(xPR,+RED,+GRN,+BLU,TIM)"
+    "wiki_sig": "ColorField(xPR,+RED,+GRN,+BLU,TIM)",
+    "category": "screen",
+    "params": [
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Portrait index"
+      },
+      {
+        "name": "red",
+        "type": "U8",
+        "description": "FFHacktics: +RED"
+      },
+      {
+        "name": "grn",
+        "type": "U8",
+        "description": "FFHacktics: +GRN"
+      },
+      {
+        "name": "blu",
+        "type": "U8",
+        "description": "FFHacktics: +BLU"
+      },
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x34": {
     "name": "Unknown34",
@@ -444,13 +1109,15 @@
     "name": "Unknown35",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
-    "tic_only": false
+    "tic_only": false,
+    "category": "screen"
   },
   "0x36": {
     "name": "DeadCode36",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
-    "tic_only": false
+    "tic_only": false,
+    "category": "screen"
   },
   "0x37": {
     "name": "Unknown37",
@@ -467,21 +1134,31 @@
     "tic_only": false,
     "gibbed_note": "38",
     "wiki_name": "FocusSpeed",
-    "wiki_sig": "FocusSpeed(+SPEED)"
+    "wiki_sig": "FocusSpeed(+SPEED)",
+    "category": "camera",
+    "params": [
+      {
+        "name": "speed",
+        "type": "U8",
+        "description": "FFHacktics: +SPEED"
+      }
+    ]
   },
   "0x39": {
     "name": "WaitCharacterMoveWotL",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "39"
+    "gibbed_note": "39",
+    "category": "unit"
   },
   "0x3A": {
     "name": "WaitFileRead",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "3A"
+    "gibbed_note": "3A",
+    "category": "timing"
   },
   "0x3B": {
     "name": "MoveSprite",
@@ -490,7 +1167,50 @@
     "tic_only": false,
     "gibbed_note": "3B - same handler as 6E?",
     "wiki_name": "SpriteMove",
-    "wiki_sig": "SpriteMove(xID,x00,+XXXXX,+ZZZZZ,+YYYYY,xMV,x??,+TIMER)"
+    "wiki_sig": "SpriteMove(xID,x00,+XXXXX,+ZZZZZ,+YYYYY,xMV,x??,+TIMER)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "x_offset",
+        "type": "S8",
+        "description": "X position offset"
+      },
+      {
+        "name": "zzzzz",
+        "type": "U8",
+        "description": "FFHacktics: +ZZZZZ"
+      },
+      {
+        "name": "y_offset",
+        "type": "S8",
+        "description": "Y position offset"
+      },
+      {
+        "name": "mv",
+        "type": "U8",
+        "description": "FFHacktics: xMV"
+      },
+      {
+        "name": "??",
+        "type": "U8",
+        "description": "FFHacktics: x??"
+      },
+      {
+        "name": "timer",
+        "type": "U8",
+        "description": "FFHacktics: +TIMER"
+      }
+    ]
   },
   "0x3C": {
     "name": "ChangeWeather",
@@ -499,7 +1219,26 @@
     "tic_only": false,
     "gibbed_note": "3C",
     "wiki_name": "Weather",
-    "wiki_sig": "Weather(xWP,x01)"
+    "wiki_sig": "Weather(xWP,x01)",
+    "params": [
+      {
+        "name": "weather_type",
+        "type": "U8",
+        "description": "Weather type",
+        "enum": {
+          "0": "clear",
+          "1": "light_rain",
+          "2": "heavy_rain"
+        }
+      },
+      {
+        "name": "intensity",
+        "type": "U8",
+        "description": "Effect intensity/speed"
+      }
+    ],
+    "description": "Change the weather effect (rain, snow, etc.)",
+    "category": "screen"
   },
   "0x3D": {
     "name": "DisappearUnit",
@@ -508,7 +1247,20 @@
     "tic_only": false,
     "gibbed_note": "3D",
     "wiki_name": "RemoveUnit",
-    "wiki_sig": "RemoveUnit(xID,xMD)"
+    "wiki_sig": "RemoveUnit(xID,xMD)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "md",
+        "type": "U8",
+        "description": "FFHacktics: xMD"
+      }
+    ]
   },
   "0x3E": {
     "name": "SetChangePaletteData",
@@ -517,7 +1269,50 @@
     "tic_only": false,
     "gibbed_note": "3E",
     "wiki_name": "ColorScreen",
-    "wiki_sig": "ColorScreen(xBM,IRD,IGR,IBL,TRD,TGR,TBL,+TIMER)"
+    "wiki_sig": "ColorScreen(xBM,IRD,IGR,IBL,TRD,TGR,TBL,+TIMER)",
+    "category": "screen",
+    "params": [
+      {
+        "name": "bm",
+        "type": "U8",
+        "description": "FFHacktics: xBM"
+      },
+      {
+        "name": "ird",
+        "type": "U8",
+        "description": "FFHacktics: IRD"
+      },
+      {
+        "name": "igr",
+        "type": "U8",
+        "description": "FFHacktics: IGR"
+      },
+      {
+        "name": "ibl",
+        "type": "U8",
+        "description": "FFHacktics: IBL"
+      },
+      {
+        "name": "trd",
+        "type": "U8",
+        "description": "FFHacktics: TRD"
+      },
+      {
+        "name": "tgr",
+        "type": "U8",
+        "description": "FFHacktics: TGR"
+      },
+      {
+        "name": "tbl",
+        "type": "U8",
+        "description": "FFHacktics: TBL"
+      },
+      {
+        "name": "timer",
+        "type": "U8",
+        "description": "FFHacktics: +TIMER"
+      }
+    ]
   },
   "0x3F": {
     "name": "ChangeMapD",
@@ -542,7 +1337,31 @@
     "tic_only": false,
     "gibbed_note": "41",
     "wiki_name": "EarthquakeStart",
-    "wiki_sig": "EarthquakeStart(MAG,MER,SMG,SSD)"
+    "wiki_sig": "EarthquakeStart(MAG,MER,SMG,SSD)",
+    "params": [
+      {
+        "name": "magnitude",
+        "type": "U8",
+        "description": "Shake intensity"
+      },
+      {
+        "name": "meridian",
+        "type": "U8",
+        "description": "Shake axis/direction"
+      },
+      {
+        "name": "sub_magnitude",
+        "type": "U8",
+        "description": "Secondary shake intensity"
+      },
+      {
+        "name": "sub_speed",
+        "type": "U8",
+        "description": "Secondary shake speed"
+      }
+    ],
+    "description": "Start an earthquake/screen shake effect",
+    "category": "screen"
   },
   "0x42": {
     "name": "StopShake",
@@ -560,7 +1379,14 @@
     "tic_only": false,
     "gibbed_note": "43",
     "wiki_name": "CallFunction",
-    "wiki_sig": "CallFunction(xFC)"
+    "wiki_sig": "CallFunction(xFC)",
+    "params": [
+      {
+        "name": "fc",
+        "type": "U8",
+        "description": "FFHacktics: xFC"
+      }
+    ]
   },
   "0x44": {
     "name": "_Draw",
@@ -569,7 +1395,19 @@
     "tic_only": false,
     "gibbed_note": "44",
     "wiki_name": "Draw",
-    "wiki_sig": "Draw(xID,xAS)"
+    "wiki_sig": "Draw(xID,xAS)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "as",
+        "type": "U8",
+        "description": "FFHacktics: xAS"
+      }
+    ]
   },
   "0x45": {
     "name": "LoadAnimation",
@@ -578,7 +1416,25 @@
     "tic_only": false,
     "gibbed_note": "45",
     "wiki_name": "AddUnit",
-    "wiki_sig": "AddUnit(xID,x00,xDR)"
+    "wiki_sig": "AddUnit(xID,x00,xDR)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "draw_mode",
+        "type": "U8",
+        "description": "Drawing/render mode"
+      }
+    ]
   },
   "0x46": {
     "name": "DeactivateAnimation",
@@ -587,7 +1443,19 @@
     "tic_only": false,
     "gibbed_note": "46",
     "wiki_name": "Erase",
-    "wiki_sig": "Erase(xID,x00)"
+    "wiki_sig": "Erase(xID,x00)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x47": {
     "name": "ActivateAnimation",
@@ -596,7 +1464,57 @@
     "tic_only": false,
     "gibbed_note": "47",
     "wiki_name": "AddGhostUnit",
-    "wiki_sig": "AddGhostUnit(xSP,x00,xID,XXX,YYY,xEL,xFD,xDR)"
+    "wiki_sig": "AddGhostUnit(xSP,x00,xID,XXX,YYY,xEL,xFD,xDR)",
+    "params": [
+      {
+        "name": "sprite_id",
+        "type": "U8",
+        "description": "Character sprite to use"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID to assign"
+      },
+      {
+        "name": "x",
+        "type": "U8",
+        "description": "Map X coordinate"
+      },
+      {
+        "name": "y",
+        "type": "U8",
+        "description": "Map Y coordinate"
+      },
+      {
+        "name": "elevation",
+        "type": "U8",
+        "description": "Height/elevation level"
+      },
+      {
+        "name": "facing",
+        "type": "U8",
+        "description": "Direction facing",
+        "enum": {
+          "0": "south",
+          "1": "west",
+          "2": "north",
+          "3": "east"
+        }
+      },
+      {
+        "name": "draw_mode",
+        "type": "U8",
+        "description": "Rendering mode"
+      }
+    ],
+    "description": "Add a temporary event unit (ghost unit) to the map",
+    "category": "unit"
   },
   "0x48": {
     "name": "WaitLoadAnimation",
@@ -605,7 +1523,9 @@
     "tic_only": false,
     "gibbed_note": "48",
     "wiki_name": "WaitAddUnit",
-    "wiki_sig": "WaitAddUnit()"
+    "wiki_sig": "WaitAddUnit()",
+    "description": "Wait for a ghost unit (AddUnit) to finish loading",
+    "category": "unit"
   },
   "0x49": {
     "name": "ActivateAnimationStart",
@@ -614,7 +1534,9 @@
     "tic_only": false,
     "gibbed_note": "49",
     "wiki_name": "AddUnitStart",
-    "wiki_sig": "AddUnitStart()"
+    "wiki_sig": "AddUnitStart()",
+    "description": "Signal that a ghost/added unit is ready to appear",
+    "category": "unit"
   },
   "0x4A": {
     "name": "ActivateAnimationEnd",
@@ -623,7 +1545,8 @@
     "tic_only": false,
     "gibbed_note": "4A",
     "wiki_name": "AddUnitEnd",
-    "wiki_sig": "AddUnitEnd()"
+    "wiki_sig": "AddUnitEnd()",
+    "category": "unit"
   },
   "0x4B": {
     "name": "WaitActivateAnimation",
@@ -632,7 +1555,8 @@
     "tic_only": false,
     "gibbed_note": "4B",
     "wiki_name": "WaitAddUnitEnd",
-    "wiki_sig": "WaitAddUnitEnd()"
+    "wiki_sig": "WaitAddUnitEnd()",
+    "category": "unit"
   },
   "0x4C": {
     "name": "JumpMap2",
@@ -641,7 +1565,20 @@
     "tic_only": false,
     "gibbed_note": "4C - same handler as 13",
     "wiki_name": "ChangeMap",
-    "wiki_sig": "ChangeMap(MAP,x00)"
+    "wiki_sig": "ChangeMap(MAP,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "map",
+        "type": "U8",
+        "description": "FFHacktics: MAP"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x4D": {
     "name": "_Reveal",
@@ -650,7 +1587,14 @@
     "tic_only": false,
     "gibbed_note": "4D",
     "wiki_name": "Reveal",
-    "wiki_sig": "Reveal(TIM)"
+    "wiki_sig": "Reveal(TIM)",
+    "params": [
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x4E": {
     "name": "SetAnimationShadow",
@@ -659,7 +1603,25 @@
     "tic_only": false,
     "gibbed_note": "4E",
     "wiki_name": "UnitShadow",
-    "wiki_sig": "UnitShadow(xID,x00,xSH)"
+    "wiki_sig": "UnitShadow(xID,x00,xSH)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "sh",
+        "type": "U8",
+        "description": "FFHacktics: xSH"
+      }
+    ]
   },
   "0x4F": {
     "name": "SetDaytime",
@@ -668,7 +1630,14 @@
     "tic_only": false,
     "gibbed_note": "4F",
     "wiki_name": "SetDaytime",
-    "wiki_sig": "SetDaytime(xDT)"
+    "wiki_sig": "SetDaytime(xDT)",
+    "params": [
+      {
+        "name": "dialog_target",
+        "type": "U8",
+        "description": "Dialog target ID"
+      }
+    ]
   },
   "0x50": {
     "name": "SetFace",
@@ -677,7 +1646,15 @@
     "tic_only": false,
     "gibbed_note": "50",
     "wiki_name": "PortraitCol",
-    "wiki_sig": "PortraitCol(xPC)"
+    "wiki_sig": "PortraitCol(xPC)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "pc",
+        "type": "U8",
+        "description": "FFHacktics: xPC"
+      }
+    ]
   },
   "0x51": {
     "name": "_ChangeDialog",
@@ -686,7 +1663,30 @@
     "tic_only": false,
     "gibbed_note": "51",
     "wiki_name": "ChangeDialog",
-    "wiki_sig": "ChangeDialog(xDB,xMSG#,xPR,xPP)"
+    "wiki_sig": "ChangeDialog(xDB,xMSG#,xPR,xPP)",
+    "category": "dialogue",
+    "params": [
+      {
+        "name": "db",
+        "type": "U8",
+        "description": "FFHacktics: xDB"
+      },
+      {
+        "name": "message_id",
+        "type": "U32",
+        "description": "Message text ID"
+      },
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Portrait index"
+      },
+      {
+        "name": "pp",
+        "type": "U8",
+        "description": "FFHacktics: xPP"
+      }
+    ]
   },
   "0x52": {
     "name": "Unknown52",
@@ -701,7 +1701,45 @@
     "tic_only": false,
     "gibbed_note": "53",
     "wiki_name": "FaceUnit",
-    "wiki_sig": "FaceUnit(xFU,x00,xAU,xMT,xCL,xRS,xDL)"
+    "wiki_sig": "FaceUnit(xFU,x00,xAU,xMT,xCL,xRS,xDL)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "fu",
+        "type": "U8",
+        "description": "FFHacktics: xFU"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "anim_unit",
+        "type": "U8",
+        "description": "Animation unit ID"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type"
+      },
+      {
+        "name": "cl",
+        "type": "U8",
+        "description": "FFHacktics: xCL"
+      },
+      {
+        "name": "rs",
+        "type": "U8",
+        "description": "FFHacktics: xRS"
+      },
+      {
+        "name": "dl",
+        "type": "U8",
+        "description": "FFHacktics: xDL"
+      }
+    ]
   },
   "0x54": {
     "name": "StartModelAnimation",
@@ -710,7 +1748,21 @@
     "tic_only": false,
     "gibbed_note": "54",
     "wiki_name": "Use3DObject",
-    "wiki_sig": "Use3DObject(xID,xST)"
+    "wiki_sig": "Use3DObject(xID,xST)",
+    "params": [
+      {
+        "name": "object_id",
+        "type": "U8",
+        "description": "3D object identifier"
+      },
+      {
+        "name": "state",
+        "type": "U8",
+        "description": "Animation state to set"
+      }
+    ],
+    "description": "Start a 3D object/model animation",
+    "category": "model"
   },
   "0x55": {
     "name": "StartVRAMAnimation",
@@ -719,7 +1771,19 @@
     "tic_only": false,
     "gibbed_note": "55",
     "wiki_name": "UseFieldObject",
-    "wiki_sig": "UseFieldObject(xID,x00)"
+    "wiki_sig": "UseFieldObject(xID,x00)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x56": {
     "name": "WaitModelAnimation",
@@ -728,7 +1792,8 @@
     "tic_only": false,
     "gibbed_note": "56",
     "wiki_name": "Wait3DObject",
-    "wiki_sig": "Wait3DObject()"
+    "wiki_sig": "Wait3DObject()",
+    "category": "timing"
   },
   "0x57": {
     "name": "WaitVRAMAnimation",
@@ -737,7 +1802,8 @@
     "tic_only": false,
     "gibbed_note": "57",
     "wiki_name": "WaitFieldObject",
-    "wiki_sig": "WaitFieldObject()"
+    "wiki_sig": "WaitFieldObject()",
+    "category": "timing"
   },
   "0x58": {
     "name": "LoadEventCharacter",
@@ -746,7 +1812,24 @@
     "tic_only": false,
     "gibbed_note": "58",
     "wiki_name": "LoadEVTCHR",
-    "wiki_sig": "LoadEVTCHR(xBL,xEV,x00)"
+    "wiki_sig": "LoadEVTCHR(xBL,xEV,x00)",
+    "params": [
+      {
+        "name": "block",
+        "type": "U8",
+        "description": "Block/slot ID"
+      },
+      {
+        "name": "ev",
+        "type": "U8",
+        "description": "FFHacktics: xEV"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x59": {
     "name": "ActivateEventCharacter",
@@ -755,7 +1838,14 @@
     "tic_only": false,
     "gibbed_note": "59",
     "wiki_name": "SaveEVTCHR",
-    "wiki_sig": "SaveEVTCHR(xBL)"
+    "wiki_sig": "SaveEVTCHR(xBL)",
+    "params": [
+      {
+        "name": "block",
+        "type": "U8",
+        "description": "Block/slot ID"
+      }
+    ]
   },
   "0x5A": {
     "name": "DeactivateEventCharacter",
@@ -764,7 +1854,20 @@
     "tic_only": false,
     "gibbed_note": "5A",
     "wiki_name": "SaveEVTCHRClear",
-    "wiki_sig": "SaveEVTCHRClear(xBL,x00)"
+    "wiki_sig": "SaveEVTCHRClear(xBL,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "block",
+        "type": "U8",
+        "description": "Block/slot ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x5B": {
     "name": "DisposeEventCharacter",
@@ -773,7 +1876,19 @@
     "tic_only": false,
     "gibbed_note": "5B",
     "wiki_name": "LoadEVTCHRClear",
-    "wiki_sig": "LoadEVTCHRClear(xBL,x00)"
+    "wiki_sig": "LoadEVTCHRClear(xBL,x00)",
+    "params": [
+      {
+        "name": "block",
+        "type": "U8",
+        "description": "Block/slot ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x5C": {
     "name": "ActivateCompressedAnimation",
@@ -800,7 +1915,15 @@
     "tic_only": false,
     "gibbed_note": "5E",
     "wiki_name": "EndTrack",
-    "wiki_sig": "EndTrack(x??)"
+    "wiki_sig": "EndTrack(x??)",
+    "category": "audio",
+    "params": [
+      {
+        "name": "??",
+        "type": "U8",
+        "description": "FFHacktics: x??"
+      }
+    ]
   },
   "0x5F": {
     "name": "SetAnimationPosition",
@@ -809,7 +1932,40 @@
     "tic_only": false,
     "gibbed_note": "5F",
     "wiki_name": "WarpUnit",
-    "wiki_sig": "WarpUnit(xID,x00,XXX,YYY,xEL,xFD)"
+    "wiki_sig": "WarpUnit(xID,x00,XXX,YYY,xEL,xFD)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "x_coord",
+        "type": "U8",
+        "description": "Map X coordinate"
+      },
+      {
+        "name": "y_coord",
+        "type": "U8",
+        "description": "Map Y coordinate"
+      },
+      {
+        "name": "elevation",
+        "type": "U8",
+        "description": "Height/elevation"
+      },
+      {
+        "name": "facing",
+        "type": "U8",
+        "description": "Direction facing (0=S,1=W,2=N,3=E)"
+      }
+    ]
   },
   "0x60": {
     "name": "FadeMusic",
@@ -818,7 +1974,20 @@
     "tic_only": false,
     "gibbed_note": "60",
     "wiki_name": "FadeSound",
-    "wiki_sig": "FadeSound(x00,TIM)"
+    "wiki_sig": "FadeSound(x00,TIM)",
+    "category": "audio",
+    "params": [
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x61": {
     "name": "Unknown61",
@@ -845,7 +2014,16 @@
     "tic_only": false,
     "gibbed_note": "63",
     "wiki_name": "CameraSpeedCurve",
-    "wiki_sig": "CameraSpeedCurve(xPA)"
+    "wiki_sig": "CameraSpeedCurve(xPA)",
+    "description": "Set camera interpolation curve (linear, ease-in, etc.)",
+    "category": "camera",
+    "params": [
+      {
+        "name": "curve_type",
+        "type": "U8",
+        "description": "Speed curve type"
+      }
+    ]
   },
   "0x64": {
     "name": "WaitDirection",
@@ -854,7 +2032,21 @@
     "tic_only": false,
     "gibbed_note": "64",
     "wiki_name": "WaitRotateUnit",
-    "wiki_sig": "WaitRotateUnit(xID,x00)"
+    "wiki_sig": "WaitRotateUnit(xID,x00)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit to wait for"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ],
+    "description": "Wait for a unit to finish turning/rotating",
+    "category": "unit"
   },
   "0x65": {
     "name": "WaitDirectionAll",
@@ -863,7 +2055,8 @@
     "tic_only": false,
     "gibbed_note": "65",
     "wiki_name": "WaitRotateAll",
-    "wiki_sig": "WaitRotateAll()"
+    "wiki_sig": "WaitRotateAll()",
+    "category": "unit"
   },
   "0x66": {
     "name": "SetPresentClutDataAsDefault",
@@ -886,7 +2079,25 @@
     "tic_only": false,
     "gibbed_note": "68",
     "wiki_name": "MirrorSprite",
-    "wiki_sig": "MirrorSprite(xID,x00,xMI)"
+    "wiki_sig": "MirrorSprite(xID,x00,xMI)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "mi",
+        "type": "U8",
+        "description": "FFHacktics: xMI"
+      }
+    ]
   },
   "0x69": {
     "name": "Direction4",
@@ -895,7 +2106,50 @@
     "tic_only": false,
     "gibbed_note": "69",
     "wiki_name": "FaceTile",
-    "wiki_sig": "FaceTile(xAU,xMT,XXX,YYY,x00,xCL,xRS,xDL)"
+    "wiki_sig": "FaceTile(xAU,xMT,XXX,YYY,x00,xCL,xRS,xDL)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "anim_unit",
+        "type": "U8",
+        "description": "Animation unit ID"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type"
+      },
+      {
+        "name": "x_coord",
+        "type": "U8",
+        "description": "Map X coordinate"
+      },
+      {
+        "name": "y_coord",
+        "type": "U8",
+        "description": "Map Y coordinate"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "cl",
+        "type": "U8",
+        "description": "FFHacktics: xCL"
+      },
+      {
+        "name": "rs",
+        "type": "U8",
+        "description": "FFHacktics: xRS"
+      },
+      {
+        "name": "dl",
+        "type": "U8",
+        "description": "FFHacktics: xDL"
+      }
+    ]
   },
   "0x6A": {
     "name": "FadeSoundEffect",
@@ -904,7 +2158,35 @@
     "tic_only": false,
     "gibbed_note": "6A",
     "wiki_name": "EditBGSound",
-    "wiki_sig": "EditBGSound(xSD,+ECH,+VOL,x00,xWT)"
+    "wiki_sig": "EditBGSound(xSD,+ECH,+VOL,x00,xWT)",
+    "category": "audio",
+    "params": [
+      {
+        "name": "sound_id",
+        "type": "U8",
+        "description": "Sound effect ID"
+      },
+      {
+        "name": "echo",
+        "type": "S8",
+        "description": "Echo amount"
+      },
+      {
+        "name": "volume",
+        "type": "S8",
+        "description": "Volume adjustment"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "wt",
+        "type": "U8",
+        "description": "FFHacktics: xWT"
+      }
+    ]
   },
   "0x6B": {
     "name": "PlaySoundEffect",
@@ -913,7 +2195,36 @@
     "tic_only": false,
     "gibbed_note": "6B",
     "wiki_name": "BGSound",
-    "wiki_sig": "BGSound(xSD,+ECH,+VOL,xST,TIM)"
+    "wiki_sig": "BGSound(xSD,+ECH,+VOL,xST,TIM)",
+    "params": [
+      {
+        "name": "sound_id",
+        "type": "U8",
+        "description": "Sound effect index"
+      },
+      {
+        "name": "echo",
+        "type": "S8",
+        "description": "Echo/reverb amount"
+      },
+      {
+        "name": "volume",
+        "type": "S8",
+        "description": "Volume adjustment"
+      },
+      {
+        "name": "stereo_pan",
+        "type": "U8",
+        "description": "Stereo position"
+      },
+      {
+        "name": "delay",
+        "type": "U8",
+        "description": "Delay before playback (frames)"
+      }
+    ],
+    "description": "Play a background sound effect with echo, volume, and timing control",
+    "category": "audio"
   },
   "0x6C": {
     "name": "SetAnimationColorChangeOff",
@@ -922,14 +2233,16 @@
     "tic_only": false,
     "gibbed_note": "6C",
     "wiki_name": "Never used",
-    "wiki_sig": "{6D}"
+    "wiki_sig": "{6D}",
+    "category": "screen"
   },
   "0x6D": {
     "name": "SetAnimationColorChangeOn",
     "operand_bytes_classic": 2,
     "operand_bytes_enhanced": 2,
     "tic_only": false,
-    "gibbed_note": "6D"
+    "gibbed_note": "6D",
+    "category": "screen"
   },
   "0x6E": {
     "name": "MoveSprite2",
@@ -938,7 +2251,50 @@
     "tic_only": false,
     "gibbed_note": "6E",
     "wiki_name": "SpriteMoveBeta",
-    "wiki_sig": "SpriteMoveBeta(xID,x00,+XXXXX,+ZZZZZ,+YYYYY,xMV,x??,+SPEED)"
+    "wiki_sig": "SpriteMoveBeta(xID,x00,+XXXXX,+ZZZZZ,+YYYYY,xMV,x??,+SPEED)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "x_offset",
+        "type": "S8",
+        "description": "X position offset"
+      },
+      {
+        "name": "zzzzz",
+        "type": "U8",
+        "description": "FFHacktics: +ZZZZZ"
+      },
+      {
+        "name": "y_offset",
+        "type": "S8",
+        "description": "Y position offset"
+      },
+      {
+        "name": "mv",
+        "type": "U8",
+        "description": "FFHacktics: xMV"
+      },
+      {
+        "name": "??",
+        "type": "U8",
+        "description": "FFHacktics: x??"
+      },
+      {
+        "name": "speed",
+        "type": "U8",
+        "description": "FFHacktics: +SPEED"
+      }
+    ]
   },
   "0x6F": {
     "name": "WaitMoveSprite",
@@ -947,7 +2303,20 @@
     "tic_only": false,
     "gibbed_note": "6F",
     "wiki_name": "WaitSpriteMove",
-    "wiki_sig": "WaitSpriteMove(xID,x00)"
+    "wiki_sig": "WaitSpriteMove(xID,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x70": {
     "name": "JumpToPanel",
@@ -956,7 +2325,30 @@
     "tic_only": false,
     "gibbed_note": "70",
     "wiki_name": "Jump",
-    "wiki_sig": "Jump(xID,x00,DST,xDR)"
+    "wiki_sig": "Jump(xID,x00,DST,xDR)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "dst",
+        "type": "U8",
+        "description": "FFHacktics: DST"
+      },
+      {
+        "name": "draw_mode",
+        "type": "U8",
+        "description": "Drawing/render mode"
+      }
+    ]
   },
   "0x71": {
     "name": "RaiseAnimationPriority",
@@ -978,7 +2370,9 @@
     "name": "MoveCamera2",
     "operand_bytes_classic": 14,
     "operand_bytes_enhanced": 14,
-    "tic_only": false
+    "tic_only": false,
+    "description": "Alternate camera movement (similar to MoveCamera)",
+    "category": "camera"
   },
   "0x74": {
     "name": "Unknown74",
@@ -1001,7 +2395,40 @@
     "tic_only": false,
     "gibbed_note": "76",
     "wiki_name": "DarkScreen",
-    "wiki_sig": "DarkScreen(x00,xSH,ESP,RTS,x00,SES)"
+    "wiki_sig": "DarkScreen(x00,xSH,ESP,RTS,x00,SES)",
+    "category": "screen",
+    "params": [
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "sh",
+        "type": "U8",
+        "description": "FFHacktics: xSH"
+      },
+      {
+        "name": "esp",
+        "type": "U8",
+        "description": "FFHacktics: ESP"
+      },
+      {
+        "name": "rts",
+        "type": "U8",
+        "description": "FFHacktics: RTS"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "ses",
+        "type": "U8",
+        "description": "FFHacktics: SES"
+      }
+    ]
   },
   "0x77": {
     "name": "StopWipe",
@@ -1010,7 +2437,8 @@
     "tic_only": false,
     "gibbed_note": "77",
     "wiki_name": "RemoveDarkScreen",
-    "wiki_sig": "RemoveDarkScreen()"
+    "wiki_sig": "RemoveDarkScreen()",
+    "category": "unit"
   },
   "0x78": {
     "name": "_DisplayConditions",
@@ -1019,7 +2447,19 @@
     "tic_only": false,
     "gibbed_note": "78",
     "wiki_name": "DisplayConditions",
-    "wiki_sig": "DisplayConditions(xMG,DST)"
+    "wiki_sig": "DisplayConditions(xMG,DST)",
+    "params": [
+      {
+        "name": "mg",
+        "type": "U8",
+        "description": "FFHacktics: xMG"
+      },
+      {
+        "name": "dst",
+        "type": "U8",
+        "description": "FFHacktics: DST"
+      }
+    ]
   },
   "0x79": {
     "name": "_WalkToAnim",
@@ -1028,7 +2468,25 @@
     "tic_only": false,
     "gibbed_note": "79",
     "wiki_name": "WalkToAnim",
-    "wiki_sig": "WalkToAnim(xID,x00,xANIM)"
+    "wiki_sig": "WalkToAnim(xID,x00,xANIM)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "anim_id",
+        "type": "U16",
+        "description": "Animation index"
+      }
+    ]
   },
   "0x7A": {
     "name": "EraseUnit",
@@ -1037,7 +2495,20 @@
     "tic_only": false,
     "gibbed_note": "7A",
     "wiki_name": "DismissUnit",
-    "wiki_sig": "DismissUnit(xJB,x00)"
+    "wiki_sig": "DismissUnit(xJB,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "jump_back",
+        "type": "U8",
+        "description": "Backward jump distance"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x7B": {
     "name": "TutorialButtonWait",
@@ -1046,7 +2517,15 @@
     "tic_only": false,
     "gibbed_note": "7B - valid in WotL",
     "wiki_name": "TutorialButtonWait",
-    "wiki_sig": "TutorialButtonWait(xBUTT)"
+    "wiki_sig": "TutorialButtonWait(xBUTT)",
+    "category": "timing",
+    "params": [
+      {
+        "name": "button",
+        "type": "U8",
+        "description": "Button mask"
+      }
+    ]
   },
   "0x7C": {
     "name": "StopAllEffects",
@@ -1055,7 +2534,8 @@
     "tic_only": false,
     "gibbed_note": "7C",
     "wiki_name": "EndSound",
-    "wiki_sig": "EndSound()"
+    "wiki_sig": "EndSound()",
+    "category": "audio"
   },
   "0x7D": {
     "name": "DisplayChapter",
@@ -1064,7 +2544,14 @@
     "tic_only": false,
     "gibbed_note": "7D",
     "wiki_name": "ShowGraphic",
-    "wiki_sig": "ShowGraphic(xGR)"
+    "wiki_sig": "ShowGraphic(xGR)",
+    "params": [
+      {
+        "name": "gr",
+        "type": "U8",
+        "description": "FFHacktics: xGR"
+      }
+    ]
   },
   "0x7E": {
     "name": "WaitEventFlag",
@@ -1073,7 +2560,20 @@
     "tic_only": false,
     "gibbed_note": "7E",
     "wiki_name": "WaitValue",
-    "wiki_sig": "WaitValue(xADDR,xVALU)"
+    "wiki_sig": "WaitValue(xADDR,xVALU)",
+    "category": "timing",
+    "params": [
+      {
+        "name": "addr",
+        "type": "U8",
+        "description": "FFHacktics: xADDR"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0x7F": {
     "name": "SetEventCharacterClut",
@@ -1082,7 +2582,29 @@
     "tic_only": false,
     "gibbed_note": "7F",
     "wiki_name": "EVTCHRPalette",
-    "wiki_sig": "EVTCHRPalette(xID,x00,xBL,xPL)"
+    "wiki_sig": "EVTCHRPalette(xID,x00,xBL,xPL)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "block",
+        "type": "U8",
+        "description": "Block/slot ID"
+      },
+      {
+        "name": "pl",
+        "type": "U8",
+        "description": "FFHacktics: xPL"
+      }
+    ]
   },
   "0x80": {
     "name": "RequestStandardAnimation",
@@ -1091,7 +2613,24 @@
     "tic_only": false,
     "gibbed_note": "80",
     "wiki_name": "March",
-    "wiki_sig": "March(xAU,xMT,TIM)"
+    "wiki_sig": "March(xAU,xMT,TIM)",
+    "params": [
+      {
+        "name": "anim_unit",
+        "type": "U8",
+        "description": "Animation unit ID"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type"
+      },
+      {
+        "name": "timer_short",
+        "type": "U8",
+        "description": "Short duration"
+      }
+    ]
   },
   "0x81": {
     "name": "SetAnimationSound",
@@ -1100,14 +2639,16 @@
     "tic_only": false,
     "gibbed_note": "81",
     "wiki_name": "Never used",
-    "wiki_sig": "{82}"
+    "wiki_sig": "{82}",
+    "category": "audio"
   },
   "0x82": {
     "name": "WaitLoadAnimation2",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "82"
+    "gibbed_note": "82",
+    "category": "timing"
   },
   "0x83": {
     "name": "_ChangeStats",
@@ -1116,7 +2657,29 @@
     "tic_only": false,
     "gibbed_note": "83",
     "wiki_name": "ChangeStats",
-    "wiki_sig": "ChangeStats(xAU,xMT,xST,+VALUE)"
+    "wiki_sig": "ChangeStats(xAU,xMT,xST,+VALUE)",
+    "params": [
+      {
+        "name": "anim_unit",
+        "type": "U8",
+        "description": "Animation unit ID"
+      },
+      {
+        "name": "anim_type",
+        "type": "U8",
+        "description": "Animation type"
+      },
+      {
+        "name": "stereo",
+        "type": "U8",
+        "description": "Stereo panning"
+      },
+      {
+        "name": "value",
+        "type": "U8",
+        "description": "FFHacktics: +VALUE"
+      }
+    ]
   },
   "0x84": {
     "name": "PlayJingle",
@@ -1125,7 +2688,14 @@
     "tic_only": false,
     "gibbed_note": "84",
     "wiki_name": "PlayTune",
-    "wiki_sig": "PlayTune(xSG)"
+    "wiki_sig": "PlayTune(xSG)",
+    "params": [
+      {
+        "name": "sg",
+        "type": "U8",
+        "description": "FFHacktics: xSG"
+      }
+    ]
   },
   "0x85": {
     "name": "ChangeTreasureFindDay",
@@ -1134,7 +2704,14 @@
     "tic_only": false,
     "gibbed_note": "85",
     "wiki_name": "UnlockDate",
-    "wiki_sig": "UnlockDate(xTL)"
+    "wiki_sig": "UnlockDate(xTL)",
+    "params": [
+      {
+        "name": "tl",
+        "type": "U8",
+        "description": "FFHacktics: xTL"
+      }
+    ]
   },
   "0x86": {
     "name": "EquipWeapon",
@@ -1143,7 +2720,24 @@
     "tic_only": false,
     "gibbed_note": "86",
     "wiki_name": "TempWeapon",
-    "wiki_sig": "TempWeapon(xID,x00,xIT)"
+    "wiki_sig": "TempWeapon(xID,x00,xIT)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "it",
+        "type": "U8",
+        "description": "FFHacktics: xIT"
+      }
+    ]
   },
   "0x87": {
     "name": "UseGun",
@@ -1152,7 +2746,29 @@
     "tic_only": false,
     "gibbed_note": "87",
     "wiki_name": "Arrow",
-    "wiki_sig": "Arrow(xTG,x00,xSH,x00)"
+    "wiki_sig": "Arrow(xTG,x00,xSH,x00)",
+    "params": [
+      {
+        "name": "tg",
+        "type": "U8",
+        "description": "FFHacktics: xTG"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "sh",
+        "type": "U8",
+        "description": "FFHacktics: xSH"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x88": {
     "name": "RestartMapPaletteAnimation",
@@ -1179,7 +2795,8 @@
     "tic_only": false,
     "gibbed_note": "8A",
     "wiki_name": "EffectStart",
-    "wiki_sig": "EffectStart()"
+    "wiki_sig": "EffectStart()",
+    "category": "screen"
   },
   "0x8B": {
     "name": "PlayEffect",
@@ -1188,7 +2805,8 @@
     "tic_only": false,
     "gibbed_note": "8B",
     "wiki_name": "EffectEnd",
-    "wiki_sig": "EffectEnd()"
+    "wiki_sig": "EffectEnd()",
+    "category": "screen"
   },
   "0x8C": {
     "name": "SetAnimationFlipDirection",
@@ -1197,7 +2815,35 @@
     "tic_only": false,
     "gibbed_note": "8C",
     "wiki_name": "UnitAnimRotate",
-    "wiki_sig": "UnitAnimRotate(xID,x00,xDR,xANIM,x00)"
+    "wiki_sig": "UnitAnimRotate(xID,x00,xDR,xANIM,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "draw_mode",
+        "type": "U8",
+        "description": "Drawing/render mode"
+      },
+      {
+        "name": "anim_id",
+        "type": "U16",
+        "description": "Animation index"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x8D": {
     "name": "Unknown8D",
@@ -1206,7 +2852,24 @@
     "tic_only": false,
     "gibbed_note": "8D",
     "wiki_name": "Inventory",
-    "wiki_sig": "Inventory(xPA,xID,xVA)"
+    "wiki_sig": "Inventory(xPA,xID,xVA)",
+    "params": [
+      {
+        "name": "pa",
+        "type": "U8",
+        "description": "FFHacktics: xPA"
+      },
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "va",
+        "type": "U8",
+        "description": "FFHacktics: xVA"
+      }
+    ]
   },
   "0x8E": {
     "name": "WaitDisplayChapter",
@@ -1215,14 +2878,24 @@
     "tic_only": false,
     "gibbed_note": "8E",
     "wiki_name": "WaitGraphicPrint",
-    "wiki_sig": "WaitGraphicPrint()"
+    "wiki_sig": "WaitGraphicPrint()",
+    "category": "timing"
   },
   "0x8F": {
     "name": "AllGrayFilter",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "8F - allgrayf"
+    "gibbed_note": "8F - allgrayf",
+    "params": [
+      {
+        "name": "enable",
+        "type": "U8",
+        "description": "1=enable grayscale, 0=disable"
+      }
+    ],
+    "description": "Apply/remove a grayscale filter over the screen",
+    "category": "screen"
   },
   "0x90": {
     "name": "WaitActivePanel",
@@ -1231,7 +2904,25 @@
     "tic_only": false,
     "gibbed_note": "90 - waits for active panel x/y to match args",
     "wiki_name": "TutorialCoordinateConfirm",
-    "wiki_sig": "TutorialCoordinateConfirm(XXX,YYY,x00)"
+    "wiki_sig": "TutorialCoordinateConfirm(XXX,YYY,x00)",
+    "category": "timing",
+    "params": [
+      {
+        "name": "x_coord",
+        "type": "U8",
+        "description": "Map X coordinate"
+      },
+      {
+        "name": "y_coord",
+        "type": "U8",
+        "description": "Map Y coordinate"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x91": {
     "name": "DisplayMapTitle",
@@ -1240,7 +2931,24 @@
     "tic_only": false,
     "gibbed_note": "91",
     "wiki_name": "ShowMapTitle",
-    "wiki_sig": "ShowMapTitle(+XXX,+YYY,+SPD)"
+    "wiki_sig": "ShowMapTitle(+XXX,+YYY,+SPD)",
+    "params": [
+      {
+        "name": "",
+        "type": "U8",
+        "description": "FFHacktics: +XXX"
+      },
+      {
+        "name": "yyy",
+        "type": "U8",
+        "description": "FFHacktics: +YYY"
+      },
+      {
+        "name": "speed",
+        "type": "S8",
+        "description": "Speed (signed)"
+      }
+    ]
   },
   "0x92": {
     "name": "_InflictStatus",
@@ -1249,7 +2957,31 @@
     "tic_only": false,
     "gibbed_note": "92",
     "wiki_name": "InflictStatus",
-    "wiki_sig": "InflictStatus(xID,x00,xSS,x0C,x00)"
+    "wiki_sig": "InflictStatus(xID,x00,xSS,x0C,x00)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Target unit"
+      },
+      {
+        "name": "padding1",
+        "type": "U8",
+        "description": "Always 0"
+      },
+      {
+        "name": "status_set",
+        "type": "U16",
+        "description": "Status bitmask to inflict"
+      },
+      {
+        "name": "padding2",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ],
+    "description": "Inflict a status effect on a unit",
+    "category": "unit"
   },
   "0x93": {
     "name": "WriteEventFlag",
@@ -1265,7 +2997,19 @@
     "tic_only": false,
     "gibbed_note": "93",
     "wiki_name": "TeleportOut",
-    "wiki_sig": "TeleportOut(xID,x00)"
+    "wiki_sig": "TeleportOut(xID,x00)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x95": {
     "name": "Unknown95",
@@ -1292,7 +3036,20 @@
     "tic_only": false,
     "gibbed_note": "97",
     "wiki_name": "ResetPalette",
-    "wiki_sig": "ResetPalette(xID,x00)"
+    "wiki_sig": "ResetPalette(xID,x00)",
+    "category": "screen",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x98": {
     "name": "TeleportIn",
@@ -1301,7 +3058,19 @@
     "tic_only": false,
     "gibbed_note": "98",
     "wiki_name": "TeleportIn",
-    "wiki_sig": "TeleportIn(xID,x00)"
+    "wiki_sig": "TeleportIn(xID,x00)",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x99": {
     "name": "_BlueRemoveUnit",
@@ -1310,7 +3079,20 @@
     "tic_only": false,
     "gibbed_note": "99",
     "wiki_name": "BlueRemoveUnit",
-    "wiki_sig": "BlueRemoveUnit(xID,x00)"
+    "wiki_sig": "BlueRemoveUnit(xID,x00)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ]
   },
   "0x9A": {
     "name": "ResetTextIncrement",
@@ -1328,7 +3110,14 @@
     "tic_only": false,
     "gibbed_note": "9B",
     "wiki_name": "PushTextVal",
-    "wiki_sig": "PushTextVal(xVALU)"
+    "wiki_sig": "PushTextVal(xVALU)",
+    "params": [
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0x9C": {
     "name": "Unknown9C",
@@ -1337,7 +3126,14 @@
     "tic_only": false,
     "gibbed_note": "9C",
     "wiki_name": "PushTextVar",
-    "wiki_sig": "PushTextVar(xVR)"
+    "wiki_sig": "PushTextVar(xVR)",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0x9D": {
     "name": "Unknown9D",
@@ -1346,7 +3142,19 @@
     "tic_only": false,
     "gibbed_note": "9D",
     "wiki_name": "SetTextVal",
-    "wiki_sig": "SetTextVal(xTV,xVALU)"
+    "wiki_sig": "SetTextVal(xTV,xVALU)",
+    "params": [
+      {
+        "name": "tv",
+        "type": "U8",
+        "description": "FFHacktics: xTV"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0x9E": {
     "name": "Unknown9E",
@@ -1355,7 +3163,19 @@
     "tic_only": false,
     "gibbed_note": "9E",
     "wiki_name": "SetTextVar",
-    "wiki_sig": "SetTextVar(xTV,xVR)"
+    "wiki_sig": "SetTextVar(xTV,xVR)",
+    "params": [
+      {
+        "name": "tv",
+        "type": "U8",
+        "description": "FFHacktics: xTV"
+      },
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0x9F": {
     "name": "ButtonPressGoTo",
@@ -1364,7 +3184,21 @@
     "tic_only": false,
     "gibbed_note": "9F",
     "wiki_name": "ButtonPressGoTo",
-    "wiki_sig": "ButtonPressGoTo(xBUTT,xGT)"
+    "wiki_sig": "ButtonPressGoTo(xBUTT,xGT)",
+    "description": "Wait for a specific button press, then jump to a target",
+    "category": "flow_control",
+    "params": [
+      {
+        "name": "button",
+        "type": "U8",
+        "description": "Button mask"
+      },
+      {
+        "name": "goto_target",
+        "type": "U8",
+        "description": "Goto target"
+      }
+    ]
   },
   "0xA0": {
     "name": "LessThanEquals",
@@ -1400,7 +3234,8 @@
     "tic_only": false,
     "gibbed_note": "A3",
     "wiki_name": "NEQ",
-    "wiki_sig": "NEQ()"
+    "wiki_sig": "NEQ()",
+    "category": "flow_control"
   },
   "0xA4": {
     "name": "LessThan",
@@ -1440,7 +3275,8 @@
     "operand_bytes_enhanced": 6,
     "tic_only": true,
     "gibbed_note": "A8",
-    "gibbed_operands": "U16=entity_id, U32=render_param. Writes U32 to anim_struct[343] via TIC render pipeline."
+    "gibbed_operands": "U16=entity_id, U32=render_param. Writes U32 to anim_struct[343] via TIC render pipeline.",
+    "category": "unit"
   },
   "0xA9": {
     "name": "InitSpriteRender",
@@ -1448,21 +3284,24 @@
     "operand_bytes_enhanced": 6,
     "tic_only": false,
     "gibbed_note": "A9",
-    "gibbed_operands": "Gibbed types: U16, U32 — U16 unused?"
+    "gibbed_operands": "Gibbed types: U16, U32 \u2014 U16 unused?",
+    "category": "unit"
   },
   "0xAA": {
     "name": "SuspendBattleEngine",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "AA"
+    "gibbed_note": "AA",
+    "category": "battle"
   },
   "0xAB": {
     "name": "DisplayBattleMessage",
     "operand_bytes_classic": 4,
     "operand_bytes_enhanced": 4,
     "tic_only": true,
-    "gibbed_note": "AB"
+    "gibbed_note": "AB",
+    "category": "dialogue"
   },
   "0xAC": {
     "name": "LUI",
@@ -1471,14 +3310,27 @@
     "tic_only": false,
     "gibbed_note": "AC",
     "wiki_name": "LUI",
-    "wiki_sig": "LUI(xVARI,xVALU)"
+    "wiki_sig": "LUI(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xAD": {
     "name": "ChangePostEffectDepthLUT",
     "operand_bytes_classic": 8,
     "operand_bytes_enhanced": 8,
     "tic_only": true,
-    "gibbed_note": "AD"
+    "gibbed_note": "AD",
+    "category": "screen"
   },
   "0xAE": {
     "name": "ChangePostEffectLUT",
@@ -1487,7 +3339,20 @@
     "tic_only": true,
     "gibbed_note": "AE",
     "wiki_name": "SET",
-    "wiki_sig": "SET(xVARI,xVALU)"
+    "wiki_sig": "SET(xVARI,xVALU)",
+    "category": "screen",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xAF": {
     "name": "SETVar",
@@ -1496,7 +3361,19 @@
     "tic_only": false,
     "gibbed_note": "AF",
     "wiki_name": "SETVar",
-    "wiki_sig": "SETVar(xVAR1,xVAR2)"
+    "wiki_sig": "SETVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xB0": {
     "name": "Add",
@@ -1505,7 +3382,19 @@
     "tic_only": false,
     "gibbed_note": "B0",
     "wiki_name": "ADD",
-    "wiki_sig": "ADD(xVARI,xVALU)"
+    "wiki_sig": "ADD(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xB1": {
     "name": "AddVar",
@@ -1514,7 +3403,19 @@
     "tic_only": false,
     "gibbed_note": "B1",
     "wiki_name": "ADDVar",
-    "wiki_sig": "ADDVar(xVAR1,xVAR2)"
+    "wiki_sig": "ADDVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xB2": {
     "name": "Sub",
@@ -1523,7 +3424,19 @@
     "tic_only": false,
     "gibbed_note": "B2",
     "wiki_name": "SUB",
-    "wiki_sig": "SUB(xVARI,xVALU)"
+    "wiki_sig": "SUB(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xB3": {
     "name": "SubVar",
@@ -1532,7 +3445,19 @@
     "tic_only": false,
     "gibbed_note": "B3",
     "wiki_name": "SUBVar",
-    "wiki_sig": "SUBVar(xVAR1,xVAR2)"
+    "wiki_sig": "SUBVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xB4": {
     "name": "Mul",
@@ -1541,7 +3466,19 @@
     "tic_only": false,
     "gibbed_note": "B4",
     "wiki_name": "MULT",
-    "wiki_sig": "MULT(xVARI,xVALU)"
+    "wiki_sig": "MULT(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xB5": {
     "name": "MulVar",
@@ -1550,7 +3487,19 @@
     "tic_only": false,
     "gibbed_note": "B5",
     "wiki_name": "MULTVar",
-    "wiki_sig": "MULTVar(xVAR1,xVAR2)"
+    "wiki_sig": "MULTVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xB6": {
     "name": "Div",
@@ -1559,7 +3508,19 @@
     "tic_only": false,
     "gibbed_note": "B6",
     "wiki_name": "DIV",
-    "wiki_sig": "DIV(xVARI,xVALU)"
+    "wiki_sig": "DIV(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xB7": {
     "name": "DivVar",
@@ -1568,7 +3529,19 @@
     "tic_only": false,
     "gibbed_note": "B7",
     "wiki_name": "DIVVar",
-    "wiki_sig": "DIVVar(xVAR1,xVAR2)"
+    "wiki_sig": "DIVVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xB8": {
     "name": "Mod",
@@ -1577,7 +3550,19 @@
     "tic_only": false,
     "gibbed_note": "B8",
     "wiki_name": "MOD",
-    "wiki_sig": "MOD(xVARI,xVALU)"
+    "wiki_sig": "MOD(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xB9": {
     "name": "ModVar",
@@ -1586,7 +3571,19 @@
     "tic_only": false,
     "gibbed_note": "B9",
     "wiki_name": "MODVar",
-    "wiki_sig": "MODVar(xVAR1,xVAR2)"
+    "wiki_sig": "MODVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xBA": {
     "name": "And",
@@ -1595,7 +3592,19 @@
     "tic_only": false,
     "gibbed_note": "BA",
     "wiki_name": "AND",
-    "wiki_sig": "AND(xVARI,xVALU)"
+    "wiki_sig": "AND(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xBB": {
     "name": "AndVar",
@@ -1604,7 +3613,19 @@
     "tic_only": false,
     "gibbed_note": "BB",
     "wiki_name": "ANDVar",
-    "wiki_sig": "ANDVar(xVAR1,xVAR2)"
+    "wiki_sig": "ANDVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xBC": {
     "name": "Or",
@@ -1613,7 +3634,19 @@
     "tic_only": false,
     "gibbed_note": "BC",
     "wiki_name": "OR",
-    "wiki_sig": "OR(xVARI,xVALU)"
+    "wiki_sig": "OR(xVARI,xVALU)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      }
+    ]
   },
   "0xBD": {
     "name": "OrVar",
@@ -1622,7 +3655,19 @@
     "tic_only": false,
     "gibbed_note": "BD",
     "wiki_name": "ORVar",
-    "wiki_sig": "ORVar(xVAR1,xVAR2)"
+    "wiki_sig": "ORVar(xVAR1,xVAR2)",
+    "params": [
+      {
+        "name": "var1",
+        "type": "U8",
+        "description": "FFHacktics: xVAR1"
+      },
+      {
+        "name": "var2",
+        "type": "U8",
+        "description": "FFHacktics: xVAR2"
+      }
+    ]
   },
   "0xBE": {
     "name": "Zero",
@@ -1631,7 +3676,14 @@
     "tic_only": false,
     "gibbed_note": "BE",
     "wiki_name": "ZERO",
-    "wiki_sig": "ZERO(xVARI)"
+    "wiki_sig": "ZERO(xVARI)",
+    "params": [
+      {
+        "name": "vari",
+        "type": "U8",
+        "description": "FFHacktics: xVARI"
+      }
+    ]
   },
   "0xBF": {
     "name": "UnknownBF",
@@ -1640,7 +3692,19 @@
     "tic_only": false,
     "gibbed_note": "BF",
     "wiki_name": "Random",
-    "wiki_sig": "Random(xVR,MODUL)"
+    "wiki_sig": "Random(xVR,MODUL)",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      },
+      {
+        "name": "modul",
+        "type": "U8",
+        "description": "FFHacktics: MODUL"
+      }
+    ]
   },
   "0xC0": {
     "name": "UnknownC0",
@@ -1658,7 +3722,29 @@
     "tic_only": false,
     "gibbed_note": "C1",
     "wiki_name": "LoadAddress",
-    "wiki_sig": "LoadAddress(xVR,xVALU,xVA,LEN)"
+    "wiki_sig": "LoadAddress(xVR,xVALU,xVA,LEN)",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      },
+      {
+        "name": "va",
+        "type": "U8",
+        "description": "FFHacktics: xVA"
+      },
+      {
+        "name": "len",
+        "type": "U8",
+        "description": "FFHacktics: LEN"
+      }
+    ]
   },
   "0xC2": {
     "name": "UnitAddress",
@@ -1668,7 +3754,20 @@
     "gibbed_note": "C2",
     "wiki_name": "UnitAddress",
     "wiki_sig": "UnitAddress(xID,xVR)",
-    "gibbed_operands": "Gibbed types: S32 (not U32)"
+    "gibbed_operands": "Gibbed types: S32 (not U32)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0xC3": {
     "name": "WorldUnitAddress",
@@ -1677,7 +3776,20 @@
     "tic_only": false,
     "gibbed_note": "C3",
     "wiki_name": "WorldUnitAddress",
-    "wiki_sig": "WorldUnitAddress(xID,xVR)"
+    "wiki_sig": "WorldUnitAddress(xID,xVR)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0xC4": {
     "name": "SaveAddress",
@@ -1687,7 +3799,29 @@
     "gibbed_note": "C4",
     "wiki_name": "SaveAddress",
     "wiki_sig": "SaveAddress(xVR,xVALU,xVA,LEN)",
-    "gibbed_operands": "Gibbed types: U32, U32, U32"
+    "gibbed_operands": "Gibbed types: U32, U32, U32",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      },
+      {
+        "name": "valu",
+        "type": "U8",
+        "description": "FFHacktics: xVALU"
+      },
+      {
+        "name": "va",
+        "type": "U8",
+        "description": "FFHacktics: xVA"
+      },
+      {
+        "name": "len",
+        "type": "U8",
+        "description": "FFHacktics: LEN"
+      }
+    ]
   },
   "0xC5": {
     "name": "ChangeDepthOfField",
@@ -1696,7 +3830,20 @@
     "tic_only": true,
     "gibbed_note": "C5",
     "wiki_name": "UpdateUnit",
-    "wiki_sig": "UpdateUnit(xID,xPR)"
+    "wiki_sig": "UpdateUnit(xID,xPR)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Portrait index"
+      }
+    ]
   },
   "0xC6": {
     "name": "TransformUnit",
@@ -1706,7 +3853,25 @@
     "gibbed_note": "C6",
     "wiki_name": "TransformUnit",
     "wiki_sig": "TransformUnit(xAV,xPA,xJB)",
-    "gibbed_operands": "Gibbed types: S32, S32"
+    "gibbed_operands": "Gibbed types: S32, S32",
+    "category": "unit",
+    "params": [
+      {
+        "name": "av",
+        "type": "U8",
+        "description": "FFHacktics: xAV"
+      },
+      {
+        "name": "pa",
+        "type": "U8",
+        "description": "FFHacktics: xPA"
+      },
+      {
+        "name": "jump_back",
+        "type": "U8",
+        "description": "Backward jump distance"
+      }
+    ]
   },
   "0xC7": {
     "name": "UnknownC7",
@@ -1715,7 +3880,20 @@
     "tic_only": false,
     "gibbed_note": "C7",
     "wiki_name": "RosterHasUnit",
-    "wiki_sig": "RosterHasUnit(xPR,xIDEN)"
+    "wiki_sig": "RosterHasUnit(xPR,xIDEN)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Portrait index"
+      },
+      {
+        "name": "iden",
+        "type": "U8",
+        "description": "FFHacktics: xIDEN"
+      }
+    ]
   },
   "0xC8": {
     "name": "SetUnitTimer",
@@ -1723,7 +3901,8 @@
     "operand_bytes_enhanced": 8,
     "tic_only": false,
     "gibbed_note": "C8",
-    "gibbed_operands": "Gibbed types: S32, S32"
+    "gibbed_operands": "Gibbed types: S32, S32",
+    "category": "unit"
   },
   "0xC9": {
     "name": "EnableChoiceMenu",
@@ -1744,7 +3923,8 @@
     "operand_bytes_classic": 8,
     "operand_bytes_enhanced": 8,
     "tic_only": true,
-    "gibbed_note": "CB"
+    "gibbed_note": "CB",
+    "category": "screen"
   },
   "0xCC": {
     "name": "ResetTurnCounter",
@@ -1754,7 +3934,14 @@
     "gibbed_note": "CC",
     "wiki_name": "ResetTurnCounter",
     "wiki_sig": "ResetTurnCounter(xID)",
-    "gibbed_operands": "Gibbed types: S32, S32, S32"
+    "gibbed_operands": "Gibbed types: S32, S32, S32",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      }
+    ]
   },
   "0xCD": {
     "name": "PostEvent",
@@ -1764,7 +3951,19 @@
     "gibbed_note": "CD",
     "wiki_name": "PostEvent",
     "wiki_sig": "PostEvent(xAC,xSCEN)",
-    "gibbed_operands": "Gibbed types: S32, U32"
+    "gibbed_operands": "Gibbed types: S32, U32",
+    "params": [
+      {
+        "name": "ac",
+        "type": "U8",
+        "description": "FFHacktics: xAC"
+      },
+      {
+        "name": "scen",
+        "type": "U8",
+        "description": "FFHacktics: xSCEN"
+      }
+    ]
   },
   "0xCE": {
     "name": "LoadConditionals",
@@ -1774,7 +3973,15 @@
     "gibbed_note": "CE",
     "wiki_name": "LoadConditionals",
     "wiki_sig": "LoadConditionals(xCOND)",
-    "gibbed_operands": "Gibbed types: B8"
+    "gibbed_operands": "Gibbed types: B8",
+    "category": "flow_control",
+    "params": [
+      {
+        "name": "cond",
+        "type": "U8",
+        "description": "FFHacktics: xCOND"
+      }
+    ]
   },
   "0xCF": {
     "name": "Routine",
@@ -1783,7 +3990,14 @@
     "tic_only": false,
     "gibbed_note": "CF",
     "wiki_name": "Routine",
-    "wiki_sig": "Routine(rROUTINEA)"
+    "wiki_sig": "Routine(rROUTINEA)",
+    "params": [
+      {
+        "name": "rroutinea",
+        "type": "U8",
+        "description": "FFHacktics: rROUTINEA"
+      }
+    ]
   },
   "0xD0": {
     "name": "SeekCodeForwardIfZero",
@@ -1792,7 +4006,15 @@
     "tic_only": false,
     "gibbed_note": "D0",
     "wiki_name": "JumpForwardIfZero",
-    "wiki_sig": "JumpForwardIfZero(xJF)"
+    "wiki_sig": "JumpForwardIfZero(xJF)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "jump_forward",
+        "type": "U8",
+        "description": "Forward jump distance"
+      }
+    ]
   },
   "0xD1": {
     "name": "SeekCodeForward",
@@ -1801,7 +4023,16 @@
     "tic_only": false,
     "gibbed_note": "D1",
     "wiki_name": "JumpForward",
-    "wiki_sig": "JumpForward(xJF)"
+    "wiki_sig": "JumpForward(xJF)",
+    "params": [
+      {
+        "name": "jump_distance",
+        "type": "U8",
+        "description": "Number of forward blocks to skip"
+      }
+    ],
+    "description": "Jump forward by N instruction blocks. Used for if/else branching.",
+    "category": "flow_control"
   },
   "0xD2": {
     "name": "SeekCodeForwardTarget",
@@ -1810,7 +4041,16 @@
     "tic_only": false,
     "gibbed_note": "D2",
     "wiki_name": "ForwardTarget",
-    "wiki_sig": "ForwardTarget(xJF)"
+    "wiki_sig": "ForwardTarget(xJF)",
+    "params": [
+      {
+        "name": "label_id",
+        "type": "U8",
+        "description": "Forward target label ID (matches JumpForward)"
+      }
+    ],
+    "description": "Mark a forward jump target label. Paired with SeekCodeForward (0xD1).",
+    "category": "flow_control"
   },
   "0xD3": {
     "name": "SeekCodeBackward",
@@ -1819,14 +4059,32 @@
     "tic_only": false,
     "gibbed_note": "D3",
     "wiki_name": "JumpBack",
-    "wiki_sig": "JumpBack(xJB)"
+    "wiki_sig": "JumpBack(xJB)",
+    "params": [
+      {
+        "name": "jump_distance",
+        "type": "U8",
+        "description": "Number of backward blocks to jump"
+      }
+    ],
+    "description": "Jump backward by N instruction blocks. Used for loops.",
+    "category": "flow_control"
   },
   "0xD4": {
     "name": "Terminate",
     "operand_bytes_classic": 1,
     "operand_bytes_enhanced": 1,
     "tic_only": false,
-    "gibbed_note": "D4"
+    "gibbed_note": "D4",
+    "params": [
+      {
+        "name": "exit_code",
+        "type": "U8",
+        "description": "Termination code"
+      }
+    ],
+    "description": "Terminate the current event script execution",
+    "category": "flow_control"
   },
   "0xD5": {
     "name": "SeekCodeBackwardTarget",
@@ -1835,14 +4093,24 @@
     "tic_only": false,
     "gibbed_note": "D5",
     "wiki_name": "BackTarget",
-    "wiki_sig": "BackTarget(xJB)"
+    "wiki_sig": "BackTarget(xJB)",
+    "category": "flow_control",
+    "params": [
+      {
+        "name": "jump_back",
+        "type": "U8",
+        "description": "Backward jump distance"
+      }
+    ]
   },
   "0xD6": {
     "name": "ConditionalStart",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "D6"
+    "gibbed_note": "D6",
+    "description": "Begin a conditional expression block. Conditions follow until code block.",
+    "category": "flow_control"
   },
   "0xD7": {
     "name": "CleanupEnd",
@@ -1924,7 +4192,65 @@
     "tic_only": false,
     "gibbed_note": "E0",
     "wiki_name": "GenerateUnit",
-    "wiki_sig": "GenerateUnit(xUNIT,xID,xBS,xSJ,xJL,xLV,xSS,XXX,YYY,xFD,xFL)"
+    "wiki_sig": "GenerateUnit(xUNIT,xID,xBS,xSJ,xJL,xLV,xSS,XXX,YYY,xFD,xFL)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit",
+        "type": "U8",
+        "description": "FFHacktics: xUNIT"
+      },
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "bs",
+        "type": "U8",
+        "description": "FFHacktics: xBS"
+      },
+      {
+        "name": "sj",
+        "type": "U8",
+        "description": "FFHacktics: xSJ"
+      },
+      {
+        "name": "jl",
+        "type": "U8",
+        "description": "FFHacktics: xJL"
+      },
+      {
+        "name": "lv",
+        "type": "U8",
+        "description": "FFHacktics: xLV"
+      },
+      {
+        "name": "status_set",
+        "type": "U8",
+        "description": "Status effect set"
+      },
+      {
+        "name": "x_coord",
+        "type": "U8",
+        "description": "Map X coordinate"
+      },
+      {
+        "name": "y_coord",
+        "type": "U8",
+        "description": "Map Y coordinate"
+      },
+      {
+        "name": "facing",
+        "type": "U8",
+        "description": "Direction facing (0=S,1=W,2=N,3=E)"
+      },
+      {
+        "name": "fl",
+        "type": "U8",
+        "description": "FFHacktics: xFL"
+      }
+    ]
   },
   "0xE1": {
     "name": "UnknownE1",
@@ -1963,7 +4289,21 @@
     "tic_only": false,
     "gibbed_note": "E5",
     "wiki_name": "WaitForInstruction",
-    "wiki_sig": "WaitForInstruction(xIN,x00)"
+    "wiki_sig": "WaitForInstruction(xIN,x00)",
+    "params": [
+      {
+        "name": "instruction_id",
+        "type": "U8",
+        "description": "ID of instruction to wait for"
+      },
+      {
+        "name": "padding",
+        "type": "U8",
+        "description": "Always 0"
+      }
+    ],
+    "description": "Wait until a previously started async instruction completes",
+    "category": "timing"
   },
   "0xE6": {
     "name": "UnknownE6",
@@ -1972,7 +4312,19 @@
     "tic_only": false,
     "gibbed_note": "E6",
     "wiki_name": "AlterParameter",
-    "wiki_sig": "AlterParameter(xPR,xVR)"
+    "wiki_sig": "AlterParameter(xPR,xVR)",
+    "params": [
+      {
+        "name": "portrait",
+        "type": "U8",
+        "description": "Portrait index"
+      },
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0xE7": {
     "name": "DisplayCaption",
@@ -1981,7 +4333,25 @@
     "tic_only": true,
     "gibbed_note": "E7",
     "wiki_name": "GetTileUnit",
-    "wiki_sig": "GetTileUnit(+XXX,+YYY,xEL)"
+    "wiki_sig": "GetTileUnit(+XXX,+YYY,xEL)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "",
+        "type": "U8",
+        "description": "FFHacktics: +XXX"
+      },
+      {
+        "name": "yyy",
+        "type": "U8",
+        "description": "FFHacktics: +YYY"
+      },
+      {
+        "name": "elevation",
+        "type": "U8",
+        "description": "Height/elevation"
+      }
+    ]
   },
   "0xE8": {
     "name": "LoadTileData",
@@ -1990,7 +4360,34 @@
     "tic_only": false,
     "gibbed_note": "E8",
     "wiki_name": "LoadTileData",
-    "wiki_sig": "LoadTileData(xVR,xBO,+XXX,+YYY,xEL)"
+    "wiki_sig": "LoadTileData(xVR,xBO,+XXX,+YYY,xEL)",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      },
+      {
+        "name": "bo",
+        "type": "U8",
+        "description": "FFHacktics: xBO"
+      },
+      {
+        "name": "",
+        "type": "U8",
+        "description": "FFHacktics: +XXX"
+      },
+      {
+        "name": "yyy",
+        "type": "U8",
+        "description": "FFHacktics: +YYY"
+      },
+      {
+        "name": "elevation",
+        "type": "U8",
+        "description": "Height/elevation"
+      }
+    ]
   },
   "0xE9": {
     "name": "SaveTileData",
@@ -1999,7 +4396,34 @@
     "tic_only": false,
     "gibbed_note": "E9",
     "wiki_name": "SaveTileData",
-    "wiki_sig": "SaveTileData(xVR,xBO,+XXX,+YYY,xEL)"
+    "wiki_sig": "SaveTileData(xVR,xBO,+XXX,+YYY,xEL)",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      },
+      {
+        "name": "bo",
+        "type": "U8",
+        "description": "FFHacktics: xBO"
+      },
+      {
+        "name": "",
+        "type": "U8",
+        "description": "FFHacktics: +XXX"
+      },
+      {
+        "name": "yyy",
+        "type": "U8",
+        "description": "FFHacktics: +YYY"
+      },
+      {
+        "name": "elevation",
+        "type": "U8",
+        "description": "Height/elevation"
+      }
+    ]
   },
   "0xEA": {
     "name": "LoadENTD",
@@ -2008,7 +4432,20 @@
     "tic_only": false,
     "gibbed_note": "EA",
     "wiki_name": "LoadENTD",
-    "wiki_sig": "LoadENTD(xENTD,xUNIT)"
+    "wiki_sig": "LoadENTD(xENTD,xUNIT)",
+    "category": "battle",
+    "params": [
+      {
+        "name": "entd",
+        "type": "U8",
+        "description": "FFHacktics: xENTD"
+      },
+      {
+        "name": "unit",
+        "type": "U8",
+        "description": "FFHacktics: xUNIT"
+      }
+    ]
   },
   "0xEB": {
     "name": "MessageChain",
@@ -2017,7 +4454,30 @@
     "tic_only": false,
     "gibbed_note": "EB",
     "wiki_name": "LoadENTDUnit",
-    "wiki_sig": "LoadENTDUnit(xID,xES,xBS,xFL)"
+    "wiki_sig": "LoadENTDUnit(xID,xES,xBS,xFL)",
+    "category": "unit",
+    "params": [
+      {
+        "name": "unit_id",
+        "type": "U8",
+        "description": "Unit ID"
+      },
+      {
+        "name": "es",
+        "type": "U8",
+        "description": "FFHacktics: xES"
+      },
+      {
+        "name": "bs",
+        "type": "U8",
+        "description": "FFHacktics: xBS"
+      },
+      {
+        "name": "fl",
+        "type": "U8",
+        "description": "FFHacktics: xFL"
+      }
+    ]
   },
   "0xEC": {
     "name": "ConditionalDefeat",
@@ -2026,7 +4486,15 @@
     "tic_only": false,
     "gibbed_note": "EC",
     "wiki_name": "ConditionalDefeat",
-    "wiki_sig": "ConditionalDefeat(xCD)"
+    "wiki_sig": "ConditionalDefeat(xCD)",
+    "category": "flow_control",
+    "params": [
+      {
+        "name": "cd",
+        "type": "U8",
+        "description": "FFHacktics: xCD"
+      }
+    ]
   },
   "0xED": {
     "name": "SetCharacterAlpha",
@@ -2035,7 +4503,19 @@
     "tic_only": true,
     "gibbed_note": "ED",
     "wiki_name": "LoadDatabase",
-    "wiki_sig": "LoadDatabase(OFF,LEN)"
+    "wiki_sig": "LoadDatabase(OFF,LEN)",
+    "params": [
+      {
+        "name": "off",
+        "type": "U8",
+        "description": "FFHacktics: OFF"
+      },
+      {
+        "name": "len",
+        "type": "U8",
+        "description": "FFHacktics: LEN"
+      }
+    ]
   },
   "0xEE": {
     "name": "UnknownEE",
@@ -2044,7 +4524,19 @@
     "tic_only": false,
     "gibbed_note": "EE",
     "wiki_name": "GetTableSize",
-    "wiki_sig": "GetTableSize(xVR,xTB)"
+    "wiki_sig": "GetTableSize(xVR,xTB)",
+    "params": [
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      },
+      {
+        "name": "tb",
+        "type": "U8",
+        "description": "FFHacktics: xTB"
+      }
+    ]
   },
   "0xEF": {
     "name": "FetchTableRow",
@@ -2053,14 +4545,27 @@
     "tic_only": false,
     "gibbed_note": "EF",
     "wiki_name": "FetchTableRow",
-    "wiki_sig": "FetchTableRow(xTB,xVR)"
+    "wiki_sig": "FetchTableRow(xTB,xVR)",
+    "params": [
+      {
+        "name": "tb",
+        "type": "U8",
+        "description": "FFHacktics: xTB"
+      },
+      {
+        "name": "vr",
+        "type": "U8",
+        "description": "FFHacktics: xVR"
+      }
+    ]
   },
   "0xF0": {
     "name": "PlayMusic2",
     "operand_bytes_classic": 0,
     "operand_bytes_enhanced": 0,
     "tic_only": false,
-    "gibbed_note": "F0 - same handler as 22"
+    "gibbed_note": "F0 - same handler as 22",
+    "category": "audio"
   },
   "0xF1": {
     "name": "_Wait",
@@ -2069,7 +4574,16 @@
     "tic_only": false,
     "gibbed_note": "F1",
     "wiki_name": "Wait",
-    "wiki_sig": "Wait(TIMER)"
+    "wiki_sig": "Wait(TIMER)",
+    "params": [
+      {
+        "name": "frames",
+        "type": "U16",
+        "description": "Duration in frames (60fps)"
+      }
+    ],
+    "description": "Pause event execution for N frames (60fps). Wait(1)=16ms, Wait(60)=1sec",
+    "category": "timing"
   },
   "0xF2": {
     "name": "_Pad",
