@@ -16,8 +16,8 @@
 | **Extension** | `.en.pzd` (language-tagged) |
 | **Location** | `0002.en.pac` → `nxd/text/scenario/scenario####.en.pzd` |
 | **Total files** | 346 scenario files |
-| **Total dialogue lines** | ~4,026 |
-| **Lines with voice acting** | ~3,987 (99%) |
+| **Total dialogue lines** | 4,102 |
+| **Lines with voice acting** | ~4,060 (99%) |
 | **Encoding** | ASCII/UTF-8 (null-terminated strings) |
 | **Endianness** | Little-endian |
 
@@ -53,22 +53,25 @@
 └──────────────────────────────────────┘
 ```
 
-## Message Record Format (24 bytes)
+## Message Record Format (32 bytes)
 
-Each message record is 6 × u32 (24 bytes):
+Each message record is 8 × u32 (32 bytes):
 
 | Offset | Type | Field | Description |
 |--------|------|-------|-------------|
 | +0x00 | u32 | `message_key` | NXD Union Key — links this message to the NXD scenario/event system |
-| +0x04 | u32 | `text_offset` | Offset to dialogue text (relative to record start position) |
-| +0x08 | u32 | `entry_size` | Size of this entry's data block (typically 0x18 = 24) |
+| +0x04 | u32 | `text_offset` | Offset to dialogue text (relative to THIS record's file position) |
+| +0x08 | u32 | `entry_size` | Size marker (always 0x18 = 24) |
 | +0x0C | u32 | `voice_key` | Secondary key/hash for voice file lookup |
-| +0x10 | u32 | `voice_offset` | Offset to voice path string (relative to record start position) |
-| +0x14 | u32 | `padding` | Always 0 |
+| +0x10 | u32 | `voice_offset` | Offset to voice path string (relative to THIS record's file position) |
+| +0x14 | u32 | `padding_1` | Always 0 |
+| +0x18 | u32 | `text_len_hint` | Secondary reference / text length hint |
+| +0x1C | u32 | `padding_2` | Always 0 |
 
 > [!IMPORTANT]
-> **Offsets are RELATIVE** to the record's own file position, not to the file start or any section base.
-> Example: if a record is at file offset `0x30` and `text_offset = 0x60`, the text string is at file offset `0x30 + 0x60 = 0x90`.
+> **Offsets are RELATIVE to each record's own file position.** Record N at file position P uses `P + text_offset` to locate its text.
+> Example: Record 0 at position `0x30` with `text_offset = 0x3C0` → text at `0x30 + 0x3C0 = 0x3F0`.
+> Record 1 at position `0x50` with `text_offset = 0x464` → text at `0x50 + 0x464 = 0x4B4`.
 
 ## String Pool
 
