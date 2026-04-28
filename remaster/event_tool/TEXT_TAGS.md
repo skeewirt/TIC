@@ -24,44 +24,52 @@ These tags are confirmed functional in dialogue balloons:
 | `<player>` | Player name | Same as `<hero>` — blank before naming |
 | `<br>` | Line break | Used in vanilla (1 line) |
 
-## Confirmed NOT Working in Dialogue
+## NXD-Only Tags (NOT available in dialogue)
 
-These tags exist in the binary but render as **raw text** in dialogue balloons.
-They may only work in other UI contexts (menus, tutorials, system text):
+These tags work in **NXD UI text** (menus, guides, item descriptions) but render as **raw literal text** in PZD dialogue balloons. The game has **two separate text renderers** — the NXD renderer supports all 53 tags, while the PZD dialogue renderer only supports the 14 above.
 
-| Tag | Renders As | Likely Context |
-|-----|-----------|----------------|
-| `<color=RRGGBB>` | Raw `<color=ff0000>` | **Poisons the entire parser** — breaks all tags in same string |
-| `<right>` | Raw `<right>` | May be menu/UI only |
-| `<left>` | Raw `<left>` | May be menu/UI only |
-| `<just>` | Raw (no close tag tested) | Justify — may need `</just>` or menu-only |
-| `<xy=N,N>` | Raw `<xy=50,20>` | Dialogue balloons use opcode positioning instead |
-| `<upperall>` | Raw | Case transform — localization pipeline only? |
-| `<lowerall>` | Raw | Case transform — localization pipeline only? |
-| `<head>` | Raw | Capitalize first — localization only? |
-| `<headall>` | Raw | Title case — localization only? |
-| `<keyicon>` | Raw | May need a parameter (e.g. `<keyicon=N>`) |
-| `<date>` | Raw | System/menu text only? |
-| `<time>` | Raw | System/menu text only? |
+| Tag | NXD Usage | Why It Fails in Dialogue |
+|-----|-----------|-------------------------|
+| `<color=N>` | 438 uses across 5 NXD files | Dialogue renderer has no color palette lookup |
+| `<left>` | 1 use in `ui.en.nxd` (Job EXP display) | Balloon alignment set by opcode, not tag |
+| `<right>` | Never used in any file | Same — opcode controls alignment |
+| `<just>` | Never used in any file | Same |
+| `<xy=N,N>` | Never used in any file | Use `<x=N>` instead (that works) |
+| `<moveicon>` | 1 use in `guidepage.en.nxd` | Tutorial UI only |
+| `<upperall>` | Never used in any file | Localization build-time transform |
+| `<lowerall>` | Never used in any file | Localization build-time transform |
+| `<head>` / `<headall>` | Never used in any file | Localization build-time transform |
+| `<keyicon>` | Never used in any file | May need param, or tutorial-only |
+| `<date>` / `<time>` | Never used in any file | Likely debug/dev tags |
+| `<invisible>` | Never used in any file | Not implemented in either renderer |
 
-## Special Behavior
+### `<color>` Syntax (NXD Only)
 
-| Tag | Behavior |
-|-----|----------|
-| `<invisible>` | Does NOT hide text. Appears to create a **scrolling/traveling animation** effect — the tag text physically moves across the string. Bleeds across message boundaries. |
-| `<cmt>` | Unknown — no visible effect observed |
+Color values are **palette indices** or **named constants**, NOT hex RGB:
+
+```
+<color=100>highlighted text</color>    ← palette index
+<color=151>Range:</color>               ← item stat highlight
+<color=111>Rainy</color>                ← weather type color
+<color=guide_notice>text</color>        ← named constant
+<color=critical_damage>text</color>     ← named constant
+```
+
+### Why `<invisible>` "Travels"
+
+The "traveling" effect is the **dialogue typewriter animation** progressively revealing the raw `<invisible>` characters. Since the dialogue renderer doesn't recognize the tag, it renders it as literal text, and the normal character-by-character display animation makes the raw tag text appear to "move" across the screen.
 
 ## Key Rules
 
-1. **`<color>` is TOXIC** — using `<color=...>` in a string breaks the tag parser for the ENTIRE string, causing all tags (even working ones like `<center>`, `<scale>`) to render as raw text.
-2. **Tags that take `=value`**: Only `<scale=N>`, `<x=N>`, `<y=N>`, `<icon=N>`, and `<speaker="...">` are confirmed working with values.
-3. **Positioning**: Use `<x=N>` for horizontal offset (works). Don't use `<xy>` (broken). Vertical positioning is controlled by the `DisplayMessage` opcode's Y-offset parameter.
-4. **`<hero>` / `<player>`**: Work but resolve to blank until the player names their character. Would show the custom name in later scenes.
-5. **Icon tags**: `<crossicon>` and `<upicon>` work and show keyboard glyphs. `<keyicon>` may require a parameter.
+1. **`<color>` is NXD-only** — the dialogue renderer doesn't have a color palette. Using it causes the entire string to render as raw text (parser fallback).
+2. **Tags that take `=value`**: Only `<scale=N>`, `<x=N>`, `<y=N>`, `<icon=N>`, and `<speaker="...">` are confirmed working with values in dialogue.
+3. **Positioning**: Use `<x=N>` for horizontal offset (works). Don't use `<xy>` (NXD-only). Vertical positioning is controlled by the `DisplayMessage` opcode's Y-offset parameter.
+4. **`<hero>` / `<player>`**: Work but resolve to blank until the player names their character (first naming screen). Will show the custom name in later scenes.
+5. **Icon tags**: `<crossicon>` and `<upicon>` work and show keyboard glyphs. `<keyicon>` is NXD-only.
 
 ## Modder's Quick Reference
 
-**Safe to use in dialogue:**
+**Safe to use in PZD dialogue:**
 ```
 <b>bold text</b>
 <i>italic text</i>
@@ -79,12 +87,13 @@ They may only work in other UI contexts (menus, tutorials, system text):
 <br>
 ```
 
-**DO NOT USE in dialogue:**
+**NXD UI text only (NOT dialogue):**
 ```
-<color=anything>   ← breaks ALL tags in the string
-<right>  <left>  <just>  <xy=N,N>
+<color=100>palette color</color>     ← palette index or named constant
+<color=critical_damage>red</color>   ← named constant
+<left>  <right>  <just>  <xy=N,N>
 <upperall>  <lowerall>  <head>  <headall>
-<keyicon>  <date>  <time>
+<moveicon>  <keyicon>  <date>  <time>
 ```
 
 ## Binary Location
