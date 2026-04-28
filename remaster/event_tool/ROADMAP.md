@@ -318,7 +318,7 @@ These opcodes were added by the TIC remaster team and have no community document
 
 ## Phase 1.6 — Dialogue Text Editing (PZD Round-Trip)
 
-**Status**: 🟡 NEXT  
+**Status**: 🟢 IN PROGRESS (core complete, integration remaining)  
 **Objective**: Build CLI tools to read, edit, and write dialogue text in PZD scenario files. This is the last prerequisite before the visual editor — without it, modders can rearrange event blocks but can't change what characters actually *say*.
 
 ### Why before Phase 2
@@ -336,17 +336,25 @@ The visual editor's flagship feature is the dialogue editor (Phase 2.3). If modd
 
 ### Deliverables
 
-| # | Deliverable | Description |
-|---|-------------|-------------|
-| 1.6.1 | **PZD parser** | Full read of PZD structure: header, string table, message entries, voice refs |
-| 1.6.2 | **PZD text extractor** | Extract all dialogue text to editable format (JSON or YAML with message IDs) |
-| 1.6.3 | **PZD compiler** | Write modified text back to valid PZD binary (byte-compatible structure) |
-| 1.6.4 | **Round-trip verification** | Prove extract → rewrite produces byte-identical output for unmodified text |
-| 1.6.5 | **Integration** | Connect to event disassembler: `--messages` flag shows inline dialogue text |
-| 1.6.6 | **Deployment** | Pack modified PZD files for Reloaded-II (same as event script deployment) |
+| # | Deliverable | Status | Notes |
+|---|-------------|--------|-------|
+| 1.6.1 | **PZD parser** | ✅ | `tic_pzd_tool.py` — parses all 346 files, 4,102 messages |
+| 1.6.2 | **PZD text extractor** | ✅ | `extract` / `extract-all` commands → JSON |
+| 1.6.3 | **PZD compiler** | ✅ | `compile` command — rebuilds PZD from JSON |
+| 1.6.4 | **Round-trip verification** | ✅ | **346/346 files byte-identical** (zero failures) |
+| 1.6.5 | **Integration** | ⬜ | Connect to event disassembler: `--messages` flag |
+| 1.6.6 | **Deployment** | ⬜ | Pack modified PZD files for Reloaded-II |
+
+### Key Technical Findings
+
+- **Record format**: 32 bytes (8 × u32) per message
+- **Critical discovery**: Offsets are **relative to each record's own file position**
+- **String pool**: text\0voice\0 pairs, tightly packed (no alignment)
+- **BVLD validation block**: Preserved verbatim for round-trip
+- **File format documented**: `PZD_FORMAT.md`
 
 ### Estimated Effort
-1–2 weeks. PZD structure is simpler than event bytecode — fixed header + string table.
+~~1–2 weeks.~~ Core parser/compiler completed in one session. Integration (1.6.5–1.6.6) estimated at 1–2 days.
 
 ### What's NOT in Phase 1.6
 - **NXD table editing** (new events, ENTD formations) — deferred, power-user feature
@@ -357,5 +365,4 @@ The visual editor's flagship feature is the dialogue editor (Phase 2.3). If modd
 
 ## Next Step
 
-**Phase 1.6.1**: Research PZD file format. Parse header structure, locate string table offsets, understand how message IDs map to text pointers. Build a read-only PZD dumper first, then the write path.
-
+**Phase 1.6.5**: Integrate PZD text into the event disassembler — add `--messages` flag to `tic_event_disasm.py` that inlines dialogue text as comments alongside `DisplayMessage` opcodes.
