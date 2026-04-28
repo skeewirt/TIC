@@ -316,9 +316,46 @@ These opcodes were added by the TIC remaster team and have no community document
 
 ---
 
+## Phase 1.6 — Dialogue Text Editing (PZD Round-Trip)
+
+**Status**: 🟡 NEXT  
+**Objective**: Build CLI tools to read, edit, and write dialogue text in PZD scenario files. This is the last prerequisite before the visual editor — without it, modders can rearrange event blocks but can't change what characters actually *say*.
+
+### Why before Phase 2
+
+The visual editor's flagship feature is the dialogue editor (Phase 2.3). If modders can drag camera moves and unit walks around but can't edit dialogue text, the tool is fundamentally incomplete. Dialogue changes are the **#1 reason** people mod FFT events.
+
+**Current state**: We can already change *who speaks* (speaker ID), *how the balloon looks* (type, portrait, position), and *when it appears* (timing) via event script opcodes. But the actual **text content** lives in separate PZD files referenced by message ID. We need a write path.
+
+### What we already have
+
+- 346 `scenario*.pzd` files extracted from `0002.en.pac`
+- 5,173 dialogue lines mapped to event scripts (`reference/message_map.json`)
+- PZD structure partially parsed — message IDs, text offsets, voice references
+- `DisplayMessage` opcode semantics fully documented (message_id → PZD lookup)
+
+### Deliverables
+
+| # | Deliverable | Description |
+|---|-------------|-------------|
+| 1.6.1 | **PZD parser** | Full read of PZD structure: header, string table, message entries, voice refs |
+| 1.6.2 | **PZD text extractor** | Extract all dialogue text to editable format (JSON or YAML with message IDs) |
+| 1.6.3 | **PZD compiler** | Write modified text back to valid PZD binary (byte-compatible structure) |
+| 1.6.4 | **Round-trip verification** | Prove extract → rewrite produces byte-identical output for unmodified text |
+| 1.6.5 | **Integration** | Connect to event disassembler: `--messages` flag shows inline dialogue text |
+| 1.6.6 | **Deployment** | Pack modified PZD files for Reloaded-II (same as event script deployment) |
+
+### Estimated Effort
+1–2 weeks. PZD structure is simpler than event bytecode — fixed header + string table.
+
+### What's NOT in Phase 1.6
+- **NXD table editing** (new events, ENTD formations) — deferred, power-user feature
+- **New sprite/character creation** — art pipeline, separate effort
+- **Map editing** — major RE challenge, Phase 3+
+
+---
+
 ## Next Step
 
-**Phase 2 — Visual Editor MVP**: The data layer is complete. All opcode metadata, parameter semantics, and documentation are in place to build the drag-and-drop event editor. Key decisions needed:
-1. **Technology**: Tauri (Rust + React) vs Electron vs native?
-2. **Scope**: Start with dialogue-only editor or full timeline from day one?
-3. **Data format**: Continue with current JSON schema or design a new editor-native format?
+**Phase 1.6.1**: Research PZD file format. Parse header structure, locate string table offsets, understand how message IDs map to text pointers. Build a read-only PZD dumper first, then the write path.
+
