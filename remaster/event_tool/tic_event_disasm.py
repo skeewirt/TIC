@@ -409,15 +409,44 @@ def main():
     parser.add_argument('--json', action='store_true', dest='json_output',
                         help='Output JSON format (for round-trip with tic_event_asm.py)')
     parser.add_argument('--stats', action='store_true', help='Show statistics only')
-    parser.add_argument('--messages', help='Path to message_map.json for dialogue resolution')
+    parser.add_argument('--messages', help='Path to message_map.json for dialogue resolution '
+                        '(auto-discovered from reference/ if not specified)')
+    parser.add_argument('--pzd-dir', help='Build message map on-the-fly from PZD files in this directory')
     parser.add_argument('--table', default=os.path.join(os.path.dirname(__file__), 'opcode_table.json'))
     args = parser.parse_args()
     
-    # Load message map if provided
+    # Load message map: explicit path → PZD directory → auto-discover
     messages = None
-    if args.messages and os.path.exists(args.messages):
+    if args.pzd_dir and os.path.isdir(args.pzd_dir):
+        # Build message map from PZD files on-the-fly
+        tool_dir = os.path.dirname(os.path.abspath(__file__))
+        sys.path.insert(0, tool_dir)
+        from tic_pzd_tool import PzdFile
+        messages = {}
+        for fname in sorted(os.listdir(args.pzd_dir)):
+            if not fname.endswith('.pzd'):
+                continue
+            try:
+                pzd = PzdFile.from_file(os.path.join(args.pzd_dir, fname))
+                for msg in pzd.messages:
+                    messages[str(msg.message_key)] = msg.text
+            except Exception:
+                pass
+        print(f"; Loaded {len(messages)} messages from PZD files", file=sys.stderr)
+    elif args.messages and os.path.exists(args.messages):
         with open(args.messages, encoding='utf-8') as f:
             messages = json.load(f)
+    else:
+        # Auto-discover message_map.json
+        auto_paths = [
+            os.path.join(os.path.dirname(__file__), '..', '..', 'reference', 'message_map.json'),
+            os.path.join(os.path.dirname(__file__), 'message_map.json'),
+        ]
+        for p in auto_paths:
+            if os.path.exists(p):
+                with open(p, encoding='utf-8') as f:
+                    messages = json.load(f)
+                break
     
     # Defaults
     if not args.input:

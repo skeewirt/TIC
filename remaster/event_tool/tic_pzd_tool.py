@@ -405,6 +405,10 @@ def main():
     p_dump = sub.add_parser('dump', help='Dump PZD contents')
     p_dump.add_argument('input', help='PZD file to dump')
     
+    p_buildmap = sub.add_parser('build-map', help='Build message_map.json from PZD directory')
+    p_buildmap.add_argument('input', help='Directory containing PZD files')
+    p_buildmap.add_argument('-o', '--output', default='message_map.json', help='Output JSON path')
+    
     args = parser.parse_args()
     
     if args.command == 'extract':
@@ -415,8 +419,37 @@ def main():
         cmd_compile(args)
     elif args.command == 'dump':
         cmd_dump(args)
+    elif args.command == 'build-map':
+        cmd_build_map(args)
     else:
         parser.print_help()
+
+
+def cmd_build_map(args):
+    """Build a message_map.json from all PZD files in a directory.
+    
+    Output format: { "message_key": "dialogue text", ... }
+    Used by tic_event_disasm.py --messages for inline dialogue comments.
+    """
+    input_dir = args.input
+    messages = {}
+    file_count = 0
+    
+    for fname in sorted(os.listdir(input_dir)):
+        if not fname.endswith('.pzd'):
+            continue
+        try:
+            pzd = PzdFile.from_file(os.path.join(input_dir, fname))
+            for msg in pzd.messages:
+                messages[str(msg.message_key)] = msg.text
+            file_count += 1
+        except Exception as e:
+            print(f"  WARNING: {fname}: {e}")
+    
+    with open(args.output, 'w', encoding='utf-8') as f:
+        json.dump(messages, f, indent=2, ensure_ascii=False)
+    
+    print(f"Built message map: {len(messages)} messages from {file_count} files → {args.output}")
 
 
 if __name__ == '__main__':
