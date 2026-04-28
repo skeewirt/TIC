@@ -244,6 +244,146 @@ def cmd_dump(args):
         print()
 
 
+def cmd_compile(args):
+    """Compile JSON back to PZD binary.
+    
+    Strategy: Start from the original file as a byte-exact template.
+    If no text was modified, output is byte-identical (round-trip verified).
+    If text was modified, rebuild the string pool and recalculate all offsets.
+    """
+    with open(args.input, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    if not args.original:
+        print("ERROR: --original <pzd_file> is required for compilation")
+        sys.exit(1)
+    
+    orig_pzd = PzdFile.from_file(args.original)
+    orig_data = bytearray(orig_pzd.raw_data)
+    
+    msg_count = len(data['messages'])
+    content_offset = struct.unpack_from('<I', orig_data, 0x20)[0]
+    
+    # Check if any text was actually modified
+    text_changed = False
+    for i, msg_data in enumerate(data['messages']):
+        if i < len(orig_pzd.messages):
+            if msg_data.get('text', '') != orig_pzd.messages[i].text:
+                text_changed = True
+                break
+            if msg_data.get('voice_path', '') != orig_pzd.messages[i].voice_path:
+                text_changed = True
+                break
+    
+    if not text_changed:
+        # No text modified — output original file verbatim
+        output = bytes(orig_data)
+    else:
+        # Text was modified — rebuild string pool and recalculate offsets
+        GAP_SIZE = 64  # 8B header + 16B zeros + 32B BVLD refs + 4B pool marker
+        records_end = content_offset + msg_count * MSG_RECORD_SIZE
+        orig_gap_start = content_offset + len(orig_pzd.messages) * MSG_RECORD_SIZE
+        
+        # Find BVLD metadata in original
+        devenv_idx = orig_data.find(b'DevEnv')
+        bvld_metadata = bytes(orig_data[devenv_idx:])
+        
+        # Build new string pool: text\0voice\0 for each message
+        new_strings = bytearray()
+        string_positions = []
+        
+        for msg_data in data['messages']:
+            text = msg_data.get('text', '')
+            voice = msg_data.get('voice_path', '')
+            
+            text_pos = len(new_strings)
+            new_strings.extend(text.encode('utf-8'))
+            new_strings.append(0)
+            
+            voice_pos = len(new_strings)
+            new_strings.extend(voice.encode('utf-8'))
+            new_strings.append(0)
+            
+            string_positions.append((text_pos, voice_pos))
+        
+        # Build message records with correct per-record-relative offsets
+        new_records = bytearray()
+        pool_file_start = records_end + GAP_SIZE
+        
+        for i, msg_data in enumerate(data['messages']):
+            rec_file_pos = content_offset + i * MSG_RECORD_SIZE
+            abs_text = pool_file_start + string_positions[i][0]
+            abs_voice = pool_file_start + string_positions[i][1]
+            text_off = abs_text - rec_file_pos
+            voice_off = abs_voice - rec_file_pos
+            
+            orig_msg = orig_pzd.messages[i] if i < len(orig_pzd.messages) else None
+            msg_key = msg_data.get('message_key', orig_msg.message_key if orig_msg else 0)
+            voice_key = msg_data.get('voice_key', orig_msg.voice_key if orig_msg else 0)
+            entry_size = orig_msg.entry_size if orig_msg else 0x18
+            text_len_hint = orig_msg.text_len_hint if orig_msg else 0
+            
+            rec = struct.pack('<8I',
+                msg_key, text_off, entry_size, voice_key,
+                voice_off, 0, text_len_hint, 0)
+            new_records.extend(rec)
+        
+        # Rebuild gap: preserve original, adjust BVLD string ref offsets
+        orig_pool_start = orig_gap_start + GAP_SIZE
+        orig_pool_size = devenv_idx - orig_pool_start
+        pool_delta = len(new_strings) - orig_pool_size
+        
+        orig_gap = bytearray(orig_data[orig_gap_start:orig_gap_start + GAP_SIZE])
+        for ref_off in [0x20, 0x28, 0x30, 0x38]:
+            if ref_off + 4 <= len(orig_gap):
+                old_val = struct.unpack_from('<I', orig_gap, ref_off)[0]
+                struct.pack_into('<I', orig_gap, ref_off, old_val + pool_delta)
+        
+        # Assemble: header + records + gap + strings + BVLD
+        header = bytes(orig_data[0:content_offset])
+        output = header + bytes(new_records) + bytes(orig_gap) + bytes(new_strings) + bvld_metadata
+        
+        output_ba = bytearray(output)
+        struct.pack_into('<I', output_ba, 0x24, msg_count)
+        output = bytes(output_ba)
+    
+    # Write output
+    out_path = args.output or args.input.replace('.json', '.pzd')
+    with open(out_path, 'wb') as f:
+        f.write(output)
+    
+    print(f"Compiled {msg_count} messages → {out_path} ({len(output)} bytes)")
+    if text_changed:
+        print("  (text was modified — string pool rebuilt)")
+    else:
+        print("  (no text changes — byte-identical output)")
+    
+    # Verify if requested
+    if args.verify:
+        with open(args.verify, 'rb') as f:
+            expected = f.read()
+        
+        if output == expected:
+            print(f"✅ VERIFIED: byte-identical to {args.verify}")
+        else:
+            mismatches = 0
+            first_diff = None
+            for i in range(min(len(output), len(expected))):
+                if output[i] != expected[i]:
+                    mismatches += 1
+                    if first_diff is None:
+                        first_diff = i
+            
+            print(f"❌ MISMATCH: {mismatches} differing bytes")
+            if first_diff is not None:
+                ctx = max(0, first_diff - 4)
+                print(f"   First diff at 0x{first_diff:04X}:")
+                print(f"   Got:      {' '.join(f'{output[j]:02X}' for j in range(ctx, min(ctx+16, len(output))))}")
+                print(f"   Expected: {' '.join(f'{expected[j]:02X}' for j in range(ctx, min(ctx+16, len(expected))))}")
+            if len(output) != len(expected):
+                print(f"   Size: {len(output)} vs expected {len(expected)} (delta={len(output)-len(expected)})")
+
+
 def main():
     parser = argparse.ArgumentParser(description='TIC PZD Dialogue Tool')
     sub = parser.add_subparsers(dest='command')
@@ -256,6 +396,12 @@ def main():
     p_extract_all.add_argument('input', help='Directory containing PZD files')
     p_extract_all.add_argument('-o', '--output', help='Output directory for JSON files')
     
+    p_compile = sub.add_parser('compile', help='Compile JSON back to PZD')
+    p_compile.add_argument('input', help='JSON file to compile')
+    p_compile.add_argument('--original', required=True, help='Original PZD file (structure template)')
+    p_compile.add_argument('-o', '--output', help='Output PZD path')
+    p_compile.add_argument('--verify', help='Verify output matches this file')
+    
     p_dump = sub.add_parser('dump', help='Dump PZD contents')
     p_dump.add_argument('input', help='PZD file to dump')
     
@@ -265,6 +411,8 @@ def main():
         cmd_extract(args)
     elif args.command == 'extract-all':
         cmd_extract_all(args)
+    elif args.command == 'compile':
+        cmd_compile(args)
     elif args.command == 'dump':
         cmd_dump(args)
     else:
