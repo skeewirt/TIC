@@ -1,8 +1,8 @@
 # TIC Event Script Tools
 
-Complete CLI toolkit for **disassembling, editing, compiling, and packaging** event scripts from FINAL FANTASY TACTICS: The Ivalice Chronicles.
+Complete CLI toolkit for **disassembling, editing, compiling, and packaging** event scripts and **dialogue text** from FINAL FANTASY TACTICS: The Ivalice Chronicles.
 
-**560/560 event scripts round-trip byte-identical.** Zero unknown opcodes.
+**560/560 event scripts round-trip byte-identical.** **346/346 PZD dialogue files round-trip byte-identical.** Zero unknown opcodes.
 
 Built on [Gibbed's](https://github.com/gibbed/Gibbed.IvaliceChronicles) opcode research (MIT license), with binary verification via IDA decompilation of `ProcessEventInstructions` and [FFHacktics](https://ffhacktics.com/wiki/Event_Instructions) community name cross-references.
 
@@ -14,11 +14,12 @@ Built on [Gibbed's](https://github.com/gibbed/Gibbed.IvaliceChronicles) opcode r
 |------|---------|
 | `tic_event_disasm.py` | Disassemble `.e` binary → human-readable text or JSON |
 | `tic_event_asm.py` | Assemble JSON → byte-identical `.e` binary |
+| `tic_pzd_tool.py` | Extract, edit, and recompile PZD dialogue files (4,102 lines) |
 | `tic_event_tools.py diff` | Instruction-level diff between two event scripts |
 | `tic_event_tools.py list` | Catalog all events with dialogue counts and previews |
 | `tic_event_tools.py pack` | Package compiled events for Reloaded-II modloader |
-| `build_message_map.py` | Extract dialogue text from PZD scenario files |
 | `opcode_table.json` | Complete opcode definitions (243 opcodes, all named) |
+| `PZD_FORMAT.md` | PZD binary format reference documentation |
 
 ---
 
@@ -225,14 +226,20 @@ YourMod/
 ├── FFTIVC/
 │   └── data/
 │       └── enhanced/
-│           └── script/
-│               └── enhanced/
-│                   ├── event002.e    ← compiled event scripts
-│                   └── event093.e
+│           ├── script/
+│           │   └── enhanced/
+│           │       ├── event002.e        ← compiled event scripts (0005.pac)
+│           │       └── event093.e
+│           └── nxd/
+│               └── text/
+│                   └── scenario/
+│                       └── scenario0010.en.pzd  ← modified dialogue (0002.en.pac)
 └── ModConfig.json
 ```
 
-> **⚠️ Path matters:** The inner `script/enhanced/` must match the PAC path `script/enhanced/eventNNN.e`. Using just `script/` will silently fail — the modloader registers the file but the game won't find it.
+> **⚠️ Path matters:** The inner paths must match the PAC file structure exactly.
+> - Event scripts: `script/enhanced/eventNNN.e` (from `0005.pac`)
+> - Dialogue text: `nxd/text/scenario/scenarioNNNN.en.pzd` (from `0002.en.pac`)
 
 The `pack` command generates this structure automatically. At runtime, the modloader builds a `modded.pac` containing your scripts and registers it with the game's resource manager.
 

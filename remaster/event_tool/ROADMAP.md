@@ -318,7 +318,7 @@ These opcodes were added by the TIC remaster team and have no community document
 
 ## Phase 1.6 — Dialogue Text Editing (PZD Round-Trip)
 
-**Status**: 🟢 IN PROGRESS (core complete, integration remaining)  
+**Status**: ✅ **COMPLETE**  
 **Objective**: Build CLI tools to read, edit, and write dialogue text in PZD scenario files. This is the last prerequisite before the visual editor — without it, modders can rearrange event blocks but can't change what characters actually *say*.
 
 ### Why before Phase 2
@@ -342,8 +342,8 @@ The visual editor's flagship feature is the dialogue editor (Phase 2.3). If modd
 | 1.6.2 | **PZD text extractor** | ✅ | `extract` / `extract-all` commands → JSON |
 | 1.6.3 | **PZD compiler** | ✅ | `compile` command — rebuilds PZD from JSON |
 | 1.6.4 | **Round-trip verification** | ✅ | **346/346 files byte-identical** (zero failures) |
-| 1.6.5 | **Integration** | ⬜ | Connect to event disassembler: `--messages` flag |
-| 1.6.6 | **Deployment** | ⬜ | Pack modified PZD files for Reloaded-II |
+| 1.6.5 | **Integration** | ✅ | Auto-discovers `message_map.json`; `--pzd-dir` builds live; `build-map` cmd |
+| 1.6.6 | **Deployment** | ✅ | `nxd/text/scenario/` path documented for Reloaded-II |
 
 ### Key Technical Findings
 
@@ -354,7 +354,7 @@ The visual editor's flagship feature is the dialogue editor (Phase 2.3). If modd
 - **File format documented**: `PZD_FORMAT.md`
 
 ### Estimated Effort
-~~1–2 weeks.~~ Core parser/compiler completed in one session. Integration (1.6.5–1.6.6) estimated at 1–2 days.
+~~1–2 weeks.~~ **Completed in one session.** All 6 deliverables done.
 
 ### What's NOT in Phase 1.6
 - **NXD table editing** (new events, ENTD formations) — deferred, power-user feature
@@ -365,4 +365,7 @@ The visual editor's flagship feature is the dialogue editor (Phase 2.3). If modd
 
 ## Next Step
 
-**Phase 1.6.5**: Integrate PZD text into the event disassembler — add `--messages` flag to `tic_event_disasm.py` that inlines dialogue text as comments alongside `DisplayMessage` opcodes.
+**Phase 2**: Visual Event Editor (Tauri/React MVP). All Phase 1 prerequisites are now complete:
+- ✅ Full opcode disassembly/assembly (Phase 1.0–1.5)
+- ✅ Dialogue text read/write with byte-perfect round-trip (Phase 1.6)
+- ✅ Modloader deployment for both event scripts and dialogue files
